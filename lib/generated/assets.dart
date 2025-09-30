@@ -22,8 +22,11 @@ class Assets {
   static const String lottieNotFound = 'assets/lottie/NotFound.json';
   static const String svgBook = 'assets/svg/book.svg';
   static const String svgGalery = 'assets/svg/galery.svg';
+  static const String svgMosque = 'assets/svg/mosque.svg';
   static const String svgPaepar = 'assets/svg/paepar.svg';
   static const String svgPapearShdow = 'assets/svg/papear_shdow.svg';
+  static const String svgSearch = 'assets/svg/search.svg';
+  static const String svgSettings = 'assets/svg/settings.svg';
   static const String svgShow = 'assets/svg/show.svg';
   static const String svgSoundWave = 'assets/svg/sound_wave.svg';
   static const String tajawalOFL = 'assets/fonts/Tajawal/OFL.txt';

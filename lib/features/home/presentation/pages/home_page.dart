@@ -8,6 +8,7 @@ import '../../../../config/appconfig/app_colors.dart';
 import '../../../../core/shared/widgets/app_scaffold.dart';
 import '../../../../gen/assets.gen.dart';
 import '../../../../gen/fonts.gen.dart';
+import '../widgets/bottom_navigation_bar.dart';
 import '../widgets/main_card.dart';
 
 class HomePage extends StatelessWidget {
@@ -16,11 +17,11 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppScaffold.clean(
+      bottomNavigationBar: CustomBottomNavBar(),
       backgroundColor: AppColors.white,
       body: Padding(
-        padding: EdgeInsets.only(right: 16.w, left: 16.w, top: 20.w),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        padding: EdgeInsets.only(right: 16.w, left: 16.w,),
+        child: ListView(
           children: [
             MainCard(),
             SizedBox(height: 20.h),
@@ -72,7 +73,7 @@ Widget buildListTile({
 }) {
   return Container(
     height: 83.h,
-    margin: EdgeInsets.only(bottom: 20.p),
+    margin: EdgeInsets.only(bottom: 20.p, right: 10.p, left: 10.p),
     decoration: BoxDecoration(
       color: Colors.white,
       borderRadius: BorderRadius.circular(20.r),
