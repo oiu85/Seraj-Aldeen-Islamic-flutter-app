@@ -20,6 +20,12 @@ class $AssetsImagesGen {
   /// File path: assets/images/Search_empty.png
   AssetGenImage get searchEmpty => const AssetGenImage('assets/images/Search_empty.png');
 
+  /// File path: assets/images/appbar_image_left.png
+  AssetGenImage get appbarImageLeft => const AssetGenImage('assets/images/appbar_image_left.png');
+
+  /// File path: assets/images/appbar_image_right.png
+  AssetGenImage get appbarImageRight => const AssetGenImage('assets/images/appbar_image_right.png');
+
   /// File path: assets/images/quran.png
   AssetGenImage get quran => const AssetGenImage('assets/images/quran.png');
 
@@ -47,6 +53,8 @@ class $AssetsImagesGen {
   /// List of all assets
   List<AssetGenImage> get values => [
         searchEmpty,
+        appbarImageLeft,
+        appbarImageRight,
         quran,
         serajAldeenImage,
         serajName,

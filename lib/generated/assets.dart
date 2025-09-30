@@ -7,6 +7,8 @@ class Assets {
   static const String amiriAmiriItalic = 'assets/fonts/Amiri/Amiri-Italic.ttf';
   static const String amiriAmiriRegular = 'assets/fonts/Amiri/Amiri-Regular.ttf';
   static const String amiriOFL = 'assets/fonts/Amiri/OFL.txt';
+  static const String imagesAppbarImageLeft = 'assets/images/appbar_image_left.png';
+  static const String imagesAppbarImageRight = 'assets/images/appbar_image_right.png';
   static const String imagesQuran = 'assets/images/quran.png';
   static const String imagesSearchEmpty = 'assets/images/Search_empty.png';
   static const String imagesSerajAldeenImage = 'assets/images/seraj_aldeen_image.png';

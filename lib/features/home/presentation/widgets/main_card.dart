@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:seraj_aldean_flutter_app/core/responsive/screen_util_res.dart';
 import 'package:seraj_aldean_flutter_app/core/responsive/screen_utils.dart';
+import 'package:seraj_aldean_flutter_app/features/biography/presentation/pages/biography_page.dart';
 
 import '../../../../config/appconfig/app_colors.dart';
 import '../../../../gen/assets.gen.dart';
@@ -78,8 +79,7 @@ class MainCard extends StatelessWidget {
                     Spacer(),
                     Container(
                       width: 130.w,
-                      padding: EdgeInsets.symmetric(
-                          horizontal: 20.p, vertical: 10.p),
+                      padding: EdgeInsets.symmetric(horizontal: 4.p),
                       decoration: BoxDecoration(
                         border: Border.all(color: AppColors.primary),
                         borderRadius: BorderRadius.circular(70.r),
@@ -97,10 +97,17 @@ class MainCard extends StatelessWidget {
                             ),
                           ),
                           Spacer(),
-                          Icon(
-                            Icons.arrow_forward_outlined,
-                            color: AppColors.primary,
-                            size: 14.p,
+                          IconButton(
+                            onPressed: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(builder: (context) => const BiographyPage()),
+                              );
+                            },
+                            icon: Icon(
+                              Icons.arrow_forward_outlined,
+                              size: 14.p,
+                              color: AppColors.primary,
+                            ),
                           ),
                         ],
                       ),
