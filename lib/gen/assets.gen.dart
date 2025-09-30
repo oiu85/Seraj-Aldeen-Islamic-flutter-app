@@ -32,6 +32,12 @@ class $AssetsImagesGen {
   /// File path: assets/images/shaik.png
   AssetGenImage get shaik => const AssetGenImage('assets/images/shaik.png');
 
+  /// File path: assets/images/shaik_image-removebg-preview.png
+  AssetGenImage get shaikImageRemovebgPreview => const AssetGenImage('assets/images/shaik_image-removebg-preview.png');
+
+  /// File path: assets/images/shaik_image.png
+  AssetGenImage get shaikImage => const AssetGenImage('assets/images/shaik_image.png');
+
   /// File path: assets/images/viewr_examplw2.png
   AssetGenImage get viewrExamplw2 => const AssetGenImage('assets/images/viewr_examplw2.png');
 
@@ -39,8 +45,17 @@ class $AssetsImagesGen {
   AssetGenImage get viwerExample => const AssetGenImage('assets/images/viwer_example.png');
 
   /// List of all assets
-  List<AssetGenImage> get values =>
-      [searchEmpty, quran, serajAldeenImage, serajName, shaik, viewrExamplw2, viwerExample];
+  List<AssetGenImage> get values => [
+        searchEmpty,
+        quran,
+        serajAldeenImage,
+        serajName,
+        shaik,
+        shaikImageRemovebgPreview,
+        shaikImage,
+        viewrExamplw2,
+        viwerExample
+      ];
 }
 
 class $AssetsLottieGen {
