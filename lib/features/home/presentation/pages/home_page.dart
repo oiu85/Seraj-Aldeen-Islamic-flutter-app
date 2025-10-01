@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:seraj_aldean_flutter_app/core/responsive/screen_util_res.dart';
+import 'package:seraj_aldean_flutter_app/core/routes.dart';
 import 'package:seraj_aldean_flutter_app/features/global_search/presentation/pages/global_search.dart';
 
 import '../../../../config/appconfig/app_colors.dart';
 import '../../../../core/shared/widgets/app_scaffold.dart';
+import '../../../../core/shared/widgets/close_app_button.dart';
 import '../../../../gen/assets.gen.dart';
 import '../../../../gen/fonts.gen.dart';
+import '../../../settings/presentation/pages/settings_page.dart';
 import '../widgets/bottom_navigation_bar.dart';
 import '../widgets/main_card.dart';
 
@@ -124,7 +129,9 @@ class HomeContent extends StatelessWidget {
             buildListTile(
               title: "فوائد وفتاوى",
               assetPath: Assets.svg.paepar.path,
-              onTap: () {},
+              onTap: () {
+                Get.toNamed(AppRoute.benefits);
+              },
             ),
             buildListTile(
               title: "الصوتيات",
@@ -148,58 +155,6 @@ class HomeContent extends StatelessWidget {
   }
 }
 
-// Settings page
-class SettingsPage extends StatelessWidget {
-  const SettingsPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return AppScaffold.clean(
-      body: Padding(
-        padding: EdgeInsets.all(16.w),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: 20.h),
-            Text(
-              "الإعدادات",
-              style: TextStyle(
-                fontFamily: FontFamily.tajawal,
-                fontSize: 24.f,
-                fontWeight: FontWeight.bold,
-                color: AppColors.primary,
-              ),
-            ),
-            SizedBox(height: 30.h),
-            Expanded(
-              child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.settings,
-                      size: 80.w,
-                      color: Colors.grey[400],
-                    ),
-                    SizedBox(height: 20.h),
-                    Text(
-                      "صفحة الإعدادات قيد التطوير",
-                      style: TextStyle(
-                        fontFamily: FontFamily.tajawal,
-                        fontSize: 16.f,
-                        color: Colors.grey[600],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
 
 Widget buildListTile({
   required String title,

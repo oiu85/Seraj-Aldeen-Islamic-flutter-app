@@ -32,84 +32,94 @@ class _GlobalSearchState extends State<GlobalSearch> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: 20.h),
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(60.r),
-                border: Border.all(
-                  color: AppColors.primary,
-                  width: 2.w,
+            Row(
+              children: [
+                IconButton(
+                  onPressed: () {},
+                  icon: Icon(Icons.arrow_back_outlined),
                 ),
-                boxShadow: [
-                  BoxShadow(
-                    color: AppColors.primary.withOpacity(0.1),
-                    blurRadius: 8,
-                    spreadRadius: 0,
-                    offset: const Offset(0, 2),
-                  ),
-                ],
-              ),
-              child: SearchBar(
-                controller: _searchController,
-                hintText: "ابحث بكلمة عن ما تريد",
-                hintStyle: MaterialStateProperty.all(
-                  TextStyle(
-                    fontFamily: FontFamily.tajawal,
-                    fontSize: 16.f,
-                    color: Colors.grey[500],
-                  ),
-                ),
-                textStyle: MaterialStateProperty.all(
-                  TextStyle(
-                    fontFamily: FontFamily.tajawal,
-                    fontSize: 16.f,
-                    color: Colors.black87,
-                  ),
-                ),
-                leading: Container(
-                  margin: EdgeInsets.only(left: 12.w),
-                  child: Icon(
-                    Icons.search,
-                    color: AppColors.primary,
-                    size: 24.w,
-                  ),
-                ),
-                trailing: [
-                  if (_searchController.text.isNotEmpty)
-                    Container(
-                      margin: EdgeInsets.only(right: 8.w),
-                      child: IconButton(
-                        icon: Container(
-                          padding: EdgeInsets.all(4.w),
-                          decoration: BoxDecoration(
-                            color: AppColors.primary.withOpacity(0.1),
-                            borderRadius: BorderRadius.circular(50.r),
-                          ),
-                          child: Icon(
-                            Icons.clear,
-                            color: AppColors.primary,
-                            size: 18.w,
-                          ),
-                        ),
-                        onPressed: () {
-                          _searchController.clear();
-                          setState(() {});
-                        },
+                Expanded(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(60.r),
+                      border: Border.all(
+                        color: AppColors.primary,
+                        width: 1.w,
                       ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: AppColors.primary.withOpacity(0.1),
+                          blurRadius: 8,
+                          offset: const Offset(0, 2),
+                        ),
+                      ],
                     ),
-                ],
-                backgroundColor: WidgetStateProperty.all(Colors.white),
-                elevation: WidgetStateProperty.all(0),
-                side: WidgetStateProperty.all(BorderSide.none),
-                shape: WidgetStateProperty.all(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(50.r),
+                    child: SearchBar(
+                      controller: _searchController,
+                      hintText: "ابحث بكلمة عن ما تريد",
+                      hintStyle: MaterialStateProperty.all(
+                        TextStyle(
+                          fontFamily: FontFamily.tajawal,
+                          fontSize: 16.f,
+                          color: Colors.grey[500],
+                        ),
+                      ),
+                      textStyle: MaterialStateProperty.all(
+                        TextStyle(
+                          fontFamily: FontFamily.tajawal,
+                          fontSize: 16.f,
+                          color: Colors.black87,
+                        ),
+                      ),
+                      leading: Padding(
+                        padding: EdgeInsets.only(left: 12.w),
+                        child: Icon(
+                          Icons.search,
+                          color: AppColors.grey,
+                          size: 24.w,
+                        ),
+                      ),
+                      trailing: [
+                        if (_searchController.text.isNotEmpty)
+                          Padding(
+                            padding: EdgeInsets.only(right: 8.w),
+                            child: IconButton(
+                              icon: Container(
+                                padding: EdgeInsets.all(4.w),
+                                decoration: BoxDecoration(
+                                  color: AppColors.primary.withOpacity(0.1),
+                                  borderRadius: BorderRadius.circular(50.r),
+                                ),
+                                child: Icon(
+                                  Icons.clear,
+                                  color: AppColors.primary,
+                                  size: 18.w,
+                                ),
+                              ),
+                              onPressed: () {
+                                _searchController.clear();
+                                setState(() {});
+                              },
+                            ),
+                          ),
+                      ],
+                      backgroundColor: WidgetStateProperty.all(Colors.white),
+                      elevation: WidgetStateProperty.all(0),
+                      side: WidgetStateProperty.all(BorderSide.none),
+                      shape: WidgetStateProperty.all(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50.r),
+                        ),
+                      ),
+
+                      onChanged: (value) {
+                        setState(() {});
+                      },
+                    ),
                   ),
                 ),
-                onChanged: (value) {
-                  setState(() {});
-                },
-              ),
+              ],
             ),
             SizedBox(height: 30.h),
             Expanded(

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:seraj_aldean_flutter_app/core/responsive/screen_util_res.dart';
 import 'package:seraj_aldean_flutter_app/core/responsive/screen_utils.dart';
+import 'package:seraj_aldean_flutter_app/core/route/routes.dart';
+import 'package:seraj_aldean_flutter_app/core/routes.dart';
 import 'package:seraj_aldean_flutter_app/features/biography/presentation/pages/biography_page.dart';
 
 import '../../../../config/appconfig/app_colors.dart';
@@ -20,18 +23,13 @@ class MainCard extends StatelessWidget {
       child: Container(
         height: 220.h,
         width: 370.w,
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              Color(0xFF8DB6E2),
-              AppColors.white,
-            ],
-            stops: [0.0, 0.4],
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            fit: BoxFit.cover,
+              image:AssetImage(Assets.images.mainCardBackground.path,),
           ),
         ),
-        child:Stack(
+        child: Stack(
           children: [
             Positioned.fill(
               child: Padding(
@@ -44,8 +42,9 @@ class MainCard extends StatelessWidget {
                       "أهلاً بكم في تطبيق الإمام الشيخ:",
                       style: TextStyle(
                         fontFamily: FontFamily.tajawal,
-                        fontSize: 16.f,
+                        fontSize: 18.f,
                         fontWeight: FontWeight.bold,
+                        color: Colors.white
                       ),
                       softWrap: true,
                     ),
@@ -54,62 +53,63 @@ class MainCard extends StatelessWidget {
                       "عبدالله سراج الدين الحسيني",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 14.f,
+                        fontSize: 16.f,
                         fontFamily: FontFamily.tajawal,
-                        color: AppColors.primary,
+                        color: AppColors.secondary,
                       ),
                     ),
+                    SizedBox(height: 4.h,),
                     Text(
                       "رحمه الله ورضي عنه ",
                       style: TextStyle(
                         fontFamily: FontFamily.tajawal,
                         fontSize: 13.f,
                         fontWeight: FontWeight.bold,
+                        color: Colors.white
                       ),
                     ),
+                    SizedBox(height: 4.h,),
                     Text(
                       "1442-1342",
-                      style:  TextStyle(
+                      style: TextStyle(
                         fontSize: 14.f,
                         fontWeight: FontWeight.bold,
                         fontFamily: FontFamily.tajawal,
-                        color: AppColors.primary,
+                        color: AppColors.white,
                       ),
                     ),
                     Spacer(),
-                    Container(
-                      width: 130.w,
-                      padding: EdgeInsets.symmetric(horizontal: 7.p),
-                      decoration: BoxDecoration(
-                        border: Border.all(color: AppColors.primary),
-                        borderRadius: BorderRadius.circular(70.r),
-                        color: AppColors.white,
-                      ),
-                      child: Row(
-                        children: [
-                          Text(
-                            "السيرة الذاتية",
-                            style: TextStyle(
-                              color: AppColors.primary,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: FontFamily.tajawal,
-                              fontSize: 11.f,
+                    InkWell(
+                      onTap: (){
+                        Get.toNamed(AppRoute.biography);
+                      },
+                      child: Container(
+                        height: 37.h,
+                        width: 130.w,
+                        padding: EdgeInsets.only(right: 7.p,left: 4),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(70.r),
+                          color: AppColors.secondary,
+                        ),
+                        child: Row(
+                          children: [
+                            Text(
+                              "السيرة الذاتية",
+                              style: TextStyle(
+                                color: AppColors.white,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: FontFamily.tajawal,
+                                fontSize: 16.f,
+                              ),
                             ),
-                          ),
-                          Spacer(),
-                          IconButton(
-                            onPressed: () {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(builder: (context) => const BiographyPage()),
-                              );
-                            },
-                            icon: Icon(
-                              Icons.arrow_forward_outlined,
-                              size: 14.p,
-                              color: AppColors.primary,
-                            ),
-                          ),
-                        ],
+                            Spacer(),
+                               Icon(
+                                Icons.arrow_forward_outlined,
+                                size: 24.p,
+                                color: AppColors.white,
+                              ),
+                          ],
+                        ),
                       ),
                     ),
                     Spacer(),
@@ -125,7 +125,7 @@ class MainCard extends StatelessWidget {
                   bottomLeft: Radius.circular(16.r),
                 ),
                 child: Image.asset(
-                  Assets.images.shaikImageRemovebgPreview.path,
+                  Assets.images.abdullahSerajAldeen.path,
                   fit: BoxFit.contain,
                   height: 158,
                   width: 180,

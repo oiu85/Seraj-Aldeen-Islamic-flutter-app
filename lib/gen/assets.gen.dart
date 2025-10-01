@@ -20,11 +20,17 @@ class $AssetsImagesGen {
   /// File path: assets/images/Search_empty.png
   AssetGenImage get searchEmpty => const AssetGenImage('assets/images/Search_empty.png');
 
+  /// File path: assets/images/abdullah_seraj_aldeen.png
+  AssetGenImage get abdullahSerajAldeen => const AssetGenImage('assets/images/abdullah_seraj_aldeen.png');
+
   /// File path: assets/images/appbar_image_left.png
   AssetGenImage get appbarImageLeft => const AssetGenImage('assets/images/appbar_image_left.png');
 
   /// File path: assets/images/appbar_image_right.png
   AssetGenImage get appbarImageRight => const AssetGenImage('assets/images/appbar_image_right.png');
+
+  /// File path: assets/images/main_card_background.png
+  AssetGenImage get mainCardBackground => const AssetGenImage('assets/images/main_card_background.png');
 
   /// File path: assets/images/quran.png
   AssetGenImage get quran => const AssetGenImage('assets/images/quran.png');
@@ -53,8 +59,10 @@ class $AssetsImagesGen {
   /// List of all assets
   List<AssetGenImage> get values => [
         searchEmpty,
+        abdullahSerajAldeen,
         appbarImageLeft,
         appbarImageRight,
+        mainCardBackground,
         quran,
         serajAldeenImage,
         serajName,

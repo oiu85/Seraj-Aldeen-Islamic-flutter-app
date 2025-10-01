@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:seraj_aldean_flutter_app/core/responsive/screen_util_res.dart';
+import 'package:seraj_aldean_flutter_app/config/appconfig/app_colors.dart';
+import 'package:seraj_aldean_flutter_app/gen/fonts.gen.dart';
 
 class CloseAppButton extends StatelessWidget {
   final VoidCallback? onPressed;
@@ -19,16 +22,29 @@ class CloseAppButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: margin,
-      child: TextButton(
+      child: ElevatedButton.icon(
         onPressed: onPressed ?? () => _showExitDialog(context),
-        style: TextButton.styleFrom(
-          padding: padding ?? const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.red[600],
+          foregroundColor: Colors.white,
+          padding: padding ?? EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12.r),
+          ),
+          elevation: 2,
         ),
-        child: child ?? const Text(
+        icon: Icon(
+          Icons.exit_to_app,
+          size: 20.w,
+          color: Colors.white,
+        ),
+        label: child ?? Text(
           'إغلاق التطبيق',
           style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w500,
+            fontFamily: FontFamily.tajawal,
+            fontSize: 16.f,
+            fontWeight: FontWeight.w600,
+            color: Colors.white,
           ),
         ),
       ),
@@ -41,68 +57,99 @@ class CloseAppButton extends StatelessWidget {
       barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text(
-            'تأكيد الخروج',
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
-            textAlign: TextAlign.center,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20.r),
           ),
-          content: const Text(
+          title: Container(
+            padding: EdgeInsets.symmetric(vertical: 8.h),
+            child: Column(
+              children: [
+                Container(
+                  padding: EdgeInsets.all(12.w),
+                  decoration: BoxDecoration(
+                    color: Colors.red[50],
+                    borderRadius: BorderRadius.circular(50.r),
+                  ),
+                  child: Icon(
+                    Icons.exit_to_app,
+                    color: Colors.red[600],
+                    size: 32.w,
+                  ),
+                ),
+                SizedBox(height: 16.h),
+                Text(
+                  'تأكيد الخروج',
+                  style: TextStyle(
+                    fontFamily: FontFamily.tajawal,
+                    fontSize: 20.f,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black87,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            ),
+          ),
+          content: Text(
             'هل تريد الخروج من التطبيق؟',
             style: TextStyle(
-              fontSize: 16,
+              fontFamily: FontFamily.tajawal,
+              fontSize: 16.f,
+              color: Colors.grey[700],
             ),
             textAlign: TextAlign.center,
           ),
           actionsAlignment: MainAxisAlignment.center,
+          actionsPadding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
           actions: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Expanded(
-                  child: TextButton(
+                  child: ElevatedButton(
                     onPressed: () {
                       Navigator.of(context).pop(); // Close dialog
                     },
-                    style: TextButton.styleFrom(
+                    style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.grey[200],
-                      padding: const EdgeInsets.symmetric(vertical: 12),
+                      foregroundColor: Colors.black87,
+                      padding: EdgeInsets.symmetric(vertical: 12.h),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
+                        borderRadius: BorderRadius.circular(12.r),
                       ),
+                      elevation: 0,
                     ),
-                    child: const Text(
+                    child: Text(
                       'لا',
                       style: TextStyle(
-                        fontSize: 16,
+                        fontFamily: FontFamily.tajawal,
+                        fontSize: 16.f,
                         fontWeight: FontWeight.w600,
-                        color: Colors.black87,
                       ),
                     ),
                   ),
                 ),
-                const SizedBox(width: 12),
+                SizedBox(width: 12.w),
                 Expanded(
-                  child: TextButton(
+                  child: ElevatedButton(
                     onPressed: () {
                       Navigator.of(context).pop(); // Close dialog
                       SystemNavigator.pop(); // Exit app
                     },
-                    style: TextButton.styleFrom(
+                    style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.red[600],
-                      padding: const EdgeInsets.symmetric(vertical: 12),
+                      foregroundColor: Colors.white,
+                      padding: EdgeInsets.symmetric(vertical: 12.h),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
+                        borderRadius: BorderRadius.circular(12.r),
                       ),
+                      elevation: 0,
                     ),
-                    child: const Text(
+                    child: Text(
                       'نعم',
                       style: TextStyle(
-                        fontSize: 16,
+                        fontFamily: FontFamily.tajawal,
+                        fontSize: 16.f,
                         fontWeight: FontWeight.w600,
-                        color: Colors.white,
                       ),
                     ),
                   ),
@@ -146,68 +193,99 @@ class CloseAppWillPopScope extends StatelessWidget {
       barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text(
-            'تأكيد الخروج',
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
-            textAlign: TextAlign.center,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20.r),
           ),
-          content: const Text(
+          title: Container(
+            padding: EdgeInsets.symmetric(vertical: 8.h),
+            child: Column(
+              children: [
+                Container(
+                  padding: EdgeInsets.all(12.w),
+                  decoration: BoxDecoration(
+                    color: Colors.red[50],
+                    borderRadius: BorderRadius.circular(50.r),
+                  ),
+                  child: Icon(
+                    Icons.exit_to_app,
+                    color: Colors.red[600],
+                    size: 32.w,
+                  ),
+                ),
+                SizedBox(height: 16.h),
+                Text(
+                  'تأكيد الخروج',
+                  style: TextStyle(
+                    fontFamily: FontFamily.tajawal,
+                    fontSize: 20.f,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black87,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            ),
+          ),
+          content: Text(
             'هل تريد الخروج من التطبيق؟',
             style: TextStyle(
-              fontSize: 16,
+              fontFamily: FontFamily.tajawal,
+              fontSize: 16.f,
+              color: Colors.grey[700],
             ),
             textAlign: TextAlign.center,
           ),
           actionsAlignment: MainAxisAlignment.center,
+          actionsPadding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
           actions: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Expanded(
-                  child: TextButton(
+                  child: ElevatedButton(
                     onPressed: () {
                       Navigator.of(context).pop(); // Close dialog
                     },
-                    style: TextButton.styleFrom(
+                    style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.grey[200],
-                      padding: const EdgeInsets.symmetric(vertical: 12),
+                      foregroundColor: Colors.black87,
+                      padding: EdgeInsets.symmetric(vertical: 12.h),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
+                        borderRadius: BorderRadius.circular(12.r),
                       ),
+                      elevation: 0,
                     ),
-                    child: const Text(
+                    child: Text(
                       'لا',
                       style: TextStyle(
-                        fontSize: 16,
+                        fontFamily: FontFamily.tajawal,
+                        fontSize: 16.f,
                         fontWeight: FontWeight.w600,
-                        color: Colors.black87,
                       ),
                     ),
                   ),
                 ),
-                const SizedBox(width: 12),
+                SizedBox(width: 12.w),
                 Expanded(
-                  child: TextButton(
+                  child: ElevatedButton(
                     onPressed: () {
                       Navigator.of(context).pop(); // Close dialog
                       SystemNavigator.pop(); // Exit app
                     },
-                    style: TextButton.styleFrom(
+                    style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.red[600],
-                      padding: const EdgeInsets.symmetric(vertical: 12),
+                      foregroundColor: Colors.white,
+                      padding: EdgeInsets.symmetric(vertical: 12.h),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
+                        borderRadius: BorderRadius.circular(12.r),
                       ),
+                      elevation: 0,
                     ),
-                    child: const Text(
+                    child: Text(
                       'نعم',
                       style: TextStyle(
-                        fontSize: 16,
+                        fontFamily: FontFamily.tajawal,
+                        fontSize: 16.f,
                         fontWeight: FontWeight.w600,
-                        color: Colors.white,
                       ),
                     ),
                   ),
