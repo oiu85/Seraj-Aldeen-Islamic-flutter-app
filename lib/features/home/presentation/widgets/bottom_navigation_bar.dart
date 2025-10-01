@@ -5,71 +5,54 @@ import 'package:seraj_aldean_flutter_app/core/responsive/screen_util_res.dart';
 import '../../../../config/appconfig/app_colors.dart';
 import '../../../../gen/assets.gen.dart';
 
-class CustomBottomNavBar extends StatelessWidget {
-  const CustomBottomNavBar({super.key});
+class CustomBottomNavBar extends StatefulWidget {
+  final int selectedIndex;
+  final Function(int) onDestinationSelected;
+  
+  const CustomBottomNavBar({
+    super.key,
+    required this.selectedIndex,
+    required this.onDestinationSelected,
+  });
+
+  @override
+  State<CustomBottomNavBar> createState() => _CustomBottomNavBarState();
+}
+
+class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
+  final List<_NavItemData> _items = [
+    _NavItemData(iconPath: Assets.svg.mosque.path, label: "الرئيسية"),
+    _NavItemData(iconPath: Assets.svg.search.path, label: "البحث"),
+    _NavItemData(iconPath: Assets.svg.settings.path, label: "الإعدادات"),
+  ];
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(bottom: 15.h, left: 16.w, right: 16.w),
-      padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(30.r),
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.1),
-            blurRadius: 12,
-            spreadRadius: 1,
-            offset: const Offset(0, 3),
-          ),
-        ],
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          _buildNavItem(
-            iconPath: Assets.svg.mosque.path,
-            label: "الرئيسية",
-            isActive: true,
-          ),
-          _buildNavItem(
-            iconPath: Assets.svg.search.path,
-            label: "البحث",
-          ),
-          _buildNavItem(
-            iconPath: Assets.svg.settings.path,
-            label: "الإعدادات",
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildNavItem({
-    required String iconPath,
-    required String label,
-    bool isActive = false,
-  }) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        SvgPicture.asset(
-          iconPath,
-          width: 28.w,
-          height: 28.w,
-          color: isActive ? AppColors.primary : Colors.grey,
-        ),
-        SizedBox(height: 4.h),
-        Text(
-          label,
-          style: TextStyle(
-            fontSize: 12.f,
-            fontWeight: FontWeight.w500,
+    return NavigationBar(
+      height: 65.h,
+      backgroundColor: Colors.white,
+      elevation: 3,
+      indicatorColor: AppColors.primary.withOpacity(0.1),
+      selectedIndex: widget.selectedIndex,
+      onDestinationSelected: widget.onDestinationSelected,
+      destinations: _items.map((item) {
+        final isActive = _items.indexOf(item) == widget.selectedIndex;
+        return NavigationDestination(
+          icon: SvgPicture.asset(
+            item.iconPath,
+            width: 24.w,
+            height: 24.w,
             color: isActive ? AppColors.primary : Colors.grey,
           ),
-        ),
-      ],
+          label: item.label,
+        );
+      }).toList(),
     );
   }
+}
+
+class _NavItemData {
+  final String iconPath;
+  final String label;
+  _NavItemData({required this.iconPath, required this.label});
 }

@@ -22,11 +22,15 @@ class MyApp extends StatelessWidget {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
 
     return ScreenUtilInit(
-      designSize: const Size(390, 814), // القياس الأساسي للتصميم
+      designSize: const Size(390, 814),
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
         return MaterialApp(
+          theme: ThemeData(
+            useMaterial3: true, // ✅ تفعيل Material 3
+            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          ),
           debugShowCheckedModeBanner: false,
           locale: const Locale('ar'),
           supportedLocales: const [

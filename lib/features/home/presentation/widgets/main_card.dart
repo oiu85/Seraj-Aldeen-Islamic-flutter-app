@@ -31,10 +31,9 @@ class MainCard extends StatelessWidget {
             stops: [0.0, 0.4],
           ),
         ),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child:Stack(
           children: [
-            Expanded(
+            Positioned.fill(
               child: Padding(
                 padding: EdgeInsets.only(top: 30.0.p, right: 12.p, left: 12.p),
                 child: Column(
@@ -45,7 +44,7 @@ class MainCard extends StatelessWidget {
                       "أهلاً بكم في تطبيق الإمام الشيخ:",
                       style: TextStyle(
                         fontFamily: FontFamily.tajawal,
-                        fontSize: 12.f,
+                        fontSize: 16.f,
                         fontWeight: FontWeight.bold,
                       ),
                       softWrap: true,
@@ -55,7 +54,7 @@ class MainCard extends StatelessWidget {
                       "عبدالله سراج الدين الحسيني",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 12.f,
+                        fontSize: 14.f,
                         fontFamily: FontFamily.tajawal,
                         color: AppColors.primary,
                       ),
@@ -64,13 +63,14 @@ class MainCard extends StatelessWidget {
                       "رحمه الله ورضي عنه ",
                       style: TextStyle(
                         fontFamily: FontFamily.tajawal,
-                        fontSize: 12.f,
+                        fontSize: 13.f,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     Text(
                       "1442-1342",
-                      style: const TextStyle(
+                      style:  TextStyle(
+                        fontSize: 14.f,
                         fontWeight: FontWeight.bold,
                         fontFamily: FontFamily.tajawal,
                         color: AppColors.primary,
@@ -79,7 +79,7 @@ class MainCard extends StatelessWidget {
                     Spacer(),
                     Container(
                       width: 130.w,
-                      padding: EdgeInsets.symmetric(horizontal: 4.p),
+                      padding: EdgeInsets.symmetric(horizontal: 7.p),
                       decoration: BoxDecoration(
                         border: Border.all(color: AppColors.primary),
                         borderRadius: BorderRadius.circular(70.r),
@@ -93,7 +93,7 @@ class MainCard extends StatelessWidget {
                               color: AppColors.primary,
                               fontWeight: FontWeight.bold,
                               fontFamily: FontFamily.tajawal,
-                              fontSize: 12.f,
+                              fontSize: 11.f,
                             ),
                           ),
                           Spacer(),
@@ -118,7 +118,7 @@ class MainCard extends StatelessWidget {
               ),
             ),
             Align(
-              alignment: Alignment.bottomCenter,
+              alignment: Alignment.bottomLeft,
               child: ClipRRect(
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(16.r),
@@ -128,7 +128,7 @@ class MainCard extends StatelessWidget {
                   Assets.images.shaikImageRemovebgPreview.path,
                   fit: BoxFit.contain,
                   height: 158,
-                  width: 170,
+                  width: 180,
                 ),
               ),
             ),
