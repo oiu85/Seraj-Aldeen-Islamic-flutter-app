@@ -27,6 +27,7 @@ class Assets {
   static const String svgBook = 'assets/svg/book.svg';
   static const String svgGalery = 'assets/svg/galery.svg';
   static const String svgMosque = 'assets/svg/mosque.svg';
+  static const String svgNote = 'assets/svg/note.svg';
   static const String svgPaepar = 'assets/svg/paepar.svg';
   static const String svgPapearShdow = 'assets/svg/papear_shdow.svg';
   static const String svgSearch = 'assets/svg/search.svg';

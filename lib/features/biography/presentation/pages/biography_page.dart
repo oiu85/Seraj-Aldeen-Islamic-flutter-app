@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:seraj_aldean_flutter_app/config/appconfig/app_colors.dart';
 import 'package:seraj_aldean_flutter_app/core/responsive/screen_util_res.dart';
 import 'package:seraj_aldean_flutter_app/core/shared/widgets/app_scaffold.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 import '../../../../gen/assets.gen.dart';
 import '../../../../gen/fonts.gen.dart';
@@ -19,13 +20,22 @@ class BiographyPage extends StatelessWidget {
           SliverToBoxAdapter(
            child:  Center(
              child: Padding(
-               padding:  EdgeInsets.symmetric(horizontal: 50.p , vertical: 20.p),
+               padding:  EdgeInsets.symmetric(horizontal: 50.p , vertical: 40.p),
                child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Image.asset(Assets.images.appbarImageRight.path,width: 80,),
-                    Text("السيرة الذاتية", style: TextStyle(fontFamily: FontFamily.tajawal, fontSize: 20.f ,fontWeight: FontWeight.bold)),
-                    Image.asset(Assets.images.appbarImageLeft.path, width: 80,),
+                    Image.asset(Assets.images.appbarImageRight.path,width: 80,)
+                      .animate()
+                        .fadeIn(duration: 600.ms, delay: 200.ms)
+                        .slideX(begin: -0.3, end: 0, duration: 600.ms, delay: 200.ms),
+                    Text("السيرة الذاتية", style: TextStyle(fontFamily: FontFamily.tajawal, fontSize: 20.f ,fontWeight: FontWeight.bold))
+                      .animate()
+                        .fadeIn(duration: 800.ms, delay: 400.ms)
+                        .scale(begin: const Offset(0.8, 0.8), end: const Offset(1.0, 1.0), duration: 600.ms, delay: 400.ms),
+                    Image.asset(Assets.images.appbarImageLeft.path, width: 80,)
+                      .animate()
+                        .fadeIn(duration: 600.ms, delay: 200.ms)
+                        .slideX(begin: 0.3, end: 0, duration: 600.ms, delay: 200.ms),
 
                   ],
                 ),
@@ -85,7 +95,7 @@ class SliverGridSection extends StatelessWidget {
         ),
         delegate: SliverChildBuilderDelegate(
           (context, index) {
-            return _buildCard(context, titles[index], onTaps[index]);
+            return _buildCard(context, titles[index], onTaps[index], index);
           },
           childCount: titles.length,
         ),
@@ -93,7 +103,7 @@ class SliverGridSection extends StatelessWidget {
     );
   }
 
-  Widget _buildCard(BuildContext context, String title, VoidCallback onTap) {
+  Widget _buildCard(BuildContext context, String title, VoidCallback onTap, int index) {
     return Card(
       shadowColor: AppColors.primary,
       color: Colors.white,
@@ -141,6 +151,25 @@ class SliverGridSection extends StatelessWidget {
           ],
         ),
       ),
-    );
+    ).animate()
+      .fadeIn(
+        duration: 500.ms, 
+        delay: (600 + index * 100).ms,
+        curve: Curves.easeOutCubic,
+      )
+      .slideX(
+        begin: 0.3, 
+        end: 0, 
+        duration: 500.ms, 
+        delay: (600 + index * 100).ms,
+        curve: Curves.easeOutCubic,
+      )
+      .scale(
+        begin: const Offset(0.9, 0.9), 
+        end: const Offset(1.0, 1.0), 
+        duration: 400.ms, 
+        delay: (700 + index * 100).ms,
+        curve: Curves.easeOutBack,
+      );
   }
 }

@@ -105,6 +105,9 @@ class $AssetsSvgGen {
   /// File path: assets/svg/mosque.svg
   SvgGenImage get mosque => const SvgGenImage('assets/svg/mosque.svg');
 
+  /// File path: assets/svg/note.svg
+  SvgGenImage get note => const SvgGenImage('assets/svg/note.svg');
+
   /// File path: assets/svg/paepar.svg
   SvgGenImage get paepar => const SvgGenImage('assets/svg/paepar.svg');
 
@@ -124,7 +127,7 @@ class $AssetsSvgGen {
   SvgGenImage get soundWave => const SvgGenImage('assets/svg/sound_wave.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values => [book, galery, mosque, paepar, papearShdow, search, settings, show, soundWave];
+  List<SvgGenImage> get values => [book, galery, mosque, note, paepar, papearShdow, search, settings, show, soundWave];
 }
 
 class Assets {

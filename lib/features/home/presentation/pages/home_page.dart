@@ -5,10 +5,11 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:seraj_aldean_flutter_app/core/responsive/screen_util_res.dart';
 import 'package:seraj_aldean_flutter_app/core/routes.dart';
 import 'package:seraj_aldean_flutter_app/features/global_search/presentation/pages/global_search.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 import '../../../../config/appconfig/app_colors.dart';
 import '../../../../core/shared/widgets/app_scaffold.dart';
-import '../../../../core/shared/widgets/close_app_button.dart';
 import '../../../../gen/assets.gen.dart';
 import '../../../../gen/fonts.gen.dart';
 import '../../../settings/presentation/pages/settings_page.dart';
@@ -99,58 +100,196 @@ class _HomePageState extends State<HomePage>
 }
 
 // Home content widget
-class HomeContent extends StatelessWidget {
+class HomeContent extends StatefulWidget {
   const HomeContent({super.key});
 
   @override
+  State<HomeContent> createState() => _HomeContentState();
+}
+
+class _HomeContentState extends State<HomeContent> {
+  bool _isFirstTime = false;
+  bool _isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _checkFirstTime();
+  }
+
+  Future<void> _checkFirstTime() async {
+    final prefs = await SharedPreferences.getInstance();
+    final isFirstTime = prefs.getBool('is_first_time') ?? true;
+    
+    if (isFirstTime) {
+      // Mark as not first time for future launches
+      await prefs.setBool('is_first_time', false);
+    }
+    
+    setState(() {
+      _isFirstTime = isFirstTime;
+      _isLoading = false;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
+    if (_isLoading) {
+      return AppScaffold.clean(
+        backgroundColor: AppColors.white,
+        body: const Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
+    }
+
     return AppScaffold.clean(
       backgroundColor: AppColors.white,
       body: Padding(
         padding: EdgeInsets.only(right: 16.w, left: 16.w),
         child: ListView(
           children: [
-            MainCard(),
+            _buildAnimatedMainCard(),
             SizedBox(height: 20.h),
-            Text(
-              "أقسام التطبيق:",
-              style: TextStyle(
-                fontFamily: FontFamily.tajawal,
-                fontWeight: FontWeight.bold,
-                fontSize: 23.f,
-              ),
-            ),
+            _buildAnimatedSectionTitle(),
             SizedBox(height: 10.h),
-            buildListTile(
-              title: "كتب الإمام",
-              assetPath: Assets.svg.book.path,
-              onTap: () {},
-            ),
-            buildListTile(
-              title: "فوائد وفتاوى",
-              assetPath: Assets.svg.paepar.path,
-              onTap: () {
-                Get.toNamed(AppRoute.benefits);
-              },
-            ),
-            buildListTile(
-              title: "الصوتيات",
-              assetPath: Assets.svg.soundWave.path,
-              onTap: () {},
-            ),
-            buildListTile(
-              title: "الفيديوهات",
-              assetPath: Assets.svg.book.path,
-              onTap: () {},
-            ),
-            buildListTile(
-              title: "معرض الصور",
-              assetPath: Assets.svg.galery.path,
-              onTap: () {},
-            ),
+            _buildAnimatedListTiles(),
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildAnimatedMainCard() {
+    Widget card = MainCard();
+    
+    if (_isFirstTime) {
+      return card
+          .animate()
+          .fadeIn(
+            duration: 800.ms,
+            delay: 200.ms,
+            curve: Curves.easeOutCubic,
+          )
+          .slideY(
+            begin: 0.3,
+            end: 0,
+            duration: 600.ms,
+            delay: 200.ms,
+            curve: Curves.easeOutCubic,
+          )
+          .scale(
+            begin: const Offset(0.9, 0.9),
+            end: const Offset(1.0, 1.0),
+            duration: 500.ms,
+            delay: 400.ms,
+            curve: Curves.easeOutBack,
+          );
+    }
+    
+    return card;
+  }
+
+  Widget _buildAnimatedSectionTitle() {
+    Widget title = Text(
+      "أقسام التطبيق:",
+      style: TextStyle(
+        fontFamily: FontFamily.tajawal,
+        fontWeight: FontWeight.bold,
+        fontSize: 23.f,
+      ),
+    );
+    
+    if (_isFirstTime) {
+      return title
+          .animate()
+          .fadeIn(
+            duration: 600.ms,
+            delay: 600.ms,
+            curve: Curves.easeOutCubic,
+          )
+          .slideX(
+            begin: -0.2,
+            end: 0,
+            duration: 500.ms,
+            delay: 600.ms,
+            curve: Curves.easeOutCubic,
+          );
+    }
+    
+    return title;
+  }
+
+  Widget _buildAnimatedListTiles() {
+    final List<Map<String, dynamic>> listItems = [
+      {
+        'title': "كتب الإمام",
+        'assetPath': Assets.svg.book.path,
+        'onTap': () {},
+      },
+      {
+        'title': "فوائد وفتاوى",
+        'assetPath': Assets.svg.paepar.path,
+        'onTap': () {
+          Get.toNamed(AppRoute.benefits);
+        },
+      },
+      {
+        'title': "الصوتيات",
+        'assetPath': Assets.svg.soundWave.path,
+        'onTap': () {
+          Get.toNamed(AppRoute.sounds);
+        },
+      },
+      {
+        'title': "الفيديوهات",
+        'assetPath': Assets.svg.book.path,
+        'onTap': () {},
+      },
+      {
+        'title': "معرض الصور",
+        'assetPath': Assets.svg.galery.path,
+        'onTap': () {},
+      },
+    ];
+
+    return Column(
+      children: listItems.asMap().entries.map((entry) {
+        final index = entry.key;
+        final item = entry.value;
+        
+        Widget listTile = buildListTile(
+          title: item['title'],
+          assetPath: item['assetPath'],
+          onTap: item['onTap'],
+        );
+        
+        if (_isFirstTime) {
+          return listTile
+              .animate()
+              .fadeIn(
+                duration: 500.ms,
+                delay: (800 + index * 150).ms,
+                curve: Curves.easeOutCubic,
+              )
+              .slideX(
+                begin: 0.3,
+                end: 0,
+                duration: 500.ms,
+                delay: (800 + index * 150).ms,
+                curve: Curves.easeOutCubic,
+              )
+              .scale(
+                begin: const Offset(0.95, 0.95),
+                end: const Offset(1.0, 1.0),
+                duration: 400.ms,
+                delay: (900 + index * 150).ms,
+                curve: Curves.easeOutBack,
+              );
+        }
+        
+        return listTile;
+      }).toList(),
     );
   }
 }

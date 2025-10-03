@@ -44,7 +44,7 @@ class MainCard extends StatelessWidget {
                         fontFamily: FontFamily.tajawal,
                         fontSize: 18.f,
                         fontWeight: FontWeight.bold,
-                        color: Colors.white
+                        color: Colors.white,
                       ),
                       softWrap: true,
                     ),
@@ -55,7 +55,7 @@ class MainCard extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                         fontSize: 16.f,
                         fontFamily: FontFamily.tajawal,
-                        color: AppColors.secondary,
+                        color: AppColors.white,
                       ),
                     ),
                     SizedBox(height: 4.h,),
@@ -89,14 +89,14 @@ class MainCard extends StatelessWidget {
                         padding: EdgeInsets.only(right: 7.p,left: 4),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(70.r),
-                          color: AppColors.secondary,
+                          color: AppColors.white,
                         ),
                         child: Row(
                           children: [
                             Text(
                               "السيرة الذاتية",
                               style: TextStyle(
-                                color: AppColors.white,
+                                color: AppColors.primary,
                                 fontWeight: FontWeight.bold,
                                 fontFamily: FontFamily.tajawal,
                                 fontSize: 16.f,
@@ -106,7 +106,7 @@ class MainCard extends StatelessWidget {
                                Icon(
                                 Icons.arrow_forward_outlined,
                                 size: 24.p,
-                                color: AppColors.white,
+                                color: AppColors.primary,
                               ),
                           ],
                         ),
