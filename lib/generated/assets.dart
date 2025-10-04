@@ -18,6 +18,7 @@ class Assets {
   static const String imagesShaik = 'assets/images/shaik.png';
   static const String imagesShaikImage = 'assets/images/shaik_image.png';
   static const String imagesShaikImageRemovebgPreview = 'assets/images/shaik_image-removebg-preview.png';
+  static const String imagesVedioIcon = 'assets/images/vedio_icon.png';
   static const String imagesViewrExamplw2 = 'assets/images/viewr_examplw2.png';
   static const String imagesViwerExample = 'assets/images/viwer_example.png';
   static const String lottieLoading = 'assets/lottie/loading.json';
@@ -25,6 +26,7 @@ class Assets {
   static const String lottieNoInternet = 'assets/lottie/NoInternet.json';
   static const String lottieNotFound = 'assets/lottie/NotFound.json';
   static const String svgBook = 'assets/svg/book.svg';
+  static const String svgDocument = 'assets/svg/document.svg';
   static const String svgGalery = 'assets/svg/galery.svg';
   static const String svgMosque = 'assets/svg/mosque.svg';
   static const String svgNote = 'assets/svg/note.svg';

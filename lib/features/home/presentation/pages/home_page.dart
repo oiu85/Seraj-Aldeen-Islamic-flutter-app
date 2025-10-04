@@ -5,7 +5,6 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:seraj_aldean_flutter_app/core/responsive/screen_util_res.dart';
 import 'package:seraj_aldean_flutter_app/core/routes.dart';
 import 'package:seraj_aldean_flutter_app/features/global_search/presentation/pages/global_search.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
 import '../../../../config/appconfig/app_colors.dart';
@@ -53,7 +52,7 @@ class _HomePageState extends State<HomePage>
       });
       _pageController.animateToPage(
         index,
-        duration: const Duration(milliseconds: 300),
+        duration: const Duration(milliseconds: 600),
         curve: Curves.easeInOut,
       );
     }
@@ -108,26 +107,19 @@ class HomeContent extends StatefulWidget {
 }
 
 class _HomeContentState extends State<HomeContent> {
-  bool _isFirstTime = false;
   bool _isLoading = true;
 
   @override
   void initState() {
     super.initState();
-    _checkFirstTime();
+    _initializeContent();
   }
 
-  Future<void> _checkFirstTime() async {
-    final prefs = await SharedPreferences.getInstance();
-    final isFirstTime = prefs.getBool('is_first_time') ?? true;
-    
-    if (isFirstTime) {
-      // Mark as not first time for future launches
-      await prefs.setBool('is_first_time', false);
-    }
+  Future<void> _initializeContent() async {
+    // Simulate loading time for smooth animation
+    await Future.delayed(const Duration(milliseconds: 100));
     
     setState(() {
-      _isFirstTime = isFirstTime;
       _isLoading = false;
     });
   }
@@ -163,31 +155,27 @@ class _HomeContentState extends State<HomeContent> {
   Widget _buildAnimatedMainCard() {
     Widget card = MainCard();
     
-    if (_isFirstTime) {
-      return card
-          .animate()
-          .fadeIn(
-            duration: 800.ms,
-            delay: 200.ms,
-            curve: Curves.easeOutCubic,
-          )
-          .slideY(
-            begin: 0.3,
-            end: 0,
-            duration: 600.ms,
-            delay: 200.ms,
-            curve: Curves.easeOutCubic,
-          )
-          .scale(
-            begin: const Offset(0.9, 0.9),
-            end: const Offset(1.0, 1.0),
-            duration: 500.ms,
-            delay: 400.ms,
-            curve: Curves.easeOutBack,
-          );
-    }
-    
-    return card;
+    return card
+        .animate()
+        .fadeIn(
+          duration: 1000.ms,
+          delay: 200.ms,
+          curve: Curves.easeOutCubic,
+        )
+        .slideY(
+          begin: 0.3,
+          end: 0,
+          duration: 800.ms,
+          delay: 200.ms,
+          curve: Curves.easeOutCubic,
+        )
+        .scale(
+          begin: const Offset(0.9, 0.9),
+          end: const Offset(1.0, 1.0),
+          duration: 600.ms,
+          delay: 400.ms,
+          curve: Curves.easeOutBack,
+        );
   }
 
   Widget _buildAnimatedSectionTitle() {
@@ -200,24 +188,20 @@ class _HomeContentState extends State<HomeContent> {
       ),
     );
     
-    if (_isFirstTime) {
-      return title
-          .animate()
-          .fadeIn(
-            duration: 600.ms,
-            delay: 600.ms,
-            curve: Curves.easeOutCubic,
-          )
-          .slideX(
-            begin: -0.2,
-            end: 0,
-            duration: 500.ms,
-            delay: 600.ms,
-            curve: Curves.easeOutCubic,
-          );
-    }
-    
-    return title;
+    return title
+        .animate()
+        .fadeIn(
+          duration: 800.ms,
+          delay: 600.ms,
+          curve: Curves.easeOutCubic,
+        )
+        .slideX(
+          begin: -0.2,
+          end: 0,
+          duration: 700.ms,
+          delay: 600.ms,
+          curve: Curves.easeOutCubic,
+        );
   }
 
   Widget _buildAnimatedListTiles() {
@@ -244,7 +228,9 @@ class _HomeContentState extends State<HomeContent> {
       {
         'title': "الفيديوهات",
         'assetPath': Assets.svg.book.path,
-        'onTap': () {},
+        'onTap': () {
+          Get.toNamed(AppRoute.videos);
+        },
       },
       {
         'title': "معرض الصور",
@@ -264,31 +250,27 @@ class _HomeContentState extends State<HomeContent> {
           onTap: item['onTap'],
         );
         
-        if (_isFirstTime) {
-          return listTile
-              .animate()
-              .fadeIn(
-                duration: 500.ms,
-                delay: (800 + index * 150).ms,
-                curve: Curves.easeOutCubic,
-              )
-              .slideX(
-                begin: 0.3,
-                end: 0,
-                duration: 500.ms,
-                delay: (800 + index * 150).ms,
-                curve: Curves.easeOutCubic,
-              )
-              .scale(
-                begin: const Offset(0.95, 0.95),
-                end: const Offset(1.0, 1.0),
-                duration: 400.ms,
-                delay: (900 + index * 150).ms,
-                curve: Curves.easeOutBack,
-              );
-        }
-        
-        return listTile;
+        return listTile
+            .animate()
+            .fadeIn(
+              duration: 700.ms,
+              delay: (800 + index * 150).ms,
+              curve: Curves.easeOutCubic,
+            )
+            .slideX(
+              begin: 0.3,
+              end: 0,
+              duration: 700.ms,
+              delay: (800 + index * 150).ms,
+              curve: Curves.easeOutCubic,
+            )
+            .scale(
+              begin: const Offset(0.95, 0.95),
+              end: const Offset(1.0, 1.0),
+              duration: 500.ms,
+              delay: (900 + index * 150).ms,
+              curve: Curves.easeOutBack,
+            );
       }).toList(),
     );
   }

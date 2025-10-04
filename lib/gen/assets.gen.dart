@@ -50,6 +50,10 @@ class $AssetsImagesGen {
   /// File path: assets/images/shaik_image.png
   AssetGenImage get shaikImage => const AssetGenImage('assets/images/shaik_image.png');
 
+  /// File path: assets/images/vedio_icon.png
+  AssetGenImage get vedioIcon => const AssetGenImage('assets/images/vedio_icon.png');
+
+  /// File path: assets/images/viewr_examplw2.png
   /// File path: assets/images/viewr_examplw2.png
   AssetGenImage get viewrExamplw2 => const AssetGenImage('assets/images/viewr_examplw2.png');
 
@@ -69,6 +73,7 @@ class $AssetsImagesGen {
         shaik,
         shaikImageRemovebgPreview,
         shaikImage,
+        vedioIcon,
         viewrExamplw2,
         viwerExample
       ];
@@ -99,6 +104,9 @@ class $AssetsSvgGen {
   /// File path: assets/svg/book.svg
   SvgGenImage get book => const SvgGenImage('assets/svg/book.svg');
 
+  /// File path: assets/svg/document.svg
+  SvgGenImage get document => const SvgGenImage('assets/svg/document.svg');
+
   /// File path: assets/svg/galery.svg
   SvgGenImage get galery => const SvgGenImage('assets/svg/galery.svg');
 
@@ -127,7 +135,8 @@ class $AssetsSvgGen {
   SvgGenImage get soundWave => const SvgGenImage('assets/svg/sound_wave.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values => [book, galery, mosque, note, paepar, papearShdow, search, settings, show, soundWave];
+  List<SvgGenImage> get values =>
+      [book, document, galery, mosque, note, paepar, papearShdow, search, settings, show, soundWave];
 }
 
 class Assets {
