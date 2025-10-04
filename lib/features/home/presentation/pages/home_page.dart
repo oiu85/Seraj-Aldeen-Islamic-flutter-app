@@ -235,7 +235,9 @@ class _HomeContentState extends State<HomeContent> {
       {
         'title': "معرض الصور",
         'assetPath': Assets.svg.galery.path,
-        'onTap': () {},
+        'onTap': () {
+          Get.toNamed(AppRoute.gallery);
+        },
       },
     ];
 

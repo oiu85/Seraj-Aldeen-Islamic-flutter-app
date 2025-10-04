@@ -3,6 +3,7 @@ import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:seraj_aldean_flutter_app/features/benefits_fatwas/presentation/pages/Benefits_page.dart';
 import 'package:seraj_aldean_flutter_app/features/biography/presentation/pages/biography_page.dart';
 import 'package:seraj_aldean_flutter_app/features/home/presentation/pages/home_page.dart';
+import 'package:seraj_aldean_flutter_app/features/image_galary/presentation/pages/gallery.dart';
 import 'package:seraj_aldean_flutter_app/features/sounds_library/presentation/pages/sounds_page.dart';
 import 'package:seraj_aldean_flutter_app/features/video_library/presentation/pages/player_page.dart';
 
@@ -20,4 +21,5 @@ List<GetPage<dynamic>>? routes=[
  GetPage(name: AppRoute.subSounds, page: ()=> const SubCategorySounds()),
  GetPage(name: AppRoute.videos, page: ()=> const VideoPage()),
  GetPage(name: AppRoute.player, page: ()=> const PlayerPage()),
+ GetPage(name: AppRoute.gallery, page: ()=> const Gallery()),
 ];

@@ -35,6 +35,9 @@ class $AssetsImagesGen {
   /// File path: assets/images/quran.png
   AssetGenImage get quran => const AssetGenImage('assets/images/quran.png');
 
+  /// File path: assets/images/school.png
+  AssetGenImage get school => const AssetGenImage('assets/images/school.png');
+
   /// File path: assets/images/seraj_aldeen_image.png
   AssetGenImage get serajAldeenImage => const AssetGenImage('assets/images/seraj_aldeen_image.png');
 
@@ -54,7 +57,6 @@ class $AssetsImagesGen {
   AssetGenImage get vedioIcon => const AssetGenImage('assets/images/vedio_icon.png');
 
   /// File path: assets/images/viewr_examplw2.png
-  /// File path: assets/images/viewr_examplw2.png
   AssetGenImage get viewrExamplw2 => const AssetGenImage('assets/images/viewr_examplw2.png');
 
   /// File path: assets/images/viwer_example.png
@@ -68,6 +70,7 @@ class $AssetsImagesGen {
         appbarImageRight,
         mainCardBackground,
         quran,
+        school,
         serajAldeenImage,
         serajName,
         shaik,
