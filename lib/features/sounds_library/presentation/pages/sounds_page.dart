@@ -8,6 +8,7 @@ import 'package:seraj_aldean_flutter_app/core/routes.dart';
 import 'package:seraj_aldean_flutter_app/core/shared/widgets/app_scaffold.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
+import '../../../../core/shared/widgets/decoration_app_bar.dart';
 import '../../../../gen/assets.gen.dart';
 import '../../../../gen/fonts.gen.dart';
 import '../widgets/desc_card.dart';
@@ -25,41 +26,7 @@ class SoundsPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              SizedBox(
-                height: 40.h,
-              ),
-              Center(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Image.asset(
-                      Assets.images.appbarImageRight.path,
-                      width: 90,
-                    )
-                        .animate()
-                        .fadeIn(duration: 800.ms, delay: 200.ms)
-                        .slideX(begin: -0.5, end: 0, duration: 600.ms, delay: 200.ms)
-                        .scale(begin: const Offset(0.8, 0.8), end: const Offset(1.0, 1.0), duration: 500.ms, delay: 300.ms),
-                    Text("الصوتيات",
-                        style: TextStyle(
-                            fontFamily: FontFamily.tajawal,
-                            fontSize: 20.f,
-                            fontWeight: FontWeight.bold))
-                        .animate()
-                        .fadeIn(duration: 1000.ms, delay: 400.ms)
-                        .scale(begin: const Offset(0.7, 0.7), end: const Offset(1.0, 1.0), duration: 700.ms, delay: 400.ms)
-                        .shimmer(duration: 2000.ms, delay: 1000.ms, color: AppColors.primary.withOpacity(0.3)),
-                    Image.asset(
-                      Assets.images.appbarImageLeft.path,
-                      width: 90,
-                    )
-                        .animate()
-                        .fadeIn(duration: 800.ms, delay: 200.ms)
-                        .slideX(begin: 0.5, end: 0, duration: 600.ms, delay: 200.ms)
-                        .scale(begin: const Offset(0.8, 0.8), end: const Offset(1.0, 1.0), duration: 500.ms, delay: 300.ms),
-                  ],
-                ),
-              ),
+              DecorationAppBar(title: 'الصوتيات',),
               SizedBox(
                 height: 10.h,
               ),

@@ -5,6 +5,7 @@ import 'package:seraj_aldean_flutter_app/core/responsive/screen_util_res.dart';
 import 'package:seraj_aldean_flutter_app/core/shared/widgets/app_scaffold.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
+import '../../../../core/shared/widgets/decoration_app_bar.dart';
 import '../../../../gen/assets.gen.dart';
 import '../../../../gen/fonts.gen.dart';
 
@@ -18,29 +19,7 @@ class BiographyPage extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(
-           child:  Center(
-             child: Padding(
-               padding:  EdgeInsets.symmetric(horizontal: 50.p , vertical: 40.p),
-               child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Image.asset(Assets.images.appbarImageRight.path,width: 80,)
-                      .animate()
-                        .fadeIn(duration: 600.ms, delay: 200.ms)
-                        .slideX(begin: -0.3, end: 0, duration: 600.ms, delay: 200.ms),
-                    Text("السيرة الذاتية", style: TextStyle(fontFamily: FontFamily.tajawal, fontSize: 20.f ,fontWeight: FontWeight.bold))
-                      .animate()
-                        .fadeIn(duration: 800.ms, delay: 400.ms)
-                        .scale(begin: const Offset(0.8, 0.8), end: const Offset(1.0, 1.0), duration: 600.ms, delay: 400.ms),
-                    Image.asset(Assets.images.appbarImageLeft.path, width: 80,)
-                      .animate()
-                        .fadeIn(duration: 600.ms, delay: 200.ms)
-                        .slideX(begin: 0.3, end: 0, duration: 600.ms, delay: 200.ms),
-
-                  ],
-                ),
-             ),
-           ),
+             child:  DecorationAppBar(title: 'السيرة الذاتية',),
           ),
           SliverGridSection(
             titles: [

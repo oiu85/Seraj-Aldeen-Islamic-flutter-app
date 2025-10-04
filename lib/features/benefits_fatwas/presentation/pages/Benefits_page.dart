@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:seraj_aldean_flutter_app/core/responsive/screen_util_res.dart';
 import 'package:seraj_aldean_flutter_app/core/shared/widgets/app_scaffold.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import '../../../../core/shared/widgets/decoration_app_bar.dart';
 import '../../../../gen/assets.gen.dart';
 import '../../../../gen/fonts.gen.dart';
 import '../widgets/ftawa_card.dart';
@@ -15,36 +16,10 @@ class BenefitsPage extends StatelessWidget {
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.only(right: 20.p, left: 20.p, top: 40.p),
+          padding: EdgeInsets.only(right: 20.p, left: 20.p),
           child: Column(children: [
             // Animated header section
-            Center(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Image.asset(
-                    Assets.images.appbarImageRight.path,
-                    width: 90,
-                  ).animate()
-                    .fadeIn(duration: 600.ms, delay: 200.ms)
-                    .slideX(begin: -0.3, end: 0, duration: 600.ms, delay: 200.ms),
-                  Text("فوائد وفتاوى",
-                      style: TextStyle(
-                          fontFamily: FontFamily.tajawal,
-                          fontSize: 20.f,
-                          fontWeight: FontWeight.bold))
-                    .animate()
-                    .fadeIn(duration: 800.ms, delay: 400.ms)
-                    .scale(begin: const Offset(0.8, 0.8), end: const Offset(1.0, 1.0), duration: 600.ms, delay: 400.ms),
-                  Image.asset(
-                    Assets.images.appbarImageLeft.path,
-                    width: 90,
-                  ).animate()
-                    .fadeIn(duration: 600.ms, delay: 200.ms)
-                    .slideX(begin: 0.3, end: 0, duration: 600.ms, delay: 200.ms),
-                ],
-              ),
-            ),
+            DecorationAppBar(title: 'فوائد وفتاوى',),
             SizedBox(
               height: 20.h,
             ),
