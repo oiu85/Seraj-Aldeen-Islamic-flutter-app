@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:seraj_aldean_flutter_app/config/appconfig/app_colors.dart';
 import 'package:seraj_aldean_flutter_app/core/responsive/screen_util_res.dart';
+import 'package:seraj_aldean_flutter_app/core/routes.dart';
 import 'package:seraj_aldean_flutter_app/core/shared/widgets/app_scaffold.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
@@ -66,7 +69,9 @@ class SoundsPage extends StatelessWidget {
               ),
               RowSectionCard(
                 title: "دروس عام 1405هـ من محرم فما بعده",
-                onSeeAll: () {},
+                onSeeAll: () {
+                  Get.toNamed(AppRoute.subSounds);
+                },
                 sectionIndex: 0,
                 cards: [
                   SoundCard(

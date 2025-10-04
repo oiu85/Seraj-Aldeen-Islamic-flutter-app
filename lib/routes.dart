@@ -6,6 +6,7 @@ import 'package:seraj_aldean_flutter_app/features/home/presentation/pages/home_p
 import 'package:seraj_aldean_flutter_app/features/sounds_library/presentation/pages/sounds_page.dart';
 
 import 'core/routes.dart';
+import 'features/sounds_library/presentation/pages/sub_category_sounds.dart';
 
 List<GetPage<dynamic>>? routes=[
  GetPage(name:"/", page: ()=>const HomePage()),
@@ -14,4 +15,5 @@ List<GetPage<dynamic>>? routes=[
   GetPage(name: AppRoute.biography, page: ()=> const BiographyPage()),
   GetPage(name: AppRoute.benefits, page: ()=> const BenefitsPage()),
  GetPage(name: AppRoute.sounds, page: ()=> const SoundsPage()),
+ GetPage(name: AppRoute.subSounds, page: ()=> const SubCategorySounds()),
 ];
