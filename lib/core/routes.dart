@@ -6,4 +6,6 @@ class AppRoute{
   static const String videos ="/videos";
   static const String player ="/player";
   static const String gallery ="/gallery";
+  static const String booksPage ="/booksPage";
+
 }

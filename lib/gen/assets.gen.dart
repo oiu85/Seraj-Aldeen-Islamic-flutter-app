@@ -107,8 +107,14 @@ class $AssetsSvgGen {
   /// File path: assets/svg/book.svg
   SvgGenImage get book => const SvgGenImage('assets/svg/book.svg');
 
+  /// File path: assets/svg/books.svg
+  SvgGenImage get books => const SvgGenImage('assets/svg/books.svg');
+
   /// File path: assets/svg/document.svg
   SvgGenImage get document => const SvgGenImage('assets/svg/document.svg');
+
+  /// File path: assets/svg/galary.svg
+  SvgGenImage get galary => const SvgGenImage('assets/svg/galary.svg');
 
   /// File path: assets/svg/galery.svg
   SvgGenImage get galery => const SvgGenImage('assets/svg/galery.svg');
@@ -125,6 +131,12 @@ class $AssetsSvgGen {
   /// File path: assets/svg/papear_shdow.svg
   SvgGenImage get papearShdow => const SvgGenImage('assets/svg/papear_shdow.svg');
 
+  /// File path: assets/svg/paper_shdow.svg
+  SvgGenImage get paperShdow => const SvgGenImage('assets/svg/paper_shdow.svg');
+
+  /// File path: assets/svg/papers.svg
+  SvgGenImage get papers => const SvgGenImage('assets/svg/papers.svg');
+
   /// File path: assets/svg/search.svg
   SvgGenImage get search => const SvgGenImage('assets/svg/search.svg');
 
@@ -137,9 +149,28 @@ class $AssetsSvgGen {
   /// File path: assets/svg/sound_wave.svg
   SvgGenImage get soundWave => const SvgGenImage('assets/svg/sound_wave.svg');
 
+  /// File path: assets/svg/vedio.svg
+  SvgGenImage get vedio => const SvgGenImage('assets/svg/vedio.svg');
+
   /// List of all assets
-  List<SvgGenImage> get values =>
-      [book, document, galery, mosque, note, paepar, papearShdow, search, settings, show, soundWave];
+  List<SvgGenImage> get values => [
+        book,
+        books,
+        document,
+        galary,
+        galery,
+        mosque,
+        note,
+        paepar,
+        papearShdow,
+        paperShdow,
+        papers,
+        search,
+        settings,
+        show,
+        soundWave,
+        vedio
+      ];
 }
 
 class Assets {

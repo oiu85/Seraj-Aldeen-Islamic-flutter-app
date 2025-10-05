@@ -148,7 +148,7 @@ class SoundCard extends StatelessWidget {
 
   BoxDecoration _buildPlayerDecoration() {
     return BoxDecoration(
-      color: AppColors.grey.withAlpha(20),
+      color: AppColors.lightGrey,
       borderRadius: BorderRadius.circular(18.r),
       boxShadow: [
         BoxShadow(
@@ -180,8 +180,6 @@ class SoundCard extends StatelessWidget {
       boxShadow: [
         BoxShadow(
           color: AppColors.primary,
-          blurRadius: 6.r,
-          offset: Offset(0, 2.h),
         ),
       ],
     );

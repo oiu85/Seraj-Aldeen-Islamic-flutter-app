@@ -209,11 +209,13 @@ class _HomeContentState extends State<HomeContent> {
       {
         'title': "كتب الإمام",
         'assetPath': Assets.svg.book.path,
-        'onTap': () {},
+        'onTap': () {
+          Get.toNamed(AppRoute.booksPage);
+        },
       },
       {
         'title': "فوائد وفتاوى",
-        'assetPath': Assets.svg.paepar.path,
+        'assetPath': Assets.svg.papers.path,
         'onTap': () {
           Get.toNamed(AppRoute.benefits);
         },
@@ -227,14 +229,14 @@ class _HomeContentState extends State<HomeContent> {
       },
       {
         'title': "الفيديوهات",
-        'assetPath': Assets.svg.book.path,
+        'assetPath': Assets.svg.vedio.path,
         'onTap': () {
           Get.toNamed(AppRoute.videos);
         },
       },
       {
         'title': "معرض الصور",
-        'assetPath': Assets.svg.galery.path,
+        'assetPath': Assets.svg.galary.path,
         'onTap': () {
           Get.toNamed(AppRoute.gallery);
         },

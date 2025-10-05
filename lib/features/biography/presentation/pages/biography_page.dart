@@ -32,7 +32,7 @@ class BiographyPage extends StatelessWidget {
               "ولادته \n ونشأته العلمية",
               "اطلاعه على \n دروس والده",
             ],
-            imageAsset: Assets.svg.papearShdow.path,
+            imageAsset: Assets.svg.paperShdow.path,
             onTaps: List.generate(8, (_) => () {}),
           ),
         ],
