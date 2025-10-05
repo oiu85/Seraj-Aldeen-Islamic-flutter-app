@@ -7,8 +7,8 @@ import 'package:seraj_aldean_flutter_app/features/home/presentation/pages/home_p
 import 'package:seraj_aldean_flutter_app/features/image_galary/presentation/pages/gallery.dart';
 import 'package:seraj_aldean_flutter_app/features/sounds_library/presentation/pages/sounds_page.dart';
 import 'package:seraj_aldean_flutter_app/features/video_library/presentation/pages/player_page.dart';
-
 import 'core/routes.dart';
+import 'features/settings/presentation/pages/contact_use.dart';
 import 'features/sounds_library/presentation/pages/sub_category_sounds.dart';
 import 'features/video_library/presentation/pages/video_page.dart';
 
@@ -24,4 +24,5 @@ List<GetPage<dynamic>>? routes=[
  GetPage(name: AppRoute.player, page: ()=> const PlayerPage()),
  GetPage(name: AppRoute.gallery, page: ()=> const Gallery()),
  GetPage(name: AppRoute.booksPage, page: ()=> const BooksPage()),
+ GetPage(name: AppRoute.contacUs, page: ()=> const ContactUsPage()),
 ];

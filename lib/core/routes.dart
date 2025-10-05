@@ -7,5 +7,6 @@ class AppRoute{
   static const String player ="/player";
   static const String gallery ="/gallery";
   static const String booksPage ="/booksPage";
+  static const String contacUs ="/contacUs";
 
 }

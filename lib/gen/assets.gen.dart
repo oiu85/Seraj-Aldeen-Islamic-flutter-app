@@ -29,6 +29,12 @@ class $AssetsImagesGen {
   /// File path: assets/images/appbar_image_right.png
   AssetGenImage get appbarImageRight => const AssetGenImage('assets/images/appbar_image_right.png');
 
+  /// File path: assets/images/book_card.png
+  AssetGenImage get bookCard => const AssetGenImage('assets/images/book_card.png');
+
+  /// File path: assets/images/book_colored.png
+  AssetGenImage get bookColored => const AssetGenImage('assets/images/book_colored.png');
+
   /// File path: assets/images/main_card_background.png
   AssetGenImage get mainCardBackground => const AssetGenImage('assets/images/main_card_background.png');
 
@@ -68,6 +74,8 @@ class $AssetsImagesGen {
         abdullahSerajAldeen,
         appbarImageLeft,
         appbarImageRight,
+        bookCard,
+        bookColored,
         mainCardBackground,
         quran,
         school,

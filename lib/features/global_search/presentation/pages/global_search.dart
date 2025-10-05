@@ -3,6 +3,7 @@ import 'package:seraj_aldean_flutter_app/core/shared/widgets/app_scaffold.dart';
 import 'package:seraj_aldean_flutter_app/core/responsive/screen_util_res.dart';
 import 'package:seraj_aldean_flutter_app/config/appconfig/app_colors.dart';
 import 'package:seraj_aldean_flutter_app/gen/fonts.gen.dart';
+import 'package:seraj_aldean_flutter_app/features/home/presentation/pages/home_page.dart';
 
 import '../../../../gen/assets.gen.dart';
 
@@ -35,7 +36,13 @@ class _GlobalSearchState extends State<GlobalSearch> {
             Row(
               children: [
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(builder: (context) => const HomePage()),
+                      (route) => false,
+                    );
+                  },
                   icon: Icon(Icons.arrow_back_outlined),
                 ),
                 Expanded(

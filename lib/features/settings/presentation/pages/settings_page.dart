@@ -1,8 +1,10 @@
 
 // Settings page
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:seraj_aldean_flutter_app/core/responsive/screen_util_res.dart';
-
+import 'package:seraj_aldean_flutter_app/core/routes.dart';
 import '../../../../config/appconfig/app_colors.dart';
 import '../../../../core/shared/widgets/app_scaffold.dart';
 import '../../../../core/shared/widgets/close_app_button.dart';
@@ -36,21 +38,11 @@ class SettingsPage extends StatelessWidget {
 
                   _buildSettingsItem(
                     icon: Icons.notifications,
-                    title: "الإشعارات",
-                    subtitle: "إدارة إشعارات التطبيق",
-                    onTap: () {},
-                  ),
-                  _buildSettingsItem(
-                    icon: Icons.language,
-                    title: "اللغة",
-                    subtitle: "العربية",
-                    onTap: () {},
-                  ),
-                  _buildSettingsItem(
-                    icon: Icons.dark_mode,
-                    title: "المظهر",
-                    subtitle: "فاتح",
-                    onTap: () {},
+                    title: "تواصل معنا ",
+                    subtitle: "التواصل معنا بالبريد",
+                    onTap: () {
+                      Get.toNamed(AppRoute.contacUs);
+                    },
                   ),
 
                   _buildSettingsItem(

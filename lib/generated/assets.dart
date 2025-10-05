@@ -10,6 +10,8 @@ class Assets {
   static const String imagesAbdullahSerajAldeen = 'assets/images/abdullah_seraj_aldeen.png';
   static const String imagesAppbarImageLeft = 'assets/images/appbar_image_left.png';
   static const String imagesAppbarImageRight = 'assets/images/appbar_image_right.png';
+  static const String imagesBookCard = 'assets/images/book_card.png';
+  static const String imagesBookColored = 'assets/images/book_colored.png';
   static const String imagesMainCardBackground = 'assets/images/main_card_background.png';
   static const String imagesQuran = 'assets/images/quran.png';
   static const String imagesSchool = 'assets/images/school.png';
