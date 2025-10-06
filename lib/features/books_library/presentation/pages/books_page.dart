@@ -9,7 +9,6 @@ import '../../../../gen/fonts.gen.dart';
 import '../widgets/book_card.dart';
 import '../widgets/book_desc_card.dart';
 import 'sounds_book_page.dart';
-import 'sounds_now_page.dart';
 
 // Static book data model
 class BookData {
@@ -117,41 +116,6 @@ class BooksPage extends StatelessWidget {
         ),
       ),
       RowData(
-        title: "الاستماع إلى بعض الكتب المسجلة",
-        imagePath: Assets.images.bookColored.path,
-        books: [
-          BookData(
-            title: "كتب مسجلة",
-            viewCount: "35",
-            bookName: "تسجيل صوتي - الأهوال",
-            bookImagePath: Assets.images.bookColored.path,
-            isSoundBook: true,
-            onTap: () => _navigateToSoundsNowPage(context, "تسجيل صوتي - الأهوال"),
-          ),
-          BookData(
-            title: "كتب مسجلة",
-            viewCount: "28",
-            bookName: "تسجيل صوتي - التفسير",
-            bookImagePath: Assets.images.bookColored.path,
-            isSoundBook: true,
-            onTap: () => _navigateToSoundsNowPage(context, "تسجيل صوتي - التفسير"),
-          ),
-          BookData(
-            title: "كتب مسجلة",
-            viewCount: "42",
-            bookName: "تسجيل صوتي - الفقه",
-            bookImagePath: Assets.images.bookColored.path,
-            isSoundBook: true,
-            onTap: () => _navigateToSoundsNowPage(context, "تسجيل صوتي - الفقه"),
-          ),
-        ],
-        onViewAllTap: () => _navigateToSoundsBookPage(
-          context,
-          "الاستماع إلى بعض الكتب المسجلة",
-          SoundsBookData.getAudioBooks((bookTitle) => _navigateToSoundsNowPage(context, bookTitle)),
-        ),
-      ),
-      RowData(
         title: "تحميل فهارس المؤلفات",
         imagePath: Assets.images.bookColored.path,
         books: [
@@ -227,48 +191,6 @@ class BooksPage extends StatelessWidget {
     );
   }
 
-  void _navigateToSoundsNowPage(BuildContext context, String bookTitle) {
-    // Get the appropriate sounds based on the book title
-    List<BookSoundData> sounds;
-    switch (bookTitle) {
-      case "تسجيل صوتي - الأهوال":
-        sounds = BookSoundsData.getAhwalSounds();
-        break;
-      case "تسجيل صوتي - التفسير":
-        sounds = BookSoundsData.getTafseerSounds();
-        break;
-      case "تسجيل صوتي - الفقه":
-        sounds = BookSoundsData.getFiqhSounds();
-        break;
-      case "تسجيل صوتي - العقيدة":
-        sounds = BookSoundsData.getAhwalSounds(); // Using Ahwal as fallback for now
-        break;
-      case "تسجيل صوتي - الحديث":
-        sounds = BookSoundsData.getTafseerSounds(); // Using Tafseer as fallback for now
-        break;
-      case "تسجيل صوتي - السيرة":
-        sounds = BookSoundsData.getFiqhSounds(); // Using Fiqh as fallback for now
-        break;
-      case "تسجيل صوتي - الأخلاق":
-        sounds = BookSoundsData.getAhwalSounds(); // Using Ahwal as fallback for now
-        break;
-      case "تسجيل صوتي - الدعوة":
-        sounds = BookSoundsData.getTafseerSounds(); // Using Tafseer as fallback for now
-        break;
-      default:
-        sounds = BookSoundsData.getAhwalSounds(); // Default fallback
-    }
-
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => SoundsNowPage(
-          bookTitle: bookTitle,
-          sounds: sounds,
-        ),
-      ),
-    );
-  }
 }
 
 
