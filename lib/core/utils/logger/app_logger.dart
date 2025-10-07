@@ -13,46 +13,58 @@ class AppLogger {
 
   static Talker get instance => _talker;
 
-  /// Log general information
+  /// Log general information (only in debug mode)
   static void info(String message, [dynamic data]) {
-    _talker.info(message, data);
+    if (kDebugMode) {
+      _talker.info(message, data);
+    }
   }
 
-  /// Log warnings
+  /// Log warnings (only in debug mode)
   static void warning(String message, [dynamic data]) {
-    _talker.warning(message, data);
+    if (kDebugMode) {
+      _talker.warning(message, data);
+    }
   }
 
-  /// Log errors
+  /// Log errors (always log errors for debugging)
   static void error(String message, [dynamic error, StackTrace? stackTrace]) {
     _talker.error(message, error, stackTrace);
   }
 
-  /// Log debug information
+  /// Log debug information (only in debug mode)
   static void debug(String message, [dynamic data]) {
-    _talker.debug(message, data);
+    if (kDebugMode) {
+      _talker.debug(message, data);
+    }
   }
 
-  /// Log network requests
+  /// Log network requests (only in debug mode)
   static void network(String message, [dynamic data]) {
-    _talker.info('🌐 $message', data);
+    if (kDebugMode) {
+      _talker.info('🌐 $message', data);
+    }
   }
 
-  /// Log API responses
+  /// Log API responses (only in debug mode)
   static void apiResponse(String endpoint, dynamic data) {
-    final truncatedData = _truncateData(data);
-    _talker.info('📡 API Response: $endpoint', truncatedData);
+    if (kDebugMode) {
+      final truncatedData = _truncateData(data);
+      _talker.info('📡 API Response: $endpoint', truncatedData);
+    }
   }
 
-  /// Log API errors
+  /// Log API errors (always log errors for debugging)
   static void apiError(String endpoint, dynamic error) {
     _talker.error('❌ API Error: $endpoint', error);
   }
 
-  /// Log business logic events
+  /// Log business logic events (only in debug mode)
   static void business(String message, [dynamic data]) {
-    final truncatedData = data != null ? _truncateData(data) : data;
-    _talker.info('💼 $message', truncatedData);
+    if (kDebugMode) {
+      final truncatedData = data != null ? _truncateData(data) : data;
+      _talker.info('💼 $message', truncatedData);
+    }
   }
 
   /// Enable/disable logging

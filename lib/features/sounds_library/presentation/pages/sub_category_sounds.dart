@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:seraj_aldean_flutter_app/core/responsive/screen_util_res.dart';
 import 'package:seraj_aldean_flutter_app/core/shared/widgets/app_scaffold.dart';
-import 'package:seraj_aldean_flutter_app/features/sounds_library/presentation/widgets/desc_card.dart';
 
-import '../widgets/row_section_card.dart';
 import '../widgets/sound_card.dart';
 import '../widgets/sub_desc_card.dart';
 import '../widgets/sub_sounds_row_section_card.dart';

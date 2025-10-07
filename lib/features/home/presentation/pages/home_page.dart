@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:seraj_aldean_flutter_app/core/responsive/screen_util_res.dart';
 import 'package:seraj_aldean_flutter_app/core/routes.dart';
 import 'package:seraj_aldean_flutter_app/features/global_search/presentation/pages/global_search.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
 import '../../../../config/appconfig/app_colors.dart';
+import '../../../../core/di/app_dependencies.dart';
 import '../../../../core/shared/widgets/app_scaffold.dart';
+import '../../../../core/shared/widgets/ui_status_handling.dart';
 import '../../../../gen/assets.gen.dart';
 import '../../../../gen/fonts.gen.dart';
 import '../../../settings/presentation/pages/settings_page.dart';
+import '../bloc/home_bloc.dart';
+import '../bloc/home_event.dart';
+import '../bloc/home_state.dart';
 import '../widgets/bottom_navigation_bar.dart';
 import '../widgets/main_card.dart';
 
@@ -26,22 +31,30 @@ class _HomePageState extends State<HomePage>
     with TickerProviderStateMixin {
   int _selectedIndex = 0;
   late PageController _pageController;
+  late final HomeBloc _homeBloc;
 
-  final List<Widget> _pages = [
-    const HomeContent(key: ValueKey('home')),
-    const GlobalSearch(key: ValueKey('search')),
-    const SettingsPage(key: ValueKey('settings')),
-  ];
+  late final List<Widget> _pages;
 
   @override
   void initState() {
     super.initState();
     _pageController = PageController(initialPage: _selectedIndex);
+    
+    // Create HomeBloc once and keep it alive for the entire app lifecycle
+    _homeBloc = getIt<HomeBloc>()..add(const LoadMenusEvent());
+    
+    // Initialize pages after bloc creation
+    _pages = [
+      const HomeContent(key: ValueKey('home')),
+      const GlobalSearch(key: ValueKey('search')),
+      const SettingsPage(key: ValueKey('settings')),
+    ];
   }
 
   @override
   void dispose() {
     _pageController.dispose();
+    _homeBloc.close();
     super.dispose();
   }
 
@@ -60,81 +73,86 @@ class _HomePageState extends State<HomePage>
 
   @override
   Widget build(BuildContext context) {
-    return AppScaffold.clean(
-      bottomNavigationBar: CustomBottomNavBar(
-        selectedIndex: _selectedIndex,
-        onDestinationSelected: _onDestinationSelected,
-      ),
-      body: PageView.builder(
-        controller: _pageController,
-        onPageChanged: (index) {
-          setState(() {
-            _selectedIndex = index;
-          });
-        },
-        itemCount: _pages.length,
-        itemBuilder: (context, index) {
-          return AnimatedBuilder(
-            animation: _pageController,
-            builder: (context, child) {
-              double value = 1.0;
-              if (_pageController.position.haveDimensions) {
-                value = _pageController.page! - index;
-                value = (1 - (value.abs() * 0.3)).clamp(0.0, 1.0);
-              }
-              return FadeTransition(
-                opacity: AlwaysStoppedAnimation(value),
-                child: Transform.scale(
-                  scale: Curves.easeOut.transform(value),
-                  child: child,
-                ),
-              );
-            },
-            child: _pages[index],
-          );
-        },
+    return BlocProvider.value(
+      value: _homeBloc,
+      child: AppScaffold.clean(
+        bottomNavigationBar: CustomBottomNavBar(
+          selectedIndex: _selectedIndex,
+          onDestinationSelected: _onDestinationSelected,
+        ),
+        body: PageView.builder(
+          controller: _pageController,
+          onPageChanged: (index) {
+            setState(() {
+              _selectedIndex = index;
+            });
+          },
+          itemCount: _pages.length,
+          itemBuilder: (context, index) {
+            return AnimatedBuilder(
+              animation: _pageController,
+              builder: (context, child) {
+                double value = 1.0;
+                if (_pageController.position.haveDimensions) {
+                  value = _pageController.page! - index;
+                  value = (1 - (value.abs() * 0.3)).clamp(0.0, 1.0);
+                }
+                return FadeTransition(
+                  opacity: AlwaysStoppedAnimation(value),
+                  child: Transform.scale(
+                    scale: Curves.easeOut.transform(value),
+                    child: child,
+                  ),
+                );
+              },
+              child: _pages[index],
+            );
+          },
+        ),
       ),
     );
   }
 }
 
 // Home content widget
-class HomeContent extends StatefulWidget {
+class HomeContent extends StatelessWidget {
   const HomeContent({super.key});
 
   @override
-  State<HomeContent> createState() => _HomeContentState();
+  Widget build(BuildContext context) {
+    // Use the existing BlocProvider from parent (HomePage)
+    return const _HomeContentView();
+  }
 }
 
-class _HomeContentState extends State<HomeContent> {
-  bool _isLoading = true;
+class _HomeContentView extends StatefulWidget {
+  const _HomeContentView();
 
   @override
-  void initState() {
-    super.initState();
-    _initializeContent();
-  }
+  State<_HomeContentView> createState() => _HomeContentViewState();
+}
 
-  Future<void> _initializeContent() async {
-    // Simulate loading time for smooth animation
-    await Future.delayed(const Duration(milliseconds: 100));
-    
-    setState(() {
-      _isLoading = false;
-    });
-  }
-
+class _HomeContentViewState extends State<_HomeContentView> {
   @override
   Widget build(BuildContext context) {
-    if (_isLoading) {
-      return AppScaffold.clean(
-        backgroundColor: AppColors.white,
-        body: const Center(
-          child: CircularProgressIndicator(),
-        ),
-      );
-    }
+    return BlocBuilder<HomeBloc, HomeState>(
+      builder: (context, state) {
+        return SimpleLottieHandler(
+          blocStatus: state.status,
+          successWidget: _buildSuccessContent(context, state),
+          isEmpty: state.status.isSuccess() && state.menus.isEmpty,
+          emptyMessage: 'لا توجد قوائم متاحة',
+          loadingMessage: 'جاري تحميل القوائم...',
+          onRetry: () {
+            context.read<HomeBloc>().add(const LoadMenusEvent());
+          },
+          animationSize: 200.w,
+        );
+      },
+    );
+  }
 
+  Widget _buildSuccessContent(BuildContext context, HomeState state) {
     return AppScaffold.clean(
       backgroundColor: AppColors.white,
       body: Padding(
@@ -145,7 +163,7 @@ class _HomeContentState extends State<HomeContent> {
             SizedBox(height: 20.h),
             _buildAnimatedSectionTitle(),
             SizedBox(height: 10.h),
-            _buildAnimatedListTiles(),
+            _buildAnimatedListTiles(state.menus),
           ],
         ),
       ),
@@ -204,47 +222,51 @@ class _HomeContentState extends State<HomeContent> {
         );
   }
 
-  Widget _buildAnimatedListTiles() {
-    final List<Map<String, dynamic>> listItems = [
-      {
-        'title': "كتب الإمام",
+  Widget _buildAnimatedListTiles(List menus) {
+    // Static menu items with their icons and routes
+    final Map<String, Map<String, dynamic>> staticMenuItems = {
+      "كتب الإمام": {
         'assetPath': Assets.svg.book.path,
-        'onTap': () {
-          Get.toNamed(AppRoute.booksPage);
-        },
+        'onTap': () => Get.toNamed(AppRoute.booksPage),
       },
-      {
-        'title': "فوائد وفتاوى",
+      "كُتُب الإمام": {
+        'assetPath': Assets.svg.book.path,
+        'onTap': () => Get.toNamed(AppRoute.booksPage),
+      },
+      "فوائد وفتاوى": {
         'assetPath': Assets.svg.papers.path,
-        'onTap': () {
-          Get.toNamed(AppRoute.benefits);
-        },
+        'onTap': () => Get.toNamed(AppRoute.benefits),
       },
-      {
-        'title': "الصوتيات",
+      "الصوتيات": {
         'assetPath': Assets.svg.soundWave.path,
-        'onTap': () {
-          Get.toNamed(AppRoute.sounds);
-        },
+        'onTap': () => Get.toNamed(AppRoute.sounds),
       },
-      {
-        'title': "الفيديوهات",
+      "الفيديوهات": {
         'assetPath': Assets.svg.vedio.path,
-        'onTap': () {
-          Get.toNamed(AppRoute.videos);
-        },
+        'onTap': () => Get.toNamed(AppRoute.videos),
       },
-      {
-        'title': "معرض الصور",
+      "معرض الصور": {
         'assetPath': Assets.svg.galary.path,
-        'onTap': () {
-          Get.toNamed(AppRoute.gallery);
-        },
+        'onTap': () => Get.toNamed(AppRoute.gallery),
       },
-    ];
+    };
+
+    // Filter menus from API that match our static items
+    final List<Map<String, dynamic>> filteredMenus = [];
+    
+    for (var menu in menus) {
+      final menuName = menu.menusName ?? '';
+      if (staticMenuItems.containsKey(menuName)) {
+        filteredMenus.add({
+          'title': menuName,
+          'assetPath': staticMenuItems[menuName]!['assetPath'],
+          'onTap': staticMenuItems[menuName]!['onTap'],
+        });
+      }
+    }
 
     return Column(
-      children: listItems.asMap().entries.map((entry) {
+      children: filteredMenus.asMap().entries.map((entry) {
         final index = entry.key;
         final item = entry.value;
         

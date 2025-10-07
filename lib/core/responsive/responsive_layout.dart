@@ -23,11 +23,11 @@ class ResponsiveLayout extends StatelessWidget {
   /// If [tablet] is null, [mobile] will be used for tablet devices.
   /// If [desktop] is null, [tablet] will be used for desktop devices (or [mobile] if [tablet] is also null).
   const ResponsiveLayout({
-    Key? key,
+    super.key,
     required this.mobile,
     this.tablet,
     this.desktop,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -64,13 +64,13 @@ class ResponsiveContainer extends StatelessWidget {
 
   /// Create a responsive container
   const ResponsiveContainer({
-    Key? key,
+    super.key,
     required this.child,
     this.padding,
     this.center = false,
     this.maxWidth,
     this.widthFactor,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -131,9 +131,9 @@ class ResponsiveConstrainedBox extends StatelessWidget {
 
   /// Create a responsive constrained box
   const ResponsiveConstrainedBox({
-    Key? key,
+    super.key,
     required this.builder,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

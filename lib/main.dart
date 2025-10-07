@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:seraj_aldean_flutter_app/core/di/app_dependencies.dart';
 import 'package:seraj_aldean_flutter_app/core/shared/widgets/close_app_button.dart';
 import 'package:seraj_aldean_flutter_app/features/home/presentation/pages/home_page.dart';
 import 'package:seraj_aldean_flutter_app/routes.dart';
@@ -10,6 +11,8 @@ import 'package:seraj_aldean_flutter_app/routes.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  // Initialize dependencies
+  setupAppDependencies();
 
   await SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
 

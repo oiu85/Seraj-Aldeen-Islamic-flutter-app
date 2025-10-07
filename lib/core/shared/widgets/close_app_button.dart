@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:seraj_aldean_flutter_app/core/responsive/screen_util_res.dart';
-import 'package:seraj_aldean_flutter_app/config/appconfig/app_colors.dart';
 import 'package:seraj_aldean_flutter_app/gen/fonts.gen.dart';
 
 class CloseAppButton extends StatelessWidget {

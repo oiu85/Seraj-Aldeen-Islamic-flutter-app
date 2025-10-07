@@ -8,9 +8,9 @@ class ResponsiveBuilder extends StatelessWidget {
   final Widget Function(BuildContext context, ResponsiveContext responsive) builder;
 
   const ResponsiveBuilder({
-    Key? key,
+    super.key,
     required this.builder,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -35,12 +35,12 @@ class ResponsiveContainer extends StatelessWidget {
   final bool center;
 
   const ResponsiveContainer({
-    Key? key,
+    super.key,
     required this.child,
     this.padding,
     this.margin,
     this.center = false,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

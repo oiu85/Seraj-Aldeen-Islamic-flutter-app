@@ -102,11 +102,14 @@ class $AssetsLottieGen {
   /// File path: assets/lottie/NotFound.json
   String get notFound => 'assets/lottie/NotFound.json';
 
+  /// File path: assets/lottie/Timeout.json
+  String get timeout => 'assets/lottie/Timeout.json';
+
   /// File path: assets/lottie/loading.json
   String get loading => 'assets/lottie/loading.json';
 
   /// List of all assets
-  List<String> get values => [noData, noInternet, notFound, loading];
+  List<String> get values => [noData, noInternet, notFound, timeout, loading];
 }
 
 class $AssetsSvgGen {

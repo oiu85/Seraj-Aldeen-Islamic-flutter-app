@@ -65,14 +65,14 @@ class _GlobalSearchState extends State<GlobalSearch> {
                     child: SearchBar(
                       controller: _searchController,
                       hintText: "ابحث بكلمة عن ما تريد",
-                      hintStyle: MaterialStateProperty.all(
+                      hintStyle: WidgetStateProperty.all(
                         TextStyle(
                           fontFamily: FontFamily.tajawal,
                           fontSize: 16.f,
                           color: Colors.grey[500],
                         ),
                       ),
-                      textStyle: MaterialStateProperty.all(
+                      textStyle: WidgetStateProperty.all(
                         TextStyle(
                           fontFamily: FontFamily.tajawal,
                           fontSize: 16.f,

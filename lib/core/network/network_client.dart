@@ -7,8 +7,8 @@ import '../utils/logger/app_logger.dart';
 @singleton
 class NetworkClient {
   final Dio _dio;
-  static const String baseUrl = "to do"; // ApiConfig.baseUrl
-  static const String homeUrl ="to do"; // ApiConfig.baseUrl home
+  static const String baseUrl = "https://srajalden.swbai.com/api";
+  static const String homeUrl = "https://srajalden.swbai.com/api";
 
   NetworkClient()
     : _dio = Dio(

@@ -21,7 +21,7 @@ class UrlLauncherUtils {
       }
       
       // Create WhatsApp URL - remove the + sign for the wa.me format
-      String whatsappUrl = 'https://wa.me/' + cleanPhoneNumber.replaceFirst('+', '');
+      String whatsappUrl = 'https://wa.me/${cleanPhoneNumber.replaceFirst('+', '')}';
       
       // Add message if provided
       if (message != null && message.isNotEmpty) {

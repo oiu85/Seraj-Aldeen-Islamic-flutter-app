@@ -54,6 +54,9 @@ class SimpleLottieHandler extends StatelessWidget {
               width: animationSize ?? ScreenUtilRes.width(200),
               fit: BoxFit.contain,
               repeat: true,
+              animate: true,
+              reverse: false,
+              frameRate: FrameRate.max,
             ),
             SizedBox(height: ScreenUtilRes.height(16)),
             Text(

@@ -28,6 +28,7 @@ class Assets {
   static const String lottieNoData = 'assets/lottie/NoData.json';
   static const String lottieNoInternet = 'assets/lottie/NoInternet.json';
   static const String lottieNotFound = 'assets/lottie/NotFound.json';
+  static const String lottieTimeout = 'assets/lottie/Timeout.json';
   static const String svgBook = 'assets/svg/book.svg';
   static const String svgBooks = 'assets/svg/books.svg';
   static const String svgDocument = 'assets/svg/document.svg';

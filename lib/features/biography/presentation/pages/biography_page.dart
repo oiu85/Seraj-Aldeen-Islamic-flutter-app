@@ -1,42 +1,73 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:seraj_aldean_flutter_app/config/appconfig/app_colors.dart';
 import 'package:seraj_aldean_flutter_app/core/responsive/screen_util_res.dart';
 import 'package:seraj_aldean_flutter_app/core/shared/widgets/app_scaffold.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
+import '../../../../core/di/app_dependencies.dart';
 import '../../../../core/shared/widgets/decoration_app_bar.dart';
+import '../../../../core/shared/widgets/ui_status_handling.dart';
 import '../../../../gen/assets.gen.dart';
-import '../../../../gen/fonts.gen.dart';
+import '../bloc/biography_bloc.dart';
+import '../bloc/biography_event.dart';
+import '../bloc/biography_state.dart';
 
 class BiographyPage extends StatelessWidget {
   const BiographyPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => getIt<BiographyBloc>()..add(const LoadPagesEvent()),
+      child: const _BiographyPageView(),
+    );
+  }
+}
+
+class _BiographyPageView extends StatelessWidget {
+  const _BiographyPageView();
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<BiographyBloc, BiographyState>(
+      builder: (context, state) {
+        return SimpleLottieHandler(
+          blocStatus: state.status,
+          successWidget: _buildSuccessContent(context, state),
+          isEmpty: state.status.isSuccess() && state.pages.isEmpty,
+          emptyMessage: 'لا توجد صفحات متاحة',
+          loadingMessage: 'جاري تحميل الصفحات...',
+          onRetry: () {
+            context.read<BiographyBloc>().add(const LoadPagesEvent());
+          },
+          animationSize: 200.w,
+        );
+      },
+    );
+  }
+
+  Widget _buildSuccessContent(BuildContext context, BiographyState state) {
     return AppScaffold.clean(
       backgroundColor: Colors.white,
       body: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(
-             child:  DecorationAppBar(title: 'السيرة الذاتية',),
+            child: DecorationAppBar(title: 'السيرة الذاتية'),
           ),
           SliverGridSection(
-            titles: [
-              "ولادته \n ونشأته العلمية",
-              "اطلاعه على \n دروس والده",
-              "ولادته \n ونشأته العلمية",
-              "اطلاعه على \n دروس والده",
-              "ولادته \n ونشأته العلمية",
-              "اطلاعه على \n دروس والده",
-              "ولادته \n ونشأته العلمية",
-              "اطلاعه على \n دروس والده",
-            ],
+            titles: state.pages.map((page) => page.pagesTitle ?? '').toList(),
             imageAsset: Assets.svg.paperShdow.path,
-            onTaps: List.generate(8, (_) => () {}),
+            onTaps: List.generate(
+              state.pages.length,
+              (index) => () {
+                // TODO: Navigate to page details
+              },
+            ),
           ),
         ],
-      )
+      ),
     );
   }
 }
@@ -50,7 +81,7 @@ class SliverGridSection extends StatelessWidget {
   final EdgeInsetsGeometry padding;
 
   const SliverGridSection({
-    Key? key,
+    super.key,
     required this.titles,
     required this.imageAsset,
     required this.onTaps,
@@ -58,8 +89,7 @@ class SliverGridSection extends StatelessWidget {
     this.cardElevation = 1,
     this.padding = const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
   })  : assert(titles.length == onTaps.length,
-            'titles and onTaps must have the same length'),
-        super(key: key);
+            'titles and onTaps must have the same length');
 
   @override
   Widget build(BuildContext context) {
