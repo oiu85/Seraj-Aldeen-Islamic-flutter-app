@@ -29,6 +29,7 @@ Widget lessonCardBuild({
         children: [
           Expanded(
             child: Column(
+              mainAxisSize: MainAxisSize.max,
               children: [
                 Padding(
                   padding: EdgeInsets.only(top: 12.p),
@@ -101,7 +102,7 @@ Widget lessonCardBuild({
           Text(
             lesson,
             style: TextStyle(
-              fontSize: 14.f,
+              fontSize: 12.f,
               fontFamily: FontFamily.tajawal,
               color: AppColors.grey,
               fontWeight: FontWeight.bold,

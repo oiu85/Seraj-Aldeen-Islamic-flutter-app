@@ -43,24 +43,24 @@ class SimpleLottieHandler extends StatelessWidget {
   }
 
   Widget _buildLoadingState(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: Center(
+    final screenHeight = MediaQuery.of(context).size.height;
+    
+    return SizedBox(
+      height: screenHeight * 0.7,
+      child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Container(
-              color: Colors.transparent,
-              child: Lottie.asset(
-                Assets.lottie.loading,
-                height: animationSize ?? ScreenUtilRes.height(200),
-                width: animationSize ?? ScreenUtilRes.width(200),
-                fit: BoxFit.contain,
-                repeat: true,
-                animate: true,
-                reverse: false,
-                frameRate: FrameRate.max,
-              ),
+            Lottie.asset(
+              Assets.lottie.loading,
+              height: animationSize ?? ScreenUtilRes.height(200),
+              width: animationSize ?? ScreenUtilRes.width(200),
+              fit: BoxFit.contain,
+              repeat: true,
+              animate: true,
+              reverse: false,
+              frameRate: FrameRate.max,
             ),
             SizedBox(height: ScreenUtilRes.height(16)),
             Text(
@@ -81,25 +81,24 @@ class SimpleLottieHandler extends StatelessWidget {
   Widget _buildErrorState(BuildContext context) {
     String lottieAsset = _getErrorLottieAsset(blocStatus.error);
     bool isNetworkError = _isNetworkError(blocStatus.error);
+    final screenHeight = MediaQuery.of(context).size.height;
 
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: Center(
+    return SizedBox(
+      height: screenHeight * 0.7,
+      child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Container(
-              color: Colors.transparent,
-              child: Lottie.asset(
-                lottieAsset,
-                height: animationSize ?? ScreenUtilRes.height(200),
-                width: animationSize ?? ScreenUtilRes.width(200),
-                fit: BoxFit.contain,
-                repeat: true,
-              ),
+            Lottie.asset(
+              lottieAsset,
+              height: animationSize ?? ScreenUtilRes.height(200),
+              width: animationSize ?? ScreenUtilRes.width(200),
+              fit: BoxFit.contain,
+              repeat: true,
             ),
-            SizedBox(height: ScreenUtilRes.height(20)),
             if (isNetworkError) ...[
+              SizedBox(height: ScreenUtilRes.height(20)),
               Text(
                 'خطأ في الاتصال',
                 style: TextStyle(
@@ -136,7 +135,7 @@ class SimpleLottieHandler extends StatelessWidget {
                   backgroundColor: AppColors.primary,
                   foregroundColor: Colors.white,
                   padding: EdgeInsets.symmetric(
-                    horizontal: ScreenUtilRes.width(24), 
+                    horizontal: ScreenUtilRes.width(24),
                     vertical: ScreenUtilRes.height(12)
                   ),
                   shape: RoundedRectangleBorder(
@@ -190,21 +189,31 @@ class SimpleLottieHandler extends StatelessWidget {
   }
 
   Widget _buildEmptyState(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: Center(
+    final screenHeight = MediaQuery.of(context).size.height;
+    
+    return SizedBox(
+      height: screenHeight * 0.7,
+      child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Container(
-              color: Colors.transparent,
-              child: Lottie.asset(
-                Assets.lottie.noData,
-                height: animationSize ?? ScreenUtilRes.height(200),
-                width: animationSize ?? ScreenUtilRes.width(200),
-                fit: BoxFit.contain,
-                repeat: true,
+            Lottie.asset(
+              Assets.lottie.noData,
+              height: animationSize ?? ScreenUtilRes.height(200),
+              width: animationSize ?? ScreenUtilRes.width(200),
+              fit: BoxFit.contain,
+              repeat: true,
+            ),
+            SizedBox(height: ScreenUtilRes.height(16)),
+            Text(
+              emptyMessage ?? 'لا توجد بيانات',
+              style: TextStyle(
+                fontSize: ScreenUtilRes.fontSize(16),
+                fontWeight: FontWeight.bold,
+                fontFamily: 'Tajawal',
               ),
+              textAlign: TextAlign.center,
             ),
           ],
         ),

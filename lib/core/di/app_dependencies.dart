@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
 
+import '../../features/benefits_fatwas/data/di/benefits_di.dart';
 import '../../features/biography/data/di/biography_di.dart';
 import '../../features/home/data/di/home_di.dart';
 import '../network/network_client.dart';
@@ -16,4 +17,5 @@ void setupAppDependencies() {
   // Register feature dependencies
   setupHomeDependencies(getIt);
   setupBiographyDependencies(getIt);
+  setupBenefitsDependencies(getIt);
 }
