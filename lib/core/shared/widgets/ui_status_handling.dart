@@ -45,7 +45,8 @@ class SimpleLottieHandler extends StatelessWidget {
   Widget _buildLoadingState(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
     
-    return SizedBox(
+    return Container(
+      color: Colors.white,
       height: screenHeight * 0.7,
       child: Center(
         child: Column(
@@ -69,6 +70,7 @@ class SimpleLottieHandler extends StatelessWidget {
                 fontSize: ScreenUtilRes.fontSize(16),
                 fontWeight: FontWeight.bold,
                 fontFamily: 'Tajawal',
+                color: Colors.black,
               ),
               textAlign: TextAlign.center,
             ),
@@ -83,7 +85,8 @@ class SimpleLottieHandler extends StatelessWidget {
     bool isNetworkError = _isNetworkError(blocStatus.error);
     final screenHeight = MediaQuery.of(context).size.height;
 
-    return SizedBox(
+    return Container(
+      color: Colors.white,
       height: screenHeight * 0.7,
       child: Center(
         child: Column(
@@ -191,7 +194,8 @@ class SimpleLottieHandler extends StatelessWidget {
   Widget _buildEmptyState(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
     
-    return SizedBox(
+    return Container(
+      color: Colors.white,
       height: screenHeight * 0.7,
       child: Center(
         child: Column(
