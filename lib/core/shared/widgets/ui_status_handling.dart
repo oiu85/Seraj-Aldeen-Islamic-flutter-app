@@ -48,15 +48,18 @@ class SimpleLottieHandler extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Lottie.asset(
-              Assets.lottie.loading,
-              height: animationSize ?? ScreenUtilRes.height(200),
-              width: animationSize ?? ScreenUtilRes.width(200),
-              fit: BoxFit.contain,
-              repeat: true,
-              animate: true,
-              reverse: false,
-              frameRate: FrameRate.max,
+            Container(
+              color: Colors.white,
+              child: Lottie.asset(
+                Assets.lottie.loading,
+                height: animationSize ?? ScreenUtilRes.height(200),
+                width: animationSize ?? ScreenUtilRes.width(200),
+                fit: BoxFit.contain,
+                repeat: true,
+                animate: true,
+                reverse: false,
+                frameRate: FrameRate.max,
+              ),
             ),
             SizedBox(height: ScreenUtilRes.height(16)),
             Text(
@@ -83,12 +86,15 @@ class SimpleLottieHandler extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Lottie.asset(
-              lottieAsset,
-              height: animationSize ?? ScreenUtilRes.height(200),
-              width: animationSize ?? ScreenUtilRes.width(200),
-              fit: BoxFit.contain,
-              repeat: true,
+            Container(
+              color: Colors.white,
+              child: Lottie.asset(
+                lottieAsset,
+                height: animationSize ?? ScreenUtilRes.height(200),
+                width: animationSize ?? ScreenUtilRes.width(200),
+                fit: BoxFit.contain,
+                repeat: true,
+              ),
             ),
             SizedBox(height: ScreenUtilRes.height(20)),
             if (isNetworkError) ...[
@@ -148,10 +154,15 @@ class SimpleLottieHandler extends StatelessWidget {
     if (errorMessage == null) return Assets.lottie.notFound;
 
     // Check error message to determine which Lottie to show
+    if (errorMessage.toLowerCase().contains('timeout') ||
+        errorMessage.toLowerCase().contains('connection timeout') ||
+        errorMessage.toLowerCase().contains('receive timeout') ||
+        errorMessage.toLowerCase().contains('send timeout')) {
+      return Assets.lottie.timeout;
+    }
     if (errorMessage.toLowerCase().contains('network') ||
         errorMessage.toLowerCase().contains('internet') ||
-        errorMessage.toLowerCase().contains('connection') ||
-        errorMessage.toLowerCase().contains('timeout')) {
+        errorMessage.toLowerCase().contains('connection')) {
       return Assets.lottie.noInternet;
     }
     if (errorMessage.toLowerCase().contains('not found') ||
@@ -182,12 +193,15 @@ class SimpleLottieHandler extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Lottie.asset(
-              Assets.lottie.noData,
-              height: animationSize ?? ScreenUtilRes.height(200),
-              width: animationSize ?? ScreenUtilRes.width(200),
-              fit: BoxFit.contain,
-              repeat: true,
+            Container(
+              color: Colors.white,
+              child: Lottie.asset(
+                Assets.lottie.noData,
+                height: animationSize ?? ScreenUtilRes.height(200),
+                width: animationSize ?? ScreenUtilRes.width(200),
+                fit: BoxFit.contain,
+                repeat: true,
+              ),
             ),
           ],
         ),
