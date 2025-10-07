@@ -3,6 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'article_model.freezed.dart';
 part 'article_model.g.dart';
 
+// NOTE: Custom converters for API response handling
 bool? _stringToBool(dynamic value) {
   if (value == null) return null;
   if (value is bool) return value;

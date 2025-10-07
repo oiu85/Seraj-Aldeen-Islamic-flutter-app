@@ -5,12 +5,10 @@ import '../../presentation/bloc/benefits_bloc.dart';
 import '../repositories/article_repository_impl.dart';
 
 void setupBenefitsDependencies(GetIt getIt) {
-  // Register repository
   getIt.registerLazySingleton<BenefitsFatwasRepository>(
     () => BenefitsFatwasRepositoryImpl(networkClient: getIt<NetworkClient>()),
   );
 
-  // Register BLoC
   getIt.registerFactory<BenefitsBloc>(
     () => BenefitsBloc(benefitsFatwasRepository: getIt<BenefitsFatwasRepository>()),
   );

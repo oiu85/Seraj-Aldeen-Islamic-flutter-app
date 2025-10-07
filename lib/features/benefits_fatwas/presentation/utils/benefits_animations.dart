@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
-/// Extension for adding fade in animation to widgets
 extension FadeInAnimation on Widget {
   Widget fadeInBenefits({
     required int delay,
@@ -17,7 +16,6 @@ extension FadeInAnimation on Widget {
   }
 }
 
-/// Extension for adding slide animation to widgets
 extension SlideAnimation on Widget {
   Widget slideXBenefits({
     required int delay,
@@ -54,7 +52,6 @@ extension SlideAnimation on Widget {
   }
 }
 
-/// Extension for adding scale animation to widgets
 extension ScaleAnimation on Widget {
   Widget scaleBenefits({
     required int delay,
@@ -74,7 +71,6 @@ extension ScaleAnimation on Widget {
   }
 }
 
-/// Combined animations for category title
 Widget animateCategoryTitle({
   required Widget child,
   required int rowIndex,
@@ -87,7 +83,6 @@ Widget animateCategoryTitle({
       .slideX(begin: -0.2, end: 0, duration: 600.ms, delay: delay.ms);
 }
 
-/// Combined animations for "الكل" button
 Widget animateAllButton({
   required Widget child,
   required int rowIndex,
@@ -100,7 +95,6 @@ Widget animateAllButton({
       .slideX(begin: 0.2, end: 0, duration: 600.ms, delay: delay.ms);
 }
 
-/// Combined animations for article cards in horizontal list
 Widget animateArticleCard({
   required Widget child,
   required int rowIndex,
@@ -133,7 +127,6 @@ Widget animateArticleCard({
       );
 }
 
-/// Combined animations for category row container
 Widget animateCategoryRow({
   required Widget child,
   required int rowIndex,
@@ -156,7 +149,6 @@ Widget animateCategoryRow({
       );
 }
 
-/// Combined animations for grid items in benefits categories page
 Widget animateGridItem({
   required Widget child,
   required int index,

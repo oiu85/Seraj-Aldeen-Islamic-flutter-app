@@ -3,10 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:seraj_aldean_flutter_app/core/responsive/screen_util_res.dart';
 import 'package:seraj_aldean_flutter_app/core/shared/widgets/app_scaffold.dart';
 import '../../../../core/di/app_dependencies.dart';
-import '../../../../core/shared/widgets/decoration_app_bar.dart';
 import '../../../../core/shared/widgets/ui_status_handling.dart';
 import '../../../../gen/assets.gen.dart';
 import '../../../../gen/fonts.gen.dart';
+import '../../core/constants/benefits_constants.dart';
 import '../bloc/benefits_bloc.dart';
 import '../bloc/benefits_event.dart';
 import '../bloc/benefits_state.dart';
@@ -29,43 +29,53 @@ class BenefitsCategoriesPage extends StatefulWidget {
 
 class _BenefitsCategoriesPageState extends State<BenefitsCategoriesPage> {
   late final BenefitsBloc _benefitsBloc;
-  final ScrollController _scrollController = ScrollController();
-  int _currentPage = 1;
-  final int _perPage = 6;
+  late final ScrollController _scrollController;
 
   @override
   void initState() {
     super.initState();
+    _scrollController = ScrollController()..addListener(_onScroll);
     _benefitsBloc = getIt<BenefitsBloc>()
       ..add(LoadCategoryContentEvent(
         categoryId: widget.categoryId,
-        page: _currentPage,
-        perPage: _perPage,
+        page: 1,
+        perPage: BenefitsConstants.itemsPerPage,
       ));
-    _scrollController.addListener(_onScroll);
   }
 
   @override
   void dispose() {
-    _scrollController.dispose();
+    _scrollController
+      ..removeListener(_onScroll)
+      ..dispose();
     _benefitsBloc.close();
     super.dispose();
   }
 
   void _onScroll() {
-    if (_scrollController.position.pixels >=
-        _scrollController.position.maxScrollExtent * 0.9) {
-      final state = _benefitsBloc.state;
-      if (state.status.isSuccess() &&
-          state.hasNextPage &&
-          !state.status.isLoadingMore()) {
-        _currentPage++;
-        _benefitsBloc.add(LoadCategoryContentEvent(
-          categoryId: widget.categoryId,
-          page: _currentPage,
-          perPage: _perPage,
-        ));
-      }
+    if (!_scrollController.hasClients) return;
+    
+    final threshold = _scrollController.position.maxScrollExtent * 
+        BenefitsConstants.loadMoreThreshold;
+    
+    if (_scrollController.offset >= threshold) {
+      _loadMoreIfNeeded();
+    }
+  }
+  
+  void _loadMoreIfNeeded() {
+    final state = _benefitsBloc.state;
+    
+    final canLoadMore = state.hasNextPage && 
+        state.status.isSuccess() && 
+        !state.status.isLoadingMore();
+        
+    if (canLoadMore) {
+      _benefitsBloc.add(LoadCategoryContentEvent(
+        categoryId: widget.categoryId,
+        page: state.currentPage + 1,
+        perPage: BenefitsConstants.itemsPerPage,
+      ));
     }
   }
 
@@ -81,15 +91,12 @@ class _BenefitsCategoriesPageState extends State<BenefitsCategoriesPage> {
             key: const ValueKey('benefits_categories_page_content'),
             padding: EdgeInsets.only(right: 20.p, left: 20.p),
             child: Column(children: [
-              // Animated header section
-              // DecorationAppBar(title: widget.categoryTitle),
               SizedBox(height: 40.h,),
               Text(widget.categoryTitle, style: TextStyle(
                 fontFamily: FontFamily.tajawal,
                 fontSize: 20.p,
                 fontWeight: FontWeight.bold,
               ),),
-              // Content with BLoC
               BlocBuilder<BenefitsBloc, BenefitsState>(
                 builder: (context, state) {
                   return SimpleLottieHandler(
@@ -97,15 +104,13 @@ class _BenefitsCategoriesPageState extends State<BenefitsCategoriesPage> {
                     blocStatus: state.status,
                     successWidget: _buildSuccessContent(context, state),
                     isEmpty: state.status.isSuccess() && state.categoryContent.isEmpty,
-                    emptyMessage: 'لا توجد مقالات في هذا القسم',
-                    loadingMessage: 'جاري تحميل المقالات...',
-                    onRetry: () {
-                      _benefitsBloc.add(LoadCategoryContentEvent(
-                        categoryId: widget.categoryId,
-                        page: _currentPage,
-                        perPage: _perPage,
-                      ));
-                    },
+                    emptyMessage: BenefitsConstants.emptyCategoryMessage,
+                    loadingMessage: BenefitsConstants.loadingCategoryMessage,
+                    onRetry: () => _benefitsBloc.add(LoadCategoryContentEvent(
+                      categoryId: widget.categoryId,
+                      page: 1,
+                      perPage: BenefitsConstants.itemsPerPage,
+                    )),
                     animationSize: 200.w,
                   );
                 },
@@ -129,8 +134,8 @@ class _BenefitsCategoriesPageState extends State<BenefitsCategoriesPage> {
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            childAspectRatio: 0.65,
+            crossAxisCount: BenefitsConstants.gridCrossAxisCount,
+            childAspectRatio: BenefitsConstants.gridChildAspectRatio,
             crossAxisSpacing: 12.w,
             mainAxisSpacing: 12.h,
           ),
@@ -139,9 +144,9 @@ class _BenefitsCategoriesPageState extends State<BenefitsCategoriesPage> {
             final article = state.categoryContent[index];
             return animateGridItem(
               child: lessonCardBuild(
-                lesson: article.title ?? 'عنوان المقال',
-                viewCont: article.visitor_count ?? '0',
-                title: 'فضيلة الشيخ',
+                lesson: article.title ?? BenefitsConstants.defaultArticleTitle,
+                viewCont: article.visitor_count ?? BenefitsConstants.defaultVisitorCount,
+                title: BenefitsConstants.authorLabel,
                 imageNamePath: Assets.images.serajName.path,
                 width: 180.w,
                 height: 240.h,
@@ -156,7 +161,6 @@ class _BenefitsCategoriesPageState extends State<BenefitsCategoriesPage> {
           },
         ),
         
-        // Loading more indicator
         if (state.status.isLoadingMore())
           Padding(
             padding: EdgeInsets.symmetric(vertical: 20.h),

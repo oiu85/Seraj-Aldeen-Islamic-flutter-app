@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:seraj_aldean_flutter_app/features/benefits_fatwas/data/models/article_model.dart';
 import '../../../../core/models/page_state/bloc_status.dart';
 import '../../../../core/utils/logger/app_logger.dart';
+import '../../core/constants/benefits_constants.dart';
 import '../../domain/repositories/article_repository.dart';
 import 'benefits_event.dart';
 import 'benefits_state.dart';
@@ -35,28 +36,28 @@ class BenefitsBloc extends Bloc<BenefitsEvent, BenefitsState> {
   }
 
   void _emitLoadingState(Emitter<BenefitsState> emit) {
-    if (!state.status.isLoading()) {
+    if (!emit.isDone && !state.status.isLoading()) {
       emit(state.copyWith(status: BlocStatus.loading()));
     }
   }
 
   void _handleError(Emitter<BenefitsState> emit, String error) {
-    AppLogger.error('Failed to load article categories: $error');
-    if (state.status.isLoading()) {
+    AppLogger.error('Error in BenefitsBloc: $error');
+    if (!emit.isDone && (state.status.isLoading() || state.status.isLoadingMore())) {
       emit(state.copyWith(status: BlocStatus.fail(error: error)));
     }
   }
 
   void _handleSuccess(Emitter<BenefitsState> emit, ArticleResponse response) {
     if (!_isValidResponse(response)) {
-      _handleError(emit, 'Invalid response from API');
+      _handleError(emit, BenefitsConstants.invalidResponseError);
       return;
     }
 
     final validCategories = _processCategories(response.data!.categories!);
     AppLogger.info('Loaded ${validCategories.length} valid article categories');
 
-    if (state.status.isLoading()) {
+    if (!emit.isDone && state.status.isLoading()) {
       emit(state.copyWith(
         status: BlocStatus.success(),
         categories: validCategories,
@@ -93,9 +94,9 @@ class BenefitsBloc extends Bloc<BenefitsEvent, BenefitsState> {
 
   void _handleUnexpectedError(Emitter<BenefitsState> emit, dynamic error) {
     AppLogger.error('Unexpected error in BenefitsBloc: $error');
-    if (state.status.isLoading()) {
+    if (!emit.isDone && (state.status.isLoading() || state.status.isLoadingMore())) {
       emit(state.copyWith(
-        status: BlocStatus.fail(error: 'Unexpected error: $error'),
+        status: BlocStatus.fail(error: BenefitsConstants.genericError),
       ));
     }
   }
@@ -136,7 +137,7 @@ class BenefitsBloc extends Bloc<BenefitsEvent, BenefitsState> {
     bool isLoadingMore,
   ) {
     if (response.success != true || response.data == null) {
-      _handleError(emit, 'Invalid response from API');
+      _handleError(emit, BenefitsConstants.invalidResponseError);
       return;
     }
 
@@ -144,20 +145,19 @@ class BenefitsBloc extends Bloc<BenefitsEvent, BenefitsState> {
     final hasNextPage = response.data!.pagination?.hasNextPage ?? false;
     final currentPage = response.data!.pagination?.currentPage ?? 1;
 
-    final List<ArticleItem> newContent;
-    if (isLoadingMore) {
-      newContent = List.from(state.categoryContent)..addAll(content);
-    } else {
-      newContent = content;
-    }
+    final newContent = isLoadingMore
+        ? [...state.categoryContent, ...content]
+        : content;
 
     AppLogger.info('Loaded ${content.length} articles, total: ${newContent.length}');
 
-    emit(state.copyWith(
-      status: BlocStatus.success(),
-      categoryContent: newContent,
-      hasNextPage: hasNextPage,
-      currentPage: currentPage,
-    ));
+    if (!emit.isDone) {
+      emit(state.copyWith(
+        status: BlocStatus.success(),
+        categoryContent: newContent,
+        hasNextPage: hasNextPage,
+        currentPage: currentPage,
+      ));
+    }
   }
 }

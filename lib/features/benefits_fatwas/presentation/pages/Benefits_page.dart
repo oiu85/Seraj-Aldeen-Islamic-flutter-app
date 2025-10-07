@@ -7,6 +7,7 @@ import '../../../../core/shared/widgets/decoration_app_bar.dart';
 import '../../../../core/shared/widgets/ui_status_handling.dart';
 import '../../../../gen/assets.gen.dart';
 import '../../../../gen/fonts.gen.dart';
+import '../../core/constants/benefits_constants.dart';
 import '../bloc/benefits_bloc.dart';
 import '../bloc/benefits_event.dart';
 import '../bloc/benefits_state.dart';
@@ -47,13 +48,9 @@ class _BenefitsPageState extends State<BenefitsPage> {
             key: const ValueKey('benefits_page_content'),
             padding: EdgeInsets.only(right: 20.p, left: 20.p),
             child: Column(children: [
-              // Animated header section
-              DecorationAppBar(title: 'فوائد وفتاوى',),
-              SizedBox(
-                height: 20.h,
-              ),
+              DecorationAppBar(title: BenefitsConstants.pageTitle),
+              SizedBox(height: 20.h),
 
-              // Content with BLoC
               BlocBuilder<BenefitsBloc, BenefitsState>(
                 builder: (context, state) {
                   return SimpleLottieHandler(
@@ -61,11 +58,11 @@ class _BenefitsPageState extends State<BenefitsPage> {
                     blocStatus: state.status,
                     successWidget: _buildSuccessContent(context, state),
                     isEmpty: state.status.isSuccess() && state.categories.isEmpty,
-                    emptyMessage: 'لا توجد فوائد وفتاوى متاحة',
-                    loadingMessage: 'جاري تحميل الفوائد والفتاوى...',
-                    onRetry: () {
-                      context.read<BenefitsBloc>().add(const LoadArticleCategoriesEvent());
-                    },
+                    emptyMessage: BenefitsConstants.emptyBenefitsMessage,
+                    loadingMessage: BenefitsConstants.loadingBenefitsMessage,
+                    onRetry: () => context
+                        .read<BenefitsBloc>()
+                        .add(const LoadArticleCategoriesEvent()),
                     animationSize: 200.w,
                   );
                 },
@@ -108,7 +105,6 @@ Widget _buildTheRow(int rowIndex, String categoryTitle, List articleItems, {int?
   return Column(
     key: ValueKey('category_row_$rowIndex'),
     children: [
-      // Animated section header
       Row(
         key: ValueKey('category_header_$rowIndex'),
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -141,7 +137,7 @@ Widget _buildTheRow(int rowIndex, String categoryTitle, List articleItems, {int?
             },
             child: animateAllButton(
               child: Text(
-                "الكل",
+                BenefitsConstants.viewAllText,
                 style: TextStyle(
                   fontSize: 18.f,
                   fontFamily: FontFamily.tajawal,
@@ -157,23 +153,26 @@ Widget _buildTheRow(int rowIndex, String categoryTitle, List articleItems, {int?
       SizedBox(
         height: 20.h,
       ),
-      // Animated horizontal list
       SizedBox(
         height: 250.h,
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
-          itemCount: articleItems.length > 3 ? 3 : articleItems.length,
+          itemCount: articleItems.length > BenefitsConstants.maxItemsPerRow 
+              ? BenefitsConstants.maxItemsPerRow 
+              : articleItems.length,
           itemBuilder: (context, index) {
             final article = articleItems[index];
+            final isNotLast = index < articleItems.length - 1;
+            
             return Container(
               key: ValueKey('article_container_${rowIndex}_$index'),
               width: 180.w,
-              margin: EdgeInsets.only(right: index < articleItems.length - 1 ? 12.w : 0),
+              margin: EdgeInsets.only(right: isNotLast ? 12.w : 0),
               child: animateArticleCard(
                 child: lessonCardBuild(
-                  lesson: article.title ?? 'عنوان المقال',
-                  viewCont: article.visitor_count ?? '0',
-                  title: 'فضيلة الشيخ',
+                  lesson: article.title ?? BenefitsConstants.defaultArticleTitle,
+                  viewCont: article.visitor_count ?? BenefitsConstants.defaultVisitorCount,
+                  title: BenefitsConstants.authorLabel,
                   imageNamePath: Assets.images.serajName.path,
                   width: 50.w,
                   height: 50.h,
