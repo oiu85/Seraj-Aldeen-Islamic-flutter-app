@@ -44,12 +44,13 @@ class SimpleLottieHandler extends StatelessWidget {
 
   Widget _buildLoadingState(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              color: Colors.white,
+              color: Colors.transparent,
               child: Lottie.asset(
                 Assets.lottie.loading,
                 height: animationSize ?? ScreenUtilRes.height(200),
@@ -66,7 +67,7 @@ class SimpleLottieHandler extends StatelessWidget {
               loadingMessage ?? 'جاري التحميل...',
               style: TextStyle(
                 fontSize: ScreenUtilRes.fontSize(16),
-                fontWeight: FontWeight.w500,
+                fontWeight: FontWeight.bold,
                 fontFamily: 'Tajawal',
               ),
               textAlign: TextAlign.center,
@@ -82,12 +83,13 @@ class SimpleLottieHandler extends StatelessWidget {
     bool isNetworkError = _isNetworkError(blocStatus.error);
 
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              color: Colors.white,
+              color: Colors.transparent,
               child: Lottie.asset(
                 lottieAsset,
                 height: animationSize ?? ScreenUtilRes.height(200),
@@ -124,7 +126,7 @@ class SimpleLottieHandler extends StatelessWidget {
                 label: Text(
                   'إعادة المحاولة',
                   style: TextStyle(
-                    color: Colors.white,
+                    color: Colors.black,
                     fontSize: ScreenUtilRes.fontSize(16),
                     fontFamily: 'Tajawal',
                     fontWeight: FontWeight.w600,
@@ -189,12 +191,13 @@ class SimpleLottieHandler extends StatelessWidget {
 
   Widget _buildEmptyState(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              color: Colors.white,
+              color: Colors.transparent,
               child: Lottie.asset(
                 Assets.lottie.noData,
                 height: animationSize ?? ScreenUtilRes.height(200),
