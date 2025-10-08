@@ -4,9 +4,11 @@ class ApiConfig {
   
   // API Endpoints
   static const String menusBottomHeader = "/menus/position/bottom_header";
-  static const String pages = "/pages";
+  static const String pages = "/pages"; //for the biography
   static const String articlesCategories = "/categories/articles/main";
   static const String soundsCategories = "/categories/sounds/main";
+  static const String videosCategories = "/categories/videos/main";
+  static const String booksCategories = "/categories/books/main";
   
   // Helper method to get full URL with query parameters
   static String getFullUrl(String endpoint) {

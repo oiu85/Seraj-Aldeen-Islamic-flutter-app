@@ -97,19 +97,21 @@ Widget bookCardBuild({
                         valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
                       ),
                     )
-                  : Text(
-                      isSoundBook ? "الاستماع للكتاب" : "عرض التفاصيل",
-                      style: TextStyle(
-                        fontFamily: FontFamily.tajawal,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 11.f,
+                  : Container(
+                    child: Text(
+                        isSoundBook ? "الاستماع للكتاب" : "عرض التفاصيل",
+                        style: TextStyle(
+                          fontFamily: FontFamily.tajawal,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 11.f,
+                        ),
+                        textAlign: TextAlign.center,
                       ),
-                      textAlign: TextAlign.center,
-                    ),
+                  ),
             ),
           ),
-          SizedBox(height: 4.h),
+          SizedBox(height: 12.h),
         ],
       ),
     ),

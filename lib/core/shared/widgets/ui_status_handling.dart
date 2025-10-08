@@ -55,8 +55,8 @@ class SimpleLottieHandler extends StatelessWidget {
           children: [
             Lottie.asset(
               Assets.lottie.loading,
-              height: animationSize ?? ScreenUtilRes.height(200),
-              width: animationSize ?? ScreenUtilRes.width(200),
+              height: animationSize ?? ScreenUtilRes.height(100),
+              width: animationSize ?? ScreenUtilRes.width(100),
               fit: BoxFit.contain,
               repeat: true,
               animate: true,
@@ -95,8 +95,8 @@ class SimpleLottieHandler extends StatelessWidget {
           children: [
             Lottie.asset(
               lottieAsset,
-              height: animationSize ?? ScreenUtilRes.height(200),
-              width: animationSize ?? ScreenUtilRes.width(200),
+              height: animationSize ?? ScreenUtilRes.height(100),
+              width: animationSize ?? ScreenUtilRes.width(100),
               fit: BoxFit.contain,
               repeat: true,
             ),

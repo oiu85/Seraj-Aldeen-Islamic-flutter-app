@@ -1,14 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:seraj_aldean_flutter_app/core/di/app_dependencies.dart';
 import 'package:seraj_aldean_flutter_app/core/responsive/screen_util_res.dart';
 import 'package:seraj_aldean_flutter_app/core/shared/widgets/app_scaffold.dart';
 import 'package:seraj_aldean_flutter_app/core/shared/widgets/decoration_app_bar.dart';
+import 'package:seraj_aldean_flutter_app/core/shared/widgets/ui_status_handling.dart';
 
 import '../../../../gen/assets.gen.dart';
 import '../../../../gen/fonts.gen.dart';
+import '../bloc/books_bloc.dart';
+import '../bloc/books_event.dart';
+import '../bloc/books_state.dart';
 import '../widgets/book_card.dart';
 import '../widgets/book_desc_card.dart';
-import 'sounds_book_page.dart';
+import '../widgets/book_info_bottom_sheet.dart';
+import 'category_book_page.dart';
 
 // Static book data model
 class BookData {
@@ -49,144 +56,63 @@ class BooksPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Static data for testing
-    final List<RowData> rowsData = [
-      RowData(
-        title: "كُتُب الإمام بصيغ متعددة",
-        imagePath: Assets.images.serajName.path,
-        books: [
-          BookData(
-            title: "فضيلة الشيخ",
-            viewCount: "12",
-            bookName: "كتاب الأهوال",
-            bookImagePath: Assets.images.bookCard.path,
-            onTap: () => _handleBookTap(context, "كتاب الأهوال"),
-          ),
-          BookData(
-            title: "فضيلة الشيخ",
-            viewCount: "8",
-            bookName: "كتاب التفسير",
-            bookImagePath: Assets.images.bookCard.path,
-            onTap: () => _handleBookTap(context, "كتاب التفسير"),
-          ),
-          BookData(
-            title: "فضيلة الشيخ",
-            viewCount: "15",
-            bookName: "كتاب الفقه",
-            bookImagePath: Assets.images.bookCard.path,
-            onTap: () => _handleBookTap(context, "كتاب الفقه"),
-          ),
-        ],
-        onViewAllTap: () => _navigateToSoundsBookPage(
-          context,
-          "كُتُب الإمام بصيغ متعددة",
-          SoundsBookData.getImamBooks(),
-        ),
-      ),
-      RowData(
-        title: "تحميل أبحاث مختارة من كتب الإمام",
-        imagePath: Assets.images.bookCard.path,
-        books: [
-          BookData(
-            title: "أبحاث مختارة",
-            viewCount: "25",
-            bookName: "بحث في العقيدة",
-            bookImagePath: Assets.images.bookCard.path,
-            onTap: () => _handleBookTap(context, "بحث في العقيدة"),
-          ),
-          BookData(
-            title: "أبحاث مختارة",
-            viewCount: "18",
-            bookName: "بحث في التفسير",
-            bookImagePath: Assets.images.bookCard.path,
-            onTap: () => _handleBookTap(context, "بحث في التفسير"),
-          ),
-          BookData(
-            title: "أبحاث مختارة",
-            viewCount: "22",
-            bookName: "بحث في الفقه",
-            bookImagePath: Assets.images.bookCard.path,
-            onTap: () => _handleBookTap(context, "بحث في الفقه"),
-          ),
-        ],
-        onViewAllTap: () => _navigateToSoundsBookPage(
-          context,
-          "تحميل أبحاث مختارة من كتب الإمام",
-          SoundsBookData.getSelectedResearch(),
-        ),
-      ),
-      RowData(
-        title: "تحميل فهارس المؤلفات",
-        imagePath: Assets.images.bookColored.path,
-        books: [
-          BookData(
-            title: "فهارس المؤلفات",
-            viewCount: "50",
-            bookName: "فهرس الأهوال",
-            bookImagePath: Assets.images.bookColored.path,
-            onTap: () => _handleBookTap(context, "فهرس الأهوال"),
-          ),
-          BookData(
-            title: "فهارس المؤلفات",
-            viewCount: "38",
-            bookName: "فهرس التفسير",
-            bookImagePath: Assets.images.bookColored.path,
-            onTap: () => _handleBookTap(context, "فهرس التفسير"),
-          ),
-          BookData(
-            title: "فهارس المؤلفات",
-            viewCount: "45",
-            bookName: "فهرس الفقه",
-            bookImagePath: Assets.images.bookColored.path,
-            onTap: () => _handleBookTap(context, "فهرس الفقه"),
-          ),
-        ],
-        onViewAllTap: () => _navigateToSoundsBookPage(
-          context,
-          "تحميل فهارس المؤلفات",
-          SoundsBookData.getBookIndexes(),
-        ),
-      ),
-    ];
-
-    return AppScaffold.clean(
-      backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            DecorationAppBar(title: "كتب الإمام"),
-            BookDescCard(),
-            ...rowsData.asMap().entries.map((entry) {
-              return _buildTheRow(
-                context: context,
-                rowIndex: entry.key,
-                rowData: entry.value,
-              );
-            }),
-          ],
+    return BlocProvider(
+      create: (context) => getIt<BooksBloc>()..add(LoadBookMainCategoriesEvent()),
+      child: AppScaffold.clean(
+        backgroundColor: Colors.white,
+        body: BlocBuilder<BooksBloc, BooksState>(
+          builder: (context, state) {
+            return SimpleLottieHandler(
+              blocStatus: state.status,
+              successWidget: _buildContent(context, state),
+              onRetry: () {
+                context.read<BooksBloc>().add(LoadBookMainCategoriesEvent());
+              },
+            );
+          },
         ),
       ),
     );
   }
 
-  // Static tap handlers for testing
-  void _handleBookTap(BuildContext context, String bookName) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text('تم النقر على: $bookName'),
-        duration: Duration(seconds: 2),
-      ),
-    );
-  }
-
-  void _navigateToSoundsBookPage(BuildContext context, String title, List<SoundBookData> books) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => SoundsBookPage(
-          pageTitle: title,
-          books: books,
-        ),
+  Widget _buildContent(BuildContext context, BooksState state) {
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          DecorationAppBar(title: "كتب الإمام"),
+          SizedBox(height: 30.h),
+          
+          // Description Card from API
+          if (state.pageInfo.isNotEmpty)
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20.w),
+              child: BookDescCard(
+                title: state.pageInfo.first.title ?? 'كلمة حول كتب الشيخ',
+                content: state.pageInfo.first.content ?? '',
+                onMoreTap: () {
+                  // TODO: Navigate to full content page
+                },
+              ),
+            ),
+          
+          SizedBox(height: 20.h),
+          
+          // Categories from API
+          ...state.categories.asMap().entries.map((entry) {
+            final category = entry.value;
+            final books = category.data ?? [];
+            
+            if (books.isEmpty) return const SizedBox.shrink();
+            
+            return _buildTheRow(
+              context: context,
+              rowIndex: entry.key,
+              categoryTitle: category.title ?? '',
+              categoryId: category.id ?? 0,
+              books: books,
+            );
+          }),
+        ],
       ),
     );
   }
@@ -197,7 +123,9 @@ class BooksPage extends StatelessWidget {
 Widget _buildTheRow({
   required BuildContext context,
   required int rowIndex,
-  required RowData rowData,
+  required String categoryTitle,
+  required int categoryId,
+  required List<dynamic> books,
 }) {
   return Column(
     children: [
@@ -209,7 +137,7 @@ Widget _buildTheRow({
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              rowData.title,
+              categoryTitle,
               style: TextStyle(
                 fontSize: 18.f,
                 fontWeight: FontWeight.bold,
@@ -219,7 +147,17 @@ Widget _buildTheRow({
                 .fadeIn(duration: 600.ms, delay: (200 + rowIndex * 200).ms)
                 .slideX(begin: -0.2, end: 0, duration: 600.ms, delay: (200 + rowIndex * 200).ms),
             GestureDetector(
-              onTap: rowData.onViewAllTap,
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SoundsBookPage(
+                      categoryId: categoryId,
+                      categoryTitle: categoryTitle,
+                    ),
+                  ),
+                );
+              },
               child: Text(
                 "الكل",
                 style: TextStyle(
@@ -239,26 +177,38 @@ Widget _buildTheRow({
       ),
       // Animated horizontal list
       SizedBox(
-        height: 270.h,
+        height: 295.h,
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
-          itemCount: rowData.books.length,
+          padding: EdgeInsets.symmetric(horizontal: 20.w),
+          itemCount: books.length > 3 ? 3 : books.length,
           itemBuilder: (context, index) {
-            final book = rowData.books[index];
+            final book = books[index];
             return Container(
               width: 180.w,
-              margin: EdgeInsets.only(right: index < rowData.books.length - 1 ? 20.p : 0),
+              margin: EdgeInsets.only(left: 10.w),
               child: bookCardBuild(
                 context: context,
-                viewCont: book.viewCount,
-                title: book.title,
-                imageNamePath: rowData.imagePath,
+                viewCont: book.visitor_count?.toString() ?? '0',
+                title: '',
+                imageNamePath: '',
                 width: 180.w,
-                height: 250.h,
-                book: book.bookName,
-                bookImagePath: book.bookImagePath,
-                isSoundBook: book.isSoundBook,
-                onTap: book.onTap,
+                height: 320.h,
+                book: book.title ?? '',
+                bookImagePath: Assets.images.bookCard.path,
+                onTap: () {
+                  showModalBottomSheet(
+                    context: context,
+                    isScrollControlled: true,
+                    backgroundColor: Colors.transparent,
+                    builder: (bottomSheetContext) => BlocProvider.value(
+                      value: context.read<BooksBloc>(),
+                      child: BookInfoBottomSheet(
+                        bookId: book.id ?? 0,
+                      ),
+                    ),
+                  );
+                },
               ).animate()
                   .fadeIn(
                 duration: 500.ms,

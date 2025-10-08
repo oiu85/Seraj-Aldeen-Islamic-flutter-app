@@ -8,17 +8,36 @@ import '../../../../gen/assets.gen.dart';
 import '../../../../gen/fonts.gen.dart';
 
 class BookDescCard extends StatelessWidget {
-  const BookDescCard({super.key});
+  final String title;
+  final String content;
+  final VoidCallback? onMoreTap;
+
+  const BookDescCard({
+    super.key,
+    required this.title,
+    required this.content,
+    this.onMoreTap,
+  });
+
+  String _stripHtmlTags(String htmlString) {
+    final RegExp exp = RegExp(r"<[^>]*>", multiLine: true, caseSensitive: true);
+    return htmlString.replaceAll(exp, '').replaceAll('&nbsp;', ' ').trim();
+  }
 
   @override
   Widget build(BuildContext context) {
+    final cleanContent = _stripHtmlTags(content);
+    final displayContent = cleanContent.length > 200
+        ? '${cleanContent.substring(0, 200)}...'
+        : cleanContent;
+
     return  Container(
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20.r),
         boxShadow: [
           BoxShadow(
-              color: Colors.black.withOpacity(0.1),
+              color: Colors.black.withValues(alpha: 0.1),
               blurRadius: 1,
               offset: const Offset(
                 0,
@@ -42,7 +61,7 @@ class BookDescCard extends StatelessWidget {
                 width: 15.w,
               ),
               Text(
-                "كلمة حول كتب الشيخ:",
+                title,
                 style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -58,11 +77,7 @@ class BookDescCard extends StatelessWidget {
             height: 10.h,
           ),
           Text(
-            'لقد تنوعت مؤلفاته في مختلف قضايا الإيمان الاعتقادية والعملية والقولية والخلقية والأدبية، '
-                'وقد تصدّر هذه المؤلفات كتابه الشهير: '
-                '[سيدنا محمد رسول الله صلى الله عليه وسلم شمائله الحميدة وخصاله المجيدة]، '
-                'الذي كان شيخنا الإمام رضي الله عنه يفخر به، '
-                'ويحتسبه من أعظم الذخائر عند الله تعالى وعند رسوله صلى الله عليه وسلم.',
+            displayContent,
             textAlign: TextAlign.justify,
             style: TextStyle(
                 fontSize: 11,
@@ -75,28 +90,31 @@ class BookDescCard extends StatelessWidget {
           SizedBox(
             height: 20.h,
           ),
-          Container(
-            height: 32.h,
-            width: 113.w,
-            decoration: BoxDecoration(
-              color: AppColors.primary,
-              borderRadius: BorderRadius.circular(100.r),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Text(
-                  "المزيد",
-                  style: TextStyle(
-                      fontFamily: FontFamily.tajawal,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white),
-                ),
-                Icon(
-                  Icons.arrow_forward_outlined,
-                  color: Colors.white,
-                ),
-              ],
+          GestureDetector(
+            onTap: onMoreTap,
+            child: Container(
+              height: 32.h,
+              width: 113.w,
+              decoration: BoxDecoration(
+                color: AppColors.primary,
+                borderRadius: BorderRadius.circular(100.r),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text(
+                    "المزيد",
+                    style: TextStyle(
+                        fontFamily: FontFamily.tajawal,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
+                  ),
+                  Icon(
+                    Icons.arrow_forward_outlined,
+                    color: Colors.white,
+                  ),
+                ],
+              ),
             ),
           )
               .animate()

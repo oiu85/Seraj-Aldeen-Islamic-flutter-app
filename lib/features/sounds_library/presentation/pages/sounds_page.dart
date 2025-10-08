@@ -9,7 +9,6 @@ import 'package:seraj_aldean_flutter_app/core/shared/widgets/app_scaffold.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../../../../core/shared/widgets/decoration_app_bar.dart';
 import '../../../../core/shared/widgets/ui_status_handling.dart';
-import '../../../../gen/assets.gen.dart';
 import '../../../../gen/fonts.gen.dart';
 import '../bloc/sounds_bloc.dart';
 import '../bloc/sounds_event.dart';
@@ -17,9 +16,6 @@ import '../bloc/sounds_state.dart';
 import '../widgets/desc_card.dart';
 import '../widgets/row_section_card.dart';
 import '../widgets/sound_card.dart';
-import '../../../books_library/presentation/pages/sounds_book_page.dart';
-import '../../../books_library/presentation/pages/sounds_now_page.dart';
-import '../../../books_library/presentation/widgets/book_card.dart';
 
 class SoundsPage extends StatelessWidget {
   const SoundsPage({super.key});
@@ -208,81 +204,16 @@ class _SoundsPageContentState extends State<_SoundsPageContent> {
   }
 
   Widget _buildAudioBooksContent() {
-    final audioBooks = SoundsBookData.getAudioBooks((bookTitle) => _navigateToSoundsNowPage(bookTitle));
-    
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20.p),
-      child: GridView.builder(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2, // 2 columns
-          crossAxisSpacing: 5.w,
-          mainAxisSpacing: 15.h,
-          childAspectRatio: 0.60, // Adjust based on book card dimensions
-        ),
-        itemCount: audioBooks.length,
-        itemBuilder: (context, index) {
-          final book = audioBooks[index];
-          return Container(
-            child: bookCardBuild(
-              context: context,
-              viewCont: book.viewCount,
-              title: book.title,
-              imageNamePath: Assets.images.serajName.path,
-              width: double.infinity,
-              height: 280.h,
-              book: book.bookName,
-              bookImagePath: book.bookImagePath,
-              isSoundBook: book.isSoundBook,
-              onTap: book.onTap,
-            ).animate()
-                .fadeIn(
-              duration: 500.ms,
-              delay: (index * 100).ms,
-              curve: Curves.easeOutCubic,
-            )
-                .slideY(
-              begin: 0.3,
-              end: 0,
-              duration: 500.ms,
-              delay: (index * 100).ms,
-              curve: Curves.easeOutCubic,
-            )
-                .scale(
-              begin: const Offset(0.9, 0.9),
-              end: const Offset(1.0, 1.0),
-              duration: 400.ms,
-              delay: (index * 100 + 100).ms,
-              curve: Curves.easeOutBack,
-            ),
-          );
-        },
-      ),
-    );
-  }
-
-  void _navigateToSoundsNowPage(String bookTitle) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => SoundsNowPage(
-          bookTitle: bookTitle,
-          sounds: _getSoundsForBook(bookTitle),
+    // TODO: Implement audio books content from API
+    return Center(
+      child: Text(
+        'الكتب الصوتية',
+        style: TextStyle(
+          fontSize: 18.f,
+          fontFamily: FontFamily.tajawal,
         ),
       ),
     );
-  }
-
-  List<BookSoundData> _getSoundsForBook(String bookTitle) {
-    switch (bookTitle) {
-      case "تسجيل صوتي - الأهوال":
-        return BookSoundsData.getAhwalSounds();
-      case "تسجيل صوتي - التفسير":
-        return BookSoundsData.getTafseerSounds();
-      case "تسجيل صوتي - الفقه":
-        return BookSoundsData.getFiqhSounds();
-      default:
-        return BookSoundsData.getAhwalSounds(); // Default fallback
-    }
   }
 
   String _stripHtmlTags(String htmlString) {
