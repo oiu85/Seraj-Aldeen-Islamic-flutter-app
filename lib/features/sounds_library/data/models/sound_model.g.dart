@@ -149,3 +149,87 @@ Map<String, dynamic> _$PageInfoToJson(_PageInfo instance) => <String, dynamic>{
       'menu_id': instance.menu_id,
       'type': instance.type,
     };
+
+_CategoryContentResponse _$CategoryContentResponseFromJson(
+        Map<String, dynamic> json) =>
+    _CategoryContentResponse(
+      success: json['success'] as bool?,
+      data: json['data'] == null
+          ? null
+          : CategoryContentData.fromJson(json['data'] as Map<String, dynamic>),
+      message: json['message'] as String?,
+    );
+
+Map<String, dynamic> _$CategoryContentResponseToJson(
+        _CategoryContentResponse instance) =>
+    <String, dynamic>{
+      'success': instance.success,
+      'data': instance.data,
+      'message': instance.message,
+    };
+
+_CategoryContentData _$CategoryContentDataFromJson(Map<String, dynamic> json) =>
+    _CategoryContentData(
+      category: json['category'] == null
+          ? null
+          : CategoryInfo.fromJson(json['category'] as Map<String, dynamic>),
+      content: (json['content'] as List<dynamic>?)
+          ?.map((e) => SoundItem.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      pagination: json['pagination'] == null
+          ? null
+          : ContentPagination.fromJson(
+              json['pagination'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$CategoryContentDataToJson(
+        _CategoryContentData instance) =>
+    <String, dynamic>{
+      'category': instance.category,
+      'content': instance.content,
+      'pagination': instance.pagination,
+    };
+
+_CategoryInfo _$CategoryInfoFromJson(Map<String, dynamic> json) =>
+    _CategoryInfo(
+      id: _stringToInt(json['id']),
+      title: json['title'] as String?,
+      note: json['note'] as String?,
+      type: json['type'] as String?,
+      position: json['position'] as String?,
+      language: json['language'] as String?,
+    );
+
+Map<String, dynamic> _$CategoryInfoToJson(_CategoryInfo instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'title': instance.title,
+      'note': instance.note,
+      'type': instance.type,
+      'position': instance.position,
+      'language': instance.language,
+    };
+
+_ContentPagination _$ContentPaginationFromJson(Map<String, dynamic> json) =>
+    _ContentPagination(
+      currentPage: _stringToInt(json['current_page']),
+      perPage: _stringToInt(json['per_page']),
+      totalItems: _stringToInt(json['total_items']),
+      totalPages: _stringToInt(json['total_pages']),
+      hasNextPage: _stringToBool(json['has_next_page']),
+      hasPreviousPage: _stringToBool(json['has_previous_page']),
+      nextPage: _stringToInt(json['next_page']),
+      previousPage: _stringToInt(json['previous_page']),
+    );
+
+Map<String, dynamic> _$ContentPaginationToJson(_ContentPagination instance) =>
+    <String, dynamic>{
+      'current_page': instance.currentPage,
+      'per_page': instance.perPage,
+      'total_items': instance.totalItems,
+      'total_pages': instance.totalPages,
+      'has_next_page': instance.hasNextPage,
+      'has_previous_page': instance.hasPreviousPage,
+      'next_page': instance.nextPage,
+      'previous_page': instance.previousPage,
+    };

@@ -8,7 +8,16 @@ import '../../../../gen/assets.gen.dart';
 import '../../../../gen/fonts.gen.dart';
 
 class SubDescCard extends StatelessWidget {
-  const SubDescCard({super.key});
+  final String title;
+  final String content;
+  final VoidCallback? onMoreTap;
+
+  const SubDescCard({
+    super.key,
+    required this.title,
+    required this.content,
+    this.onMoreTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -43,12 +52,14 @@ class SubDescCard extends StatelessWidget {
               ),
               Flexible(
                 child: Text(
-                  "دروس عام 1405هـ من محرم فما بعده",
+                  title,
                   style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                       fontFamily: FontFamily.tajawal,
                       color: AppColors.primary),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                 )
                     .animate()
                     .fadeIn(duration: 800.ms, delay: 300.ms)
@@ -60,14 +71,14 @@ class SubDescCard extends StatelessWidget {
             height: 10.h,
           ),
           Text(
-            'سُجِّلت هذه الدروس سنة 1398 للهجرة النبوية الشريفة، وقد حرصتُ على اختيار أنقاها صوتًا من حيث جودة التسجيل وصفاء الصوت، لتصل إلى السامع على وجهٍ يُعينه على الفهم والإصغاء.\n\n'
-                'ومراعاةً لكون معظم الدروس مجزّأة إلى قسمين، يُرجى من المستمع الكريم متابعة الاستماع ليتمّ له الانتفاع والفائدة.\n\n'
-                'ونسأل الله تعالى التوفيق والسداد في نشر المزيد من تراث شيخنا الإمام رضي الله عنه، من مسموعاتٍ ومقروءاتٍ، والحمد لله ربّ العالمين.',
+            content,
             textAlign: TextAlign.justify,
             style: TextStyle(
                 fontSize: 11,
                 fontFamily: FontFamily.tajawal,
                 fontWeight: FontWeight.bold),
+            maxLines: 6,
+            overflow: TextOverflow.ellipsis,
           )
               .animate()
               .fadeIn(duration: 1000.ms, delay: 400.ms)
@@ -75,34 +86,37 @@ class SubDescCard extends StatelessWidget {
           SizedBox(
             height: 20.h,
           ),
-          Container(
-            height: 32.h,
-            width: 113.w,
-            decoration: BoxDecoration(
-              color: AppColors.primary,
-              borderRadius: BorderRadius.circular(100.r),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Text(
-                  "المزيد",
-                  style: TextStyle(
-                      fontFamily: FontFamily.tajawal,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white),
-                ),
-                Icon(
-                  Icons.arrow_forward_outlined,
-                  color: Colors.white,
-                ),
-              ],
-            ),
-          )
-              .animate()
-              .fadeIn(duration: 600.ms, delay: 500.ms)
-              .scale(begin: const Offset(0.8, 0.8), end: const Offset(1.0, 1.0), duration: 500.ms, delay: 500.ms)
-              .slideX(begin: 0.3, end: 0, duration: 400.ms, delay: 500.ms),
+          GestureDetector(
+            onTap: onMoreTap,
+            child: Container(
+              height: 32.h,
+              width: 113.w,
+              decoration: BoxDecoration(
+                color: AppColors.primary,
+                borderRadius: BorderRadius.circular(100.r),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text(
+                    "المزيد",
+                    style: TextStyle(
+                        fontFamily: FontFamily.tajawal,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
+                  ),
+                  Icon(
+                    Icons.arrow_forward_outlined,
+                    color: Colors.white,
+                  ),
+                ],
+              ),
+            )
+                .animate()
+                .fadeIn(duration: 600.ms, delay: 500.ms)
+                .scale(begin: const Offset(0.8, 0.8), end: const Offset(1.0, 1.0), duration: 500.ms, delay: 500.ms)
+                .slideX(begin: 0.3, end: 0, duration: 400.ms, delay: 500.ms),
+          ),
         ],
       ),
     )

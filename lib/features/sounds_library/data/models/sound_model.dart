@@ -116,3 +116,59 @@ abstract class PageInfo with _$PageInfo {
   factory PageInfo.fromJson(Map<String, dynamic> json) =>
       _$PageInfoFromJson(json);
 }
+
+@freezed
+abstract class CategoryContentResponse with _$CategoryContentResponse {
+  const factory CategoryContentResponse({
+    bool? success,
+    CategoryContentData? data,
+    String? message,
+  }) = _CategoryContentResponse;
+
+  factory CategoryContentResponse.fromJson(Map<String, dynamic> json) =>
+      _$CategoryContentResponseFromJson(json);
+}
+
+@freezed
+abstract class CategoryContentData with _$CategoryContentData {
+  const factory CategoryContentData({
+    CategoryInfo? category,
+    List<SoundItem>? content,
+    ContentPagination? pagination,
+  }) = _CategoryContentData;
+
+  factory CategoryContentData.fromJson(Map<String, dynamic> json) =>
+      _$CategoryContentDataFromJson(json);
+}
+
+@freezed
+abstract class CategoryInfo with _$CategoryInfo {
+  const factory CategoryInfo({
+    @JsonKey(fromJson: _stringToInt) int? id,
+    String? title,
+    String? note,
+    String? type,
+    String? position,
+    String? language,
+  }) = _CategoryInfo;
+
+  factory CategoryInfo.fromJson(Map<String, dynamic> json) =>
+      _$CategoryInfoFromJson(json);
+}
+
+@freezed
+abstract class ContentPagination with _$ContentPagination {
+  const factory ContentPagination({
+    @JsonKey(name: 'current_page', fromJson: _stringToInt) int? currentPage,
+    @JsonKey(name: 'per_page', fromJson: _stringToInt) int? perPage,
+    @JsonKey(name: 'total_items', fromJson: _stringToInt) int? totalItems,
+    @JsonKey(name: 'total_pages', fromJson: _stringToInt) int? totalPages,
+    @JsonKey(name: 'has_next_page', fromJson: _stringToBool) bool? hasNextPage,
+    @JsonKey(name: 'has_previous_page', fromJson: _stringToBool) bool? hasPreviousPage,
+    @JsonKey(name: 'next_page', fromJson: _stringToInt) int? nextPage,
+    @JsonKey(name: 'previous_page', fromJson: _stringToInt) int? previousPage,
+  }) = _ContentPagination;
+
+  factory ContentPagination.fromJson(Map<String, dynamic> json) =>
+      _$ContentPaginationFromJson(json);
+}

@@ -12,6 +12,7 @@ class SoundsBloc extends Bloc<SoundsEvent, SoundsState> {
   SoundsBloc({required this.soundRepository}) 
       : super(SoundsState(status: BlocStatus.initial())) {
     on<LoadSoundCategoriesEvent>(_onLoadSoundCategories);
+    on<LoadCategoryContentEvent>(_onLoadCategoryContent);
   }
 
   Future<void> _onLoadSoundCategories(
@@ -103,6 +104,68 @@ class SoundsBloc extends Bloc<SoundsEvent, SoundsState> {
     if (!emit.isDone && state.status.isLoading()) {
       emit(state.copyWith(
         status: BlocStatus.fail(error: 'حدث خطأ غير متوقع'),
+      ));
+    }
+  }
+
+  Future<void> _onLoadCategoryContent(
+    LoadCategoryContentEvent event,
+    Emitter<SoundsState> emit,
+  ) async {
+    try {
+      final isLoadingMore = event.page > 1;
+      
+      if (!isLoadingMore) {
+        _emitLoadingState(emit);
+      } else {
+        emit(state.copyWith(status: BlocStatus.loadingMore()));
+      }
+      
+      AppLogger.info('Loading category content for category ${event.categoryId}, page ${event.page}');
+
+      final result = await soundRepository.getCategoryContent(
+        categoryId: event.categoryId,
+        page: event.page,
+        perPage: event.perPage,
+      );
+
+      result.fold(
+        (exception) => _handleError(emit, exception.toString()),
+        (response) => _handleCategoryContentSuccess(emit, response, isLoadingMore),
+      );
+    } catch (e) {
+      _handleUnexpectedError(emit, e);
+    }
+  }
+
+  void _handleCategoryContentSuccess(
+    Emitter<SoundsState> emit,
+    CategoryContentResponse response,
+    bool isLoadingMore,
+  ) {
+    if (response.success != true || response.data == null) {
+      _handleError(emit, 'Invalid response structure');
+      return;
+    }
+
+    final content = response.data!.content ?? [];
+    final hasNextPage = response.data!.pagination?.hasNextPage ?? false;
+    final currentPage = response.data!.pagination?.currentPage ?? 1;
+    final categoryInfo = response.data!.category;
+
+    final newContent = isLoadingMore
+        ? [...state.categoryContent, ...content]
+        : content;
+
+    AppLogger.info('Loaded ${content.length} sounds, total: ${newContent.length}');
+
+    if (!emit.isDone) {
+      emit(state.copyWith(
+        status: BlocStatus.success(),
+        categoryContent: newContent,
+        categoryInfo: categoryInfo,
+        hasNextPage: hasNextPage,
+        currentPage: currentPage,
       ));
     }
   }
