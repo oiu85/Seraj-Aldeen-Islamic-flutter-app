@@ -2,16 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
+import 'package:seraj_aldean_flutter_app/config/appconfig/app_colors.dart';
 import 'package:seraj_aldean_flutter_app/core/responsive/screen_util_res.dart';
 import 'package:seraj_aldean_flutter_app/core/shared/widgets/app_scaffold.dart';
 import 'package:seraj_aldean_flutter_app/core/shared/widgets/ui_status_handling.dart';
+import 'package:seraj_aldean_flutter_app/gen/fonts.gen.dart';
 
 import '../bloc/sounds_bloc.dart';
 import '../bloc/sounds_event.dart';
 import '../bloc/sounds_state.dart';
 import '../widgets/sound_card.dart';
 import '../widgets/sub_desc_card.dart';
-import '../widgets/sub_sounds_row_section_card.dart';
 
 class SubCategorySounds extends StatelessWidget {
   const SubCategorySounds({super.key});
@@ -89,7 +90,8 @@ class _SubCategorySoundsContentState extends State<_SubCategorySoundsContent> {
       backgroundColor: Colors.white,
       body: BlocBuilder<SoundsBloc, SoundsState>(
         builder: (context, state) {
-          if (state.status.isLoading()) {
+          // Show initial loading only when no content is available
+          if (state.status.isLoading() && state.categoryContent.isEmpty) {
             return SimpleLottieHandler(
               blocStatus: state.status,
               successWidget: const SizedBox.shrink(),
@@ -97,7 +99,8 @@ class _SubCategorySoundsContentState extends State<_SubCategorySoundsContent> {
             );
           }
 
-          if (state.status.isFail()) {
+          // Show error only when no content is available
+          if (state.status.isFail() && state.categoryContent.isEmpty) {
             return SimpleLottieHandler(
               blocStatus: state.status,
               successWidget: const SizedBox.shrink(),
@@ -109,60 +112,70 @@ class _SubCategorySoundsContentState extends State<_SubCategorySoundsContent> {
             );
           }
 
-          if (state.status.isSuccess() && state.categoryContent.isNotEmpty) {
+          // Show content when available (even during loading more)
+          if (state.categoryContent.isNotEmpty) {
             return SingleChildScrollView(
               controller: _scrollController,
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(height: 40.h),
+                  // Category title
+                  Center(
+                    child: Text(
+                      state.categoryInfo?.title ?? widget.categoryTitle,
+                      style: TextStyle(
+                        fontSize: 24.f,
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.primary,
+                        fontFamily: FontFamily.tajawal,
+                      ),
+                    ),
+                  ),
                   // Show description card only if category has a note
                   if (state.categoryInfo?.note != null && 
                       state.categoryInfo!.note!.isNotEmpty)
-                    SubDescCard(
-                      title: state.categoryInfo?.title ?? widget.categoryTitle,
-                      content: state.categoryInfo?.note ?? '',
-                      onMoreTap: () {
-                        // TODO: Navigate to full content page
+                    Center(
+                      child: SubDescCard(
+                        title: state.categoryInfo?.title ?? widget.categoryTitle,
+                        content: state.categoryInfo?.note ?? '',
+                        onMoreTap: () {
+                          // TODO: Navigate to full content page
+                        },
+                      ),
+                    ),
+                  // Display sounds in grid view with 2 cards per row
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10.w),
+                    child: GridView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 12.w,
+                        mainAxisSpacing: 16.h,
+                        childAspectRatio: 1,
+                      ),
+                      itemCount: state.categoryContent.length,
+                      itemBuilder: (context, index) {
+                        final sound = state.categoryContent[index];
+                        return SoundCard(
+                          title: sound.title ?? "",
+                          visitorCount: sound.visitor_count ?? "0",
+                          date: sound.date ?? "",
+                        );
                       },
                     ),
-                  SizedBox(height: 40.h),
-                  // Display sounds in groups of 3
-                  ...List.generate(
-                    (state.categoryContent.length / 3).ceil(),
-                    (index) {
-                      final startIndex = index * 3;
-                      final endIndex = (startIndex + 3).clamp(0, state.categoryContent.length);
-                      final soundsInRow = state.categoryContent.sublist(startIndex, endIndex);
-
-                      return Padding(
-                        padding: EdgeInsets.only(bottom: 20.h),
-                        child: SubSoundsRowSectionCard(
-                          title: state.categoryInfo?.title ?? widget.categoryTitle,
-                          onSeeAll: () {},
-                          sectionIndex: index,
-                          cards: [
-                            ...soundsInRow.asMap().entries.map((entry) {
-                              final sound = entry.value;
-                              return [
-                                SoundCard(
-                                  title: sound.title ?? "",
-                                  visitorCount: sound.visitor_count ?? "0",
-                                  date: sound.date ?? "",
-                                ),
-                                if (entry.key < soundsInRow.length - 1)
-                                  SizedBox(width: 12.w),
-                              ];
-                            }).expand((element) => element),
-                          ],
-                        ),
-                      );
-                    },
                   ),
                   // Loading more indicator
                   if (state.status.isLoadingMore())
-                    Padding(
-                      padding: EdgeInsets.all(20.p),
-                      child: const CircularProgressIndicator(),
+                    Center(
+                      child: Padding(
+                        padding: EdgeInsets.all(10.p),
+                        child: CircularProgressIndicator(
+                          color: AppColors.primary,
+                        ),
+                      ),
                     ),
                   SizedBox(height: 20.h),
                 ],

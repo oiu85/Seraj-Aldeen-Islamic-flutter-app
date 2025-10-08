@@ -23,7 +23,8 @@ class SoundsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => GetIt.instance<SoundsBloc>()..add(LoadSoundCategoriesEvent()),
+      create: (context) =>
+          GetIt.instance<SoundsBloc>()..add(LoadSoundCategoriesEvent()),
       child: const _SoundsPageContent(),
     );
   }
@@ -45,160 +46,199 @@ class _SoundsPageContentState extends State<_SoundsPageContent> {
         backgroundColor: Colors.white,
         body: Column(
           children: [
-              DecorationAppBar(title: 'الصوتيات',),
-              SizedBox(
-                height: 24.h,
-              ),
-              BlocBuilder<SoundsBloc, SoundsState>(
-                builder: (context, state) {
-                  if (state.pageInfo != null) {
-                    return DescCard(
-                      title: state.pageInfo!.title ?? "كلمة حول دروس الشيخ",
-                      content: _stripHtmlTags(state.pageInfo!.content ?? ""),
-                      onMoreTap: () {
-                        // TODO: Navigate to full page content
-                      },
-                    );
-                  }
-                  return const SizedBox.shrink();
-                },
-              ),
-            SizedBox(height: 16.h,),
+            DecorationAppBar(
+              title: 'الصوتيات',
+            ),
+            SizedBox(
+              height: 24.h,
+            ),
+            BlocBuilder<SoundsBloc, SoundsState>(
+              builder: (context, state) {
+                if (state.pageInfo != null) {
+                  return DescCard(
+                    title: state.pageInfo!.title ?? "كلمة حول دروس الشيخ",
+                    content: _stripHtmlTags(state.pageInfo!.content ?? ""),
+                    onMoreTap: () {
+                      // TODO: Navigate to full page content
+                    },
+                  );
+                }
+                return const SizedBox.shrink();
+              },
+            ),
+            SizedBox(
+              height: 12.h,
+            ),
             Padding(
-              padding:  EdgeInsets.symmetric(horizontal: 20.0.p),
+              padding: EdgeInsets.symmetric(horizontal: 16.0.p),
               child: Row(
                 children: [
                   GestureDetector(
                     onTap: () => setState(() => selectedTabIndex = 0),
                     child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 7.p , vertical: 5.p),
-                      margin: EdgeInsets.symmetric(horizontal: 3.p , vertical: 3 . p),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 7.p, vertical: 5.p),
+                      margin:
+                          EdgeInsets.symmetric(horizontal: 3.p, vertical: 3.p),
                       decoration: BoxDecoration(
-                        color: selectedTabIndex == 0 ? AppColors.primary : Colors.grey[300],
+                        color: selectedTabIndex == 0
+                            ? AppColors.primary
+                            : Colors.grey[300],
                         borderRadius: BorderRadius.circular(30.r),
                       ),
-                      child: Text("الصوتيات", style: TextStyle(fontWeight: FontWeight.bold ,fontSize: 16.f , fontFamily: FontFamily.tajawal ,  color: selectedTabIndex == 0 ? Colors.white : Colors.grey[600]),),
+                      child: Text(
+                        "الصوتيات",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16.f,
+                            fontFamily: FontFamily.tajawal,
+                            color: selectedTabIndex == 0
+                                ? Colors.white
+                                : Colors.grey[600]),
+                      ),
                     ),
                   ),
                   GestureDetector(
                     onTap: () => setState(() => selectedTabIndex = 1),
                     child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 7.p , vertical: 5.p),
-                      margin: EdgeInsets.symmetric(horizontal: 3.p , vertical: 3 . p),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 7.p, vertical: 5.p),
+                      margin:
+                          EdgeInsets.symmetric(horizontal: 3.p, vertical: 3.p),
                       decoration: BoxDecoration(
-                        color: selectedTabIndex == 1 ? AppColors.primary : Colors.grey[300],
+                        color: selectedTabIndex == 1
+                            ? AppColors.primary
+                            : Colors.grey[300],
                         borderRadius: BorderRadius.circular(30.r),
                       ),
-                      child: Text("الكتب الصوتية", style: TextStyle(fontWeight: FontWeight.bold ,fontSize: 16.f , fontFamily: FontFamily.tajawal ,  color: selectedTabIndex == 1 ? Colors.white : Colors.grey[600]),),
+                      child: Text(
+                        "الكتب الصوتية",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16.f,
+                            fontFamily: FontFamily.tajawal,
+                            color: selectedTabIndex == 1
+                                ? Colors.white
+                                : Colors.grey[600]),
+                      ),
                     ),
                   ),
                 ],
-              ).animate()
+              )
+                  .animate()
                   .fadeIn(
-                delay: 500.ms,
-                duration: 500.ms,
-                curve: Curves.easeOutCubic,
-              )
+                    delay: 500.ms,
+                    duration: 500.ms,
+                    curve: Curves.easeOutCubic,
+                  )
                   .slideY(
-                begin: 0.3,
-                end: 0,
-                delay: 500.ms,
-                duration: 500.ms,
-                curve: Curves.easeOutCubic,
-              )
+                    begin: 0.3,
+                    end: 0,
+                    delay: 500.ms,
+                    duration: 500.ms,
+                    curve: Curves.easeOutCubic,
+                  )
                   .scale(
-                begin: const Offset(0.9, 0.9),
-                end: const Offset(1.0, 1.0),
-                duration: 400.ms,
-                delay: 500.ms,
-                curve: Curves.easeOutBack,
-              ),
-            ),
-              SizedBox(
-                height: 20.h,
-              ),
-              // Conditional content based on selected tab
-              if (selectedTabIndex == 0) ...[
-                // Audio content (original sounds)
-                Expanded(
-                  child: BlocBuilder<SoundsBloc, SoundsState>(
-                    builder: (context, state) {
-                      if (state.status.isLoading()) {
-                        return SimpleLottieHandler(
-                          blocStatus: state.status,
-                          successWidget: const SizedBox.shrink(),
-                          loadingMessage: 'جاري تحميل الصوتيات...',
-                        );
-                      }
-
-                      if (state.status.isFail()) {
-                        return SimpleLottieHandler(
-                          blocStatus: state.status,
-                          successWidget: const SizedBox.shrink(),
-                          onRetry: () {
-                            context.read<SoundsBloc>().add(LoadSoundCategoriesEvent());
-                          },
-                        );
-                      }
-
-                      if (state.status.isSuccess() && state.categories.isNotEmpty) {
-                        return SingleChildScrollView(
-                          child: Column(
-                            children: [
-                              ...state.categories.asMap().entries.map((entry) {
-                                final index = entry.key;
-                                final category = entry.value;
-                                final soundItems = category.data ?? [];
-                                
-                                // Take only first 3 items for preview
-                                final previewItems = soundItems.take(3).toList();
-
-                                return Padding(
-                                  padding: EdgeInsets.only(bottom: 20.h),
-                                  child: RowSectionCard(
-                                    title: category.title ?? "",
-                                    onSeeAll: () {
-                                      Get.toNamed(AppRoute.subSounds, arguments: {
-                                        'categoryId': category.id,
-                                        'categoryTitle': category.title,
-                                        'soundItems': soundItems,
-                                      });
-                                    },
-                                    sectionIndex: index,
-                                    cards: [
-                                      ...previewItems.asMap().entries.map((itemEntry) {
-                                        final item = itemEntry.value;
-                                        return [
-                                          SoundCard(
-                                            title: item.title ?? "",
-                                            visitorCount: item.visitor_count ?? "0",
-                                            date: item.date ?? "",
-                                          ),
-                                          if (itemEntry.key < previewItems.length - 1)
-                                            SizedBox(width: 12.w),
-                                        ];
-                                      }).expand((element) => element),
-                                    ],
-                                  ),
-                                );
-                              }),
-                            ],
-                          ),
-                        );
-                      }
-
-                      return const Center(
-                        child: Text('لا توجد بيانات'),
-                      );
-                    },
+                    begin: const Offset(0.9, 0.9),
+                    end: const Offset(1.0, 1.0),
+                    duration: 400.ms,
+                    delay: 500.ms,
+                    curve: Curves.easeOutBack,
                   ),
+            ),
+            SizedBox(
+              height: 20.h,
+            ),
+            // Conditional content based on selected tab
+            if (selectedTabIndex == 0) ...[
+              // Audio content (original sounds)
+              Expanded(
+                child: BlocBuilder<SoundsBloc, SoundsState>(
+                  builder: (context, state) {
+                    if (state.status.isLoading()) {
+                      return SimpleLottieHandler(
+                        blocStatus: state.status,
+                        successWidget: const SizedBox.shrink(),
+                        loadingMessage: 'جاري تحميل الصوتيات...',
+                      );
+                    }
+
+                    if (state.status.isFail()) {
+                      return SimpleLottieHandler(
+                        blocStatus: state.status,
+                        successWidget: const SizedBox.shrink(),
+                        onRetry: () {
+                          context
+                              .read<SoundsBloc>()
+                              .add(LoadSoundCategoriesEvent());
+                        },
+                      );
+                    }
+
+                    if (state.status.isSuccess() &&
+                        state.categories.isNotEmpty) {
+                      return SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            ...state.categories.asMap().entries.map((entry) {
+                              final index = entry.key;
+                              final category = entry.value;
+                              final soundItems = category.data ?? [];
+
+                              // Take only first 3 items for preview
+                              final previewItems = soundItems.take(3).toList();
+
+                              return Padding(
+                                padding: EdgeInsets.only(bottom: 20.h),
+                                child: RowSectionCard(
+                                  title: category.title ?? "",
+                                  onSeeAll: () {
+                                    Get.toNamed(AppRoute.subSounds, arguments: {
+                                      'categoryId': category.id,
+                                      'categoryTitle': category.title,
+                                      'soundItems': soundItems,
+                                    });
+                                  },
+                                  sectionIndex: index,
+                                  cards: [
+                                    ...previewItems
+                                        .asMap()
+                                        .entries
+                                        .map((itemEntry) {
+                                      final item = itemEntry.value;
+                                      return [
+                                        SoundCard(
+                                          title: item.title ?? "",
+                                          visitorCount:
+                                              item.visitor_count ?? "0",
+                                          date: item.date ?? "",
+                                        ),
+                                        if (itemEntry.key <
+                                            previewItems.length - 1)
+                                          SizedBox(width: 12.w),
+                                      ];
+                                    }).expand((element) => element),
+                                  ],
+                                ),
+                              );
+                            }),
+                          ],
+                        ),
+                      );
+                    }
+
+                    return const Center(
+                      child: Text('لا توجد بيانات'),
+                    );
+                  },
                 ),
-              ] else ...[
-                // Audio Books content
-                Expanded(
-                  child: _buildAudioBooksContent(),
-                ),
-              ],
+              ),
+            ] else ...[
+              // Audio Books content
+              Expanded(
+                child: _buildAudioBooksContent(),
+              ),
+            ],
           ],
         ));
   }
@@ -221,6 +261,3 @@ class _SoundsPageContentState extends State<_SoundsPageContent> {
     return htmlString.replaceAll(exp, '').replaceAll('&nbsp;', ' ').trim();
   }
 }
-
-
-
