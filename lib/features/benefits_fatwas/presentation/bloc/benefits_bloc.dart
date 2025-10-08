@@ -2,8 +2,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:seraj_aldean_flutter_app/features/benefits_fatwas/data/models/article_model.dart';
 import '../../../../core/models/page_state/bloc_status.dart';
 import '../../../../core/utils/logger/app_logger.dart';
-import '../../core/constants/benefits_constants.dart';
 import '../../domain/repositories/article_repository.dart';
+import '../utils/benefits_constants.dart';
 import 'benefits_event.dart';
 import 'benefits_state.dart';
 

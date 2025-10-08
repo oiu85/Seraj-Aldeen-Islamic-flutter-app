@@ -8,7 +8,16 @@ import '../../../../gen/assets.gen.dart';
 import '../../../../gen/fonts.gen.dart';
 
 class DescCard extends StatelessWidget {
-  const DescCard({super.key});
+  final String title;
+  final String content;
+  final VoidCallback? onMoreTap;
+
+  const DescCard({
+    super.key,
+    required this.title,
+    required this.content,
+    this.onMoreTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -41,32 +50,35 @@ class DescCard extends StatelessWidget {
               SizedBox(
                 width: 15.w,
               ),
-              Text(
-                "كلمة حول دروس الشيخ:",
-                style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: FontFamily.tajawal,
-                    color: AppColors.primary),
-              )
-                  .animate()
-                  .fadeIn(duration: 800.ms, delay: 300.ms)
-                  .slideX(begin: -0.3, end: 0, duration: 600.ms, delay: 300.ms),
+              Expanded(
+                child: Text(
+                  title,
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: FontFamily.tajawal,
+                      color: AppColors.primary),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                )
+                    .animate()
+                    .fadeIn(duration: 800.ms, delay: 300.ms)
+                    .slideX(begin: -0.3, end: 0, duration: 600.ms, delay: 300.ms),
+              ),
             ],
           ),
           SizedBox(
             height: 10.h,
           ),
           Text(
-            'كانت مجالس دروسه مجالس صفاء ونقاء وسمو وارتقاء، ينشرح لها الصدر ويصفو بها القلب، '
-                'وتسمو النفس في مراتبها ويشعر المرء فيها بالتجافي عن دار الغرور والإنابة إلى دار الخلود، '
-                'إذ تنساب إلى قلبه معاني آيات الله تعالى وأحاديث رسول الله صلى الله عليه وسلم '
-                'بأسلوب سهل العبارة رقيق الكلمة.',
+            content,
             textAlign: TextAlign.justify,
             style: TextStyle(
                 fontSize: 11,
                 fontFamily: FontFamily.tajawal,
                 fontWeight: FontWeight.bold),
+            maxLines: 4,
+            overflow: TextOverflow.ellipsis,
           )
               .animate()
               .fadeIn(duration: 1000.ms, delay: 400.ms)
@@ -74,34 +86,37 @@ class DescCard extends StatelessWidget {
           SizedBox(
             height: 20.h,
           ),
-          Container(
-            height: 32.h,
-            width: 113.w,
-            decoration: BoxDecoration(
-              color: AppColors.primary,
-              borderRadius: BorderRadius.circular(100.r),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Text(
-                  "المزيد",
-                  style: TextStyle(
-                      fontFamily: FontFamily.tajawal,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white),
-                ),
-                Icon(
-                  Icons.arrow_forward_outlined,
-                  color: Colors.white,
-                ),
-              ],
-            ),
-          )
-              .animate()
-              .fadeIn(duration: 600.ms, delay: 500.ms)
-              .scale(begin: const Offset(0.8, 0.8), end: const Offset(1.0, 1.0), duration: 500.ms, delay: 500.ms)
-              .slideX(begin: 0.3, end: 0, duration: 400.ms, delay: 500.ms),
+          GestureDetector(
+            onTap: onMoreTap,
+            child: Container(
+              height: 32.h,
+              width: 113.w,
+              decoration: BoxDecoration(
+                color: AppColors.primary,
+                borderRadius: BorderRadius.circular(100.r),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text(
+                    "المزيد",
+                    style: TextStyle(
+                        fontFamily: FontFamily.tajawal,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
+                  ),
+                  Icon(
+                    Icons.arrow_forward_outlined,
+                    color: Colors.white,
+                  ),
+                ],
+              ),
+            )
+                .animate()
+                .fadeIn(duration: 600.ms, delay: 500.ms)
+                .scale(begin: const Offset(0.8, 0.8), end: const Offset(1.0, 1.0), duration: 500.ms, delay: 500.ms)
+                .slideX(begin: 0.3, end: 0, duration: 400.ms, delay: 500.ms),
+          ),
         ],
       ),
     )

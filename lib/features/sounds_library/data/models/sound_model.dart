@@ -1,0 +1,118 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'sound_model.freezed.dart';
+part 'sound_model.g.dart';
+
+// NOTE: Custom converters for API response handling
+bool? _stringToBool(dynamic value) {
+  if (value == null) return null;
+  if (value is bool) return value;
+  if (value is int) return value == 1;
+  if (value is String) return value.toLowerCase() == 'true' || value == '1';
+  return null;
+}
+
+int? _stringToInt(dynamic value) {
+  if (value == null) return null;
+  if (value is int) return value;
+  if (value is String) return int.tryParse(value);
+  return null;
+}
+
+@freezed
+abstract class SoundResponse with _$SoundResponse {
+  const factory SoundResponse({
+    bool? success,
+    SoundData? data,
+    String? message,
+  }) = _SoundResponse;
+
+  factory SoundResponse.fromJson(Map<String, dynamic> json) =>
+      _$SoundResponseFromJson(json);
+}
+
+@freezed
+abstract class SoundData with _$SoundData {
+  const factory SoundData({
+    String? type,
+    List<SoundCategory>? categories,
+    SoundPaginationData? pagination,
+    List<PageInfo>? pages,
+  }) = _SoundData;
+
+  factory SoundData.fromJson(Map<String, dynamic> json) =>
+      _$SoundDataFromJson(json);
+}
+
+@freezed
+abstract class SoundCategory with _$SoundCategory {
+  const factory SoundCategory({
+    @JsonKey(fromJson: _stringToInt) int? id,
+    String? title,
+    String? note,
+    String? position,
+    String? language,
+    String? date,
+    String? menu_id,
+    @JsonKey(fromJson: _stringToBool) bool? show_in_menu,
+    @JsonKey(fromJson: _stringToBool) bool? show_in_main,
+    @JsonKey(fromJson: _stringToInt) int? content_count,
+    String? type,
+    List<SoundItem>? data,
+  }) = _SoundCategory;
+
+  factory SoundCategory.fromJson(Map<String, dynamic> json) =>
+      _$SoundCategoryFromJson(json);
+}
+
+@freezed
+abstract class SoundItem with _$SoundItem {
+  const factory SoundItem({
+    @JsonKey(fromJson: _stringToInt) int? id,
+    String? title,
+    String? summary,
+    String? date,
+    String? visitor_count,
+    @JsonKey(fromJson: _stringToBool) bool? is_new,
+    String? priority,
+    String? file,
+  }) = _SoundItem;
+
+  factory SoundItem.fromJson(Map<String, dynamic> json) =>
+      _$SoundItemFromJson(json);
+}
+
+@freezed
+abstract class SoundPaginationData with _$SoundPaginationData {
+  const factory SoundPaginationData({
+    @JsonKey(name: 'current_page', fromJson: _stringToInt) int? currentPage,
+    @JsonKey(name: 'per_page', fromJson: _stringToInt) int? perPage,
+    @JsonKey(name: 'total_categories', fromJson: _stringToInt) int? totalCategories,
+    @JsonKey(name: 'total_pages', fromJson: _stringToInt) int? totalPages,
+    @JsonKey(name: 'has_next_page', fromJson: _stringToBool) bool? hasNextPage,
+    @JsonKey(name: 'has_previous_page', fromJson: _stringToBool) bool? hasPreviousPage,
+    @JsonKey(name: 'next_page', fromJson: _stringToInt) int? nextPage,
+    @JsonKey(name: 'previous_page', fromJson: _stringToInt) int? previousPage,
+  }) = _SoundPaginationData;
+
+  factory SoundPaginationData.fromJson(Map<String, dynamic> json) =>
+      _$SoundPaginationDataFromJson(json);
+}
+
+@freezed
+abstract class PageInfo with _$PageInfo {
+  const factory PageInfo({
+    @JsonKey(fromJson: _stringToInt) int? id,
+    String? title,
+    String? content,
+    String? language,
+    String? visitor_count,
+    String? priority,
+    String? date,
+    String? menu_id,
+    String? type,
+  }) = _PageInfo;
+
+  factory PageInfo.fromJson(Map<String, dynamic> json) =>
+      _$PageInfoFromJson(json);
+}

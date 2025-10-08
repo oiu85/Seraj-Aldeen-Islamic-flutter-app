@@ -6,10 +6,10 @@ import '../../../../core/di/app_dependencies.dart';
 import '../../../../core/shared/widgets/ui_status_handling.dart';
 import '../../../../gen/assets.gen.dart';
 import '../../../../gen/fonts.gen.dart';
-import '../../core/constants/benefits_constants.dart';
 import '../bloc/benefits_bloc.dart';
 import '../bloc/benefits_event.dart';
 import '../bloc/benefits_state.dart';
+import '../utils/benefits_constants.dart';
 import '../widgets/ftawa_card.dart';
 import '../utils/benefits_animations.dart';
 

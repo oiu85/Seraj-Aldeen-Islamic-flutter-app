@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:get_it/get_it.dart';
 import 'package:seraj_aldean_flutter_app/config/appconfig/app_colors.dart';
 import 'package:seraj_aldean_flutter_app/core/responsive/screen_util_res.dart';
 import 'package:seraj_aldean_flutter_app/core/routes.dart';
 import 'package:seraj_aldean_flutter_app/core/shared/widgets/app_scaffold.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-
 import '../../../../core/shared/widgets/decoration_app_bar.dart';
+import '../../../../core/shared/widgets/ui_status_handling.dart';
 import '../../../../gen/assets.gen.dart';
 import '../../../../gen/fonts.gen.dart';
+import '../bloc/sounds_bloc.dart';
+import '../bloc/sounds_event.dart';
+import '../bloc/sounds_state.dart';
 import '../widgets/desc_card.dart';
 import '../widgets/row_section_card.dart';
 import '../widgets/sound_card.dart';
@@ -16,14 +21,26 @@ import '../../../books_library/presentation/pages/sounds_book_page.dart';
 import '../../../books_library/presentation/pages/sounds_now_page.dart';
 import '../../../books_library/presentation/widgets/book_card.dart';
 
-class SoundsPage extends StatefulWidget {
+class SoundsPage extends StatelessWidget {
   const SoundsPage({super.key});
 
   @override
-  State<SoundsPage> createState() => _SoundsPageState();
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => GetIt.instance<SoundsBloc>()..add(LoadSoundCategoriesEvent()),
+      child: const _SoundsPageContent(),
+    );
+  }
 }
 
-class _SoundsPageState extends State<SoundsPage> {
+class _SoundsPageContent extends StatefulWidget {
+  const _SoundsPageContent();
+
+  @override
+  State<_SoundsPageContent> createState() => _SoundsPageContentState();
+}
+
+class _SoundsPageContentState extends State<_SoundsPageContent> {
   int selectedTabIndex = 0; // 0 for الصوتيات, 1 for الكتب الصوتية
 
   @override
@@ -36,7 +53,20 @@ class _SoundsPageState extends State<SoundsPage> {
               SizedBox(
                 height: 24.h,
               ),
-              DescCard(),
+              BlocBuilder<SoundsBloc, SoundsState>(
+                builder: (context, state) {
+                  if (state.pageInfo != null) {
+                    return DescCard(
+                      title: state.pageInfo!.title ?? "كلمة حول دروس الشيخ",
+                      content: _stripHtmlTags(state.pageInfo!.content ?? ""),
+                      onMoreTap: () {
+                        // TODO: Navigate to full page content
+                      },
+                    );
+                  }
+                  return const SizedBox.shrink();
+                },
+              ),
             SizedBox(height: 16.h,),
             Padding(
               padding:  EdgeInsets.symmetric(horizontal: 20.0.p),
@@ -95,89 +125,76 @@ class _SoundsPageState extends State<SoundsPage> {
               if (selectedTabIndex == 0) ...[
                 // Audio content (original sounds)
                 Expanded(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        RowSectionCard(
-                  title: "دروس عام 1405هـ من محرم فما بعده",
-                  onSeeAll: () {
-                    Get.toNamed(AppRoute.subSounds);
-                  },
-                  sectionIndex: 0,
-                  cards: [
-                    SoundCard(
-                      title: "خطبة الجمعة",
-                      visitorCount: "120",
-                      date: "2025-10-01",
-                    ),
-                    SizedBox(width: 12.w),
-                    SoundCard(
-                      title: "دروس التفسير",
-                      visitorCount: "250",
-                      date: "2025-09-28",
-                    ),
-                    SizedBox(width: 12.w),
-                    SoundCard(
-                      title: "محاضرة العقيدة",
-                      visitorCount: "90",
-                      date: "2025-09-15",
-                    ),
-                  ],
-                ),
+                  child: BlocBuilder<SoundsBloc, SoundsState>(
+                    builder: (context, state) {
+                      if (state.status.isLoading()) {
+                        return SimpleLottieHandler(
+                          blocStatus: state.status,
+                          successWidget: const SizedBox.shrink(),
+                          loadingMessage: 'جاري تحميل الصوتيات...',
+                        );
+                      }
 
-                SizedBox(height: 20.h,),
+                      if (state.status.isFail()) {
+                        return SimpleLottieHandler(
+                          blocStatus: state.status,
+                          successWidget: const SizedBox.shrink(),
+                          onRetry: () {
+                            context.read<SoundsBloc>().add(LoadSoundCategoriesEvent());
+                          },
+                        );
+                      }
 
-                RowSectionCard(
-                  title: "دروس عام 1406هـ من محرم فما بعده",
-                  onSeeAll: () {},
-                  sectionIndex: 1,
-                  cards: [
-                    SoundCard(
-                      title: "خطبة الجمعة",
-                      visitorCount: "120",
-                      date: "2025-10-01",
-                    ),
-                    SizedBox(width: 10.w),
-                    SoundCard(
-                      title: "دروس التفسير",
-                      visitorCount: "250",
-                      date: "2025-09-28",
-                    ),
-                    SizedBox(width: 12.w),
-                    SoundCard(
-                      title: "محاضرة العقيدة",
-                      visitorCount: "90",
-                      date: "2025-09-15",
-                    ),
-                  ],
-                ),
+                      if (state.status.isSuccess() && state.categories.isNotEmpty) {
+                        return SingleChildScrollView(
+                          child: Column(
+                            children: [
+                              ...state.categories.asMap().entries.map((entry) {
+                                final index = entry.key;
+                                final category = entry.value;
+                                final soundItems = category.data ?? [];
+                                
+                                // Take only first 3 items for preview
+                                final previewItems = soundItems.take(3).toList();
 
-                RowSectionCard(
-                  title: "دروس عام 1407هـ من محرم فما بعده",
-                  onSeeAll: () {},
-                  sectionIndex: 2,
-                  cards: [
-                    SoundCard(
-                      title: "خطبة الجمعة",
-                      visitorCount: "120",
-                      date: "2025-10-01",
-                    ),
-                    SizedBox(width: 12.w),
-                    SoundCard(
-                      title: "دروس التفسير",
-                      visitorCount: "250",
-                      date: "2025-09-28",
-                    ),
-                    SizedBox(width: 12.w),
-                    SoundCard(
-                      title: "محاضرة العقيدة",
-                      visitorCount: "90",
-                      date: "2025-09-15",
-                    ),
-                  ],
-                ),
-                      ],
-                    ),
+                                return Padding(
+                                  padding: EdgeInsets.only(bottom: 20.h),
+                                  child: RowSectionCard(
+                                    title: category.title ?? "",
+                                    onSeeAll: () {
+                                      Get.toNamed(AppRoute.subSounds, arguments: {
+                                        'categoryId': category.id,
+                                        'categoryTitle': category.title,
+                                        'soundItems': soundItems,
+                                      });
+                                    },
+                                    sectionIndex: index,
+                                    cards: [
+                                      ...previewItems.asMap().entries.map((itemEntry) {
+                                        final item = itemEntry.value;
+                                        return [
+                                          SoundCard(
+                                            title: item.title ?? "",
+                                            visitorCount: item.visitor_count ?? "0",
+                                            date: item.date ?? "",
+                                          ),
+                                          if (itemEntry.key < previewItems.length - 1)
+                                            SizedBox(width: 12.w),
+                                        ];
+                                      }).expand((element) => element),
+                                    ],
+                                  ),
+                                );
+                              }),
+                            ],
+                          ),
+                        );
+                      }
+
+                      return const Center(
+                        child: Text('لا توجد بيانات'),
+                      );
+                    },
                   ),
                 ),
               ] else ...[
@@ -266,6 +283,11 @@ class _SoundsPageState extends State<SoundsPage> {
       default:
         return BookSoundsData.getAhwalSounds(); // Default fallback
     }
+  }
+
+  String _stripHtmlTags(String htmlString) {
+    final RegExp exp = RegExp(r"<[^>]*>", multiLine: true, caseSensitive: true);
+    return htmlString.replaceAll(exp, '').replaceAll('&nbsp;', ' ').trim();
   }
 }
 
