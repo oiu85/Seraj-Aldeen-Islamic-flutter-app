@@ -223,8 +223,8 @@ class _HomeContentViewState extends State<_HomeContentView> {
   }
 
   Widget _buildAnimatedListTiles(List menus) {
-    // Static menu items with their icons and routes
-    final Map<String, Map<String, dynamic>> staticMenuItems = {
+    // Menu configuration for icons and routes
+    final Map<String, Map<String, dynamic>> menuConfig = {
       "كتب الإمام": {
         'assetPath': Assets.svg.book.path,
         'onTap': () => Get.toNamed(AppRoute.booksPage),
@@ -251,18 +251,31 @@ class _HomeContentViewState extends State<_HomeContentView> {
       },
     };
 
-    // Filter menus from API that match our static items
+    // Menus to exclude from display
+    final excludedMenus = {
+      'الرئيسية',
+      'السيرة الذاتية',
+      'الكتب والمؤلفات',
+      'تواصل معنا',
+    };
+
+    // Use all API menus except excluded ones
     final List<Map<String, dynamic>> filteredMenus = [];
     
     for (var menu in menus) {
       final menuName = menu.menusName ?? '';
-      if (staticMenuItems.containsKey(menuName)) {
-        filteredMenus.add({
-          'title': menuName,
-          'assetPath': staticMenuItems[menuName]!['assetPath'],
-          'onTap': staticMenuItems[menuName]!['onTap'],
-        });
+      
+      // Skip excluded menus
+      if (excludedMenus.contains(menuName)) {
+        continue;
       }
+      
+      // Use API menu with config if available, otherwise use default icon
+      filteredMenus.add({
+        'title': menuName,
+        'assetPath': menuConfig[menuName]?['assetPath'] ?? Assets.svg.document.path,
+        'onTap': menuConfig[menuName]?['onTap'] ?? () {},
+      });
     }
 
     return Column(

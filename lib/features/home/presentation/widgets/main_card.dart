@@ -40,7 +40,7 @@ class MainCard extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        "أهلاً بكم في تطبيق الإمام الشيخ:",
+                        "أهلاً بكم في تطبيق فضيلة الإمام الشيخ:",
                         style: TextStyle(
                           fontFamily: FontFamily.tajawal,
                           fontSize: 18.f,
