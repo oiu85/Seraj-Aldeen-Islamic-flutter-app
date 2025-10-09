@@ -225,10 +225,7 @@ class _HomeContentViewState extends State<_HomeContentView> {
   Widget _buildAnimatedListTiles(List menus) {
     // Menu configuration for icons and routes
     final Map<String, Map<String, dynamic>> menuConfig = {
-      "كتب الإمام": {
-        'assetPath': Assets.svg.book.path,
-        'onTap': () => Get.toNamed(AppRoute.booksPage),
-      },
+
       "كُتُب الإمام": {
         'assetPath': Assets.svg.book.path,
         'onTap': () => Get.toNamed(AppRoute.booksPage),
@@ -251,7 +248,7 @@ class _HomeContentViewState extends State<_HomeContentView> {
       },
     };
 
-    // Menus to exclude from display
+    // Menus to exclude from display // Skip
     final excludedMenus = {
       'الرئيسية',
       'السيرة الذاتية',
@@ -331,25 +328,23 @@ Widget buildListTile({
           BoxShadow(
             color: AppColors.black.withOpacity(0.08),
             blurRadius: 8,
-          spreadRadius: 0.3,
-          offset: const Offset(0, 1),
+          spreadRadius: 0.2,
+          offset: const Offset(0, 0.5),
         ),
       ],
     ),
     child: Center(
       child: ListTile(
-        leading: ClipRRect(
-          borderRadius: BorderRadius.circular(8.r),
-          child: SvgPicture.asset(
-            assetPath,
-            width: 40.w,
-            height: 40.w,
-            fit: BoxFit.cover,
-          ),
+        leading: SvgPicture.asset(
+          assetPath,
+          width: 40.w,
+          height: 40.w,
+          fit: BoxFit.cover,
         ),
         title: Text(
           title,
           style: TextStyle(
+            fontFamily: FontFamily.tajawal,
             fontSize: 16.f,
             fontWeight: FontWeight.bold,
           ),

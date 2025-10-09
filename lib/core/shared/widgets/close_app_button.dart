@@ -121,6 +121,7 @@ class CloseAppButton extends StatelessWidget {
                     child: Text(
                       'لا',
                       style: TextStyle(
+                        color: AppColors.white,
                         fontFamily: FontFamily.tajawal,
                         fontSize: 16.f,
                         fontWeight: FontWeight.w600,
