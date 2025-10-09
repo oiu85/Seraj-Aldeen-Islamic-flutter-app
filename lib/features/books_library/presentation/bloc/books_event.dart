@@ -23,7 +23,9 @@ class LoadMoreCategoryBooksEvent extends BooksEvent {
 class LoadBookDetailEvent extends BooksEvent {
   final int bookId;
 
-  LoadBookDetailEvent({required this.bookId});
+  LoadBookDetailEvent({
+    required this.bookId,
+  });
 }
 
 class DownloadBookEvent extends BooksEvent {

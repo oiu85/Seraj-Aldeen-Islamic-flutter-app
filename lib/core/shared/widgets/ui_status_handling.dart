@@ -46,7 +46,7 @@ class SimpleLottieHandler extends StatelessWidget {
     final screenHeight = MediaQuery.of(context).size.height;
     
     return Container(
-      color: Colors.white,
+      color: AppColors.background,
       height: screenHeight * 0.7,
       child: Center(
         child: Column(
@@ -70,7 +70,7 @@ class SimpleLottieHandler extends StatelessWidget {
                 fontSize: ScreenUtilRes.fontSize(16),
                 fontWeight: FontWeight.bold,
                 fontFamily: 'Tajawal',
-                color: Colors.black,
+                color: AppColors.textPrimary,
               ),
               textAlign: TextAlign.center,
             ),
@@ -86,7 +86,7 @@ class SimpleLottieHandler extends StatelessWidget {
     final screenHeight = MediaQuery.of(context).size.height;
 
     return Container(
-      color: Colors.white,
+      color: AppColors.background,
       height: screenHeight * 0.7,
       child: Center(
         child: Column(
@@ -108,6 +108,7 @@ class SimpleLottieHandler extends StatelessWidget {
                   fontSize: ScreenUtilRes.fontSize(18),
                   fontWeight: FontWeight.bold,
                   fontFamily: 'Tajawal',
+                  color: AppColors.textPrimary,
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -117,18 +118,18 @@ class SimpleLottieHandler extends StatelessWidget {
                 style: TextStyle(
                   fontSize: ScreenUtilRes.fontSize(14),
                   fontFamily: 'Tajawal',
-                  color: Colors.grey[600],
+                  color: AppColors.textSecondary,
                 ),
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: ScreenUtilRes.height(20)),
               ElevatedButton.icon(
                 onPressed: onRetry,
-                icon: Icon(Icons.refresh, size: ScreenUtilRes.fontSize(20), color: Colors.white,),
+                icon: Icon(Icons.refresh, size: ScreenUtilRes.fontSize(20), color: AppColors.white,),
                 label: Text(
                   'إعادة المحاولة',
                   style: TextStyle(
-                    color: Colors.black,
+                    color: AppColors.white,
                     fontSize: ScreenUtilRes.fontSize(16),
                     fontFamily: 'Tajawal',
                     fontWeight: FontWeight.w600,
@@ -136,7 +137,7 @@ class SimpleLottieHandler extends StatelessWidget {
                 ),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.primary,
-                  foregroundColor: Colors.white,
+                  foregroundColor: AppColors.white,
                   padding: EdgeInsets.symmetric(
                     horizontal: ScreenUtilRes.width(24),
                     vertical: ScreenUtilRes.height(12)
@@ -195,7 +196,7 @@ class SimpleLottieHandler extends StatelessWidget {
     final screenHeight = MediaQuery.of(context).size.height;
     
     return Container(
-      color: Colors.white,
+      color: AppColors.background,
       height: screenHeight * 0.7,
       child: Center(
         child: Column(
@@ -216,6 +217,7 @@ class SimpleLottieHandler extends StatelessWidget {
                 fontSize: ScreenUtilRes.fontSize(16),
                 fontWeight: FontWeight.bold,
                 fontFamily: 'Tajawal',
+                color: AppColors.textPrimary,
               ),
               textAlign: TextAlign.center,
             ),

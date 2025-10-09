@@ -7,6 +7,7 @@ import 'package:seraj_aldean_flutter_app/core/shared/widgets/app_scaffold.dart';
 import 'package:seraj_aldean_flutter_app/core/shared/widgets/decoration_app_bar.dart';
 import 'package:seraj_aldean_flutter_app/core/shared/widgets/ui_status_handling.dart';
 
+import '../../../../config/appconfig/app_colors.dart';
 import '../../../../gen/assets.gen.dart';
 import '../../../../gen/fonts.gen.dart';
 import '../bloc/books_bloc.dart';
@@ -59,7 +60,7 @@ class BooksPage extends StatelessWidget {
     return BlocProvider(
       create: (context) => getIt<BooksBloc>()..add(LoadBookMainCategoriesEvent()),
       child: AppScaffold.clean(
-        backgroundColor: Colors.white,
+        backgroundColor: AppColors.background,
         body: BlocBuilder<BooksBloc, BooksState>(
           builder: (context, state) {
             return SimpleLottieHandler(
@@ -146,7 +147,7 @@ Widget _buildTheRow({
             ).animate()
                 .fadeIn(duration: 600.ms, delay: (200 + rowIndex * 200).ms)
                 .slideX(begin: -0.2, end: 0, duration: 600.ms, delay: (200 + rowIndex * 200).ms),
-            GestureDetector(
+            InkWell(
               onTap: () {
                 Navigator.push(
                   context,
@@ -173,11 +174,12 @@ Widget _buildTheRow({
         ),
       ),
       SizedBox(
-        height: 20.h,
+        height: 12.h,
       ),
       // Animated horizontal list
       SizedBox(
-        height: 295.h,
+        height: 304.h,
+
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
           padding: EdgeInsets.symmetric(horizontal: 20.w),
@@ -185,7 +187,7 @@ Widget _buildTheRow({
           itemBuilder: (context, index) {
             final book = books[index];
             return Container(
-              width: 180.w,
+              width: 220.w,
               margin: EdgeInsets.only(left: 10.w),
               child: bookCardBuild(
                 context: context,

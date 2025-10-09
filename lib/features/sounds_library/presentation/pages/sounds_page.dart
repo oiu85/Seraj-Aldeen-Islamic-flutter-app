@@ -43,7 +43,7 @@ class _SoundsPageContentState extends State<_SoundsPageContent> {
   @override
   Widget build(BuildContext context) {
     return AppScaffold.clean(
-        backgroundColor: Colors.white,
+        backgroundColor: AppColors.background,
         body: Column(
           children: [
             DecorationAppBar(
@@ -93,7 +93,7 @@ class _SoundsPageContentState extends State<_SoundsPageContent> {
                             fontSize: 16.f,
                             fontFamily: FontFamily.tajawal,
                             color: selectedTabIndex == 0
-                                ? Colors.white
+                                ? AppColors.white
                                 : Colors.grey[600]),
                       ),
                     ),
@@ -118,7 +118,7 @@ class _SoundsPageContentState extends State<_SoundsPageContent> {
                             fontSize: 16.f,
                             fontFamily: FontFamily.tajawal,
                             color: selectedTabIndex == 1
-                                ? Colors.white
+                                ? AppColors.white
                                 : Colors.grey[600]),
                       ),
                     ),

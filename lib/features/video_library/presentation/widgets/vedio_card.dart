@@ -41,24 +41,24 @@ class VideoCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: onTap,
       child: Card(
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(32.r)),
-        color: Colors.white,
+        color: AppColors.cardBackground,
         elevation: 2,
         child: Container(
           width: width ?? 200.w,
           height: height ?? 100.h,
-          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+          padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 4.h),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
               // Fixed height title section
               SizedBox(
-                height: 44.h,
+                height: 55.h,
                 child: Row(
                   children: [
                     Image.asset(
@@ -66,7 +66,7 @@ class VideoCard extends StatelessWidget {
                       width: 30.w,
                       height: 30.w,
                     ),
-                    SizedBox(width: 12.w),
+                    SizedBox(width: 8.w),
                     Expanded(
                       child: Text(
                         title,
@@ -84,14 +84,14 @@ class VideoCard extends StatelessWidget {
               ),
               // Fixed height info section
               Padding(
-                padding: EdgeInsets.only(right: 8.w),
+                padding: EdgeInsets.only(right: 4.w),
                 child: SizedBox(
                   height: 24.h,
                   child: Row(
                     children: [
                       Icon(Icons.visibility,
-                          size: 18.f, color: AppColors.primary),
-                      SizedBox(width: 6.w),
+                          size: 16.f, color: AppColors.primary),
+                      SizedBox(width: 2.w),
                       Text(
                         visitorCount ?? '0',
                         style: TextStyle(
@@ -99,7 +99,7 @@ class VideoCard extends StatelessWidget {
                           color: AppColors.grey,
                         ),
                       ),
-                      SizedBox(width: 16.w),
+                      SizedBox(width: 2.w),
                       Icon(
                         Icons.calendar_month,
                         size: 16.f,
@@ -139,9 +139,9 @@ class VideoCard extends StatelessWidget {
                             fontSize: 14.f,
                             fontWeight: FontWeight.bold,
                             fontFamily: FontFamily.tajawal,
-                            color: Colors.white),
+                            color: AppColors.white),
                       ),
-                      Icon(Icons.play_circle_outline_outlined, color: Colors.white,),
+                      Icon(Icons.play_circle_outline_outlined, color: AppColors.white,),
                     ],
                   ),
                 ),
@@ -174,7 +174,7 @@ class VideoCard extends StatelessWidget {
       borderRadius: BorderRadius.circular(18.r),
       boxShadow: [
         BoxShadow(
-          color: Colors.black.withValues(alpha: 0.1),
+          color: AppColors.black.withValues(alpha: 0.1),
           blurRadius: 4.r,
           offset: Offset(0, 2.h),
         ),
@@ -225,7 +225,7 @@ class VideoCard extends StatelessWidget {
       height: 12.w,
       child: CircularProgressIndicator(
         strokeWidth: 2.w,
-        valueColor: const AlwaysStoppedAnimation<Color>(Colors.white),
+        valueColor: AlwaysStoppedAnimation<Color>(AppColors.white),
       ),
     );
   }
@@ -234,7 +234,7 @@ class VideoCard extends StatelessWidget {
     return Icon(
       hasError ? Icons.refresh : (isPlaying ? Icons.pause : Icons.play_arrow),
       size: 14.w,
-      color: Colors.white,
+      color: AppColors.white,
     );
   }
 

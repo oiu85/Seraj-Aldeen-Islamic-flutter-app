@@ -17,7 +17,7 @@ import '../../domain/repositories/video_repository.dart';
 
 class PlayerPage extends StatefulWidget {
   final int videoId;
-  
+
   const PlayerPage({
     super.key,
     required this.videoId,
@@ -43,7 +43,7 @@ class _PlayerPageState extends State<PlayerPage> {
 
   Future<void> _loadVideoDetail() async {
     if (!mounted) return;
-    
+
     setState(() {
       _isLoading = true;
       _error = null;
@@ -66,7 +66,7 @@ class _PlayerPageState extends State<PlayerPage> {
         if (response.data?.videoFileUrl != null) {
           _videoData = response.data;
           _initializeVideoPlayer(response.data!.videoFileUrl!);
-          
+
           // Load related videos from the same category
           if (response.data?.category?.catId != null) {
             _loadRelatedVideos(response.data!.category!.catId!);
@@ -140,7 +140,7 @@ class _PlayerPageState extends State<PlayerPage> {
     final hours = duration.inHours;
     final minutes = duration.inMinutes.remainder(60);
     final seconds = duration.inSeconds.remainder(60);
-    
+
     if (hours > 0) {
       return '$hours:${twoDigits(minutes)}:${twoDigits(seconds)}';
     }
@@ -157,7 +157,7 @@ class _PlayerPageState extends State<PlayerPage> {
   Widget build(BuildContext context) {
     if (_isLoading) {
       return AppScaffold.clean(
-        backgroundColor: Colors.white,
+        backgroundColor: AppColors.background,
         body: SimpleLottieHandler(
           blocStatus: const BlocStatus.loading(),
           successWidget: const SizedBox.shrink(),
@@ -167,7 +167,7 @@ class _PlayerPageState extends State<PlayerPage> {
 
     if (_error != null) {
       return AppScaffold.clean(
-        backgroundColor: Colors.white,
+        backgroundColor: AppColors.background,
         body: SimpleLottieHandler(
           blocStatus: BlocStatus.fail(error: _error!),
           successWidget: const SizedBox.shrink(),
@@ -177,7 +177,7 @@ class _PlayerPageState extends State<PlayerPage> {
     }
 
     return AppScaffold.clean(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.background,
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20.0.p),
         child: Column(
@@ -218,7 +218,7 @@ class _PlayerPageState extends State<PlayerPage> {
                                           child: Icon(
                                             Icons.play_circle_outline,
                                             size: 70,
-                                            color: Colors.white,
+                                            color: AppColors.white,
                                           ),
                                         )
                                       : const SizedBox.shrink(),
@@ -230,15 +230,21 @@ class _PlayerPageState extends State<PlayerPage> {
                               bottom: 0,
                               left: 0,
                               right: 0,
-                              child: VideoProgressIndicator(
-                                _controller!,
-                                allowScrubbing: true,
-                                colors: VideoProgressColors(
-                                  playedColor: AppColors.primary,
-                                  bufferedColor: AppColors.lightGrey,
-                                  backgroundColor: Colors.white.withValues(alpha: 0.3),
+                              child: Directionality(
+                                textDirection: TextDirection.ltr,
+                                child: SizedBox(
+                                  height: 12.h, // Increase height for thicker progress bar
+                                  child: VideoProgressIndicator(
+                                    _controller!,
+                                    allowScrubbing: true,
+                                  colors: VideoProgressColors(
+                                    playedColor: AppColors.primary,
+                                    bufferedColor: AppColors.lightGrey,
+                                    backgroundColor:
+                                        AppColors.white.withValues(alpha: 0.3),
+                                  ),
+                                  ),
                                 ),
-                                padding: EdgeInsets.symmetric(vertical: 4.h),
                               ),
                             ),
                             // Video info overlay at top
@@ -252,7 +258,7 @@ class _PlayerPageState extends State<PlayerPage> {
                                     begin: Alignment.topCenter,
                                     end: Alignment.bottomCenter,
                                     colors: [
-                                      Colors.black.withValues(alpha: 0.6),
+                                      AppColors.black.withValues(alpha: 0.6),
                                       Colors.transparent,
                                     ],
                                   ),
@@ -262,22 +268,17 @@ class _PlayerPageState extends State<PlayerPage> {
                                   vertical: 12.h,
                                 ),
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     // Current position / Total duration
                                     Text(
                                       '${_formatDuration(_controller!.value.position)} / ${_formatDuration(_controller!.value.duration)}',
                                       style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 14.f,
+                                        color: AppColors.white,
+                                        fontSize: 16.f,
                                         fontFamily: FontFamily.tajawal,
                                         fontWeight: FontWeight.bold,
-                                        shadows: [
-                                          Shadow(
-                                            color: Colors.black.withValues(alpha: 0.8),
-                                            blurRadius: 4,
-                                          ),
-                                        ],
                                       ),
                                     ),
                                     // Quality indicator (if available)
@@ -287,13 +288,15 @@ class _PlayerPageState extends State<PlayerPage> {
                                         vertical: 4.h,
                                       ),
                                       decoration: BoxDecoration(
-                                        color: Colors.black.withValues(alpha: 0.5),
-                                        borderRadius: BorderRadius.circular(4.r),
+                                        color:
+                                            AppColors.black.withValues(alpha: 0.5),
+                                        borderRadius:
+                                            BorderRadius.circular(4.r),
                                       ),
                                       child: Text(
-                                        'HD',
+                                        'HD-1080',
                                         style: TextStyle(
-                                          color: Colors.white,
+                                          color: AppColors.white,
                                           fontSize: 12.f,
                                           fontFamily: FontFamily.tajawal,
                                           fontWeight: FontWeight.bold,
@@ -333,7 +336,7 @@ class _PlayerPageState extends State<PlayerPage> {
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),
-                const Spacer(),
+                SizedBox(width: 30.w,),
                 Text(
                   '${_videoData?.videoVisitor ?? 0}',
                   style: TextStyle(
@@ -389,64 +392,73 @@ class _PlayerPageState extends State<PlayerPage> {
   }
 
   Widget _buildRelatedVideoCard(VideoItem video) {
-    return Container(
-      height: 83.h,
-      margin: EdgeInsets.only(bottom: 20.p, right: 10.p, left: 10.p),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(20.r),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.08),
-            blurRadius: 8,
-            spreadRadius: 0.3,
-            offset: const Offset(0, 1),
-          ),
-        ],
-      ),
-      child: ListTile(
-        contentPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
-        leading: ClipRRect(
-          borderRadius: BorderRadius.circular(8.r),
-          child: Image.asset(
-            Assets.images.vedioIcon.path,
-            width: 40.w,
-            height: 40.w,
-            fit: BoxFit.cover,
-          ),
-        ),
-        title: Center(
-          child: Text(
-            video.title ?? '',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 16.f,
-              fontWeight: FontWeight.bold,
+    return GestureDetector(
+      onTap: () {
+        if (video.id != null) {
+          _navigateToRelatedVideo(video.id!);
+        }
+      },
+      child: Container(
+        height: 83.h,
+        margin: EdgeInsets.only(bottom: 20.p, ),
+        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+        decoration: BoxDecoration(
+          color: AppColors.cardBackground,
+          borderRadius: BorderRadius.circular(20.r),
+          boxShadow: [
+            BoxShadow(
+              color: AppColors.black.withValues(alpha: 0.08),
+              blurRadius: 8,
+              spreadRadius: 0.3,
+              offset: const Offset(0, 0.5),
             ),
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-          ),
+          ],
         ),
-        trailing: Container(
-          height: 40.w,
-          width: 40.w,
-          decoration: BoxDecoration(
-            color: AppColors.primary,
-            borderRadius: BorderRadius.circular(100.r),
-          ),
-          child: Center(
-            child: Icon(
-              Icons.arrow_forward_ios,
-              size: 18.p,
-              color: AppColors.white,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            // Leading icon
+            Image.asset(
+              Assets.images.vedioIcon.path,
+              width: 40.w,
+              height: 40.w,
+              fit: BoxFit.cover,
             ),
-          ),
+            SizedBox(width: 12.w),
+            // Title
+            Expanded(
+              child: Text(
+                video.title ?? '',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 20.f,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: FontFamily.tajawal,
+                ),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+            SizedBox(width: 12.w),
+            // Trailing button
+            Container(
+              height: 40.w,
+              width: 40.w,
+              decoration: BoxDecoration(
+                color: AppColors.primary,
+                borderRadius: BorderRadius.circular(100.r),
+              ),
+              child: Center(
+                child: Icon(
+                  Icons.arrow_forward_ios,
+                  size: 18.p,
+                  color: AppColors.white,
+                ),
+              ),
+            ),
+          ],
         ),
-        onTap: () {
-          if (video.id != null) {
-            _navigateToRelatedVideo(video.id!);
-          }
-        },
       ),
     );
   }
@@ -454,7 +466,7 @@ class _PlayerPageState extends State<PlayerPage> {
   void _navigateToRelatedVideo(int videoId) {
     // Pause the video immediately
     _controller?.pause();
-    
+
     // Navigate with replacement - dispose will happen in dispose() method
     Get.offAndToNamed(
       AppRoute.player,

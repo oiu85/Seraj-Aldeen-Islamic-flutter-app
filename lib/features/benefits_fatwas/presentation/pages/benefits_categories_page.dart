@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:seraj_aldean_flutter_app/core/responsive/screen_util_res.dart';
 import 'package:seraj_aldean_flutter_app/core/shared/widgets/app_scaffold.dart';
+import '../../../../config/appconfig/app_colors.dart';
 import '../../../../core/di/app_dependencies.dart';
 import '../../../../core/shared/widgets/ui_status_handling.dart';
 import '../../../../gen/assets.gen.dart';
@@ -84,14 +85,14 @@ class _BenefitsCategoriesPageState extends State<BenefitsCategoriesPage> {
     return BlocProvider.value(
       value: _benefitsBloc,
       child: AppScaffold.clean(
-        backgroundColor: Colors.white,
+        backgroundColor: AppColors.background,
         body: SingleChildScrollView(
           controller: _scrollController,
           child: Container(
             key: const ValueKey('benefits_categories_page_content'),
             padding: EdgeInsets.only(right: 20.p, left: 20.p),
             child: Column(children: [
-              SizedBox(height: 40.h,),
+              SizedBox(height: 48.h,),
               Text(widget.categoryTitle, style: TextStyle(
                 fontFamily: FontFamily.tajawal,
                 fontSize: 20.p,

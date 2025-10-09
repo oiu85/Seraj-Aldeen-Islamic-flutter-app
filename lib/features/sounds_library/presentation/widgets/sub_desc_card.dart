@@ -23,11 +23,11 @@ class SubDescCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Container(
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: AppColors.cardBackground,
         borderRadius: BorderRadius.circular(20.r),
         boxShadow: [
           BoxShadow(
-              color: Colors.black.withValues(alpha: 0.1),
+              color: AppColors.black.withValues(alpha: 0.1),
               blurRadius: 1,
               offset: const Offset(
                 0,
@@ -103,11 +103,11 @@ class SubDescCard extends StatelessWidget {
                     style: TextStyle(
                         fontFamily: FontFamily.tajawal,
                         fontWeight: FontWeight.bold,
-                        color: Colors.white),
+                        color: AppColors.white),
                   ),
                   Icon(
                     Icons.arrow_forward_outlined,
-                    color: Colors.white,
+                    color: AppColors.white,
                   ),
                 ],
               ),

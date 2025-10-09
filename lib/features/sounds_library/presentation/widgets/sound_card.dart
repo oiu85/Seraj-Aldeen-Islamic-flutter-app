@@ -44,7 +44,7 @@ class SoundCard extends StatelessWidget {
       onTap: onTap,
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(32.r)),
-        color: Colors.white,
+        color: AppColors.cardBackground,
         elevation: 2,
         child: Container(
           width: width ?? 220.w,
@@ -152,7 +152,7 @@ class SoundCard extends StatelessWidget {
       borderRadius: BorderRadius.circular(18.r),
       boxShadow: [
         BoxShadow(
-          color: Colors.black.withValues(alpha: 0.1),
+          color: AppColors.black.withValues(alpha: 0.1),
           blurRadius: 4.r,
           offset: Offset(0, 2.h),
         ),
@@ -201,7 +201,7 @@ class SoundCard extends StatelessWidget {
       height: 12.w,
       child: CircularProgressIndicator(
         strokeWidth: 2.w,
-        valueColor: const AlwaysStoppedAnimation<Color>(Colors.white),
+        valueColor: AlwaysStoppedAnimation<Color>(AppColors.white),
       ),
     );
   }
@@ -210,7 +210,7 @@ class SoundCard extends StatelessWidget {
     return Icon(
       hasError ? Icons.refresh : (isPlaying ? Icons.pause : Icons.play_arrow),
       size: 14.w,
-      color: Colors.white,
+      color: AppColors.white,
     );
   }
 

@@ -154,7 +154,7 @@ class _HomeContentViewState extends State<_HomeContentView> {
 
   Widget _buildSuccessContent(BuildContext context, HomeState state) {
     return AppScaffold.clean(
-      backgroundColor: AppColors.white,
+      backgroundColor: AppColors.background,
       body: Padding(
         padding: EdgeInsets.only(right: 16.w, left: 16.w),
         child: ListView(
@@ -311,13 +311,13 @@ Widget buildListTile({
   return Container(
     height: 83.h,
     margin: EdgeInsets.only(bottom: 20.p, right: 10.p, left: 10.p),
-    decoration: BoxDecoration(
-      color: Colors.white,
-      borderRadius: BorderRadius.circular(20.r),
-      boxShadow: [
-        BoxShadow(
-          color: Colors.black.withOpacity(0.08),
-          blurRadius: 8,
+      decoration: BoxDecoration(
+        color: AppColors.cardBackground,
+        borderRadius: BorderRadius.circular(20.r),
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.black.withOpacity(0.08),
+            blurRadius: 8,
           spreadRadius: 0.3,
           offset: const Offset(0, 1),
         ),

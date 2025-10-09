@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:seraj_aldean_flutter_app/core/responsive/screen_util_res.dart';
 import 'package:seraj_aldean_flutter_app/core/routes.dart';
+import 'package:seraj_aldean_flutter_app/features/settings/presentation/widgets/theme_toggle_widget.dart';
 import '../../../../config/appconfig/app_colors.dart';
 import '../../../../core/shared/widgets/app_scaffold.dart';
 import '../../../../core/shared/widgets/close_app_button.dart';
@@ -20,7 +21,7 @@ class SettingsPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 20.h),
+            SizedBox(height: 48.h),
             Text(
               "الإعدادات",
               style: TextStyle(
@@ -30,10 +31,13 @@ class SettingsPage extends StatelessWidget {
                 color: AppColors.primary,
               ),
             ),
-            SizedBox(height: 30.h),
+            SizedBox(height: 20.h),
             Expanded(
               child: ListView(
                 children: [
+                  // Dark Theme Toggle
+                  const ThemeToggleWidget(),
+                  SizedBox(height: 10.h),
 
                   _buildSettingsItem(
                     icon: Icons.notifications,
@@ -73,18 +77,11 @@ class SettingsPage extends StatelessWidget {
     required VoidCallback onTap,
   }) {
     return Container(
+
       margin: EdgeInsets.only(bottom: 12.h),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: AppColors.cardBackground,
         borderRadius: BorderRadius.circular(12.r),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            blurRadius: 4,
-            spreadRadius: 0,
-            offset: const Offset(0, 2),
-          ),
-        ],
       ),
       child: ListTile(
         leading: Container(
@@ -105,7 +102,7 @@ class SettingsPage extends StatelessWidget {
             fontFamily: FontFamily.tajawal,
             fontSize: 16.f,
             fontWeight: FontWeight.w600,
-            color: Colors.black87,
+            color: AppColors.textSecondary,
           ),
         ),
         subtitle: Text(

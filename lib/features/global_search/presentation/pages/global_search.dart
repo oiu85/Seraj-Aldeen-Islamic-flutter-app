@@ -26,13 +26,13 @@ class _GlobalSearchState extends State<GlobalSearch> {
   @override
   Widget build(BuildContext context) {
     return AppScaffold.clean(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.background,
       body: Padding(
-        padding: EdgeInsets.all(30.w),
+        padding: EdgeInsets.symmetric(horizontal:  8.w),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 20.h),
+            SizedBox(height: 48.h),
             Row(
               children: [
                 IconButton(
@@ -46,21 +46,15 @@ class _GlobalSearchState extends State<GlobalSearch> {
                   icon: Icon(Icons.arrow_back_outlined),
                 ),
                 Expanded(
+                  flex: 2,
                   child: Container(
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: AppColors.cardBackground,
                       borderRadius: BorderRadius.circular(60.r),
                       border: Border.all(
                         color: AppColors.primary,
                         width: 1.w,
                       ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: AppColors.primary.withOpacity(0.1),
-                          blurRadius: 8,
-                          offset: const Offset(0, 2),
-                        ),
-                      ],
                     ),
                     child: SearchBar(
                       controller: _searchController,
@@ -69,21 +63,22 @@ class _GlobalSearchState extends State<GlobalSearch> {
                         TextStyle(
                           fontFamily: FontFamily.tajawal,
                           fontSize: 16.f,
-                          color: Colors.grey[500],
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.textPrimary,
                         ),
                       ),
                       textStyle: WidgetStateProperty.all(
                         TextStyle(
                           fontFamily: FontFamily.tajawal,
                           fontSize: 16.f,
-                          color: Colors.black87,
+                          color: AppColors.textSecondary,
                         ),
                       ),
                       leading: Padding(
                         padding: EdgeInsets.only(left: 12.w),
                         child: Icon(
                           Icons.search,
-                          color: AppColors.grey,
+                          color: AppColors.black,
                           size: 24.w,
                         ),
                       ),
@@ -111,7 +106,7 @@ class _GlobalSearchState extends State<GlobalSearch> {
                             ),
                           ),
                       ],
-                      backgroundColor: WidgetStateProperty.all(Colors.white),
+                      backgroundColor: WidgetStateProperty.all(AppColors.cardBackground),
                       elevation: WidgetStateProperty.all(0),
                       side: WidgetStateProperty.all(BorderSide.none),
                       shape: WidgetStateProperty.all(

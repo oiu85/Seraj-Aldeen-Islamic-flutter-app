@@ -25,7 +25,7 @@ class CustomBottomNavBar extends StatelessWidget {
     ];
 
     return Container(
-      color: Colors.white,
+      color: AppColors.cardBackground,
       margin: EdgeInsets.only(bottom: 10.p),
       padding: EdgeInsets.symmetric(horizontal: 20.p),
 

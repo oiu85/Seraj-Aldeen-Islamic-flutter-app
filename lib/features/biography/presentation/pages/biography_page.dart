@@ -50,7 +50,7 @@ class _BiographyPageView extends StatelessWidget {
 
   Widget _buildSuccessContent(BuildContext context, BiographyState state) {
     return AppScaffold.clean(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.background,
       body: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(
@@ -115,7 +115,7 @@ class SliverGridSection extends StatelessWidget {
   Widget _buildCard(BuildContext context, String title, VoidCallback onTap, int index) {
     return Card(
       shadowColor: AppColors.primary,
-      color: Colors.white,
+      color: AppColors.cardBackground,
       elevation: cardElevation,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.r)),
       clipBehavior: Clip.antiAlias,
@@ -152,7 +152,7 @@ class SliverGridSection extends StatelessWidget {
               child: IconButton(
                   onPressed: () {},
                   icon: Icon(
-                    color: Colors.white,
+                    color: AppColors.cardBackground,
                     Icons.arrow_forward_outlined,
                     size: 20.p,
                   )),

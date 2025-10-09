@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:seraj_aldean_flutter_app/core/responsive/screen_util_res.dart';
 
+import '../../../config/appconfig/app_colors.dart';
+
 /// Generic filter option model
 class FilterOption<T> {
   final T value;
@@ -85,7 +87,7 @@ class _FilterButtonState<T> extends State<FilterButton<T>> {
           width: 0.6,
         ),
         borderRadius: BorderRadius.circular(ScreenUtilRes.radius(10)),
-        color: widget.backgroundColor ?? Colors.white54,
+        color: widget.backgroundColor ?? AppColors.cardBackground.withOpacity(0.54),
       ),
       child: DropdownButton<T>(
         value: _selectedValue,
@@ -95,7 +97,7 @@ class _FilterButtonState<T> extends State<FilterButton<T>> {
             fontSize: ScreenUtilRes.fontSize(14),
             fontFamily: 'Tajawal',
             fontWeight: FontWeight.bold,
-            color: widget.textColor ?? Colors.black54,
+            color: widget.textColor ?? AppColors.textPrimary.withOpacity(0.54),
           ),
         ),
         isExpanded: true,
@@ -103,7 +105,7 @@ class _FilterButtonState<T> extends State<FilterButton<T>> {
         icon: Icon(
           Icons.arrow_drop_down_outlined,
           size: ScreenUtilRes.fontSize(25),
-          color: widget.textColor ?? Colors.black,
+          color: widget.textColor ?? AppColors.textPrimary,
         ),
         iconSize: ScreenUtilRes.fontSize(40),
         borderRadius: BorderRadius.circular(ScreenUtilRes.radius(10)),
@@ -118,7 +120,7 @@ class _FilterButtonState<T> extends State<FilterButton<T>> {
                   fontSize: ScreenUtilRes.fontSize(18),
                   fontFamily: 'Tajawal',
                   fontWeight: FontWeight.bold,
-                  color: Colors.black,
+                  color: AppColors.textPrimary,
                 ),
               ),
             ),

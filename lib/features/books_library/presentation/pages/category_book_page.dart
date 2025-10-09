@@ -88,8 +88,8 @@ class _SoundsBookPageState extends State<SoundsBookPage> {
     return FilterButton<int>(
       options: pageOptions,
       selectedValue: state.currentPage,
-      hintText: 'اختر صفحة',
-      width: 120.w,
+      hintText: '',
+      width: 70.w,
       height: 45.h,
       backgroundColor: AppColors.primary.withValues(alpha: 0.1),
       textColor: AppColors.primary,
@@ -106,7 +106,7 @@ class _SoundsBookPageState extends State<SoundsBookPage> {
     return BlocProvider.value(
       value: _booksBloc,
       child: AppScaffold.clean(
-        backgroundColor: Colors.white,
+        backgroundColor: AppColors.background,
         body: Container(
           padding: EdgeInsets.symmetric(horizontal: 5.p),
           child: Column(
@@ -116,6 +116,7 @@ class _SoundsBookPageState extends State<SoundsBookPage> {
               Row(
                 children: [
                   Expanded(
+                    flex: 5,
                     child: Text(
                       widget.categoryTitle,
                       style: TextStyle(
@@ -126,10 +127,16 @@ class _SoundsBookPageState extends State<SoundsBookPage> {
                       textAlign: TextAlign.start,
                     ),
                   ),
-                  BlocBuilder<BooksBloc, BooksState>(
-                    builder: (context, state) {
-                      return _buildPageFilter(state);
-                    },
+                  Expanded(
+                    flex: 1,
+                    child: Container(
+                     margin :  EdgeInsets.only(left: 12.p),
+                      child: BlocBuilder<BooksBloc, BooksState>(
+                        builder: (context, state) {
+                          return _buildPageFilter(state);
+                        },
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -176,7 +183,7 @@ class _SoundsBookPageState extends State<SoundsBookPage> {
         crossAxisCount: 2,
         crossAxisSpacing: 10.w,
         mainAxisSpacing: 10.h,
-        childAspectRatio: 0.58,
+        childAspectRatio: 0.52,
       ),
       itemCount: state.categoryBooks.length,
       itemBuilder: (context, index) {

@@ -270,7 +270,7 @@ class BooksBloc extends Bloc<BooksEvent, BooksState> {
           // Remove Arabic diacritical marks (tashkeel/vowels)
           ?.replaceAll(RegExp(r'[\u064B-\u065F\u0670]'), '')
           // Keep only Arabic letters, alphanumeric, spaces, and hyphens
-          ?.replaceAll(RegExp(r'[^\u0600-\u06FF\w\s-]'), '')
+          .replaceAll(RegExp(r'[^\u0600-\u06FF\w\s-]'), '')
           .trim()
           // Replace multiple spaces with single underscore
           .replaceAll(RegExp(r'\s+'), '_')
@@ -338,6 +338,7 @@ class BooksBloc extends Bloc<BooksEvent, BooksState> {
     ResetBookDetailEvent event,
     Emitter<BooksState> emit,
   ) {
+    AppLogger.info('Resetting book detail state');
     emit(state.copyWith(
       bookDetailStatus: const BlocStatus.initial(),
       bookDetail: null,

@@ -28,7 +28,7 @@ class _TopNotification extends StatelessWidget {
         borderRadius: BorderRadius.circular(8.r),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.1),
+            color: AppColors.black.withValues(alpha: 0.1),
             blurRadius: 4,
             offset: const Offset(0, 2),
           ),
@@ -38,15 +38,15 @@ class _TopNotification extends StatelessWidget {
         children: [
           Icon(
             isSuccess ? Icons.check_circle : Icons.error,
-            color: Colors.white,
+            color: AppColors.white,
             size: 20.f,
           ),
-          SizedBox(width: 12.w),
+          SizedBox(width: 10.w),
           Expanded(
             child: Text(
               message,
               style: TextStyle(
-                color: Colors.white,
+                color: AppColors.white,
                 fontSize: 14.f,
                 fontFamily: FontFamily.tajawal,
                 fontWeight: FontWeight.w500,
@@ -59,7 +59,7 @@ class _TopNotification extends StatelessWidget {
   }
 }
 
-class BookInfoBottomSheet extends StatelessWidget {
+class BookInfoBottomSheet extends StatefulWidget {
   final int bookId;
 
   const BookInfoBottomSheet({
@@ -68,20 +68,39 @@ class BookInfoBottomSheet extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    final booksBloc = context.read<BooksBloc>();
-    
-    // Load book detail when sheet opens
-    booksBloc.add(LoadBookDetailEvent(bookId: bookId));
+  State<BookInfoBottomSheet> createState() => _BookInfoBottomSheetState();
+}
 
+class _BookInfoBottomSheetState extends State<BookInfoBottomSheet> {
+  @override
+  void initState() {
+    super.initState();
+    // Load details immediately when bottom sheet opens
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) {
+        context.read<BooksBloc>().add(
+          LoadBookDetailEvent(bookId: widget.bookId),
+        );
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return BlocBuilder<BooksBloc, BooksState>(
       builder: (context, state) {
-        return Container(
+        return WillPopScope(
+          onWillPop: () async {
+            // Clean up when bottom sheet is closed
+            context.read<BooksBloc>().add(ResetBookDetailEvent());
+            return true;
+          },
+          child: Container(
           width: double.infinity,
-          padding: EdgeInsets.all(20.w),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.only(
+      padding: EdgeInsets.all(20.w),
+      decoration: BoxDecoration(
+        color: AppColors.cardBackground,
+        borderRadius: BorderRadius.only(
               topLeft: Radius.circular(20.r),
               topRight: Radius.circular(20.r),
             ),
@@ -115,9 +134,10 @@ class BookInfoBottomSheet extends StatelessWidget {
               else if (state.bookDetail != null)
                 _buildBookDetail(context, state)
               else
-                const SizedBox.shrink(),
+                _buildLoadingState(), // Show loading if no data yet
             ],
           ),
+        ),
         );
       },
     );
@@ -148,7 +168,9 @@ class BookInfoBottomSheet extends StatelessWidget {
           SizedBox(height: 20.h),
           ElevatedButton(
             onPressed: () {
-              context.read<BooksBloc>().add(LoadBookDetailEvent(bookId: bookId));
+              context.read<BooksBloc>().add(
+                LoadBookDetailEvent(bookId: widget.bookId),
+              );
             },
             child: Text(
               'إعادة المحاولة',
@@ -279,30 +301,34 @@ class BookInfoBottomSheet extends StatelessWidget {
 
     return Column(
       children: [
-        ElevatedButton.icon(
-          onPressed: hasUrl ? onDownload : null,
-          style: ElevatedButton.styleFrom(
-            backgroundColor: hasUrl ? AppColors.primary : Colors.grey,
-            foregroundColor: Colors.white,
-            padding: EdgeInsets.symmetric(vertical: 15.h),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10.r),
+        Container(
+          height: 50.h,
+          width: double.infinity,
+          child: ElevatedButton.icon(
+            onPressed: hasUrl ? onDownload : null,
+            style: ElevatedButton.styleFrom(
+              backgroundColor: hasUrl ? AppColors.primary : Colors.grey,
+              foregroundColor: AppColors.white,
+              padding: EdgeInsets.symmetric(vertical: 15.h),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.r),
+              ),
             ),
-          ),
-          icon: Icon(
-            isDownloading
-                ? Icons.downloading
-                : (hasUrl ? Icons.download : Icons.info_outline),
-            size: 20.f,
-          ),
-          label: Text(
-            isDownloading
-                ? 'جاري التحميل...'
-                : (hasUrl ? 'تحميل بصيغة $format' : '$format - غير متوفر'),
-            style: TextStyle(
-              fontSize: 16.f,
-              fontFamily: FontFamily.tajawal,
-              fontWeight: FontWeight.bold,
+            icon: Icon(
+              isDownloading
+                  ? Icons.downloading
+                  : (hasUrl ? Icons.download : Icons.info_outline),
+              size: 20.f,
+            ),
+            label: Text(
+              isDownloading
+                  ? 'جاري التحميل...'
+                  : (hasUrl ? 'تحميل بصيغة $format' : '$format - غير متوفر'),
+              style: TextStyle(
+                fontSize: 16.f,
+                fontFamily: FontFamily.tajawal,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
         ),

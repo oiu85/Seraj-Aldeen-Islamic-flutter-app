@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:seraj_aldean_flutter_app/config/appconfig/app_colors.dart';
 import 'package:seraj_aldean_flutter_app/core/responsive/screen_util_res.dart';
 import 'package:seraj_aldean_flutter_app/gen/fonts.gen.dart';
 
@@ -25,7 +26,7 @@ class CloseAppButton extends StatelessWidget {
         onPressed: onPressed ?? () => _showExitDialog(context),
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.red[600],
-          foregroundColor: Colors.white,
+          foregroundColor: AppColors.white,
           padding: padding ?? EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12.r),
@@ -35,7 +36,7 @@ class CloseAppButton extends StatelessWidget {
         icon: Icon(
           Icons.exit_to_app,
           size: 20.w,
-          color: Colors.white,
+          color: AppColors.white,
         ),
         label: child ?? Text(
           'إغلاق التطبيق',
@@ -43,7 +44,7 @@ class CloseAppButton extends StatelessWidget {
             fontFamily: FontFamily.tajawal,
             fontSize: 16.f,
             fontWeight: FontWeight.w600,
-            color: Colors.white,
+            color: AppColors.white,
           ),
         ),
       ),
@@ -82,7 +83,7 @@ class CloseAppButton extends StatelessWidget {
                     fontFamily: FontFamily.tajawal,
                     fontSize: 20.f,
                     fontWeight: FontWeight.bold,
-                    color: Colors.black87,
+                    color: AppColors.textPrimary,
                   ),
                   textAlign: TextAlign.center,
                 ),
@@ -110,7 +111,7 @@ class CloseAppButton extends StatelessWidget {
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.grey[200],
-                      foregroundColor: Colors.black87,
+                      foregroundColor: AppColors.textPrimary,
                       padding: EdgeInsets.symmetric(vertical: 12.h),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12.r),
@@ -136,7 +137,7 @@ class CloseAppButton extends StatelessWidget {
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.red[600],
-                      foregroundColor: Colors.white,
+                      foregroundColor: AppColors.white,
                       padding: EdgeInsets.symmetric(vertical: 12.h),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12.r),
@@ -218,7 +219,7 @@ class CloseAppWillPopScope extends StatelessWidget {
                     fontFamily: FontFamily.tajawal,
                     fontSize: 20.f,
                     fontWeight: FontWeight.bold,
-                    color: Colors.black87,
+                    color: AppColors.textPrimary,
                   ),
                   textAlign: TextAlign.center,
                 ),
@@ -246,7 +247,7 @@ class CloseAppWillPopScope extends StatelessWidget {
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.grey[200],
-                      foregroundColor: Colors.black87,
+                      foregroundColor: AppColors.textPrimary,
                       padding: EdgeInsets.symmetric(vertical: 12.h),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12.r),
@@ -272,7 +273,7 @@ class CloseAppWillPopScope extends StatelessWidget {
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.red[600],
-                      foregroundColor: Colors.white,
+                      foregroundColor: AppColors.white,
                       padding: EdgeInsets.symmetric(vertical: 12.h),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12.r),

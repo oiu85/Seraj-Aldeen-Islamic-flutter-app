@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:seraj_aldean_flutter_app/config/appconfig/app_colors.dart';
 import 'package:seraj_aldean_flutter_app/core/responsive/screen_util_res.dart';
 import 'package:seraj_aldean_flutter_app/core/shared/widgets/app_scaffold.dart';
 import 'package:seraj_aldean_flutter_app/gen/fonts.gen.dart';
@@ -50,7 +51,7 @@ class SoundsNowPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppScaffold.clean(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.background,
       body: Container(
         padding: EdgeInsets.symmetric(horizontal: 5.p),
         child: Column(

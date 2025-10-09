@@ -37,14 +37,14 @@ class ContactTextField extends StatelessWidget {
       ),
       decoration: InputDecoration(
         filled: true,
-        fillColor: AppColors.ftawaFiledColor,
+        fillColor: AppColors.primary.withValues(alpha: 0.08),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(maxLines > 1 ? 20.r : 60.r),
-          borderSide: BorderSide.none,
+          borderSide: BorderSide(color: AppColors.primary.withValues(alpha: 0.2), width: 1),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(maxLines > 1 ? 20.r : 60.r),
-          borderSide: BorderSide.none,
+          borderSide: BorderSide(color: AppColors.primary.withValues(alpha: 0.2), width: 1),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(maxLines > 1 ? 20.r : 60.r),

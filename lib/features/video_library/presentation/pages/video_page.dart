@@ -106,7 +106,7 @@ class _VideoPageState extends State<VideoPage> with SingleTickerProviderStateMix
                     child: Column(
                       children: [
                         const DecorationAppBar(title: 'الفيديوهات'),
-                        SizedBox(height: 30.h),
+                        SizedBox(height: 48.h),
                         if (state.mainCategories.isNotEmpty)
                           SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
@@ -132,31 +132,36 @@ class _VideoPageState extends State<VideoPage> with SingleTickerProviderStateMix
                 /// Grid for video cards with staggered animation
                 if (state.categoryVideos.isNotEmpty)
                   SliverPadding(
-                    padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
+                    padding: EdgeInsets.symmetric(horizontal: 14.w,),
                     sliver: SliverGrid(
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
                         crossAxisSpacing: 0.w,
                         mainAxisSpacing: 0.h,
-                        childAspectRatio: 1,
+                        childAspectRatio: 1.1,
                       ),
                       delegate: SliverChildBuilderDelegate(
                         (context, index) {
                           final video = state.categoryVideos[index];
                           final animation = _createAnimation(index);
                           
-                          return _AnimatedVideoCard(
-                            animation: animation,
-                            child: VideoCard(
-                              title: video.title ?? '',
-                              onTap: () {
-                                if (video.id != null) {
-                                  Get.toNamed(
-                                    AppRoute.player,
-                                    arguments: {'videoId': video.id},
-                                  );
-                                }
-                              },
+                          return InkWell(
+                            child: _AnimatedVideoCard(
+                              animation: animation,
+                              child: VideoCard(
+                            
+                                title: video.title ?? '',
+                                visitorCount: video.visitor_count,
+                                date: video.date,
+                                onTap: () {
+                                  if (video.id != null) {
+                                    Get.toNamed(
+                                      AppRoute.player,
+                                      arguments: {'videoId': video.id},
+                                    );
+                                  }
+                                },
+                              ),
                             ),
                           );
                         },

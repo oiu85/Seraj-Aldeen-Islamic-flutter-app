@@ -45,7 +45,7 @@ class MainCard extends StatelessWidget {
                           fontFamily: FontFamily.tajawal,
                           fontSize: 18.f,
                           fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                          color: AppColors.white,
                         ),
                         softWrap: true,
                       ),
@@ -66,7 +66,7 @@ class MainCard extends StatelessWidget {
                           fontFamily: FontFamily.tajawal,
                           fontSize: 13.f,
                           fontWeight: FontWeight.bold,
-                          color: Colors.white
+                          color: AppColors.white
                         ),
                       ),
                       SizedBox(height: 4.h,),
