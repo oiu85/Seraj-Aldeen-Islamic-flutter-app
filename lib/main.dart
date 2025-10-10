@@ -14,7 +14,7 @@ import 'package:seraj_aldean_flutter_app/routes.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Initialize dependencies
+  //? Initialize dependencies
   setupAppDependencies();
 
   await SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
@@ -44,14 +44,15 @@ class _MyAppState extends State<MyApp> {
         // Update AppColors when theme changes
         AppColors.setDarkMode(themeManager.isDarkMode);
 
-        // Use key to force complete rebuild on theme change
+        //? Note:  Use key to force complete rebuild on theme change
         return ScreenUtilInit(
           key: ValueKey(themeManager.isDarkMode),
-          designSize: const Size(390, 814),
+          designSize: const Size(390, 814), //* iphone X Size
           minTextAdapt: true,
           splitScreenMode: true,
           builder: (context, child) {
             return GetMaterialApp(
+              title: "الشيخ عبدالله سراج الدين رحمه الله",
               theme: ThemeData(
                 scaffoldBackgroundColor: AppColors.scaffoldBackground,
                 useMaterial3: true,
