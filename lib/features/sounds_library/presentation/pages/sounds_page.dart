@@ -70,7 +70,7 @@ class _SoundsPageContentState extends State<_SoundsPageContent> {
               height: 12.h,
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.0.p),
+              padding: EdgeInsets.symmetric(horizontal: 12.0.p),
               child: Row(
                 children: [
                   GestureDetector(
@@ -212,9 +212,12 @@ class _SoundsPageContentState extends State<_SoundsPageContent> {
                                           visitorCount:
                                               item.visitor_count ?? "0",
                                           date: item.date ?? "",
+                                          soundFileUrl: item.sound_file_url,
+                                          soundId: item.id,
+                                          soundItem: item,
+                                          categoryTitle: category.title,
                                         ),
-                                        if (itemEntry.key <
-                                            previewItems.length - 1)
+                                        if (itemEntry.key < previewItems.length - 1)
                                           SizedBox(width: 12.w),
                                       ];
                                     }).expand((element) => element),

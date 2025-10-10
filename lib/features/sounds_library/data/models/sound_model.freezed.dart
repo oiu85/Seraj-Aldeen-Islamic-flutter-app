@@ -1446,6 +1446,7 @@ mixin _$SoundItem {
   bool? get is_new;
   String? get priority;
   String? get file;
+  String? get sound_file_url;
 
   /// Create a copy of SoundItem
   /// with the given fields replaced by the non-null parameter values.
@@ -1471,17 +1472,19 @@ mixin _$SoundItem {
             (identical(other.is_new, is_new) || other.is_new == is_new) &&
             (identical(other.priority, priority) ||
                 other.priority == priority) &&
-            (identical(other.file, file) || other.file == file));
+            (identical(other.file, file) || other.file == file) &&
+            (identical(other.sound_file_url, sound_file_url) ||
+                other.sound_file_url == sound_file_url));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, title, summary, date,
-      visitor_count, is_new, priority, file);
+      visitor_count, is_new, priority, file, sound_file_url);
 
   @override
   String toString() {
-    return 'SoundItem(id: $id, title: $title, summary: $summary, date: $date, visitor_count: $visitor_count, is_new: $is_new, priority: $priority, file: $file)';
+    return 'SoundItem(id: $id, title: $title, summary: $summary, date: $date, visitor_count: $visitor_count, is_new: $is_new, priority: $priority, file: $file, sound_file_url: $sound_file_url)';
   }
 }
 
@@ -1498,7 +1501,8 @@ abstract mixin class $SoundItemCopyWith<$Res> {
       String? visitor_count,
       @JsonKey(fromJson: _stringToBool) bool? is_new,
       String? priority,
-      String? file});
+      String? file,
+      String? sound_file_url});
 }
 
 /// @nodoc
@@ -1521,6 +1525,7 @@ class _$SoundItemCopyWithImpl<$Res> implements $SoundItemCopyWith<$Res> {
     Object? is_new = freezed,
     Object? priority = freezed,
     Object? file = freezed,
+    Object? sound_file_url = freezed,
   }) {
     return _then(_self.copyWith(
       id: freezed == id
@@ -1554,6 +1559,10 @@ class _$SoundItemCopyWithImpl<$Res> implements $SoundItemCopyWith<$Res> {
       file: freezed == file
           ? _self.file
           : file // ignore: cast_nullable_to_non_nullable
+              as String?,
+      sound_file_url: freezed == sound_file_url
+          ? _self.sound_file_url
+          : sound_file_url // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -1660,15 +1669,24 @@ extension SoundItemPatterns on SoundItem {
             String? visitor_count,
             @JsonKey(fromJson: _stringToBool) bool? is_new,
             String? priority,
-            String? file)?
+            String? file,
+            String? sound_file_url)?
         $default, {
     required TResult orElse(),
   }) {
     final _that = this;
     switch (_that) {
       case _SoundItem() when $default != null:
-        return $default(_that.id, _that.title, _that.summary, _that.date,
-            _that.visitor_count, _that.is_new, _that.priority, _that.file);
+        return $default(
+            _that.id,
+            _that.title,
+            _that.summary,
+            _that.date,
+            _that.visitor_count,
+            _that.is_new,
+            _that.priority,
+            _that.file,
+            _that.sound_file_url);
       case _:
         return orElse();
     }
@@ -1697,14 +1715,23 @@ extension SoundItemPatterns on SoundItem {
             String? visitor_count,
             @JsonKey(fromJson: _stringToBool) bool? is_new,
             String? priority,
-            String? file)
+            String? file,
+            String? sound_file_url)
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _SoundItem():
-        return $default(_that.id, _that.title, _that.summary, _that.date,
-            _that.visitor_count, _that.is_new, _that.priority, _that.file);
+        return $default(
+            _that.id,
+            _that.title,
+            _that.summary,
+            _that.date,
+            _that.visitor_count,
+            _that.is_new,
+            _that.priority,
+            _that.file,
+            _that.sound_file_url);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -1732,14 +1759,23 @@ extension SoundItemPatterns on SoundItem {
             String? visitor_count,
             @JsonKey(fromJson: _stringToBool) bool? is_new,
             String? priority,
-            String? file)?
+            String? file,
+            String? sound_file_url)?
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _SoundItem() when $default != null:
-        return $default(_that.id, _that.title, _that.summary, _that.date,
-            _that.visitor_count, _that.is_new, _that.priority, _that.file);
+        return $default(
+            _that.id,
+            _that.title,
+            _that.summary,
+            _that.date,
+            _that.visitor_count,
+            _that.is_new,
+            _that.priority,
+            _that.file,
+            _that.sound_file_url);
       case _:
         return null;
     }
@@ -1757,7 +1793,8 @@ class _SoundItem implements SoundItem {
       this.visitor_count,
       @JsonKey(fromJson: _stringToBool) this.is_new,
       this.priority,
-      this.file});
+      this.file,
+      this.sound_file_url});
   factory _SoundItem.fromJson(Map<String, dynamic> json) =>
       _$SoundItemFromJson(json);
 
@@ -1779,6 +1816,8 @@ class _SoundItem implements SoundItem {
   final String? priority;
   @override
   final String? file;
+  @override
+  final String? sound_file_url;
 
   /// Create a copy of SoundItem
   /// with the given fields replaced by the non-null parameter values.
@@ -1809,17 +1848,19 @@ class _SoundItem implements SoundItem {
             (identical(other.is_new, is_new) || other.is_new == is_new) &&
             (identical(other.priority, priority) ||
                 other.priority == priority) &&
-            (identical(other.file, file) || other.file == file));
+            (identical(other.file, file) || other.file == file) &&
+            (identical(other.sound_file_url, sound_file_url) ||
+                other.sound_file_url == sound_file_url));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, title, summary, date,
-      visitor_count, is_new, priority, file);
+      visitor_count, is_new, priority, file, sound_file_url);
 
   @override
   String toString() {
-    return 'SoundItem(id: $id, title: $title, summary: $summary, date: $date, visitor_count: $visitor_count, is_new: $is_new, priority: $priority, file: $file)';
+    return 'SoundItem(id: $id, title: $title, summary: $summary, date: $date, visitor_count: $visitor_count, is_new: $is_new, priority: $priority, file: $file, sound_file_url: $sound_file_url)';
   }
 }
 
@@ -1839,7 +1880,8 @@ abstract mixin class _$SoundItemCopyWith<$Res>
       String? visitor_count,
       @JsonKey(fromJson: _stringToBool) bool? is_new,
       String? priority,
-      String? file});
+      String? file,
+      String? sound_file_url});
 }
 
 /// @nodoc
@@ -1862,6 +1904,7 @@ class __$SoundItemCopyWithImpl<$Res> implements _$SoundItemCopyWith<$Res> {
     Object? is_new = freezed,
     Object? priority = freezed,
     Object? file = freezed,
+    Object? sound_file_url = freezed,
   }) {
     return _then(_SoundItem(
       id: freezed == id
@@ -1895,6 +1938,10 @@ class __$SoundItemCopyWithImpl<$Res> implements _$SoundItemCopyWith<$Res> {
       file: freezed == file
           ? _self.file
           : file // ignore: cast_nullable_to_non_nullable
+              as String?,
+      sound_file_url: freezed == sound_file_url
+          ? _self.sound_file_url
+          : sound_file_url // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }

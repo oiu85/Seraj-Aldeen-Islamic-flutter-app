@@ -149,6 +149,10 @@ class _SubCategorySoundsContentState extends State<_SubCategorySoundsContent> {
                                   title: sound.title ?? "",
                                   visitorCount: sound.visitor_count ?? "0",
                                   date: sound.date ?? "",
+                                  soundFileUrl: sound.sound_file_url,
+                                  soundId: sound.id,
+                                  soundItem: sound,
+                                  categoryTitle: state.categoryInfo?.title ?? widget.categoryTitle,
                                 ),
                                 if (entry.key < soundsInRow.length - 1)
                                   SizedBox(width: 12.w),

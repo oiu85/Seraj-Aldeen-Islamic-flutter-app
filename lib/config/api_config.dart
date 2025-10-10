@@ -9,6 +9,7 @@ class ApiConfig {
   static const String soundsCategories = "/categories/sounds/main";
   static const String videosCategories = "/categories/videos/main";
   static const String booksCategories = "/categories/books/main";
+  static const String photoGalleriesCategories = "/categories/photo_galleries/main";
   
   // Helper method to get full URL with query parameters
   static String getFullUrl(String endpoint) {

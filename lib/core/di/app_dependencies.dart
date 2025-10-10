@@ -4,6 +4,7 @@ import '../../features/benefits_fatwas/data/di/benefits_di.dart';
 import '../../features/biography/data/di/biography_di.dart';
 import '../../features/books_library/di/books_di.dart';
 import '../../features/home/data/di/home_di.dart';
+import '../../features/image_galary/di/gallery_di.dart';
 import '../../features/sounds_library/di/sounds_di.dart';
 import '../../features/video_library/di/videos_di.dart';
 import '../network/network_client.dart';
@@ -24,4 +25,5 @@ void setupAppDependencies() {
   setupSoundsDependencies(getIt);
   setupVideosDependencies(getIt);
   setupBooksDependencies(getIt);
+  setupGalleryDependencies(getIt);
 }

@@ -87,6 +87,7 @@ _SoundItem _$SoundItemFromJson(Map<String, dynamic> json) => _SoundItem(
       is_new: _stringToBool(json['is_new']),
       priority: json['priority'] as String?,
       file: json['file'] as String?,
+      sound_file_url: json['sound_file_url'] as String?,
     );
 
 Map<String, dynamic> _$SoundItemToJson(_SoundItem instance) =>
@@ -99,6 +100,7 @@ Map<String, dynamic> _$SoundItemToJson(_SoundItem instance) =>
       'is_new': instance.is_new,
       'priority': instance.priority,
       'file': instance.file,
+      'sound_file_url': instance.sound_file_url,
     };
 
 _SoundPaginationData _$SoundPaginationDataFromJson(Map<String, dynamic> json) =>

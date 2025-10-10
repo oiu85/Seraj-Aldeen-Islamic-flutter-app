@@ -21,7 +21,7 @@ class DescCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Container(
+    return Container(
       decoration: BoxDecoration(
         color: AppColors.cardBackground,
         borderRadius: BorderRadius.circular(20.r),
@@ -31,12 +31,12 @@ class DescCard extends StatelessWidget {
               blurRadius: 1,
               offset: const Offset(
                 0,
-                2,
+                1,
               )),
         ],
       ),
       padding: EdgeInsets.symmetric(horizontal: 20.p, vertical: 20.p),
-      width: 340.w,
+      width: 360.w,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -45,7 +45,11 @@ class DescCard extends StatelessWidget {
               SvgPicture.asset(Assets.svg.note.path)
                   .animate()
                   .fadeIn(duration: 600.ms, delay: 200.ms)
-                  .scale(begin: const Offset(0.5, 0.5), end: const Offset(1.0, 1.0), duration: 500.ms, delay: 200.ms)
+                  .scale(
+                      begin: const Offset(0.5, 0.5),
+                      end: const Offset(1.0, 1.0),
+                      duration: 500.ms,
+                      delay: 200.ms)
                   .rotate(begin: -0.1, end: 0, duration: 400.ms, delay: 300.ms),
               SizedBox(
                 width: 15.w,
@@ -60,10 +64,8 @@ class DescCard extends StatelessWidget {
                       color: AppColors.primary),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
-                )
-                    .animate()
-                    .fadeIn(duration: 800.ms, delay: 300.ms)
-                    .slideX(begin: -0.3, end: 0, duration: 600.ms, delay: 300.ms),
+                ).animate().fadeIn(duration: 800.ms, delay: 300.ms).slideX(
+                    begin: -0.3, end: 0, duration: 600.ms, delay: 300.ms),
               ),
             ],
           ),
@@ -77,7 +79,7 @@ class DescCard extends StatelessWidget {
                 fontSize: 11,
                 fontFamily: FontFamily.tajawal,
                 fontWeight: FontWeight.bold),
-            maxLines: 4,
+            maxLines: 8,
             overflow: TextOverflow.ellipsis,
           )
               .animate()
@@ -114,7 +116,11 @@ class DescCard extends StatelessWidget {
             )
                 .animate()
                 .fadeIn(duration: 600.ms, delay: 500.ms)
-                .scale(begin: const Offset(0.8, 0.8), end: const Offset(1.0, 1.0), duration: 500.ms, delay: 500.ms)
+                .scale(
+                    begin: const Offset(0.8, 0.8),
+                    end: const Offset(1.0, 1.0),
+                    duration: 500.ms,
+                    delay: 500.ms)
                 .slideX(begin: 0.3, end: 0, duration: 400.ms, delay: 500.ms),
           ),
         ],
@@ -123,6 +129,10 @@ class DescCard extends StatelessWidget {
         .animate()
         .fadeIn(duration: 800.ms, delay: 100.ms)
         .slideY(begin: 0.4, end: 0, duration: 600.ms, delay: 100.ms)
-        .scale(begin: const Offset(0.95, 0.95), end: const Offset(1.0, 1.0), duration: 500.ms, delay: 200.ms);
+        .scale(
+            begin: const Offset(0.95, 0.95),
+            end: const Offset(1.0, 1.0),
+            duration: 500.ms,
+            delay: 200.ms);
   }
 }

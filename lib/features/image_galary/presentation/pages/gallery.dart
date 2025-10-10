@@ -1,240 +1,212 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:seraj_aldean_flutter_app/config/appconfig/app_colors.dart';
+import 'package:seraj_aldean_flutter_app/core/di/app_dependencies.dart';
 import 'package:seraj_aldean_flutter_app/core/responsive/screen_util_res.dart';
 import 'package:seraj_aldean_flutter_app/core/shared/widgets/app_scaffold.dart';
 import 'package:seraj_aldean_flutter_app/core/shared/widgets/decoration_app_bar.dart';
+import 'package:seraj_aldean_flutter_app/core/shared/widgets/ui_status_handling.dart';
 import 'package:seraj_aldean_flutter_app/gen/fonts.gen.dart';
-import '../../../../gen/assets.gen.dart';
+import '../bloc/gallery_bloc.dart';
+import '../bloc/gallery_event.dart';
+import '../bloc/gallery_state.dart';
 
-class Gallery extends StatefulWidget {
+class Gallery extends StatelessWidget {
   const Gallery({super.key});
 
   @override
-  State<Gallery> createState() => _GalleryState();
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => getIt<GalleryBloc>()..add(LoadGalleryCategoriesEvent()),
+      child: const _GalleryContent(),
+    );
+  }
 }
 
-class _GalleryState extends State<Gallery> with TickerProviderStateMixin {
-  late AnimationController _headerController;
-  late AnimationController _contentController;
-  final List<AnimationController> _sectionControllers = [];
-
-  final List<String> _sections = [
-    "المدرسة الشعبانية",
-    "نشاطات الطلاب",
-    "المعارض والفعاليات",
-    "الاحتفالات والمناسبات",
-  ];
-
-  @override
-  void initState() {
-    super.initState();
-    
-    // Header animation
-    _headerController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 600),
-    );
-
-    // Content animation
-    _contentController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 800),
-    );
-
-    // Section animations
-    for (int i = 0; i < _sections.length; i++) {
-      _sectionControllers.add(
-        AnimationController(
-          vsync: this,
-          duration: const Duration(milliseconds: 400),
-        ),
-      );
-    }
-
-    // Start animations
-    _headerController.forward();
-    _contentController.forward();
-    _animateSections();
-  }
-
-  void _animateSections() async {
-    for (int i = 0; i < _sectionControllers.length; i++) {
-      await Future.delayed(Duration(milliseconds: 150 * i));
-      if (mounted) {
-        _sectionControllers[i].forward();
-      }
-    }
-  }
-
-  @override
-  void dispose() {
-    _headerController.dispose();
-    _contentController.dispose();
-    for (var controller in _sectionControllers) {
-      controller.dispose();
-    }
-    super.dispose();
-  }
+class _GalleryContent extends StatelessWidget {
+  const _GalleryContent();
 
   @override
   Widget build(BuildContext context) {
     return AppScaffold.clean(
-      body: CustomScrollView(
-        slivers: [
-          // Animated Header
-          SliverToBoxAdapter(
-            child: FadeTransition(
-              opacity: _headerController,
-              child: SlideTransition(
-                position: Tween<Offset>(
-                  begin: const Offset(0, -0.5),
-                  end: Offset.zero,
-                ).animate(CurvedAnimation(
-                  parent: _headerController,
-                  curve: Curves.easeOutCubic,
-                )),
-                child: const DecorationAppBar(title: "معرض الصور"),
-              ),
-            ),
-          ),
-
-          // Animated sections
-          ..._buildAnimatedSections(),
-
-          SliverToBoxAdapter(child: SizedBox(height: 50.h)),
-        ],
+      backgroundColor: AppColors.background,
+      body: BlocBuilder<GalleryBloc, GalleryState>(
+        builder: (context, state) {
+          return SimpleLottieHandler(
+            blocStatus: state.status,
+            successWidget: _buildContent(context, state),
+            onRetry: () {
+              context.read<GalleryBloc>().add(LoadGalleryCategoriesEvent());
+            },
+          );
+        },
       ),
     );
   }
 
-  List<Widget> _buildAnimatedSections() {
+  Widget _buildContent(BuildContext context, GalleryState state) {
+    return CustomScrollView(
+      slivers: [
+        // Header
+        const SliverToBoxAdapter(
+          child: DecorationAppBar(title: "معرض الصور"),
+        ),
+
+        SliverToBoxAdapter(child: SizedBox(height: 20.h)),
+
+        // Display categories from API
+        if (state.categories.isEmpty)
+          SliverToBoxAdapter(
+            child: Center(
+              child: Padding(
+                padding: EdgeInsets.all(40.w),
+                child: Text(
+                  'لا توجد صور',
+                  style: TextStyle(
+                    fontFamily: FontFamily.tajawal,
+                    fontSize: 18.f,
+                    color: AppColors.grey,
+                  ),
+                ),
+              ),
+            ),
+          )
+        else
+          ..._buildSections(state),
+
+        SliverToBoxAdapter(child: SizedBox(height: 50.h)),
+      ],
+    );
+  }
+
+  List<Widget> _buildSections(GalleryState state) {
     List<Widget> widgets = [];
-    for (int i = 0; i < _sections.length; i++) {
-      widgets.add(_buildAnimatedSection(_sections[i], i));
-      widgets.add(_buildAnimatedGrid(i));
+    
+    for (int i = 0; i < state.categories.length; i++) {
+      final category = state.categories[i];
+      final images = category.data ?? [];
+      
+      if (images.isEmpty) continue;
+
+      widgets.add(_buildSection(category.title ?? '', i));
+      widgets.add(_buildImageGrid(images, i));
     }
+    
     return widgets;
   }
 
-  Widget _buildAnimatedSection(String title, int index) {
+  Widget _buildSection(String title, int index) {
     return SliverToBoxAdapter(
-      child: AnimatedBuilder(
-        animation: _sectionControllers[index],
-        builder: (context, child) {
-          return FadeTransition(
-            opacity: _sectionControllers[index],
-            child: Transform.translate(
-              offset: Offset(50 * (1 - _sectionControllers[index].value), 0),
-              child: child,
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
+        child: Row(
+          children: [
+            Text(
+              "$title:",
+              style: TextStyle(
+                fontSize: 16.f,
+                fontWeight: FontWeight.bold,
+                fontFamily: FontFamily.tajawal,
+                color: AppColors.black,
+              ),
             ),
-          );
-        },
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
-          child: Row(
-            children: [
-              Text(
-                "$title:",
-                style: TextStyle(
-                  fontSize: 16.f,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: FontFamily.tajawal,
-                ),
+            const Spacer(),
+            Text(
+              "الكل",
+              style: TextStyle(
+                fontFamily: FontFamily.tajawal,
+                fontSize: 16.f,
+                fontWeight: FontWeight.bold,
+                color: AppColors.primary,
               ),
-              const Spacer(),
-              Text(
-                "الكل",
-                style: TextStyle(
-                  fontFamily: FontFamily.tajawal,
-                  fontSize: 16.f,
-                  fontWeight: FontWeight.bold,
-                  color: AppColors.primary,
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
-      ),
+      )
+          .animate()
+          .fadeIn(duration: 600.ms, delay: (200 + index * 200).ms)
+          .slideX(begin: -0.2, end: 0, duration: 600.ms, delay: (200 + index * 200).ms),
     );
   }
 
-  Widget _buildAnimatedGrid(int sectionIndex) {
+  Widget _buildImageGrid(List<dynamic> images, int sectionIndex) {
+    // Show only first 3 images
+    final displayImages = images.take(3).toList();
+
     return SliverPadding(
-      padding: EdgeInsets.symmetric(horizontal: 20.w),
-      sliver: SliverGrid.count(
-        crossAxisCount: 2,
-        mainAxisSpacing: 5,
-        crossAxisSpacing: 5.w,
-        childAspectRatio: 1,
-        children: List.generate(2, (index) {
-          return _AnimatedGalleryImage(
-            animation: _sectionControllers[sectionIndex],
-            delay: index * 100,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(12.r),
-              child: Image.asset(
-                Assets.images.school.path,
-                fit: BoxFit.cover,
-              ),
-            ),
-          );
-        }),
-      ),
-    );
-  }
-}
-
-/// Animated wrapper for gallery images
-class _AnimatedGalleryImage extends StatefulWidget {
-  final Animation<double> animation;
-  final int delay;
-  final Widget child;
-
-  const _AnimatedGalleryImage({
-    required this.animation,
-    required this.delay,
-    required this.child,
-  });
-
-  @override
-  State<_AnimatedGalleryImage> createState() => _AnimatedGalleryImageState();
-}
-
-class _AnimatedGalleryImageState extends State<_AnimatedGalleryImage> {
-  late Animation<double> _delayedAnimation;
-
-  @override
-  void initState() {
-    super.initState();
-    _delayedAnimation = Tween<double>(
-      begin: 0.0,
-      end: 1.0,
-    ).animate(
-      CurvedAnimation(
-        parent: widget.animation,
-        curve: Interval(
-          (widget.delay / 200).clamp(0.0, 0.5),
-          1.0,
-          curve: Curves.easeOutCubic,
+      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
+      sliver: SliverToBoxAdapter(
+        child: SizedBox(
+          height: 180.h,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: displayImages.length,
+            itemBuilder: (context, index) {
+              final image = displayImages[index];
+              return Container(
+                width: 170.w,
+                margin: EdgeInsets.only(left: 10.w),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(12.r),
+                  child: Image.network(
+                    image.photo_gallery_pic_thumbnail_url ?? '',
+                    fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) {
+                      return Container(
+                        color: AppColors.grey.withValues(alpha: 0.2),
+                        child: Center(
+                          child: Icon(
+                            Icons.image_not_supported,
+                            size: 40.f,
+                            color: AppColors.grey,
+                          ),
+                        ),
+                      );
+                    },
+                    loadingBuilder: (context, child, loadingProgress) {
+                      if (loadingProgress == null) return child;
+                      return Container(
+                        color: AppColors.grey.withValues(alpha: 0.1),
+                        child: Center(
+                          child: CircularProgressIndicator(
+                            value: loadingProgress.expectedTotalBytes != null
+                                ? loadingProgress.cumulativeBytesLoaded /
+                                    loadingProgress.expectedTotalBytes!
+                                : null,
+                            color: AppColors.primary,
+                            strokeWidth: 2.w,
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              )
+                  .animate()
+                  .fadeIn(
+                    duration: 500.ms,
+                    delay: (400 + sectionIndex * 200 + index * 100).ms,
+                    curve: Curves.easeOutCubic,
+                  )
+                  .slideX(
+                    begin: 0.3,
+                    end: 0,
+                    duration: 500.ms,
+                    delay: (400 + sectionIndex * 200 + index * 100).ms,
+                    curve: Curves.easeOutCubic,
+                  )
+                  .scale(
+                    begin: const Offset(0.9, 0.9),
+                    end: const Offset(1.0, 1.0),
+                    duration: 400.ms,
+                    delay: (500 + sectionIndex * 200 + index * 100).ms,
+                    curve: Curves.easeOutBack,
+                  );
+            },
+          ),
         ),
       ),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: _delayedAnimation,
-      builder: (context, child) {
-        return FadeTransition(
-          opacity: _delayedAnimation,
-          child: Transform.scale(
-            scale: 0.8 + (0.2 * _delayedAnimation.value),
-            child: child,
-          ),
-        );
-      },
-      child: widget.child,
     );
   }
 }

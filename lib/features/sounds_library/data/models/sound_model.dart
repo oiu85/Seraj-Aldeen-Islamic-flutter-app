@@ -76,6 +76,7 @@ abstract class SoundItem with _$SoundItem {
     @JsonKey(fromJson: _stringToBool) bool? is_new,
     String? priority,
     String? file,
+    String? sound_file_url,
   }) = _SoundItem;
 
   factory SoundItem.fromJson(Map<String, dynamic> json) =>

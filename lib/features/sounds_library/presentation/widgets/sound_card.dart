@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:seraj_aldean_flutter_app/core/responsive/screen_util_res.dart';
-
 import '../../../../config/appconfig/app_colors.dart';
 import '../../../../gen/fonts.gen.dart';
+import '../../data/models/sound_model.dart';
+import '../widgets/real_media_player.dart';
+import '../widgets/music_player.dart';
 
+/// Reusable sound card widget used across all sound library pages
 class SoundCard extends StatelessWidget {
   final String title;
-  final String? visitorCount;
-  final String? date;
+  final String visitorCount;
+  final String date;
+  final String? duration;
+  final String? position;
   final VoidCallback? onTap;
   final VoidCallback? onPlayPause;
   final VoidCallback? onDownload;
@@ -15,16 +20,22 @@ class SoundCard extends StatelessWidget {
   final bool isLoading;
   final bool isDownloading;
   final bool hasError;
-  final String? duration;
-  final String? position;
   final double? width;
   final double? height;
+  
+  // Optional: For advanced usage with RealMediaPlayer and navigation
+  final String? soundFileUrl;
+  final int? soundId;
+  final SoundItem? soundItem;
+  final String? categoryTitle;
 
   const SoundCard({
     super.key,
     required this.title,
-    this.visitorCount,
-    this.date,
+    required this.visitorCount,
+    required this.date,
+    this.duration,
+    this.position,
     this.onTap,
     this.onPlayPause,
     this.onDownload,
@@ -32,16 +43,35 @@ class SoundCard extends StatelessWidget {
     this.isLoading = false,
     this.isDownloading = false,
     this.hasError = false,
-    this.duration,
-    this.position,
     this.width,
     this.height,
+    this.soundFileUrl,
+    this.soundId,
+    this.soundItem,
+    this.categoryTitle,
   });
+
+  void _handleTap(BuildContext context) {
+    if (onTap != null) {
+      onTap!();
+    } else if (soundItem != null) {
+      // Navigate to full music player
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => MusicPlayer(
+            sound: soundItem!,
+            categoryTitle: categoryTitle,
+          ),
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
+    return InkWell(
+      onTap: () => _handleTap(context),
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(32.r)),
         color: AppColors.cardBackground,
@@ -49,28 +79,29 @@ class SoundCard extends StatelessWidget {
         child: Container(
           width: width ?? 220.w,
           height: height ?? 160.h,
-          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+          padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
               // Fixed height title section
               SizedBox(
-                height: 44.h,
+                height: 75.h,
                 child: Row(
                   children: [
                     Icon(
-                      Icons.headphones,
-                      size: 24.w,
+                      Icons.headset,
+                      size: 28.f,
                       color: AppColors.primary,
                     ),
-                    SizedBox(width: 12.w),
+                    SizedBox(width: 4.w),
                     Expanded(
                       child: Text(
                         title,
                         style: TextStyle(
-                          fontSize: 14.f,
+                          fontSize: 16.f,
                           fontWeight: FontWeight.w600,
+                          fontFamily: FontFamily.tajawal,
                           color: AppColors.black,
                         ),
                         maxLines: 2,
@@ -82,7 +113,7 @@ class SoundCard extends StatelessWidget {
               ),
               // Fixed height info section
               Padding(
-                padding: EdgeInsets.only(right: 8.w),
+                padding: EdgeInsets.only(right: 2.w),
                 child: SizedBox(
                   height: 24.h,
                   child: Row(
@@ -90,15 +121,16 @@ class SoundCard extends StatelessWidget {
                       Icon(Icons.visibility, size: 18.f, color: AppColors.primary),
                       SizedBox(width: 6.w),
                       Text(
-                        visitorCount ?? '0',
+                        visitorCount,
                         style: TextStyle(
                           fontSize: 12.f,
+                          fontFamily: FontFamily.tajawal,
                           color: AppColors.grey,
                         ),
                       ),
                       SizedBox(width: 16.w),
                       Icon(
-                        Icons.calendar_month,
+                        Icons.access_time,
                         size: 16.f,
                         color: AppColors.primary,
                       ),
@@ -108,6 +140,7 @@ class SoundCard extends StatelessWidget {
                           _formatDate(date),
                           style: TextStyle(
                             fontSize: 12.f,
+                            fontFamily: FontFamily.tajawal,
                             color: AppColors.grey,
                           ),
                           maxLines: 1,
@@ -121,7 +154,7 @@ class SoundCard extends StatelessWidget {
               SizedBox(height: 12.h),
               // Fixed height audio player section
               SizedBox(
-                height: 36.h,
+                height: 40.h,
                 child: _buildAudioPlayer(),
               ),
             ],
@@ -131,161 +164,39 @@ class SoundCard extends StatelessWidget {
     );
   }
 
+  /// Builds the audio player widget
   Widget _buildAudioPlayer() {
-    return Container(
-      width: double.infinity,
-      height: 36.h,
-      decoration: _buildPlayerDecoration(),
-      child: Row(
-        children: [
-          _buildPlayButton(),
-          _buildDurationText(),
-          _buildDownloadButton(),
-        ],
-      ),
-    );
-  }
+    // If we have a sound file URL, show the real media player
+    if (soundFileUrl != null && soundFileUrl!.isNotEmpty) {
+      return RealMediaPlayer(
+        audioUrl: soundFileUrl!,
+        soundTitle: title,
+        width: width ?? 220.w,
+        height: 36.h,
+      );
+    }
 
-  BoxDecoration _buildPlayerDecoration() {
-    return BoxDecoration(
-      color: AppColors.lightGrey,
-      borderRadius: BorderRadius.circular(18.r),
-      boxShadow: [
-        BoxShadow(
-          color: AppColors.black.withValues(alpha: 0.1),
-          blurRadius: 4.r,
-          offset: Offset(0, 2.h),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildPlayButton() {
-    return InkWell(
-      onTap: (isLoading || isDownloading) ? null : onPlayPause,
-      child: Container(
-        width: 28.w,
-        height: 28.w,
-        margin: EdgeInsets.all(4.w),
-        decoration: _buildPlayButtonDecoration(),
-        child: _buildPlayButtonContent(),
-      ),
-    );
-  }
-
-  BoxDecoration _buildPlayButtonDecoration() {
-    return BoxDecoration(
-      color: AppColors.primary,
-      shape: BoxShape.circle,
-      boxShadow: [
-        BoxShadow(
-          color: AppColors.primary,
-        ),
-      ],
-    );
-  }
-
-  Widget _buildPlayButtonContent() {
-    return Stack(
-      alignment: Alignment.center,
-      children: [
-        if (isDownloading || isLoading) _buildLoadingIndicator(),
-        if (!isDownloading && !isLoading) _buildPlayIcon(),
-      ],
-    );
-  }
-
-  Widget _buildLoadingIndicator() {
-    return SizedBox(
-      width: 12.w,
-      height: 12.w,
-      child: CircularProgressIndicator(
-        strokeWidth: 2.w,
-        valueColor: AlwaysStoppedAnimation<Color>(AppColors.white),
-      ),
-    );
-  }
-
-  Widget _buildPlayIcon() {
-    return Icon(
-      hasError ? Icons.refresh : (isPlaying ? Icons.pause : Icons.play_arrow),
-      size: 14.w,
-      color: AppColors.white,
-    );
-  }
-
-  Widget _buildDurationText() {
-    return Expanded(
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 8.w),
-        child: Text(
-          _getDurationText(),
-          style: _getDurationTextStyle(),
+    // Fallback for files without URL
+    return Center(
+      child: Text(
+        'لا يوجد ملف صوتي',
+        style: TextStyle(
+          fontSize: 13.f,
+          fontFamily: FontFamily.tajawal,
+          color: AppColors.grey,
         ),
       ),
     );
   }
 
-  String _getDurationText() {
-    if (isDownloading) return 'جاري التحميل...';
-    if (hasError) return 'خطأ';
-    if (duration != null && position != null) return '$position/$duration';
-    return '0:00/0:00';
-  }
-
-  TextStyle _getDurationTextStyle() {
-    Color textColor = const Color(0xFF333333);
-    if (isDownloading) textColor = AppColors.primary;
-    if (hasError) textColor = Colors.red;
-
-    return TextStyle(
-      fontFamily: FontFamily.tajawal,
-      fontSize: 12.f,
-      color: textColor,
-      fontWeight: FontWeight.w500,
-    );
-  }
-
-  Widget _buildDownloadButton() {
-    return GestureDetector(
-      onTap: isDownloading ? null : onDownload,
-      child: Container(
-        width: 28.w,
-        height: 28.w,
-        margin: EdgeInsets.all(4.w),
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            if (!isDownloading) _buildDownloadIcon(),
-            if (isDownloading) _buildDownloadLoadingIndicator(),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildDownloadIcon() {
-    return Icon(
-      Icons.download,
-      size: 16.w,
-      color: const Color(0xFF333333),
-    );
-  }
-
-  Widget _buildDownloadLoadingIndicator() {
-    return SizedBox(
-      width: 12.w,
-      height: 12.w,
-      child: CircularProgressIndicator(
-        strokeWidth: 2.w,
-        valueColor: AlwaysStoppedAnimation<Color>(AppColors.primary),
-      ),
-    );
-  }
-
-  String _formatDate(String? date) {
-    if (date == null || date.isEmpty) return 'غير محدد';
-    // You can add date formatting logic here if needed
-    return date;
+  /// Formats date to show only year-month-day (YYYY-MM-DD)
+  String _formatDate(String dateString) {
+    try {
+      final date = DateTime.parse(dateString);
+      return '${date.year}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}';
+    } catch (e) {
+      // If parsing fails, return the original string
+      return dateString;
+    }
   }
 }
