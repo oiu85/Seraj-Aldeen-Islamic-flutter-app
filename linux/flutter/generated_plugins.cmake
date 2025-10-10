@@ -4,7 +4,6 @@
 
 list(APPEND FLUTTER_PLUGIN_LIST
   audioplayers_linux
-  file_selector_linux
   flutter_localization
   record_linux
   syncfusion_pdfviewer_linux
