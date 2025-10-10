@@ -118,7 +118,7 @@ class _GalleryContent extends StatelessWidget {
                 fontFamily: FontFamily.tajawal,
                 fontSize: 16.f,
                 fontWeight: FontWeight.bold,
-                color: AppColors.primary,
+                color: AppColors.black,
               ),
             ),
           ],
@@ -138,14 +138,14 @@ class _GalleryContent extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
       sliver: SliverToBoxAdapter(
         child: SizedBox(
-          height: 180.h,
+          height: 230.h,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: displayImages.length,
             itemBuilder: (context, index) {
               final image = displayImages[index];
               return Container(
-                width: 170.w,
+                width: 220.w,
                 margin: EdgeInsets.only(left: 10.w),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(12.r),
