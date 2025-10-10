@@ -49,11 +49,11 @@ class _PhotoViewerState extends State<PhotoViewer> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.black,
+      backgroundColor: AppColors.background,
       appBar: AppBar(
-        backgroundColor: AppColors.black.withValues(alpha: 0.8),
+        backgroundColor: AppColors.cardBackground,
         elevation: 0,
-        iconTheme: IconThemeData(color: AppColors.white),
+        iconTheme: IconThemeData(color: AppColors.black),
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -63,7 +63,7 @@ class _PhotoViewerState extends State<PhotoViewer> {
                 style: TextStyle(
                   fontFamily: FontFamily.tajawal,
                   fontSize: 16.f,
-                  color: AppColors.white,
+                  color: AppColors.black,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -72,7 +72,7 @@ class _PhotoViewerState extends State<PhotoViewer> {
               style: TextStyle(
                 fontFamily: FontFamily.tajawal,
                 fontSize: 14.f,
-                color: AppColors.white.withValues(alpha: 0.7),
+                color: AppColors.grey,
               ),
             ),
           ],
@@ -97,7 +97,7 @@ class _PhotoViewerState extends State<PhotoViewer> {
                 heroAttributes: PhotoViewHeroAttributes(tag: image.id ?? index),
                 errorBuilder: (context, error, stackTrace) {
                   return Container(
-                    color: AppColors.black,
+                    color: AppColors.background,
                     child: Center(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -105,7 +105,7 @@ class _PhotoViewerState extends State<PhotoViewer> {
                           Icon(
                             Icons.broken_image,
                             size: 80.f,
-                            color: AppColors.white.withValues(alpha: 0.5),
+                            color: AppColors.grey,
                           ),
                           SizedBox(height: 16.h),
                           Text(
@@ -113,7 +113,7 @@ class _PhotoViewerState extends State<PhotoViewer> {
                             style: TextStyle(
                               fontFamily: FontFamily.tajawal,
                               fontSize: 16.f,
-                              color: AppColors.white.withValues(alpha: 0.7),
+                              color: AppColors.grey,
                             ),
                           ),
                         ],
@@ -138,44 +138,12 @@ class _PhotoViewerState extends State<PhotoViewer> {
               ),
             ),
             backgroundDecoration: BoxDecoration(
-              color: AppColors.black,
+              color: AppColors.background,
             ),
             pageController: _pageController,
             onPageChanged: _onPageChanged,
           ),
 
-          // Image title overlay at bottom
-          if (widget.images[_currentIndex].title != null &&
-              widget.images[_currentIndex].title!.isNotEmpty)
-            Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: Container(
-                padding: EdgeInsets.all(20.w),
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.bottomCenter,
-                    end: Alignment.topCenter,
-                    colors: [
-                      AppColors.black.withValues(alpha: 0.8),
-                      AppColors.black.withValues(alpha: 0.6),
-                      AppColors.black.withValues(alpha: 0.0),
-                    ],
-                  ),
-                ),
-                child: Text(
-                  widget.images[_currentIndex].title!,
-                  style: TextStyle(
-                    fontFamily: FontFamily.tajawal,
-                    fontSize: 16.f,
-                    color: AppColors.white,
-                    fontWeight: FontWeight.w500,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ),
         ],
       ),
     );
