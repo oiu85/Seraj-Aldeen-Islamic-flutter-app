@@ -47,5 +47,44 @@ class GalleryRepositoryImpl implements GalleryRepository {
       return Left(Exception('Failed to fetch gallery categories: $e'));
     }
   }
+
+  @override
+  Future<Either<Exception, CategoryContentResponse>> getCategoryContent({
+    required int categoryId,
+    required int page,
+    required int perPage,
+  }) async {
+    try {
+      AppLogger.info('Fetching category content: categoryId=$categoryId, page=$page');
+      
+      final response = await _networkClient.get(
+        '/categories/photo_galleries/$categoryId/content',
+        queryParameters: {
+          'page': page,
+          'per_page': perPage,
+        },
+      );
+      
+      if (response.statusCode == 200 && response.data != null) {
+        final categoryContentResponse = CategoryContentResponse.fromJson(response.data);
+        
+        if (categoryContentResponse.success == true && categoryContentResponse.data != null) {
+          AppLogger.info('Successfully fetched ${categoryContentResponse.data?.content?.length ?? 0} images');
+          return Right(categoryContentResponse);
+        } else {
+          final errorMsg = categoryContentResponse.message ?? 'Failed to fetch category content';
+          AppLogger.error('API returned unsuccessful response: $errorMsg');
+          return Left(Exception(errorMsg));
+        }
+      } else {
+        final errorMsg = 'Invalid response: status=${response.statusCode}';
+        AppLogger.error(errorMsg);
+        return Left(Exception(errorMsg));
+      }
+    } catch (e, stackTrace) {
+      AppLogger.error('Error fetching category content: $e', e, stackTrace);
+      return Left(Exception('Failed to fetch category content: $e'));
+    }
+  }
 }
 

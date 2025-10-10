@@ -8,9 +8,12 @@ import 'package:seraj_aldean_flutter_app/core/shared/widgets/app_scaffold.dart';
 import 'package:seraj_aldean_flutter_app/core/shared/widgets/decoration_app_bar.dart';
 import 'package:seraj_aldean_flutter_app/core/shared/widgets/ui_status_handling.dart';
 import 'package:seraj_aldean_flutter_app/gen/fonts.gen.dart';
+import '../../data/models/gallery_model.dart';
 import '../bloc/gallery_bloc.dart';
 import '../bloc/gallery_event.dart';
 import '../bloc/gallery_state.dart';
+import '../widgets/photo_viewer.dart';
+import 'category_gallery_page.dart';
 
 class Gallery extends StatelessWidget {
   const Gallery({super.key});
@@ -73,14 +76,14 @@ class _GalleryContent extends StatelessWidget {
             ),
           )
         else
-          ..._buildSections(state),
+          ..._buildSections(state, context),
 
         SliverToBoxAdapter(child: SizedBox(height: 50.h)),
       ],
     );
   }
 
-  List<Widget> _buildSections(GalleryState state) {
+  List<Widget> _buildSections(GalleryState state, BuildContext context) {
     List<Widget> widgets = [];
     
     for (int i = 0; i < state.categories.length; i++) {
@@ -89,14 +92,19 @@ class _GalleryContent extends StatelessWidget {
       
       if (images.isEmpty) continue;
 
-      widgets.add(_buildSection(category.title ?? '', i));
-      widgets.add(_buildImageGrid(images, i));
+      widgets.add(_buildSection(
+        category.title ?? '', 
+        i, 
+        category.id ?? 0,
+        context,
+      ));
+      widgets.add(_buildImageGrid(images, i, category.title ?? '', state.categories[i]));
     }
     
     return widgets;
   }
 
-  Widget _buildSection(String title, int index) {
+  Widget _buildSection(String title, int index, int categoryId, BuildContext context) {
     return SliverToBoxAdapter(
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
@@ -112,13 +120,26 @@ class _GalleryContent extends StatelessWidget {
               ),
             ),
             const Spacer(),
-            Text(
-              "الكل",
-              style: TextStyle(
-                fontFamily: FontFamily.tajawal,
-                fontSize: 16.f,
-                fontWeight: FontWeight.bold,
-                color: AppColors.black,
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CategoryGalleryPage(
+                      categoryId: categoryId,
+                      categoryTitle: title,
+                    ),
+                  ),
+                );
+              },
+              child: Text(
+                "الكل",
+                style: TextStyle(
+                  fontFamily: FontFamily.tajawal,
+                  fontSize: 16.f,
+                  fontWeight: FontWeight.bold,
+                  color: AppColors.primary,
+                ),
               ),
             ),
           ],
@@ -130,9 +151,15 @@ class _GalleryContent extends StatelessWidget {
     );
   }
 
-  Widget _buildImageGrid(List<dynamic> images, int sectionIndex) {
-    // Show only first 3 images
+  Widget _buildImageGrid(
+    List<dynamic> images, 
+    int sectionIndex, 
+    String categoryTitle,
+    GalleryCategory category,
+  ) {
+    // Show only first 3 images as preview
     final displayImages = images.take(3).toList();
+    final allImages = category.data ?? [];
 
     return SliverPadding(
       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
@@ -144,65 +171,80 @@ class _GalleryContent extends StatelessWidget {
             itemCount: displayImages.length,
             itemBuilder: (context, index) {
               final image = displayImages[index];
-              return Container(
-                width: 220.w,
-                margin: EdgeInsets.only(left: 10.w),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(12.r),
-                  child: Image.network(
-                    image.photo_gallery_pic_thumbnail_url ?? '',
-                    fit: BoxFit.cover,
-                    errorBuilder: (context, error, stackTrace) {
-                      return Container(
-                        color: AppColors.grey.withValues(alpha: 0.2),
-                        child: Center(
-                          child: Icon(
-                            Icons.image_not_supported,
-                            size: 40.f,
-                            color: AppColors.grey,
-                          ),
-                        ),
-                      );
-                    },
-                    loadingBuilder: (context, child, loadingProgress) {
-                      if (loadingProgress == null) return child;
-                      return Container(
-                        color: AppColors.grey.withValues(alpha: 0.1),
-                        child: Center(
-                          child: CircularProgressIndicator(
-                            value: loadingProgress.expectedTotalBytes != null
-                                ? loadingProgress.cumulativeBytesLoaded /
-                                    loadingProgress.expectedTotalBytes!
-                                : null,
-                            color: AppColors.primary,
-                            strokeWidth: 2.w,
-                          ),
-                        ),
-                      );
-                    },
-                  ),
-                ),
-              )
-                  .animate()
-                  .fadeIn(
-                    duration: 500.ms,
-                    delay: (400 + sectionIndex * 200 + index * 100).ms,
-                    curve: Curves.easeOutCubic,
-                  )
-                  .slideX(
-                    begin: 0.3,
-                    end: 0,
-                    duration: 500.ms,
-                    delay: (400 + sectionIndex * 200 + index * 100).ms,
-                    curve: Curves.easeOutCubic,
-                  )
-                  .scale(
-                    begin: const Offset(0.9, 0.9),
-                    end: const Offset(1.0, 1.0),
-                    duration: 400.ms,
-                    delay: (500 + sectionIndex * 200 + index * 100).ms,
-                    curve: Curves.easeOutBack,
+              return GestureDetector(
+                onTap: () {
+                  // Navigate to photo viewer with all category images
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => PhotoViewer(
+                        images: allImages,
+                        initialIndex: index,
+                        categoryTitle: categoryTitle,
+                      ),
+                    ),
                   );
+                },
+                child: Container(
+                  width: 220.w,
+                  margin: EdgeInsets.only(left: 10.w),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(12.r),
+                    child: Image.network(
+                      image.photo_gallery_pic_thumbnail_url ?? '',
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) {
+                        return Container(
+                          color: AppColors.grey.withValues(alpha: 0.2),
+                          child: Center(
+                            child: Icon(
+                              Icons.image_not_supported,
+                              size: 40.f,
+                              color: AppColors.grey,
+                            ),
+                          ),
+                        );
+                      },
+                      loadingBuilder: (context, child, loadingProgress) {
+                        if (loadingProgress == null) return child;
+                        return Container(
+                          color: AppColors.grey.withValues(alpha: 0.1),
+                          child: Center(
+                            child: CircularProgressIndicator(
+                              value: loadingProgress.expectedTotalBytes != null
+                                  ? loadingProgress.cumulativeBytesLoaded /
+                                      loadingProgress.expectedTotalBytes!
+                                  : null,
+                              color: AppColors.primary,
+                              strokeWidth: 2.w,
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                )
+                    .animate()
+                    .fadeIn(
+                      duration: 500.ms,
+                      delay: (400 + sectionIndex * 200 + index * 100).ms,
+                      curve: Curves.easeOutCubic,
+                    )
+                    .slideX(
+                      begin: 0.3,
+                      end: 0,
+                      duration: 500.ms,
+                      delay: (400 + sectionIndex * 200 + index * 100).ms,
+                      curve: Curves.easeOutCubic,
+                    )
+                    .scale(
+                      begin: const Offset(0.9, 0.9),
+                      end: const Offset(1.0, 1.0),
+                      duration: 400.ms,
+                      delay: (500 + sectionIndex * 200 + index * 100).ms,
+                      curve: Curves.easeOutBack,
+                    ),
+              );
             },
           ),
         ),

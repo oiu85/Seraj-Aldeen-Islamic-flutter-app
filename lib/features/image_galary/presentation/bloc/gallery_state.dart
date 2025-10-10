@@ -8,6 +8,15 @@ class GalleryState extends Equatable {
   final int currentPage;
   final int totalPages;
   final bool hasNextPage;
+  
+  // Category content state
+  final BlocStatus categoryContentStatus;
+  final List<GalleryItem> categoryContent;
+  final CategoryInfo? categoryInfo;
+  final int contentCurrentPage;
+  final int contentTotalPages;
+  final bool contentHasNextPage;
+  final bool isLoadingMore;
 
   const GalleryState({
     this.status = const BlocStatus.initial(),
@@ -15,6 +24,13 @@ class GalleryState extends Equatable {
     this.currentPage = 1,
     this.totalPages = 1,
     this.hasNextPage = false,
+    this.categoryContentStatus = const BlocStatus.initial(),
+    this.categoryContent = const [],
+    this.categoryInfo,
+    this.contentCurrentPage = 1,
+    this.contentTotalPages = 1,
+    this.contentHasNextPage = false,
+    this.isLoadingMore = false,
   });
 
   GalleryState copyWith({
@@ -23,6 +39,13 @@ class GalleryState extends Equatable {
     int? currentPage,
     int? totalPages,
     bool? hasNextPage,
+    BlocStatus? categoryContentStatus,
+    List<GalleryItem>? categoryContent,
+    CategoryInfo? categoryInfo,
+    int? contentCurrentPage,
+    int? contentTotalPages,
+    bool? contentHasNextPage,
+    bool? isLoadingMore,
   }) {
     return GalleryState(
       status: status ?? this.status,
@@ -30,6 +53,13 @@ class GalleryState extends Equatable {
       currentPage: currentPage ?? this.currentPage,
       totalPages: totalPages ?? this.totalPages,
       hasNextPage: hasNextPage ?? this.hasNextPage,
+      categoryContentStatus: categoryContentStatus ?? this.categoryContentStatus,
+      categoryContent: categoryContent ?? this.categoryContent,
+      categoryInfo: categoryInfo ?? this.categoryInfo,
+      contentCurrentPage: contentCurrentPage ?? this.contentCurrentPage,
+      contentTotalPages: contentTotalPages ?? this.contentTotalPages,
+      contentHasNextPage: contentHasNextPage ?? this.contentHasNextPage,
+      isLoadingMore: isLoadingMore ?? this.isLoadingMore,
     );
   }
 
@@ -40,6 +70,13 @@ class GalleryState extends Equatable {
         currentPage,
         totalPages,
         hasNextPage,
+        categoryContentStatus,
+        categoryContent,
+        categoryInfo,
+        contentCurrentPage,
+        contentTotalPages,
+        contentHasNextPage,
+        isLoadingMore,
       ];
 }
 
