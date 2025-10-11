@@ -8,9 +8,9 @@ class FontSizeManager extends ChangeNotifier {
   static const String _isDefaultKey = 'is_default_font_size';
   
   // Font size boundaries
-  static const double minFontSize = 0.8;
-  static const double maxFontSize = 1.1;
-  static const double defaultFontSize = 1.0;
+  static const double minFontSize = 0.7;
+  static const double maxFontSize = 0.91;
+  static const double defaultFontSize = 0.78;
   
   double _fontSizeMultiplier = defaultFontSize;
   bool _isDefaultFontSize = true;
@@ -38,7 +38,7 @@ class FontSizeManager extends ChangeNotifier {
   Future<void> toggleDefaultFontSize() async {
     _isDefaultFontSize = !_isDefaultFontSize;
     
-    // If switching to default, reset to 1.0
+    // If switching to default, reset to default font size
     if (_isDefaultFontSize) {
       _fontSizeMultiplier = defaultFontSize;
       ScreenUtilRes.updateFontSizeMultiplier(_fontSizeMultiplier);

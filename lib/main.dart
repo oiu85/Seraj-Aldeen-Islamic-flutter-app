@@ -6,7 +6,6 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:provider/provider.dart';
 import 'package:seraj_aldean_flutter_app/config/appconfig/app_colors.dart';
 import 'package:seraj_aldean_flutter_app/core/di/app_dependencies.dart';
-import 'package:seraj_aldean_flutter_app/core/responsive/screen_util_res.dart';
 import 'package:seraj_aldean_flutter_app/core/shared/widgets/close_app_button.dart';
 import 'package:seraj_aldean_flutter_app/core/theme/font_size_manager.dart';
 import 'package:seraj_aldean_flutter_app/core/theme/theme_manager.dart';
@@ -18,9 +17,6 @@ void main() async {
 
   //? Initialize dependencies
   setupAppDependencies();
-
-  //? Initialize ScreenUtilRes to load font size
-  await ScreenUtilRes.initialize();
 
   await SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
 
@@ -49,43 +45,53 @@ class _MyAppState extends State<MyApp> {
 
     return Consumer2<ThemeManager, FontSizeManager>(
       builder: (context, themeManager, fontSizeManager, _) {
+        final mediaQuery = MediaQuery.of(context);
         // Update AppColors when theme changes
         AppColors.setDarkMode(themeManager.isDarkMode);
 
         //? Note: Use key to force complete rebuild on theme or font size change
-        return ScreenUtilInit(
-          key: ValueKey('${themeManager.isDarkMode}_${fontSizeManager.fontSizeMultiplier}'),
-          designSize: const Size(390, 814), //* iphone X Size
-          minTextAdapt: true,
-          splitScreenMode: true,
-          builder: (context, child) {
-            return GetMaterialApp(
-              title: "الشيخ عبدالله سراج الدين رحمه الله",
-              theme: ThemeData(
-                scaffoldBackgroundColor: AppColors.scaffoldBackground,
-                useMaterial3: true,
-                colorScheme: ColorScheme.fromSeed(
-                  seedColor: AppColors.primary,
-                  brightness: themeManager.isDarkMode ? Brightness.dark : Brightness.light,
+        return MediaQuery(
+          data: mediaQuery.copyWith(
+            textScaler: const TextScaler.linear(1),
+          ),
+          child: ScreenUtilInit(
+            key: ValueKey(
+                '${themeManager.isDarkMode}_${fontSizeManager.fontSizeMultiplier}'),
+            designSize: const Size(390, 814),
+            //* iphone X Size
+            minTextAdapt: true,
+            splitScreenMode: true,
+            builder: (context, child) {
+              return GetMaterialApp(
+                title: "الشيخ عبدالله سراج الدين رحمه الله",
+                theme: ThemeData(
+                  scaffoldBackgroundColor: AppColors.scaffoldBackground,
+                  useMaterial3: true,
+                  colorScheme: ColorScheme.fromSeed(
+                    seedColor: AppColors.primary,
+                    brightness: themeManager.isDarkMode
+                        ? Brightness.dark
+                        : Brightness.light,
+                  ),
                 ),
-              ),
-              debugShowCheckedModeBanner: false,
-              locale: const Locale('ar'),
-              supportedLocales: const [
-                Locale('ar'),
-                Locale('en'),
-              ],
-              localizationsDelegates: const [
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-                GlobalCupertinoLocalizations.delegate,
-              ],
-              home: child,
-              getPages: routes,
-            );
-          },
-          child: const CloseAppWillPopScope(
-            child: HomePage(),
+                debugShowCheckedModeBanner: false,
+                locale: const Locale('ar'),
+                supportedLocales: const [
+                  Locale('ar'),
+                  Locale('en'),
+                ],
+                localizationsDelegates: const [
+                  GlobalMaterialLocalizations.delegate,
+                  GlobalWidgetsLocalizations.delegate,
+                  GlobalCupertinoLocalizations.delegate,
+                ],
+                home: child,
+                getPages: routes,
+              );
+            },
+            child: const CloseAppWillPopScope(
+              child: HomePage(),
+            ),
           ),
         );
       },

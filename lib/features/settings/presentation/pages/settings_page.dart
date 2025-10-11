@@ -91,48 +91,74 @@ class SettingsPage extends StatelessWidget {
     required VoidCallback onTap,
   }) {
     return Container(
-
       margin: EdgeInsets.only(bottom: 12.h),
+      padding: EdgeInsets.all(16.w),
       decoration: BoxDecoration(
         color: AppColors.cardBackground,
-        borderRadius: BorderRadius.circular(12.r),
+        borderRadius: BorderRadius.circular(20.r),
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.black.withValues(alpha: 0.05),
+            blurRadius: 4,
+            offset: const Offset(0, 1),
+          ),
+        ],
       ),
-      child: ListTile(
-        leading: Container(
-          padding: EdgeInsets.all(8.w),
-          decoration: BoxDecoration(
-            color: AppColors.primary.withOpacity(0.1),
-            borderRadius: BorderRadius.circular(8.r),
-          ),
-          child: Icon(
-            icon,
-            color: AppColors.primary,
-            size: 20.w,
-          ),
-        ),
-        title: Text(
-          title,
-          style: TextStyle(
-            fontFamily: FontFamily.tajawal,
-            fontSize: 16.f,
-            fontWeight: FontWeight.w600,
-            color: AppColors.textSecondary,
-          ),
-        ),
-        subtitle: Text(
-          subtitle,
-          style: TextStyle(
-            fontFamily: FontFamily.tajawal,
-            fontSize: 14.f,
-            color: Colors.grey[600],
-          ),
-        ),
-        trailing: Icon(
-          Icons.arrow_forward_ios,
-          size: 16.w,
-          color: Colors.grey[400],
-        ),
+      child: InkWell(
         onTap: onTap,
+        borderRadius: BorderRadius.circular(20.r),
+        child: Row(
+          children: [
+            // Icon
+            Container(
+              padding: EdgeInsets.all(12.w),
+              decoration: BoxDecoration(
+                color: AppColors.primary.withValues(alpha: 0.1),
+                borderRadius: BorderRadius.circular(12.r),
+              ),
+              child: Icon(
+                icon,
+                color: AppColors.primary,
+                size: 24.f,
+              ),
+            ),
+            SizedBox(width: 16.w),
+            
+            // Text
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: TextStyle(
+                      fontSize: 16.f,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: FontFamily.tajawal,
+                      color: AppColors.textPrimary,
+                    ),
+                  ),
+                  SizedBox(height: 4.h),
+                  Text(
+                    subtitle,
+                    style: TextStyle(
+                      fontSize: 12.f,
+                      fontFamily: FontFamily.tajawal,
+                      color: AppColors.textSecondary,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            
+            // Arrow Icon
+            Icon(
+              Icons.arrow_forward_ios,
+              size: 16.w,
+              color: AppColors.textSecondary,
+            ),
+          ],
+        ),
       ),
     );
   }

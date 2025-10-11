@@ -147,7 +147,7 @@ class FontSizeToggleWidget extends StatelessWidget {
                           value: fontSizeManager.fontSizeMultiplier,
                           min: FontSizeManager.minFontSize,
                           max: FontSizeManager.maxFontSize,
-                          divisions: 6, // 0.8, 0.85, 0.9, 0.95, 1.0, 1.05, 1.1
+                          divisions: 7, // 0.7, 0.735, 0.77, 0.805, 0.84, 0.875, 0.91
                           label: fontSizeManager.fontSizeMultiplier.toStringAsFixed(2),
                           onChanged: (value) async {
                             await fontSizeManager.setFontSize(value);

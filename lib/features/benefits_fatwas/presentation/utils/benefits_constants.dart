@@ -25,7 +25,7 @@ class BenefitsConstants {
   static const String defaultVisitorCount = '0';
   static const String pageTitle = 'فوائد وفتاوى';
   static const String viewAllText = 'الكل';
-  static const String authorLabel = 'فضيلة الشيخ';
+  static const String authorLabel = 'الإمام الشيخ';
   
   // Error Messages
   static const String genericError = 'حدث خطأ أثناء تحميل البيانات';

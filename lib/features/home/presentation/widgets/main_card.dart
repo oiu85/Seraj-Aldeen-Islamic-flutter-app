@@ -12,6 +12,7 @@ class MainCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("the font size is========================================  ${14.f}");
     return InkWell(
       onTap: (){
         Get.toNamed(AppRoute.biography);
@@ -37,43 +38,42 @@ class MainCard extends StatelessWidget {
                   padding: EdgeInsets.only(top: 30.0.p, right: 12.p, left: 12.p),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
+                    mainAxisSize: MainAxisSize.max,
                     children: [
                       Text(
-                        "أهلاً بكم في تطبيق فضيلة الإمام الشيخ:",
+                        "أهلاً بكم في التطبيق الرسمي \nوالوحيد لللإمام الشيخ:",
                         style: TextStyle(
                           fontFamily: FontFamily.tajawal,
-                          fontSize: 18.f,
+                          fontSize: 20.f,
                           fontWeight: FontWeight.bold,
                           color: AppColors.white,
                         ),
                         softWrap: true,
                       ),
-                      SizedBox(height: 8.h),
                       Text(
-                        "عبدالله سراج الدين الحسيني",
+                        "عبدالله سراج الدين",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          fontSize: 16.f,
+                          fontSize: 20.f,
                           fontFamily: FontFamily.tajawal,
                           color: AppColors.white,
                         ),
                       ),
-                      SizedBox(height: 4.h,),
+                      SizedBox(height: 8.h,),
                       Text(
                         "رحمه الله ورضي عنه ",
                         style: TextStyle(
                           fontFamily: FontFamily.tajawal,
-                          fontSize: 13.f,
+                          fontSize: 18.f,
                           fontWeight: FontWeight.bold,
                           color: AppColors.white
                         ),
                       ),
-                      SizedBox(height: 4.h,),
+                      SizedBox(height: 12.h,),
                       Text(
-                        "1442-1342",
+                        " هــ 1442-1342",
                         style: TextStyle(
-                          fontSize: 14.f,
+                          fontSize: 16.f,
                           fontWeight: FontWeight.bold,
                           fontFamily: FontFamily.tajawal,
                           color: AppColors.white,
@@ -95,7 +95,7 @@ class MainCard extends StatelessWidget {
                           child: Row(
                             children: [
                               Text(
-                                "السيرة الذاتية",
+                                "تتعلق بالإمام",
                                 style: TextStyle(
                                   color: AppColors.primary,
                                   fontWeight: FontWeight.bold,
@@ -129,7 +129,7 @@ class MainCard extends StatelessWidget {
                     Assets.images.abdullahSerajAldeen.path,
                     fit: BoxFit.contain,
                     height: 158,
-                    width: 180,
+                    width: 158,
                   ),
                 ),
               ),
