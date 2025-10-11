@@ -45,75 +45,48 @@ class MainCard extends StatelessWidget {
                         style: TextStyle(
                           fontFamily: FontFamily.tajawal,
                           fontSize: 20.f,
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w400,
                           color: AppColors.white,
                         ),
                         softWrap: true,
                       ),
+                      SizedBox(height: 12.h,),
                       Text(
                         "عبدالله سراج الدين",
                         style: TextStyle(
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w700,
                           fontSize: 20.f,
                           fontFamily: FontFamily.tajawal,
                           color: AppColors.white,
                         ),
                       ),
-                      SizedBox(height: 8.h,),
+                      Container(
+                        width: 183.w,
+                        height: 2.h,
+                        decoration: BoxDecoration(
+                          color: AppColors.white.withAlpha(204),
+                        ),
+                      ),
+                      SizedBox(height: 11.h,),
                       Text(
                         "رحمه الله ورضي عنه ",
                         style: TextStyle(
                           fontFamily: FontFamily.tajawal,
                           fontSize: 18.f,
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w700,
                           color: AppColors.white
                         ),
                       ),
                       SizedBox(height: 12.h,),
                       Text(
-                        " هــ 1442-1342",
+                        "1442-1342 هــ",
                         style: TextStyle(
-                          fontSize: 16.f,
-                          fontWeight: FontWeight.bold,
+                          fontSize: 18.f,
+                          fontWeight: FontWeight.w400,
                           fontFamily: FontFamily.tajawal,
                           color: AppColors.white,
                         ),
                       ),
-                      Spacer(),
-                      InkWell(
-                        onTap: (){
-                          Get.toNamed(AppRoute.biography);
-                        },
-                        child: Container(
-                          height: 37.h,
-                          width: 130.w,
-                          padding: EdgeInsets.only(right: 7.p,left: 4),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(70.r),
-                            color: AppColors.white,
-                          ),
-                          child: Row(
-                            children: [
-                              Text(
-                                "تتعلق بالإمام",
-                                style: TextStyle(
-                                  color: AppColors.primary,
-                                  fontWeight: FontWeight.bold,
-                                  fontFamily: FontFamily.tajawal,
-                                  fontSize: 16.f,
-                                ),
-                              ),
-                              Spacer(),
-                                 Icon(
-                                  Icons.arrow_forward_outlined,
-                                  size: 24.p,
-                                  color: AppColors.primary,
-                                ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Spacer(),
                     ],
                   ),
                 ),
@@ -140,3 +113,38 @@ class MainCard extends StatelessWidget {
     );
   }
 }
+
+
+// InkWell(
+// onTap: (){
+// Get.toNamed(AppRoute.biography);
+// },
+// child: Container(
+// height: 37.h,
+// width: 130.w,
+// padding: EdgeInsets.only(right: 7.p,left: 4),
+// decoration: BoxDecoration(
+// borderRadius: BorderRadius.circular(70.r),
+// color: AppColors.white,
+// ),
+// child: Row(
+// children: [
+// Text(
+// "تتعلق بالإمام",
+// style: TextStyle(
+// color: AppColors.primary,
+// fontWeight: FontWeight.bold,
+// fontFamily: FontFamily.tajawal,
+// fontSize: 16.f,
+// ),
+// ),
+// Spacer(),
+// Icon(
+// Icons.arrow_forward_outlined,
+// size: 24.p,
+// color: AppColors.primary,
+// ),
+// ],
+// ),
+// ),
+// ),

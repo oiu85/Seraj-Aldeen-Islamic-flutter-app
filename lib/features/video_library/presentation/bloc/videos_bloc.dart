@@ -8,6 +8,11 @@ import 'videos_state.dart';
 class VideosBloc extends Bloc<VideosEvent, VideosState> {
   final VideoRepository _repository;
 
+  // List of video titles to skip/filter out
+  static const List<String> _excludedVideoTitles = [
+    'فيديو نعي الشيخ الإمام في التلفزيون السوري',
+  ];
+
   VideosBloc(this._repository) : super(const VideosState()) {
     on<LoadVideoMainCategoriesEvent>(_onLoadVideoMainCategories);
     on<LoadCategoryVideosEvent>(_onLoadCategoryVideos);
@@ -63,10 +68,17 @@ class VideosBloc extends Bloc<VideosEvent, VideosState> {
                 },
                 (contentResponse) {
                   final categoryInfo = contentResponse.data?.category;
-                  final videos = contentResponse.data?.content ?? [];
+                  final allVideos = contentResponse.data?.content ?? [];
+                  
+                  // Filter out excluded videos
+                  final videos = allVideos.where((video) {
+                    final title = video.title ?? '';
+                    return !_excludedVideoTitles.contains(title);
+                  }).toList();
+                  
                   final hasNextPage = contentResponse.data?.pagination?.hasNextPage ?? false;
 
-                  AppLogger.info('Loaded ${videos.length} videos for category $firstCategoryId');
+                  AppLogger.info('Loaded ${videos.length} videos for category $firstCategoryId (${allVideos.length - videos.length} filtered)');
                   
                   emit(state.copyWith(
                     status: const BlocStatus.success(),
@@ -132,10 +144,17 @@ class VideosBloc extends Bloc<VideosEvent, VideosState> {
         },
         (response) {
           final categoryInfo = response.data?.category;
-          final newVideos = response.data?.content ?? [];
+          final allNewVideos = response.data?.content ?? [];
+          
+          // Filter out excluded videos
+          final newVideos = allNewVideos.where((video) {
+            final title = video.title ?? '';
+            return !_excludedVideoTitles.contains(title);
+          }).toList();
+          
           final hasNextPage = response.data?.pagination?.hasNextPage ?? false;
 
-          AppLogger.info('Loaded ${newVideos.length} videos for category ${event.categoryId}');
+          AppLogger.info('Loaded ${newVideos.length} videos for category ${event.categoryId} (${allNewVideos.length - newVideos.length} filtered)');
 
           final updatedVideos = isLoadingMore
               ? [...state.categoryVideos, ...newVideos]

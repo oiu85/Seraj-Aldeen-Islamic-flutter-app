@@ -7,6 +7,7 @@ class Assets {
   static const String amiriAmiriItalic = 'assets/fonts/Amiri/Amiri-Italic.ttf';
   static const String amiriAmiriRegular = 'assets/fonts/Amiri/Amiri-Regular.ttf';
   static const String amiriOFL = 'assets/fonts/Amiri/OFL.txt';
+  static const String iconsAppIcon48 = 'assets/icons/app_icon48.png';
   static const String imagesAbdullahSerajAldeen = 'assets/images/abdullah_seraj_aldeen.png';
   static const String imagesAppbarImageLeft = 'assets/images/appbar_image_left.png';
   static const String imagesAppbarImageRight = 'assets/images/appbar_image_right.png';
@@ -29,6 +30,7 @@ class Assets {
   static const String lottieNoInternet = 'assets/lottie/NoInternet.json';
   static const String lottieNotFound = 'assets/lottie/NotFound.json';
   static const String lottieTimeout = 'assets/lottie/Timeout.json';
+  static const String svgBiobgrphy = 'assets/svg/biobgrphy.svg';
   static const String svgBook = 'assets/svg/book.svg';
   static const String svgBooks = 'assets/svg/books.svg';
   static const String svgDocument = 'assets/svg/document.svg';

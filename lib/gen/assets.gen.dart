@@ -115,6 +115,9 @@ class $AssetsLottieGen {
 class $AssetsSvgGen {
   const $AssetsSvgGen();
 
+  /// File path: assets/svg/biobgrphy.svg
+  SvgGenImage get biobgrphy => const SvgGenImage('assets/svg/biobgrphy.svg');
+
   /// File path: assets/svg/book.svg
   SvgGenImage get book => const SvgGenImage('assets/svg/book.svg');
 
@@ -165,6 +168,7 @@ class $AssetsSvgGen {
 
   /// List of all assets
   List<SvgGenImage> get values => [
+        biobgrphy,
         book,
         books,
         document,

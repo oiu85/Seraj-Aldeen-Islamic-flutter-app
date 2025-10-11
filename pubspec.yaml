@@ -171,3 +171,10 @@ launcher_name:
   default: "Seraj Aldean"
   ar: "الشيخ عبدالله سراج الدين رحمه الله"
 
+
+
+flutter_icons:
+  android: true
+  ios: true
+  remove_alpha_ios: true
+  image_path: "assets/icons/app_icon48.png"

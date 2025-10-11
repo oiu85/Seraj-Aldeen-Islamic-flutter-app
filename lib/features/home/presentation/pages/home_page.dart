@@ -27,8 +27,7 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage>
-    with TickerProviderStateMixin {
+class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   int _selectedIndex = 0;
   late PageController _pageController;
   late final HomeBloc _homeBloc;
@@ -39,10 +38,10 @@ class _HomePageState extends State<HomePage>
   void initState() {
     super.initState();
     _pageController = PageController(initialPage: _selectedIndex);
-    
+
     // Create HomeBloc once and keep it alive for the entire app lifecycle
     _homeBloc = getIt<HomeBloc>()..add(const LoadMenusEvent());
-    
+
     // Initialize pages after bloc creation
     _pages = [
       const HomeContent(key: ValueKey('home')),
@@ -172,7 +171,7 @@ class _HomeContentViewState extends State<_HomeContentView> {
 
   Widget _buildAnimatedMainCard() {
     Widget card = MainCard();
-    
+
     return card
         .animate()
         .fadeIn(
@@ -205,7 +204,7 @@ class _HomeContentViewState extends State<_HomeContentView> {
         fontSize: 23.f,
       ),
     );
-    
+
     return title
         .animate()
         .fadeIn(
@@ -226,6 +225,10 @@ class _HomeContentViewState extends State<_HomeContentView> {
     // Menu configuration for icons and routes
     final Map<String, Map<String, dynamic>> menuConfig = {
 
+        "السيرة الذاتية":{
+          'assetPath': Assets.svg.biobgrphy.path,
+          'onTap': () =>  Get.toNamed(AppRoute.biography),
+        },
       "كُتُب الإمام": {
         'assetPath': Assets.svg.book.path,
         'onTap': () => Get.toNamed(AppRoute.booksPage),
@@ -251,26 +254,26 @@ class _HomeContentViewState extends State<_HomeContentView> {
     // Menus to exclude from display // Skip
     final excludedMenus = {
       'الرئيسية',
-      'السيرة الذاتية',
       'الكتب والمؤلفات',
       'تواصل معنا',
     };
 
     // Use all API menus except excluded ones
     final List<Map<String, dynamic>> filteredMenus = [];
-    
+
     for (var menu in menus) {
       final menuName = menu.menusName ?? '';
-      
+
       // Skip excluded menus
       if (excludedMenus.contains(menuName)) {
         continue;
       }
-      
+
       // Use API menu with config if available, otherwise use default icon
       filteredMenus.add({
         'title': menuName,
-        'assetPath': menuConfig[menuName]?['assetPath'] ?? Assets.svg.document.path,
+        'assetPath':
+            menuConfig[menuName]?['assetPath'] ?? Assets.svg.document.path,
         'onTap': menuConfig[menuName]?['onTap'] ?? () {},
       });
     }
@@ -279,13 +282,13 @@ class _HomeContentViewState extends State<_HomeContentView> {
       children: filteredMenus.asMap().entries.map((entry) {
         final index = entry.key;
         final item = entry.value;
-        
+
         Widget listTile = buildListTile(
           title: item['title'],
           assetPath: item['assetPath'],
           onTap: item['onTap'],
         );
-        
+
         return listTile
             .animate()
             .fadeIn(
@@ -312,7 +315,6 @@ class _HomeContentViewState extends State<_HomeContentView> {
   }
 }
 
-
 Widget buildListTile({
   required String title,
   required String assetPath,
@@ -321,13 +323,13 @@ Widget buildListTile({
   return Container(
     height: 83.h,
     margin: EdgeInsets.only(bottom: 20.p, right: 10.p, left: 10.p),
-      decoration: BoxDecoration(
-        color: AppColors.cardBackground,
-        borderRadius: BorderRadius.circular(20.r),
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.black.withOpacity(0.08),
-            blurRadius: 8,
+    decoration: BoxDecoration(
+      color: AppColors.cardBackground,
+      borderRadius: BorderRadius.circular(20.r),
+      boxShadow: [
+        BoxShadow(
+          color: AppColors.black.withOpacity(0.08),
+          blurRadius: 8,
           spreadRadius: 0.2,
           offset: const Offset(0, 0.5),
         ),
