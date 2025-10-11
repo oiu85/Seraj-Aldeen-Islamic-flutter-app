@@ -8,5 +8,6 @@ class AppRoute{
   static const String gallery ="/gallery";
   static const String booksPage ="/booksPage";
   static const String contacUs ="/contacUs";
+  static const String aboutApp ="/aboutApp";
 
 }

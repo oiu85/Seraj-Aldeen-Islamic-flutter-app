@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:seraj_aldean_flutter_app/core/responsive/screen_util_res.dart';
 import 'package:seraj_aldean_flutter_app/core/routes.dart';
+import 'package:seraj_aldean_flutter_app/features/settings/presentation/widgets/download_path_widget.dart';
 import 'package:seraj_aldean_flutter_app/features/settings/presentation/widgets/font_size_toggle_widget.dart';
 import 'package:seraj_aldean_flutter_app/features/settings/presentation/widgets/theme_toggle_widget.dart';
 import '../../../../config/appconfig/app_colors.dart';
@@ -57,8 +58,16 @@ class SettingsPage extends StatelessWidget {
                     icon: Icons.info,
                     title: "حول التطبيق",
                     subtitle: "معلومات التطبيق",
-                    onTap: () {},
+                    onTap: () {
+                      Get.toNamed(AppRoute.aboutApp);
+                    },
                   ),
+                  
+                  SizedBox(height: 10.h),
+                  
+                  // Download Path Widget
+                  const DownloadPathWidget(),
+                  
                   SizedBox(height: 40.h),
                   Center(
                     child: CloseAppButton(
