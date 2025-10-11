@@ -245,3 +245,5 @@ class SearchResultCard extends StatelessWidget {
   }
 }
 
+
+

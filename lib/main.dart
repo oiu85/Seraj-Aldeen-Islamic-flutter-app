@@ -6,7 +6,9 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:provider/provider.dart';
 import 'package:seraj_aldean_flutter_app/config/appconfig/app_colors.dart';
 import 'package:seraj_aldean_flutter_app/core/di/app_dependencies.dart';
+import 'package:seraj_aldean_flutter_app/core/responsive/screen_util_res.dart';
 import 'package:seraj_aldean_flutter_app/core/shared/widgets/close_app_button.dart';
+import 'package:seraj_aldean_flutter_app/core/theme/font_size_manager.dart';
 import 'package:seraj_aldean_flutter_app/core/theme/theme_manager.dart';
 import 'package:seraj_aldean_flutter_app/features/home/presentation/pages/home_page.dart';
 import 'package:seraj_aldean_flutter_app/routes.dart';
@@ -17,11 +19,17 @@ void main() async {
   //? Initialize dependencies
   setupAppDependencies();
 
+  //? Initialize ScreenUtilRes to load font size
+  await ScreenUtilRes.initialize();
+
   await SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
 
   runApp(
-    ChangeNotifierProvider(
-      create: (_) => ThemeManager(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => ThemeManager()),
+        ChangeNotifierProvider(create: (_) => FontSizeManager()),
+      ],
       child: const MyApp(),
     ),
   );
@@ -39,14 +47,14 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
 
-    return Consumer<ThemeManager>(
-      builder: (context, themeManager, _) {
+    return Consumer2<ThemeManager, FontSizeManager>(
+      builder: (context, themeManager, fontSizeManager, _) {
         // Update AppColors when theme changes
         AppColors.setDarkMode(themeManager.isDarkMode);
 
-        //? Note:  Use key to force complete rebuild on theme change
+        //? Note: Use key to force complete rebuild on theme or font size change
         return ScreenUtilInit(
-          key: ValueKey(themeManager.isDarkMode),
+          key: ValueKey('${themeManager.isDarkMode}_${fontSizeManager.fontSizeMultiplier}'),
           designSize: const Size(390, 814), //* iphone X Size
           minTextAdapt: true,
           splitScreenMode: true,

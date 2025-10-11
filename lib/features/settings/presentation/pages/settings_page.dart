@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:seraj_aldean_flutter_app/core/responsive/screen_util_res.dart';
 import 'package:seraj_aldean_flutter_app/core/routes.dart';
+import 'package:seraj_aldean_flutter_app/features/settings/presentation/widgets/font_size_toggle_widget.dart';
 import 'package:seraj_aldean_flutter_app/features/settings/presentation/widgets/theme_toggle_widget.dart';
 import '../../../../config/appconfig/app_colors.dart';
 import '../../../../core/shared/widgets/app_scaffold.dart';
@@ -37,6 +38,10 @@ class SettingsPage extends StatelessWidget {
                 children: [
                   // Dark Theme Toggle
                   const ThemeToggleWidget(),
+                  SizedBox(height: 10.h),
+
+                  // Font Size Toggle
+                  const FontSizeToggleWidget(),
                   SizedBox(height: 10.h),
 
                   _buildSettingsItem(

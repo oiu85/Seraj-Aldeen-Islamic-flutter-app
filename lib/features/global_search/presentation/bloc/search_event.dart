@@ -8,3 +8,5 @@ class PerformSearchEvent extends SearchEvent {
 
 class ClearSearchEvent extends SearchEvent {}
 
+
+
