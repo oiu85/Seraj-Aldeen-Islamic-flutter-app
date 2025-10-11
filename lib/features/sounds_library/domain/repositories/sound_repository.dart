@@ -8,4 +8,5 @@ abstract class SoundRepository {
     required int page,
     required int perPage,
   });
+  Future<Either<Exception, AudioBookSubcategoriesResponse>> getAudioBookSubcategories();
 }

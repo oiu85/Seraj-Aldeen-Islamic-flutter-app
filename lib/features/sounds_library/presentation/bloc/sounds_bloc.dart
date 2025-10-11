@@ -17,6 +17,7 @@ class SoundsBloc extends Bloc<SoundsEvent, SoundsState> {
   SoundsBloc({required this.soundRepository}) 
       : super(SoundsState(status: BlocStatus.initial())) {
     on<LoadSoundCategoriesEvent>(_onLoadSoundCategories);
+    on<LoadAudioBooksEvent>(_onLoadAudioBooks);
     on<LoadCategoryContentEvent>(_onLoadCategoryContent);
     on<InitializeAudioPlayerEvent>(_onInitializeAudioPlayer);
     on<TogglePlayPauseEvent>(_onTogglePlayPause);
@@ -126,6 +127,50 @@ class SoundsBloc extends Bloc<SoundsEvent, SoundsState> {
     if (!emit.isDone && state.status.isLoading()) {
       emit(state.copyWith(
         status: BlocStatus.fail(error: 'حدث خطأ غير متوقع'),
+      ));
+    }
+  }
+
+  Future<void> _onLoadAudioBooks(
+    LoadAudioBooksEvent event,
+    Emitter<SoundsState> emit,
+  ) async {
+    try {
+      AppLogger.info('Loading audio book subcategories');
+      emit(state.copyWith(audioBookStatus: BlocStatus.loading()));
+
+      final result = await soundRepository.getAudioBookSubcategories();
+
+      result.fold(
+        (exception) {
+          AppLogger.error('Failed to load audio books: $exception');
+          emit(state.copyWith(
+            audioBookStatus: BlocStatus.fail(error: exception.toString()),
+          ));
+        },
+        (response) {
+          if (response.success == true && response.data != null) {
+            final parentCategory = response.data!.parentCategory;
+            final subcategories = response.data!.subcategories ?? [];
+            
+            AppLogger.info('Loaded ${subcategories.length} audio book subcategories');
+            
+            emit(state.copyWith(
+              audioBookStatus: BlocStatus.success(),
+              audioBookParentCategory: parentCategory,
+              audioBookSubcategories: subcategories,
+            ));
+          } else {
+            emit(state.copyWith(
+              audioBookStatus: BlocStatus.fail(error: 'Invalid response'),
+            ));
+          }
+        },
+      );
+    } catch (e) {
+      AppLogger.error('Unexpected error loading audio books: $e');
+      emit(state.copyWith(
+        audioBookStatus: BlocStatus.fail(error: 'حدث خطأ غير متوقع'),
       ));
     }
   }

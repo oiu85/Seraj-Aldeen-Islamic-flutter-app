@@ -51,6 +51,11 @@ class SoundsState extends Equatable {
   final bool hasNextPage;
   final int currentPage;
   
+  // Audio Books
+  final BlocStatus audioBookStatus;
+  final CategoryInfo? audioBookParentCategory;
+  final List<AudioBookSubcategory> audioBookSubcategories;
+  
   // Audio player states - map of soundId to player state
   final Map<String, AudioPlayerState> audioPlayerStates;
 
@@ -62,6 +67,9 @@ class SoundsState extends Equatable {
     this.categoryContent = const [],
     this.hasNextPage = false,
     this.currentPage = 1,
+    this.audioBookStatus = const BlocStatus.initial(),
+    this.audioBookParentCategory,
+    this.audioBookSubcategories = const [],
     this.audioPlayerStates = const {},
   });
 
@@ -73,6 +81,9 @@ class SoundsState extends Equatable {
     List<SoundItem>? categoryContent,
     bool? hasNextPage,
     int? currentPage,
+    BlocStatus? audioBookStatus,
+    CategoryInfo? audioBookParentCategory,
+    List<AudioBookSubcategory>? audioBookSubcategories,
     Map<String, AudioPlayerState>? audioPlayerStates,
   }) {
     return SoundsState(
@@ -83,6 +94,9 @@ class SoundsState extends Equatable {
       categoryContent: categoryContent ?? this.categoryContent,
       hasNextPage: hasNextPage ?? this.hasNextPage,
       currentPage: currentPage ?? this.currentPage,
+      audioBookStatus: audioBookStatus ?? this.audioBookStatus,
+      audioBookParentCategory: audioBookParentCategory ?? this.audioBookParentCategory,
+      audioBookSubcategories: audioBookSubcategories ?? this.audioBookSubcategories,
       audioPlayerStates: audioPlayerStates ?? this.audioPlayerStates,
     );
   }
@@ -101,6 +115,9 @@ class SoundsState extends Equatable {
     categoryContent, 
     hasNextPage, 
     currentPage,
+    audioBookStatus,
+    audioBookParentCategory,
+    audioBookSubcategories,
     audioPlayerStates,
   ];
 

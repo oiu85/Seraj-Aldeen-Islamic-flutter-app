@@ -235,3 +235,71 @@ Map<String, dynamic> _$ContentPaginationToJson(_ContentPagination instance) =>
       'next_page': instance.nextPage,
       'previous_page': instance.previousPage,
     };
+
+_AudioBookSubcategoriesResponse _$AudioBookSubcategoriesResponseFromJson(
+        Map<String, dynamic> json) =>
+    _AudioBookSubcategoriesResponse(
+      success: json['success'] as bool?,
+      data: json['data'] == null
+          ? null
+          : AudioBookSubcategoriesData.fromJson(
+              json['data'] as Map<String, dynamic>),
+      message: json['message'] as String?,
+    );
+
+Map<String, dynamic> _$AudioBookSubcategoriesResponseToJson(
+        _AudioBookSubcategoriesResponse instance) =>
+    <String, dynamic>{
+      'success': instance.success,
+      'data': instance.data,
+      'message': instance.message,
+    };
+
+_AudioBookSubcategoriesData _$AudioBookSubcategoriesDataFromJson(
+        Map<String, dynamic> json) =>
+    _AudioBookSubcategoriesData(
+      parentCategory: json['parent_category'] == null
+          ? null
+          : CategoryInfo.fromJson(
+              json['parent_category'] as Map<String, dynamic>),
+      subcategories: (json['subcategories'] as List<dynamic>?)
+          ?.map((e) => AudioBookSubcategory.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$AudioBookSubcategoriesDataToJson(
+        _AudioBookSubcategoriesData instance) =>
+    <String, dynamic>{
+      'parent_category': instance.parentCategory,
+      'subcategories': instance.subcategories,
+    };
+
+_AudioBookSubcategory _$AudioBookSubcategoryFromJson(
+        Map<String, dynamic> json) =>
+    _AudioBookSubcategory(
+      id: _stringToInt(json['id']),
+      title: json['title'] as String?,
+      note: json['note'] as String?,
+      position: json['position'] as String?,
+      language: json['language'] as String?,
+      date: json['date'] as String?,
+      parentId: json['parent_id'] as String?,
+      showInMenu: _stringToBool(json['show_in_menu']),
+      showInMain: _stringToBool(json['show_in_main']),
+      contentCount: _stringToInt(json['content_count']),
+    );
+
+Map<String, dynamic> _$AudioBookSubcategoryToJson(
+        _AudioBookSubcategory instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'title': instance.title,
+      'note': instance.note,
+      'position': instance.position,
+      'language': instance.language,
+      'date': instance.date,
+      'parent_id': instance.parentId,
+      'show_in_menu': instance.showInMenu,
+      'show_in_main': instance.showInMain,
+      'content_count': instance.contentCount,
+    };

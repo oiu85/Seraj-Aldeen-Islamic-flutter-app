@@ -94,4 +94,40 @@ class SoundRepositoryImpl implements SoundRepository {
   bool _isValidCategoryContentResponse(CategoryContentResponse response) {
     return response.success == true && response.data != null;
   }
+
+  @override
+  Future<Either<Exception, AudioBookSubcategoriesResponse>> getAudioBookSubcategories() async {
+    try {
+      const audioBookCategoryId = 42; // Static ID for audio books category
+      AppLogger.info('Fetching audio book subcategories for category $audioBookCategoryId');
+      
+      final endpoint = '/categories/sounds/$audioBookCategoryId/subcategories';
+      final response = await networkClient.get(endpoint);
+      
+      if (response.statusCode == 200 && response.data != null) {
+        final audioBookResponse = AudioBookSubcategoriesResponse.fromJson(response.data);
+        
+        if (_isValidAudioBookResponse(audioBookResponse)) {
+          AppLogger.info('Audio book subcategories fetched successfully');
+          return Right(audioBookResponse);
+        } else {
+          AppLogger.error('Invalid audio book response structure');
+          return Left(Exception('Invalid response structure'));
+        }
+      } else {
+        AppLogger.error('HTTP error ${response.statusCode}');
+        return Left(Exception('HTTP error ${response.statusCode}'));
+      }
+    } on DioException catch (e) {
+      AppLogger.apiError('DioException in getAudioBookSubcategories', e);
+      return Left(Exception(e.message ?? 'Network error'));
+    } catch (e) {
+      AppLogger.error('Unexpected error in getAudioBookSubcategories: $e');
+      return Left(Exception('Parse error: $e'));
+    }
+  }
+  
+  bool _isValidAudioBookResponse(AudioBookSubcategoriesResponse response) {
+    return response.success == true && response.data != null;
+  }
 }

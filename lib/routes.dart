@@ -6,6 +6,10 @@ import 'package:seraj_aldean_flutter_app/features/books_library/presentation/pag
 import 'package:seraj_aldean_flutter_app/features/home/presentation/pages/home_page.dart';
 import 'package:seraj_aldean_flutter_app/features/image_galary/presentation/pages/gallery.dart';
 import 'package:seraj_aldean_flutter_app/features/settings/presentation/pages/about_app_page.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:seraj_aldean_flutter_app/core/di/app_dependencies.dart';
+import 'package:seraj_aldean_flutter_app/features/sounds_library/presentation/bloc/sounds_bloc.dart';
+import 'package:seraj_aldean_flutter_app/features/sounds_library/presentation/pages/audio_book_sounds_page.dart';
 import 'package:seraj_aldean_flutter_app/features/sounds_library/presentation/pages/sounds_page.dart';
 import 'package:seraj_aldean_flutter_app/features/video_library/presentation/pages/player_page.dart';
 import 'core/routes.dart';
@@ -20,6 +24,13 @@ List<GetPage<dynamic>>? routes=[
   GetPage(name: AppRoute.benefits, page: ()=> const BenefitsPage()),
  GetPage(name: AppRoute.sounds, page: ()=> const SoundsPage()),
  GetPage(name: AppRoute.subSounds, page: ()=> const SubCategorySounds()),
+ GetPage(
+   name: AppRoute.audioBookSounds, 
+   page: () => BlocProvider(
+     create: (context) => getIt<SoundsBloc>(),
+     child: const AudioBookSoundsPage(),
+   ),
+ ),
  GetPage(name: AppRoute.videos, page: ()=> const VideoPage()),
  GetPage(
    name: AppRoute.player, 

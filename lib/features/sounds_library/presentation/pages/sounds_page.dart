@@ -9,7 +9,9 @@ import 'package:seraj_aldean_flutter_app/core/shared/widgets/app_scaffold.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../../../../core/shared/widgets/decoration_app_bar.dart';
 import '../../../../core/shared/widgets/ui_status_handling.dart';
+import '../../../../gen/assets.gen.dart';
 import '../../../../gen/fonts.gen.dart';
+import '../../../books_library/presentation/widgets/book_card.dart';
 import '../bloc/sounds_bloc.dart';
 import '../bloc/sounds_event.dart';
 import '../bloc/sounds_state.dart';
@@ -39,6 +41,15 @@ class _SoundsPageContent extends StatefulWidget {
 
 class _SoundsPageContentState extends State<_SoundsPageContent> {
   int selectedTabIndex = 0; // 0 for الصوتيات, 1 for الكتب الصوتية
+
+  void _handleTabChange(int newIndex) {
+    setState(() => selectedTabIndex = newIndex);
+    
+    // Load audio books when switching to audio books tab
+    if (newIndex == 1) {
+      context.read<SoundsBloc>().add(LoadAudioBooksEvent());
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +85,7 @@ class _SoundsPageContentState extends State<_SoundsPageContent> {
               child: Row(
                 children: [
                   GestureDetector(
-                    onTap: () => setState(() => selectedTabIndex = 0),
+                    onTap: () => _handleTabChange(0),
                     child: Container(
                       padding:
                           EdgeInsets.symmetric(horizontal: 7.p, vertical: 5.p),
@@ -99,7 +110,7 @@ class _SoundsPageContentState extends State<_SoundsPageContent> {
                     ),
                   ),
                   GestureDetector(
-                    onTap: () => setState(() => selectedTabIndex = 1),
+                    onTap: () => _handleTabChange(1),
                     child: Container(
                       padding:
                           EdgeInsets.symmetric(horizontal: 7.p, vertical: 5.p),
@@ -217,7 +228,8 @@ class _SoundsPageContentState extends State<_SoundsPageContent> {
                                           soundItem: item,
                                           categoryTitle: category.title,
                                         ),
-                                        if (itemEntry.key < previewItems.length - 1)
+                                        if (itemEntry.key <
+                                            previewItems.length - 1)
                                           SizedBox(width: 12.w),
                                       ];
                                     }).expand((element) => element),
@@ -247,15 +259,105 @@ class _SoundsPageContentState extends State<_SoundsPageContent> {
   }
 
   Widget _buildAudioBooksContent() {
-    // TODO: Implement audio books content from API
-    return Center(
-      child: Text(
-        'الكتب الصوتية',
-        style: TextStyle(
-          fontSize: 18.f,
-          fontFamily: FontFamily.tajawal,
-        ),
-      ),
+    return BlocBuilder<SoundsBloc, SoundsState>(
+      builder: (context, state) {
+        if (state.audioBookStatus.isLoading()) {
+          return SimpleLottieHandler(
+            blocStatus: state.audioBookStatus,
+            successWidget: const SizedBox.shrink(),
+            loadingMessage: 'جاري تحميل الكتب الصوتية...',
+          );
+        }
+
+        if (state.audioBookStatus.isFail()) {
+          return SimpleLottieHandler(
+            blocStatus: state.audioBookStatus,
+            successWidget: const SizedBox.shrink(),
+            onRetry: () {
+              context.read<SoundsBloc>().add(LoadAudioBooksEvent());
+            },
+          );
+        }
+
+        if (state.audioBookStatus.isSuccess() &&
+            state.audioBookSubcategories.isNotEmpty) {
+          return SingleChildScrollView(
+            child: Column(
+              children: [
+                // Parent Category Title
+                if (state.audioBookParentCategory != null)
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20.p, vertical: 8.p),
+                    child: Text(
+                      state.audioBookParentCategory!.title ?? '',
+                      style: TextStyle(
+                        fontSize: 18.f,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: FontFamily.tajawal,
+                        color: AppColors.textPrimary,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                SizedBox(height: 12.h),
+                
+                // Grid of Audio Book Cards
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 12.w),
+                  child: GridView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: 0.55,
+                      crossAxisSpacing: 1.w,
+                      mainAxisSpacing: 1.h,
+                    ),
+                    itemCount: state.audioBookSubcategories.length,
+                    itemBuilder: (context, index) {
+                      final book = state.audioBookSubcategories[index];
+                      return bookCardBuild(
+                        context: context,
+                        book: book.title ?? '',
+                        viewCont: book.contentCount?.toString() ?? '0',
+                        title: book.title ?? '',
+                        imageNamePath: '',
+                        width: double.infinity,
+                        height: double.infinity,
+                        bookImagePath: Assets.images.bookColored.path,
+                        isSoundBook: true,
+                        isLoading: false,
+                        onTap: () {
+                          if (book.id != null) {
+                            Get.toNamed(
+                              AppRoute.audioBookSounds,
+                              arguments: {
+                                'categoryId': book.id,
+                                'bookTitle': book.title ?? '',
+                              },
+                            );
+                          }
+                        },
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+          );
+        }
+
+        return Center(
+          child: Text(
+            'لا توجد كتب صوتية',
+            style: TextStyle(
+              fontSize: 16.f,
+              fontFamily: FontFamily.tajawal,
+              color: AppColors.textSecondary,
+            ),
+          ),
+        );
+      },
     );
   }
 

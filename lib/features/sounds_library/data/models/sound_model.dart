@@ -173,3 +173,46 @@ abstract class ContentPagination with _$ContentPagination {
   factory ContentPagination.fromJson(Map<String, dynamic> json) =>
       _$ContentPaginationFromJson(json);
 }
+
+// Audio Book Subcategories Models
+@freezed
+abstract class AudioBookSubcategoriesResponse with _$AudioBookSubcategoriesResponse {
+  const factory AudioBookSubcategoriesResponse({
+    bool? success,
+    AudioBookSubcategoriesData? data,
+    String? message,
+  }) = _AudioBookSubcategoriesResponse;
+
+  factory AudioBookSubcategoriesResponse.fromJson(Map<String, dynamic> json) =>
+      _$AudioBookSubcategoriesResponseFromJson(json);
+}
+
+@freezed
+abstract class AudioBookSubcategoriesData with _$AudioBookSubcategoriesData {
+  const factory AudioBookSubcategoriesData({
+    @JsonKey(name: 'parent_category') CategoryInfo? parentCategory,
+    List<AudioBookSubcategory>? subcategories,
+  }) = _AudioBookSubcategoriesData;
+
+  factory AudioBookSubcategoriesData.fromJson(Map<String, dynamic> json) =>
+      _$AudioBookSubcategoriesDataFromJson(json);
+}
+
+@freezed
+abstract class AudioBookSubcategory with _$AudioBookSubcategory {
+  const factory AudioBookSubcategory({
+    @JsonKey(fromJson: _stringToInt) int? id,
+    String? title,
+    String? note,
+    String? position,
+    String? language,
+    String? date,
+    @JsonKey(name: 'parent_id') String? parentId,
+    @JsonKey(name: 'show_in_menu', fromJson: _stringToBool) bool? showInMenu,
+    @JsonKey(name: 'show_in_main', fromJson: _stringToBool) bool? showInMain,
+    @JsonKey(name: 'content_count', fromJson: _stringToInt) int? contentCount,
+  }) = _AudioBookSubcategory;
+
+  factory AudioBookSubcategory.fromJson(Map<String, dynamic> json) =>
+      _$AudioBookSubcategoryFromJson(json);
+}

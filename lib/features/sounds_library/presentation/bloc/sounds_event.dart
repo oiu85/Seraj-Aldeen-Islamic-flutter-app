@@ -2,6 +2,8 @@ abstract class SoundsEvent {}
 
 class LoadSoundCategoriesEvent extends SoundsEvent {}
 
+class LoadAudioBooksEvent extends SoundsEvent {}
+
 class LoadCategoryContentEvent extends SoundsEvent {
   final int categoryId;
   final int page;

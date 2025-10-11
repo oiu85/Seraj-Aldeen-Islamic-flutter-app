@@ -4758,4 +4758,1330 @@ class __$ContentPaginationCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
+mixin _$AudioBookSubcategoriesResponse {
+  bool? get success;
+  AudioBookSubcategoriesData? get data;
+  String? get message;
+
+  /// Create a copy of AudioBookSubcategoriesResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $AudioBookSubcategoriesResponseCopyWith<AudioBookSubcategoriesResponse>
+      get copyWith => _$AudioBookSubcategoriesResponseCopyWithImpl<
+              AudioBookSubcategoriesResponse>(
+          this as AudioBookSubcategoriesResponse, _$identity);
+
+  /// Serializes this AudioBookSubcategoriesResponse to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is AudioBookSubcategoriesResponse &&
+            (identical(other.success, success) || other.success == success) &&
+            (identical(other.data, data) || other.data == data) &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, success, data, message);
+
+  @override
+  String toString() {
+    return 'AudioBookSubcategoriesResponse(success: $success, data: $data, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $AudioBookSubcategoriesResponseCopyWith<$Res> {
+  factory $AudioBookSubcategoriesResponseCopyWith(
+          AudioBookSubcategoriesResponse value,
+          $Res Function(AudioBookSubcategoriesResponse) _then) =
+      _$AudioBookSubcategoriesResponseCopyWithImpl;
+  @useResult
+  $Res call({bool? success, AudioBookSubcategoriesData? data, String? message});
+
+  $AudioBookSubcategoriesDataCopyWith<$Res>? get data;
+}
+
+/// @nodoc
+class _$AudioBookSubcategoriesResponseCopyWithImpl<$Res>
+    implements $AudioBookSubcategoriesResponseCopyWith<$Res> {
+  _$AudioBookSubcategoriesResponseCopyWithImpl(this._self, this._then);
+
+  final AudioBookSubcategoriesResponse _self;
+  final $Res Function(AudioBookSubcategoriesResponse) _then;
+
+  /// Create a copy of AudioBookSubcategoriesResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? success = freezed,
+    Object? data = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(_self.copyWith(
+      success: freezed == success
+          ? _self.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      data: freezed == data
+          ? _self.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as AudioBookSubcategoriesData?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+
+  /// Create a copy of AudioBookSubcategoriesResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $AudioBookSubcategoriesDataCopyWith<$Res>? get data {
+    if (_self.data == null) {
+      return null;
+    }
+
+    return $AudioBookSubcategoriesDataCopyWith<$Res>(_self.data!, (value) {
+      return _then(_self.copyWith(data: value));
+    });
+  }
+}
+
+/// Adds pattern-matching-related methods to [AudioBookSubcategoriesResponse].
+extension AudioBookSubcategoriesResponsePatterns
+    on AudioBookSubcategoriesResponse {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_AudioBookSubcategoriesResponse value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _AudioBookSubcategoriesResponse() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_AudioBookSubcategoriesResponse value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _AudioBookSubcategoriesResponse():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_AudioBookSubcategoriesResponse value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _AudioBookSubcategoriesResponse() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            bool? success, AudioBookSubcategoriesData? data, String? message)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _AudioBookSubcategoriesResponse() when $default != null:
+        return $default(_that.success, _that.data, _that.message);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            bool? success, AudioBookSubcategoriesData? data, String? message)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _AudioBookSubcategoriesResponse():
+        return $default(_that.success, _that.data, _that.message);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            bool? success, AudioBookSubcategoriesData? data, String? message)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _AudioBookSubcategoriesResponse() when $default != null:
+        return $default(_that.success, _that.data, _that.message);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _AudioBookSubcategoriesResponse
+    implements AudioBookSubcategoriesResponse {
+  const _AudioBookSubcategoriesResponse(
+      {this.success, this.data, this.message});
+  factory _AudioBookSubcategoriesResponse.fromJson(Map<String, dynamic> json) =>
+      _$AudioBookSubcategoriesResponseFromJson(json);
+
+  @override
+  final bool? success;
+  @override
+  final AudioBookSubcategoriesData? data;
+  @override
+  final String? message;
+
+  /// Create a copy of AudioBookSubcategoriesResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$AudioBookSubcategoriesResponseCopyWith<_AudioBookSubcategoriesResponse>
+      get copyWith => __$AudioBookSubcategoriesResponseCopyWithImpl<
+          _AudioBookSubcategoriesResponse>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$AudioBookSubcategoriesResponseToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _AudioBookSubcategoriesResponse &&
+            (identical(other.success, success) || other.success == success) &&
+            (identical(other.data, data) || other.data == data) &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, success, data, message);
+
+  @override
+  String toString() {
+    return 'AudioBookSubcategoriesResponse(success: $success, data: $data, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$AudioBookSubcategoriesResponseCopyWith<$Res>
+    implements $AudioBookSubcategoriesResponseCopyWith<$Res> {
+  factory _$AudioBookSubcategoriesResponseCopyWith(
+          _AudioBookSubcategoriesResponse value,
+          $Res Function(_AudioBookSubcategoriesResponse) _then) =
+      __$AudioBookSubcategoriesResponseCopyWithImpl;
+  @override
+  @useResult
+  $Res call({bool? success, AudioBookSubcategoriesData? data, String? message});
+
+  @override
+  $AudioBookSubcategoriesDataCopyWith<$Res>? get data;
+}
+
+/// @nodoc
+class __$AudioBookSubcategoriesResponseCopyWithImpl<$Res>
+    implements _$AudioBookSubcategoriesResponseCopyWith<$Res> {
+  __$AudioBookSubcategoriesResponseCopyWithImpl(this._self, this._then);
+
+  final _AudioBookSubcategoriesResponse _self;
+  final $Res Function(_AudioBookSubcategoriesResponse) _then;
+
+  /// Create a copy of AudioBookSubcategoriesResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? success = freezed,
+    Object? data = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(_AudioBookSubcategoriesResponse(
+      success: freezed == success
+          ? _self.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      data: freezed == data
+          ? _self.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as AudioBookSubcategoriesData?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+
+  /// Create a copy of AudioBookSubcategoriesResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $AudioBookSubcategoriesDataCopyWith<$Res>? get data {
+    if (_self.data == null) {
+      return null;
+    }
+
+    return $AudioBookSubcategoriesDataCopyWith<$Res>(_self.data!, (value) {
+      return _then(_self.copyWith(data: value));
+    });
+  }
+}
+
+/// @nodoc
+mixin _$AudioBookSubcategoriesData {
+  @JsonKey(name: 'parent_category')
+  CategoryInfo? get parentCategory;
+  List<AudioBookSubcategory>? get subcategories;
+
+  /// Create a copy of AudioBookSubcategoriesData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $AudioBookSubcategoriesDataCopyWith<AudioBookSubcategoriesData>
+      get copyWith =>
+          _$AudioBookSubcategoriesDataCopyWithImpl<AudioBookSubcategoriesData>(
+              this as AudioBookSubcategoriesData, _$identity);
+
+  /// Serializes this AudioBookSubcategoriesData to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is AudioBookSubcategoriesData &&
+            (identical(other.parentCategory, parentCategory) ||
+                other.parentCategory == parentCategory) &&
+            const DeepCollectionEquality()
+                .equals(other.subcategories, subcategories));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, parentCategory,
+      const DeepCollectionEquality().hash(subcategories));
+
+  @override
+  String toString() {
+    return 'AudioBookSubcategoriesData(parentCategory: $parentCategory, subcategories: $subcategories)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $AudioBookSubcategoriesDataCopyWith<$Res> {
+  factory $AudioBookSubcategoriesDataCopyWith(AudioBookSubcategoriesData value,
+          $Res Function(AudioBookSubcategoriesData) _then) =
+      _$AudioBookSubcategoriesDataCopyWithImpl;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'parent_category') CategoryInfo? parentCategory,
+      List<AudioBookSubcategory>? subcategories});
+
+  $CategoryInfoCopyWith<$Res>? get parentCategory;
+}
+
+/// @nodoc
+class _$AudioBookSubcategoriesDataCopyWithImpl<$Res>
+    implements $AudioBookSubcategoriesDataCopyWith<$Res> {
+  _$AudioBookSubcategoriesDataCopyWithImpl(this._self, this._then);
+
+  final AudioBookSubcategoriesData _self;
+  final $Res Function(AudioBookSubcategoriesData) _then;
+
+  /// Create a copy of AudioBookSubcategoriesData
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? parentCategory = freezed,
+    Object? subcategories = freezed,
+  }) {
+    return _then(_self.copyWith(
+      parentCategory: freezed == parentCategory
+          ? _self.parentCategory
+          : parentCategory // ignore: cast_nullable_to_non_nullable
+              as CategoryInfo?,
+      subcategories: freezed == subcategories
+          ? _self.subcategories
+          : subcategories // ignore: cast_nullable_to_non_nullable
+              as List<AudioBookSubcategory>?,
+    ));
+  }
+
+  /// Create a copy of AudioBookSubcategoriesData
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $CategoryInfoCopyWith<$Res>? get parentCategory {
+    if (_self.parentCategory == null) {
+      return null;
+    }
+
+    return $CategoryInfoCopyWith<$Res>(_self.parentCategory!, (value) {
+      return _then(_self.copyWith(parentCategory: value));
+    });
+  }
+}
+
+/// Adds pattern-matching-related methods to [AudioBookSubcategoriesData].
+extension AudioBookSubcategoriesDataPatterns on AudioBookSubcategoriesData {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_AudioBookSubcategoriesData value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _AudioBookSubcategoriesData() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_AudioBookSubcategoriesData value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _AudioBookSubcategoriesData():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_AudioBookSubcategoriesData value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _AudioBookSubcategoriesData() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'parent_category') CategoryInfo? parentCategory,
+            List<AudioBookSubcategory>? subcategories)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _AudioBookSubcategoriesData() when $default != null:
+        return $default(_that.parentCategory, _that.subcategories);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'parent_category') CategoryInfo? parentCategory,
+            List<AudioBookSubcategory>? subcategories)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _AudioBookSubcategoriesData():
+        return $default(_that.parentCategory, _that.subcategories);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(name: 'parent_category') CategoryInfo? parentCategory,
+            List<AudioBookSubcategory>? subcategories)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _AudioBookSubcategoriesData() when $default != null:
+        return $default(_that.parentCategory, _that.subcategories);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _AudioBookSubcategoriesData implements AudioBookSubcategoriesData {
+  const _AudioBookSubcategoriesData(
+      {@JsonKey(name: 'parent_category') this.parentCategory,
+      final List<AudioBookSubcategory>? subcategories})
+      : _subcategories = subcategories;
+  factory _AudioBookSubcategoriesData.fromJson(Map<String, dynamic> json) =>
+      _$AudioBookSubcategoriesDataFromJson(json);
+
+  @override
+  @JsonKey(name: 'parent_category')
+  final CategoryInfo? parentCategory;
+  final List<AudioBookSubcategory>? _subcategories;
+  @override
+  List<AudioBookSubcategory>? get subcategories {
+    final value = _subcategories;
+    if (value == null) return null;
+    if (_subcategories is EqualUnmodifiableListView) return _subcategories;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  /// Create a copy of AudioBookSubcategoriesData
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$AudioBookSubcategoriesDataCopyWith<_AudioBookSubcategoriesData>
+      get copyWith => __$AudioBookSubcategoriesDataCopyWithImpl<
+          _AudioBookSubcategoriesData>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$AudioBookSubcategoriesDataToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _AudioBookSubcategoriesData &&
+            (identical(other.parentCategory, parentCategory) ||
+                other.parentCategory == parentCategory) &&
+            const DeepCollectionEquality()
+                .equals(other._subcategories, _subcategories));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, parentCategory,
+      const DeepCollectionEquality().hash(_subcategories));
+
+  @override
+  String toString() {
+    return 'AudioBookSubcategoriesData(parentCategory: $parentCategory, subcategories: $subcategories)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$AudioBookSubcategoriesDataCopyWith<$Res>
+    implements $AudioBookSubcategoriesDataCopyWith<$Res> {
+  factory _$AudioBookSubcategoriesDataCopyWith(
+          _AudioBookSubcategoriesData value,
+          $Res Function(_AudioBookSubcategoriesData) _then) =
+      __$AudioBookSubcategoriesDataCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'parent_category') CategoryInfo? parentCategory,
+      List<AudioBookSubcategory>? subcategories});
+
+  @override
+  $CategoryInfoCopyWith<$Res>? get parentCategory;
+}
+
+/// @nodoc
+class __$AudioBookSubcategoriesDataCopyWithImpl<$Res>
+    implements _$AudioBookSubcategoriesDataCopyWith<$Res> {
+  __$AudioBookSubcategoriesDataCopyWithImpl(this._self, this._then);
+
+  final _AudioBookSubcategoriesData _self;
+  final $Res Function(_AudioBookSubcategoriesData) _then;
+
+  /// Create a copy of AudioBookSubcategoriesData
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? parentCategory = freezed,
+    Object? subcategories = freezed,
+  }) {
+    return _then(_AudioBookSubcategoriesData(
+      parentCategory: freezed == parentCategory
+          ? _self.parentCategory
+          : parentCategory // ignore: cast_nullable_to_non_nullable
+              as CategoryInfo?,
+      subcategories: freezed == subcategories
+          ? _self._subcategories
+          : subcategories // ignore: cast_nullable_to_non_nullable
+              as List<AudioBookSubcategory>?,
+    ));
+  }
+
+  /// Create a copy of AudioBookSubcategoriesData
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $CategoryInfoCopyWith<$Res>? get parentCategory {
+    if (_self.parentCategory == null) {
+      return null;
+    }
+
+    return $CategoryInfoCopyWith<$Res>(_self.parentCategory!, (value) {
+      return _then(_self.copyWith(parentCategory: value));
+    });
+  }
+}
+
+/// @nodoc
+mixin _$AudioBookSubcategory {
+  @JsonKey(fromJson: _stringToInt)
+  int? get id;
+  String? get title;
+  String? get note;
+  String? get position;
+  String? get language;
+  String? get date;
+  @JsonKey(name: 'parent_id')
+  String? get parentId;
+  @JsonKey(name: 'show_in_menu', fromJson: _stringToBool)
+  bool? get showInMenu;
+  @JsonKey(name: 'show_in_main', fromJson: _stringToBool)
+  bool? get showInMain;
+  @JsonKey(name: 'content_count', fromJson: _stringToInt)
+  int? get contentCount;
+
+  /// Create a copy of AudioBookSubcategory
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $AudioBookSubcategoryCopyWith<AudioBookSubcategory> get copyWith =>
+      _$AudioBookSubcategoryCopyWithImpl<AudioBookSubcategory>(
+          this as AudioBookSubcategory, _$identity);
+
+  /// Serializes this AudioBookSubcategory to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is AudioBookSubcategory &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.note, note) || other.note == note) &&
+            (identical(other.position, position) ||
+                other.position == position) &&
+            (identical(other.language, language) ||
+                other.language == language) &&
+            (identical(other.date, date) || other.date == date) &&
+            (identical(other.parentId, parentId) ||
+                other.parentId == parentId) &&
+            (identical(other.showInMenu, showInMenu) ||
+                other.showInMenu == showInMenu) &&
+            (identical(other.showInMain, showInMain) ||
+                other.showInMain == showInMain) &&
+            (identical(other.contentCount, contentCount) ||
+                other.contentCount == contentCount));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, title, note, position,
+      language, date, parentId, showInMenu, showInMain, contentCount);
+
+  @override
+  String toString() {
+    return 'AudioBookSubcategory(id: $id, title: $title, note: $note, position: $position, language: $language, date: $date, parentId: $parentId, showInMenu: $showInMenu, showInMain: $showInMain, contentCount: $contentCount)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $AudioBookSubcategoryCopyWith<$Res> {
+  factory $AudioBookSubcategoryCopyWith(AudioBookSubcategory value,
+          $Res Function(AudioBookSubcategory) _then) =
+      _$AudioBookSubcategoryCopyWithImpl;
+  @useResult
+  $Res call(
+      {@JsonKey(fromJson: _stringToInt) int? id,
+      String? title,
+      String? note,
+      String? position,
+      String? language,
+      String? date,
+      @JsonKey(name: 'parent_id') String? parentId,
+      @JsonKey(name: 'show_in_menu', fromJson: _stringToBool) bool? showInMenu,
+      @JsonKey(name: 'show_in_main', fromJson: _stringToBool) bool? showInMain,
+      @JsonKey(name: 'content_count', fromJson: _stringToInt)
+      int? contentCount});
+}
+
+/// @nodoc
+class _$AudioBookSubcategoryCopyWithImpl<$Res>
+    implements $AudioBookSubcategoryCopyWith<$Res> {
+  _$AudioBookSubcategoryCopyWithImpl(this._self, this._then);
+
+  final AudioBookSubcategory _self;
+  final $Res Function(AudioBookSubcategory) _then;
+
+  /// Create a copy of AudioBookSubcategory
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? title = freezed,
+    Object? note = freezed,
+    Object? position = freezed,
+    Object? language = freezed,
+    Object? date = freezed,
+    Object? parentId = freezed,
+    Object? showInMenu = freezed,
+    Object? showInMain = freezed,
+    Object? contentCount = freezed,
+  }) {
+    return _then(_self.copyWith(
+      id: freezed == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      title: freezed == title
+          ? _self.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String?,
+      note: freezed == note
+          ? _self.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
+      position: freezed == position
+          ? _self.position
+          : position // ignore: cast_nullable_to_non_nullable
+              as String?,
+      language: freezed == language
+          ? _self.language
+          : language // ignore: cast_nullable_to_non_nullable
+              as String?,
+      date: freezed == date
+          ? _self.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as String?,
+      parentId: freezed == parentId
+          ? _self.parentId
+          : parentId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      showInMenu: freezed == showInMenu
+          ? _self.showInMenu
+          : showInMenu // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      showInMain: freezed == showInMain
+          ? _self.showInMain
+          : showInMain // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      contentCount: freezed == contentCount
+          ? _self.contentCount
+          : contentCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [AudioBookSubcategory].
+extension AudioBookSubcategoryPatterns on AudioBookSubcategory {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_AudioBookSubcategory value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _AudioBookSubcategory() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_AudioBookSubcategory value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _AudioBookSubcategory():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_AudioBookSubcategory value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _AudioBookSubcategory() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(fromJson: _stringToInt) int? id,
+            String? title,
+            String? note,
+            String? position,
+            String? language,
+            String? date,
+            @JsonKey(name: 'parent_id') String? parentId,
+            @JsonKey(name: 'show_in_menu', fromJson: _stringToBool)
+            bool? showInMenu,
+            @JsonKey(name: 'show_in_main', fromJson: _stringToBool)
+            bool? showInMain,
+            @JsonKey(name: 'content_count', fromJson: _stringToInt)
+            int? contentCount)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _AudioBookSubcategory() when $default != null:
+        return $default(
+            _that.id,
+            _that.title,
+            _that.note,
+            _that.position,
+            _that.language,
+            _that.date,
+            _that.parentId,
+            _that.showInMenu,
+            _that.showInMain,
+            _that.contentCount);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(fromJson: _stringToInt) int? id,
+            String? title,
+            String? note,
+            String? position,
+            String? language,
+            String? date,
+            @JsonKey(name: 'parent_id') String? parentId,
+            @JsonKey(name: 'show_in_menu', fromJson: _stringToBool)
+            bool? showInMenu,
+            @JsonKey(name: 'show_in_main', fromJson: _stringToBool)
+            bool? showInMain,
+            @JsonKey(name: 'content_count', fromJson: _stringToInt)
+            int? contentCount)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _AudioBookSubcategory():
+        return $default(
+            _that.id,
+            _that.title,
+            _that.note,
+            _that.position,
+            _that.language,
+            _that.date,
+            _that.parentId,
+            _that.showInMenu,
+            _that.showInMain,
+            _that.contentCount);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(fromJson: _stringToInt) int? id,
+            String? title,
+            String? note,
+            String? position,
+            String? language,
+            String? date,
+            @JsonKey(name: 'parent_id') String? parentId,
+            @JsonKey(name: 'show_in_menu', fromJson: _stringToBool)
+            bool? showInMenu,
+            @JsonKey(name: 'show_in_main', fromJson: _stringToBool)
+            bool? showInMain,
+            @JsonKey(name: 'content_count', fromJson: _stringToInt)
+            int? contentCount)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _AudioBookSubcategory() when $default != null:
+        return $default(
+            _that.id,
+            _that.title,
+            _that.note,
+            _that.position,
+            _that.language,
+            _that.date,
+            _that.parentId,
+            _that.showInMenu,
+            _that.showInMain,
+            _that.contentCount);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _AudioBookSubcategory implements AudioBookSubcategory {
+  const _AudioBookSubcategory(
+      {@JsonKey(fromJson: _stringToInt) this.id,
+      this.title,
+      this.note,
+      this.position,
+      this.language,
+      this.date,
+      @JsonKey(name: 'parent_id') this.parentId,
+      @JsonKey(name: 'show_in_menu', fromJson: _stringToBool) this.showInMenu,
+      @JsonKey(name: 'show_in_main', fromJson: _stringToBool) this.showInMain,
+      @JsonKey(name: 'content_count', fromJson: _stringToInt)
+      this.contentCount});
+  factory _AudioBookSubcategory.fromJson(Map<String, dynamic> json) =>
+      _$AudioBookSubcategoryFromJson(json);
+
+  @override
+  @JsonKey(fromJson: _stringToInt)
+  final int? id;
+  @override
+  final String? title;
+  @override
+  final String? note;
+  @override
+  final String? position;
+  @override
+  final String? language;
+  @override
+  final String? date;
+  @override
+  @JsonKey(name: 'parent_id')
+  final String? parentId;
+  @override
+  @JsonKey(name: 'show_in_menu', fromJson: _stringToBool)
+  final bool? showInMenu;
+  @override
+  @JsonKey(name: 'show_in_main', fromJson: _stringToBool)
+  final bool? showInMain;
+  @override
+  @JsonKey(name: 'content_count', fromJson: _stringToInt)
+  final int? contentCount;
+
+  /// Create a copy of AudioBookSubcategory
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$AudioBookSubcategoryCopyWith<_AudioBookSubcategory> get copyWith =>
+      __$AudioBookSubcategoryCopyWithImpl<_AudioBookSubcategory>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$AudioBookSubcategoryToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _AudioBookSubcategory &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.note, note) || other.note == note) &&
+            (identical(other.position, position) ||
+                other.position == position) &&
+            (identical(other.language, language) ||
+                other.language == language) &&
+            (identical(other.date, date) || other.date == date) &&
+            (identical(other.parentId, parentId) ||
+                other.parentId == parentId) &&
+            (identical(other.showInMenu, showInMenu) ||
+                other.showInMenu == showInMenu) &&
+            (identical(other.showInMain, showInMain) ||
+                other.showInMain == showInMain) &&
+            (identical(other.contentCount, contentCount) ||
+                other.contentCount == contentCount));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, title, note, position,
+      language, date, parentId, showInMenu, showInMain, contentCount);
+
+  @override
+  String toString() {
+    return 'AudioBookSubcategory(id: $id, title: $title, note: $note, position: $position, language: $language, date: $date, parentId: $parentId, showInMenu: $showInMenu, showInMain: $showInMain, contentCount: $contentCount)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$AudioBookSubcategoryCopyWith<$Res>
+    implements $AudioBookSubcategoryCopyWith<$Res> {
+  factory _$AudioBookSubcategoryCopyWith(_AudioBookSubcategory value,
+          $Res Function(_AudioBookSubcategory) _then) =
+      __$AudioBookSubcategoryCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(fromJson: _stringToInt) int? id,
+      String? title,
+      String? note,
+      String? position,
+      String? language,
+      String? date,
+      @JsonKey(name: 'parent_id') String? parentId,
+      @JsonKey(name: 'show_in_menu', fromJson: _stringToBool) bool? showInMenu,
+      @JsonKey(name: 'show_in_main', fromJson: _stringToBool) bool? showInMain,
+      @JsonKey(name: 'content_count', fromJson: _stringToInt)
+      int? contentCount});
+}
+
+/// @nodoc
+class __$AudioBookSubcategoryCopyWithImpl<$Res>
+    implements _$AudioBookSubcategoryCopyWith<$Res> {
+  __$AudioBookSubcategoryCopyWithImpl(this._self, this._then);
+
+  final _AudioBookSubcategory _self;
+  final $Res Function(_AudioBookSubcategory) _then;
+
+  /// Create a copy of AudioBookSubcategory
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? id = freezed,
+    Object? title = freezed,
+    Object? note = freezed,
+    Object? position = freezed,
+    Object? language = freezed,
+    Object? date = freezed,
+    Object? parentId = freezed,
+    Object? showInMenu = freezed,
+    Object? showInMain = freezed,
+    Object? contentCount = freezed,
+  }) {
+    return _then(_AudioBookSubcategory(
+      id: freezed == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      title: freezed == title
+          ? _self.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String?,
+      note: freezed == note
+          ? _self.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
+      position: freezed == position
+          ? _self.position
+          : position // ignore: cast_nullable_to_non_nullable
+              as String?,
+      language: freezed == language
+          ? _self.language
+          : language // ignore: cast_nullable_to_non_nullable
+              as String?,
+      date: freezed == date
+          ? _self.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as String?,
+      parentId: freezed == parentId
+          ? _self.parentId
+          : parentId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      showInMenu: freezed == showInMenu
+          ? _self.showInMenu
+          : showInMenu // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      showInMain: freezed == showInMain
+          ? _self.showInMain
+          : showInMain // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      contentCount: freezed == contentCount
+          ? _self.contentCount
+          : contentCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
 // dart format on
