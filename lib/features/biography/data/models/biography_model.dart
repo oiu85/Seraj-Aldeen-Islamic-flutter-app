@@ -57,3 +57,34 @@ abstract class BiographyResponse with _$BiographyResponse {
       _$BiographyResponseFromJson(json);
 }
 
+// Page Detail Models
+@freezed
+abstract class PageDetailResponse with _$PageDetailResponse {
+  const factory PageDetailResponse({
+    bool? success,
+    PageDetail? data,
+    String? message,
+  }) = _PageDetailResponse;
+
+  factory PageDetailResponse.fromJson(Map<String, dynamic> json) =>
+      _$PageDetailResponseFromJson(json);
+}
+
+@freezed
+abstract class PageDetail with _$PageDetail {
+  const factory PageDetail({
+    @JsonKey(name: 'pages_id', fromJson: _stringToInt) int? pagesId,
+    @JsonKey(name: 'pages_menus') String? pagesMenus,
+    @JsonKey(name: 'pages_title') String? pagesTitle,
+    @JsonKey(name: 'pages_content') String? pagesContent,
+    @JsonKey(name: 'pages_lan') String? pagesLan,
+    @JsonKey(name: 'pages_visitor', fromJson: _stringToInt) int? pagesVisitor,
+    @JsonKey(name: 'pages_priority') String? pagesPriority,
+    @JsonKey(name: 'pages_date') String? pagesDate,
+    @JsonKey(name: 'pages_active') bool? pagesActive,
+  }) = _PageDetail;
+
+  factory PageDetail.fromJson(Map<String, dynamic> json) =>
+      _$PageDetailFromJson(json);
+}
+

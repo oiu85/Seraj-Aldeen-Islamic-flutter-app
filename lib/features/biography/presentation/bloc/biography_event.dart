@@ -20,3 +20,12 @@ class LoadPagesEvent extends BiographyEvent {
   List<Object?> get props => [page, perPage];
 }
 
+class LoadPageDetailEvent extends BiographyEvent {
+  final int pageId;
+
+  const LoadPageDetailEvent({required this.pageId});
+
+  @override
+  List<Object?> get props => [pageId];
+}
+

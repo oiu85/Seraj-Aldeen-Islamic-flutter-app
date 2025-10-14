@@ -6,5 +6,9 @@ abstract class BiographyRepository {
     int page = 1,
     int perPage = 15,
   });
+  
+  Future<Either<Exception, PageDetailResponse>> getPageDetail({
+    required int pageId,
+  });
 }
 

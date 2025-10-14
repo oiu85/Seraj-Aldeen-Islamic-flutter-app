@@ -72,3 +72,44 @@ Map<String, dynamic> _$BiographyResponseToJson(_BiographyResponse instance) =>
       'data': instance.data,
       'message': instance.message,
     };
+
+_PageDetailResponse _$PageDetailResponseFromJson(Map<String, dynamic> json) =>
+    _PageDetailResponse(
+      success: json['success'] as bool?,
+      data: json['data'] == null
+          ? null
+          : PageDetail.fromJson(json['data'] as Map<String, dynamic>),
+      message: json['message'] as String?,
+    );
+
+Map<String, dynamic> _$PageDetailResponseToJson(_PageDetailResponse instance) =>
+    <String, dynamic>{
+      'success': instance.success,
+      'data': instance.data,
+      'message': instance.message,
+    };
+
+_PageDetail _$PageDetailFromJson(Map<String, dynamic> json) => _PageDetail(
+      pagesId: _stringToInt(json['pages_id']),
+      pagesMenus: json['pages_menus'] as String?,
+      pagesTitle: json['pages_title'] as String?,
+      pagesContent: json['pages_content'] as String?,
+      pagesLan: json['pages_lan'] as String?,
+      pagesVisitor: _stringToInt(json['pages_visitor']),
+      pagesPriority: json['pages_priority'] as String?,
+      pagesDate: json['pages_date'] as String?,
+      pagesActive: json['pages_active'] as bool?,
+    );
+
+Map<String, dynamic> _$PageDetailToJson(_PageDetail instance) =>
+    <String, dynamic>{
+      'pages_id': instance.pagesId,
+      'pages_menus': instance.pagesMenus,
+      'pages_title': instance.pagesTitle,
+      'pages_content': instance.pagesContent,
+      'pages_lan': instance.pagesLan,
+      'pages_visitor': instance.pagesVisitor,
+      'pages_priority': instance.pagesPriority,
+      'pages_date': instance.pagesDate,
+      'pages_active': instance.pagesActive,
+    };

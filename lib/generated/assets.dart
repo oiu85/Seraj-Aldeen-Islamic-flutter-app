@@ -7,6 +7,13 @@ class Assets {
   static const String amiriAmiriItalic = 'assets/fonts/Amiri/Amiri-Italic.ttf';
   static const String amiriAmiriRegular = 'assets/fonts/Amiri/Amiri-Regular.ttf';
   static const String amiriOFL = 'assets/fonts/Amiri/OFL.txt';
+  static const String bioHtmlImagesBookCover01 = 'assets/bio_html_images/book_cover_01.jpg';
+  static const String bioHtmlImagesPic001 = 'assets/bio_html_images/pic_001.jpg';
+  static const String bioHtmlImagesPic002 = 'assets/bio_html_images/pic_002.jpg';
+  static const String bioHtmlImagesPic003 = 'assets/bio_html_images/pic_003.jpg';
+  static const String bioHtmlImagesPic004 = 'assets/bio_html_images/pic_004.jpg';
+  static const String bioHtmlImagesPic005 = 'assets/bio_html_images/pic_005.jpg';
+  static const String bioHtmlImagesPic006 = 'assets/bio_html_images/pic_006.jpg';
   static const String iconsAppIcon48 = 'assets/icons/app_icon48.png';
   static const String imagesAbdullahSerajAldeen = 'assets/images/abdullah_seraj_aldeen.png';
   static const String imagesAppbarImageLeft = 'assets/images/appbar_image_left.png';
@@ -22,6 +29,7 @@ class Assets {
   static const String imagesShaik = 'assets/images/shaik.png';
   static const String imagesShaikImage = 'assets/images/shaik_image.png';
   static const String imagesShaikImageRemovebgPreview = 'assets/images/shaik_image-removebg-preview.png';
+  static const String imagesSplashScreen = 'assets/images/splash_screen.png';
   static const String imagesVedioIcon = 'assets/images/vedio_icon.png';
   static const String imagesViewrExamplw2 = 'assets/images/viewr_examplw2.png';
   static const String imagesViwerExample = 'assets/images/viwer_example.png';

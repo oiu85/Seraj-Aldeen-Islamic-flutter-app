@@ -14,6 +14,34 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart' as _svg;
 import 'package:vector_graphics/vector_graphics.dart' as _vg;
 
+class $AssetsBioHtmlImagesGen {
+  const $AssetsBioHtmlImagesGen();
+
+  /// File path: assets/bio_html_images/book_cover_01.jpg
+  AssetGenImage get bookCover01 => const AssetGenImage('assets/bio_html_images/book_cover_01.jpg');
+
+  /// File path: assets/bio_html_images/pic_001.jpg
+  AssetGenImage get pic001 => const AssetGenImage('assets/bio_html_images/pic_001.jpg');
+
+  /// File path: assets/bio_html_images/pic_002.jpg
+  AssetGenImage get pic002 => const AssetGenImage('assets/bio_html_images/pic_002.jpg');
+
+  /// File path: assets/bio_html_images/pic_003.jpg
+  AssetGenImage get pic003 => const AssetGenImage('assets/bio_html_images/pic_003.jpg');
+
+  /// File path: assets/bio_html_images/pic_004.jpg
+  AssetGenImage get pic004 => const AssetGenImage('assets/bio_html_images/pic_004.jpg');
+
+  /// File path: assets/bio_html_images/pic_005.jpg
+  AssetGenImage get pic005 => const AssetGenImage('assets/bio_html_images/pic_005.jpg');
+
+  /// File path: assets/bio_html_images/pic_006.jpg
+  AssetGenImage get pic006 => const AssetGenImage('assets/bio_html_images/pic_006.jpg');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [bookCover01, pic001, pic002, pic003, pic004, pic005, pic006];
+}
+
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
@@ -195,6 +223,7 @@ class $AssetsSvgGen {
 class Assets {
   const Assets._();
 
+  static const $AssetsBioHtmlImagesGen bioHtmlImages = $AssetsBioHtmlImagesGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
   static const $AssetsLottieGen lottie = $AssetsLottieGen();
   static const $AssetsSvgGen svg = $AssetsSvgGen();

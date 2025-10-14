@@ -1436,4 +1436,929 @@ class __$BiographyResponseCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
+mixin _$PageDetailResponse {
+  bool? get success;
+  PageDetail? get data;
+  String? get message;
+
+  /// Create a copy of PageDetailResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $PageDetailResponseCopyWith<PageDetailResponse> get copyWith =>
+      _$PageDetailResponseCopyWithImpl<PageDetailResponse>(
+          this as PageDetailResponse, _$identity);
+
+  /// Serializes this PageDetailResponse to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is PageDetailResponse &&
+            (identical(other.success, success) || other.success == success) &&
+            (identical(other.data, data) || other.data == data) &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, success, data, message);
+
+  @override
+  String toString() {
+    return 'PageDetailResponse(success: $success, data: $data, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $PageDetailResponseCopyWith<$Res> {
+  factory $PageDetailResponseCopyWith(
+          PageDetailResponse value, $Res Function(PageDetailResponse) _then) =
+      _$PageDetailResponseCopyWithImpl;
+  @useResult
+  $Res call({bool? success, PageDetail? data, String? message});
+
+  $PageDetailCopyWith<$Res>? get data;
+}
+
+/// @nodoc
+class _$PageDetailResponseCopyWithImpl<$Res>
+    implements $PageDetailResponseCopyWith<$Res> {
+  _$PageDetailResponseCopyWithImpl(this._self, this._then);
+
+  final PageDetailResponse _self;
+  final $Res Function(PageDetailResponse) _then;
+
+  /// Create a copy of PageDetailResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? success = freezed,
+    Object? data = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(_self.copyWith(
+      success: freezed == success
+          ? _self.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      data: freezed == data
+          ? _self.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as PageDetail?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+
+  /// Create a copy of PageDetailResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $PageDetailCopyWith<$Res>? get data {
+    if (_self.data == null) {
+      return null;
+    }
+
+    return $PageDetailCopyWith<$Res>(_self.data!, (value) {
+      return _then(_self.copyWith(data: value));
+    });
+  }
+}
+
+/// Adds pattern-matching-related methods to [PageDetailResponse].
+extension PageDetailResponsePatterns on PageDetailResponse {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_PageDetailResponse value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _PageDetailResponse() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_PageDetailResponse value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _PageDetailResponse():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_PageDetailResponse value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _PageDetailResponse() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(bool? success, PageDetail? data, String? message)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _PageDetailResponse() when $default != null:
+        return $default(_that.success, _that.data, _that.message);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(bool? success, PageDetail? data, String? message) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _PageDetailResponse():
+        return $default(_that.success, _that.data, _that.message);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(bool? success, PageDetail? data, String? message)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _PageDetailResponse() when $default != null:
+        return $default(_that.success, _that.data, _that.message);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _PageDetailResponse implements PageDetailResponse {
+  const _PageDetailResponse({this.success, this.data, this.message});
+  factory _PageDetailResponse.fromJson(Map<String, dynamic> json) =>
+      _$PageDetailResponseFromJson(json);
+
+  @override
+  final bool? success;
+  @override
+  final PageDetail? data;
+  @override
+  final String? message;
+
+  /// Create a copy of PageDetailResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$PageDetailResponseCopyWith<_PageDetailResponse> get copyWith =>
+      __$PageDetailResponseCopyWithImpl<_PageDetailResponse>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$PageDetailResponseToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _PageDetailResponse &&
+            (identical(other.success, success) || other.success == success) &&
+            (identical(other.data, data) || other.data == data) &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, success, data, message);
+
+  @override
+  String toString() {
+    return 'PageDetailResponse(success: $success, data: $data, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$PageDetailResponseCopyWith<$Res>
+    implements $PageDetailResponseCopyWith<$Res> {
+  factory _$PageDetailResponseCopyWith(
+          _PageDetailResponse value, $Res Function(_PageDetailResponse) _then) =
+      __$PageDetailResponseCopyWithImpl;
+  @override
+  @useResult
+  $Res call({bool? success, PageDetail? data, String? message});
+
+  @override
+  $PageDetailCopyWith<$Res>? get data;
+}
+
+/// @nodoc
+class __$PageDetailResponseCopyWithImpl<$Res>
+    implements _$PageDetailResponseCopyWith<$Res> {
+  __$PageDetailResponseCopyWithImpl(this._self, this._then);
+
+  final _PageDetailResponse _self;
+  final $Res Function(_PageDetailResponse) _then;
+
+  /// Create a copy of PageDetailResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? success = freezed,
+    Object? data = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(_PageDetailResponse(
+      success: freezed == success
+          ? _self.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      data: freezed == data
+          ? _self.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as PageDetail?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+
+  /// Create a copy of PageDetailResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $PageDetailCopyWith<$Res>? get data {
+    if (_self.data == null) {
+      return null;
+    }
+
+    return $PageDetailCopyWith<$Res>(_self.data!, (value) {
+      return _then(_self.copyWith(data: value));
+    });
+  }
+}
+
+/// @nodoc
+mixin _$PageDetail {
+  @JsonKey(name: 'pages_id', fromJson: _stringToInt)
+  int? get pagesId;
+  @JsonKey(name: 'pages_menus')
+  String? get pagesMenus;
+  @JsonKey(name: 'pages_title')
+  String? get pagesTitle;
+  @JsonKey(name: 'pages_content')
+  String? get pagesContent;
+  @JsonKey(name: 'pages_lan')
+  String? get pagesLan;
+  @JsonKey(name: 'pages_visitor', fromJson: _stringToInt)
+  int? get pagesVisitor;
+  @JsonKey(name: 'pages_priority')
+  String? get pagesPriority;
+  @JsonKey(name: 'pages_date')
+  String? get pagesDate;
+  @JsonKey(name: 'pages_active')
+  bool? get pagesActive;
+
+  /// Create a copy of PageDetail
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $PageDetailCopyWith<PageDetail> get copyWith =>
+      _$PageDetailCopyWithImpl<PageDetail>(this as PageDetail, _$identity);
+
+  /// Serializes this PageDetail to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is PageDetail &&
+            (identical(other.pagesId, pagesId) || other.pagesId == pagesId) &&
+            (identical(other.pagesMenus, pagesMenus) ||
+                other.pagesMenus == pagesMenus) &&
+            (identical(other.pagesTitle, pagesTitle) ||
+                other.pagesTitle == pagesTitle) &&
+            (identical(other.pagesContent, pagesContent) ||
+                other.pagesContent == pagesContent) &&
+            (identical(other.pagesLan, pagesLan) ||
+                other.pagesLan == pagesLan) &&
+            (identical(other.pagesVisitor, pagesVisitor) ||
+                other.pagesVisitor == pagesVisitor) &&
+            (identical(other.pagesPriority, pagesPriority) ||
+                other.pagesPriority == pagesPriority) &&
+            (identical(other.pagesDate, pagesDate) ||
+                other.pagesDate == pagesDate) &&
+            (identical(other.pagesActive, pagesActive) ||
+                other.pagesActive == pagesActive));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      pagesId,
+      pagesMenus,
+      pagesTitle,
+      pagesContent,
+      pagesLan,
+      pagesVisitor,
+      pagesPriority,
+      pagesDate,
+      pagesActive);
+
+  @override
+  String toString() {
+    return 'PageDetail(pagesId: $pagesId, pagesMenus: $pagesMenus, pagesTitle: $pagesTitle, pagesContent: $pagesContent, pagesLan: $pagesLan, pagesVisitor: $pagesVisitor, pagesPriority: $pagesPriority, pagesDate: $pagesDate, pagesActive: $pagesActive)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $PageDetailCopyWith<$Res> {
+  factory $PageDetailCopyWith(
+          PageDetail value, $Res Function(PageDetail) _then) =
+      _$PageDetailCopyWithImpl;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'pages_id', fromJson: _stringToInt) int? pagesId,
+      @JsonKey(name: 'pages_menus') String? pagesMenus,
+      @JsonKey(name: 'pages_title') String? pagesTitle,
+      @JsonKey(name: 'pages_content') String? pagesContent,
+      @JsonKey(name: 'pages_lan') String? pagesLan,
+      @JsonKey(name: 'pages_visitor', fromJson: _stringToInt) int? pagesVisitor,
+      @JsonKey(name: 'pages_priority') String? pagesPriority,
+      @JsonKey(name: 'pages_date') String? pagesDate,
+      @JsonKey(name: 'pages_active') bool? pagesActive});
+}
+
+/// @nodoc
+class _$PageDetailCopyWithImpl<$Res> implements $PageDetailCopyWith<$Res> {
+  _$PageDetailCopyWithImpl(this._self, this._then);
+
+  final PageDetail _self;
+  final $Res Function(PageDetail) _then;
+
+  /// Create a copy of PageDetail
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? pagesId = freezed,
+    Object? pagesMenus = freezed,
+    Object? pagesTitle = freezed,
+    Object? pagesContent = freezed,
+    Object? pagesLan = freezed,
+    Object? pagesVisitor = freezed,
+    Object? pagesPriority = freezed,
+    Object? pagesDate = freezed,
+    Object? pagesActive = freezed,
+  }) {
+    return _then(_self.copyWith(
+      pagesId: freezed == pagesId
+          ? _self.pagesId
+          : pagesId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      pagesMenus: freezed == pagesMenus
+          ? _self.pagesMenus
+          : pagesMenus // ignore: cast_nullable_to_non_nullable
+              as String?,
+      pagesTitle: freezed == pagesTitle
+          ? _self.pagesTitle
+          : pagesTitle // ignore: cast_nullable_to_non_nullable
+              as String?,
+      pagesContent: freezed == pagesContent
+          ? _self.pagesContent
+          : pagesContent // ignore: cast_nullable_to_non_nullable
+              as String?,
+      pagesLan: freezed == pagesLan
+          ? _self.pagesLan
+          : pagesLan // ignore: cast_nullable_to_non_nullable
+              as String?,
+      pagesVisitor: freezed == pagesVisitor
+          ? _self.pagesVisitor
+          : pagesVisitor // ignore: cast_nullable_to_non_nullable
+              as int?,
+      pagesPriority: freezed == pagesPriority
+          ? _self.pagesPriority
+          : pagesPriority // ignore: cast_nullable_to_non_nullable
+              as String?,
+      pagesDate: freezed == pagesDate
+          ? _self.pagesDate
+          : pagesDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      pagesActive: freezed == pagesActive
+          ? _self.pagesActive
+          : pagesActive // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [PageDetail].
+extension PageDetailPatterns on PageDetail {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_PageDetail value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _PageDetail() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_PageDetail value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _PageDetail():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_PageDetail value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _PageDetail() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'pages_id', fromJson: _stringToInt) int? pagesId,
+            @JsonKey(name: 'pages_menus') String? pagesMenus,
+            @JsonKey(name: 'pages_title') String? pagesTitle,
+            @JsonKey(name: 'pages_content') String? pagesContent,
+            @JsonKey(name: 'pages_lan') String? pagesLan,
+            @JsonKey(name: 'pages_visitor', fromJson: _stringToInt)
+            int? pagesVisitor,
+            @JsonKey(name: 'pages_priority') String? pagesPriority,
+            @JsonKey(name: 'pages_date') String? pagesDate,
+            @JsonKey(name: 'pages_active') bool? pagesActive)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _PageDetail() when $default != null:
+        return $default(
+            _that.pagesId,
+            _that.pagesMenus,
+            _that.pagesTitle,
+            _that.pagesContent,
+            _that.pagesLan,
+            _that.pagesVisitor,
+            _that.pagesPriority,
+            _that.pagesDate,
+            _that.pagesActive);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'pages_id', fromJson: _stringToInt) int? pagesId,
+            @JsonKey(name: 'pages_menus') String? pagesMenus,
+            @JsonKey(name: 'pages_title') String? pagesTitle,
+            @JsonKey(name: 'pages_content') String? pagesContent,
+            @JsonKey(name: 'pages_lan') String? pagesLan,
+            @JsonKey(name: 'pages_visitor', fromJson: _stringToInt)
+            int? pagesVisitor,
+            @JsonKey(name: 'pages_priority') String? pagesPriority,
+            @JsonKey(name: 'pages_date') String? pagesDate,
+            @JsonKey(name: 'pages_active') bool? pagesActive)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _PageDetail():
+        return $default(
+            _that.pagesId,
+            _that.pagesMenus,
+            _that.pagesTitle,
+            _that.pagesContent,
+            _that.pagesLan,
+            _that.pagesVisitor,
+            _that.pagesPriority,
+            _that.pagesDate,
+            _that.pagesActive);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(name: 'pages_id', fromJson: _stringToInt) int? pagesId,
+            @JsonKey(name: 'pages_menus') String? pagesMenus,
+            @JsonKey(name: 'pages_title') String? pagesTitle,
+            @JsonKey(name: 'pages_content') String? pagesContent,
+            @JsonKey(name: 'pages_lan') String? pagesLan,
+            @JsonKey(name: 'pages_visitor', fromJson: _stringToInt)
+            int? pagesVisitor,
+            @JsonKey(name: 'pages_priority') String? pagesPriority,
+            @JsonKey(name: 'pages_date') String? pagesDate,
+            @JsonKey(name: 'pages_active') bool? pagesActive)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _PageDetail() when $default != null:
+        return $default(
+            _that.pagesId,
+            _that.pagesMenus,
+            _that.pagesTitle,
+            _that.pagesContent,
+            _that.pagesLan,
+            _that.pagesVisitor,
+            _that.pagesPriority,
+            _that.pagesDate,
+            _that.pagesActive);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _PageDetail implements PageDetail {
+  const _PageDetail(
+      {@JsonKey(name: 'pages_id', fromJson: _stringToInt) this.pagesId,
+      @JsonKey(name: 'pages_menus') this.pagesMenus,
+      @JsonKey(name: 'pages_title') this.pagesTitle,
+      @JsonKey(name: 'pages_content') this.pagesContent,
+      @JsonKey(name: 'pages_lan') this.pagesLan,
+      @JsonKey(name: 'pages_visitor', fromJson: _stringToInt) this.pagesVisitor,
+      @JsonKey(name: 'pages_priority') this.pagesPriority,
+      @JsonKey(name: 'pages_date') this.pagesDate,
+      @JsonKey(name: 'pages_active') this.pagesActive});
+  factory _PageDetail.fromJson(Map<String, dynamic> json) =>
+      _$PageDetailFromJson(json);
+
+  @override
+  @JsonKey(name: 'pages_id', fromJson: _stringToInt)
+  final int? pagesId;
+  @override
+  @JsonKey(name: 'pages_menus')
+  final String? pagesMenus;
+  @override
+  @JsonKey(name: 'pages_title')
+  final String? pagesTitle;
+  @override
+  @JsonKey(name: 'pages_content')
+  final String? pagesContent;
+  @override
+  @JsonKey(name: 'pages_lan')
+  final String? pagesLan;
+  @override
+  @JsonKey(name: 'pages_visitor', fromJson: _stringToInt)
+  final int? pagesVisitor;
+  @override
+  @JsonKey(name: 'pages_priority')
+  final String? pagesPriority;
+  @override
+  @JsonKey(name: 'pages_date')
+  final String? pagesDate;
+  @override
+  @JsonKey(name: 'pages_active')
+  final bool? pagesActive;
+
+  /// Create a copy of PageDetail
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$PageDetailCopyWith<_PageDetail> get copyWith =>
+      __$PageDetailCopyWithImpl<_PageDetail>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$PageDetailToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _PageDetail &&
+            (identical(other.pagesId, pagesId) || other.pagesId == pagesId) &&
+            (identical(other.pagesMenus, pagesMenus) ||
+                other.pagesMenus == pagesMenus) &&
+            (identical(other.pagesTitle, pagesTitle) ||
+                other.pagesTitle == pagesTitle) &&
+            (identical(other.pagesContent, pagesContent) ||
+                other.pagesContent == pagesContent) &&
+            (identical(other.pagesLan, pagesLan) ||
+                other.pagesLan == pagesLan) &&
+            (identical(other.pagesVisitor, pagesVisitor) ||
+                other.pagesVisitor == pagesVisitor) &&
+            (identical(other.pagesPriority, pagesPriority) ||
+                other.pagesPriority == pagesPriority) &&
+            (identical(other.pagesDate, pagesDate) ||
+                other.pagesDate == pagesDate) &&
+            (identical(other.pagesActive, pagesActive) ||
+                other.pagesActive == pagesActive));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      pagesId,
+      pagesMenus,
+      pagesTitle,
+      pagesContent,
+      pagesLan,
+      pagesVisitor,
+      pagesPriority,
+      pagesDate,
+      pagesActive);
+
+  @override
+  String toString() {
+    return 'PageDetail(pagesId: $pagesId, pagesMenus: $pagesMenus, pagesTitle: $pagesTitle, pagesContent: $pagesContent, pagesLan: $pagesLan, pagesVisitor: $pagesVisitor, pagesPriority: $pagesPriority, pagesDate: $pagesDate, pagesActive: $pagesActive)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$PageDetailCopyWith<$Res>
+    implements $PageDetailCopyWith<$Res> {
+  factory _$PageDetailCopyWith(
+          _PageDetail value, $Res Function(_PageDetail) _then) =
+      __$PageDetailCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'pages_id', fromJson: _stringToInt) int? pagesId,
+      @JsonKey(name: 'pages_menus') String? pagesMenus,
+      @JsonKey(name: 'pages_title') String? pagesTitle,
+      @JsonKey(name: 'pages_content') String? pagesContent,
+      @JsonKey(name: 'pages_lan') String? pagesLan,
+      @JsonKey(name: 'pages_visitor', fromJson: _stringToInt) int? pagesVisitor,
+      @JsonKey(name: 'pages_priority') String? pagesPriority,
+      @JsonKey(name: 'pages_date') String? pagesDate,
+      @JsonKey(name: 'pages_active') bool? pagesActive});
+}
+
+/// @nodoc
+class __$PageDetailCopyWithImpl<$Res> implements _$PageDetailCopyWith<$Res> {
+  __$PageDetailCopyWithImpl(this._self, this._then);
+
+  final _PageDetail _self;
+  final $Res Function(_PageDetail) _then;
+
+  /// Create a copy of PageDetail
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? pagesId = freezed,
+    Object? pagesMenus = freezed,
+    Object? pagesTitle = freezed,
+    Object? pagesContent = freezed,
+    Object? pagesLan = freezed,
+    Object? pagesVisitor = freezed,
+    Object? pagesPriority = freezed,
+    Object? pagesDate = freezed,
+    Object? pagesActive = freezed,
+  }) {
+    return _then(_PageDetail(
+      pagesId: freezed == pagesId
+          ? _self.pagesId
+          : pagesId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      pagesMenus: freezed == pagesMenus
+          ? _self.pagesMenus
+          : pagesMenus // ignore: cast_nullable_to_non_nullable
+              as String?,
+      pagesTitle: freezed == pagesTitle
+          ? _self.pagesTitle
+          : pagesTitle // ignore: cast_nullable_to_non_nullable
+              as String?,
+      pagesContent: freezed == pagesContent
+          ? _self.pagesContent
+          : pagesContent // ignore: cast_nullable_to_non_nullable
+              as String?,
+      pagesLan: freezed == pagesLan
+          ? _self.pagesLan
+          : pagesLan // ignore: cast_nullable_to_non_nullable
+              as String?,
+      pagesVisitor: freezed == pagesVisitor
+          ? _self.pagesVisitor
+          : pagesVisitor // ignore: cast_nullable_to_non_nullable
+              as int?,
+      pagesPriority: freezed == pagesPriority
+          ? _self.pagesPriority
+          : pagesPriority // ignore: cast_nullable_to_non_nullable
+              as String?,
+      pagesDate: freezed == pagesDate
+          ? _self.pagesDate
+          : pagesDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      pagesActive: freezed == pagesActive
+          ? _self.pagesActive
+          : pagesActive // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ));
+  }
+}
+
 // dart format on

@@ -44,6 +44,7 @@ dependencies:
   marquee: ^2.3.0
   salomon_bottom_bar: ^3.3.2
   dropdown_search: 6.0.2
+  carousel_slider: ^5.1.1
 
   # ──────────────────────────────────────────────────────────────────────────────
   # Media & Documents
@@ -138,6 +139,7 @@ flutter:
     - assets/images/
     - assets/svg/
     - assets/lottie/
+    - assets/bio_html_images/
 
   # ──────────────────────────────────────────────────────────────────────────────
   # Fonts

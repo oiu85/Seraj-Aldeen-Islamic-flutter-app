@@ -9,9 +9,10 @@ import 'biography_state.dart';
 class BiographyBloc extends Bloc<BiographyEvent, BiographyState> {
   final BiographyRepository biographyRepository;
 
-  BiographyBloc({required this.biographyRepository}) 
+  BiographyBloc({required this.biographyRepository})
       : super(BiographyState(status: BlocStatus.initial())) {
     on<LoadPagesEvent>(_onLoadPages);
+    on<LoadPageDetailEvent>(_onLoadPageDetail);
   }
 
   Future<void> _onLoadPages(
@@ -73,6 +74,44 @@ class BiographyBloc extends Bloc<BiographyEvent, BiographyState> {
       emit(state.copyWith(
         status: BlocStatus.fail(error: 'Unexpected error: $e'),
       ));
+    }
+  }
+
+  Future<void> _onLoadPageDetail(
+    LoadPageDetailEvent event,
+    Emitter<BiographyState> emit,
+  ) async {
+    try {
+      AppLogger.info('Loading page detail for ID: ${event.pageId}');
+      
+      // Set loading state for this specific page
+      emit(state.copyWith(loadingPageId: event.pageId));
+
+      final result = await biographyRepository.getPageDetail(
+        pageId: event.pageId,
+      );
+
+      result.fold(
+        (exception) {
+          AppLogger.error('Failed to load page detail: ${exception.toString()}');
+          emit(state.copyWith(loadingPageId: null));
+        },
+        (response) {
+          if (response.success == true && response.data != null) {
+            AppLogger.info('Page detail loaded successfully');
+            emit(state.copyWith(
+              pageDetail: response.data,
+              loadingPageId: null,
+            ));
+          } else {
+            AppLogger.error('Invalid page detail response');
+            emit(state.copyWith(loadingPageId: null));
+          }
+        },
+      );
+    } catch (e) {
+      AppLogger.error('Unexpected error in _onLoadPageDetail: $e');
+      emit(state.copyWith(loadingPageId: null));
     }
   }
 }

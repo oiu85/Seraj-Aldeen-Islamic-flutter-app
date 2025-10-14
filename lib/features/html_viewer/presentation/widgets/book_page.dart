@@ -9,6 +9,7 @@ import '../../../../config/appconfig/app_colors.dart';
 import '../bloc/html_viewer_bloc.dart';
 import '../bloc/html_viewer_state.dart';
 import '../services/responsive_text_service.dart';
+import 'image_carousel_viewer.dart';
 
 class BookPage extends StatelessWidget {
   const BookPage({Key? key}) : super(key: key);
@@ -83,6 +84,7 @@ class BookPage extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      // Basmala (بسم الله الرحمن الرحيم)
                       if (state.currentPage!.pageNumber == 1 &&
                           state.htmlContent != null) ...[
                         Center(
@@ -99,6 +101,39 @@ class BookPage extends StatelessWidget {
                               color: state.isDarkMode ? Colors.amber : AppColors.primary,
                             ),
                             textAlign: TextAlign.center,
+                          ),
+                        ),
+                        SizedBox(height: 16.h),
+                        
+                        // Title
+                        Center(
+                          child: Text(
+                            state.htmlContent!.title,
+                            style: TextStyle(
+                              fontFamily: FontFamily.amiri,
+                              fontSize: fontSize * context.deviceValue(
+                                mobile: 1.8,
+                                tablet: 2.0,
+                                desktop: 2.2,
+                              ),
+                              fontWeight: FontWeight.bold,
+                              color: state.isDarkMode ? Colors.white : AppColors.textPrimary,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        SizedBox(height: 24.h),
+                      ],
+                      
+                      // Image Carousel (after Basmala and Title)
+                      if (state.currentPage!.pageNumber == 1 &&
+                          state.htmlContent?.imageUrls != null && 
+                          state.htmlContent!.imageUrls!.isNotEmpty) ...[
+                        Padding(
+                          padding: EdgeInsets.only(bottom: 24.h),
+                          child: ImageCarouselViewer(
+                            imageUrls: state.htmlContent!.imageUrls!,
+                            isDarkMode: state.isDarkMode,
                           ),
                         ),
                       ],
@@ -154,7 +189,84 @@ class BookPage extends StatelessWidget {
                             color: Colors.blue,
                             textDecoration: TextDecoration.underline,
                           ),
+                          "img": Style(
+                            width: Width(contentWidth * 0.9),
+                            padding: HtmlPaddings.symmetric(vertical: 10),
+                          ),
                         },
+                        extensions: [
+                          TagExtension(
+                            tagsToExtend: {"img"},
+                            builder: (extensionContext) {
+                              final src = extensionContext.attributes['src'];
+                              if (src == null || src.isEmpty) {
+                                return const SizedBox.shrink();
+                              }
+                              
+                              // Handle asset images
+                              if (src.startsWith('assets/')) {
+                                return Center(
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(vertical: 10),
+                                    child: Image.asset(
+                                      src,
+                                      fit: BoxFit.contain,
+                                      errorBuilder: (context, error, stackTrace) {
+                                        return Container(
+                                          padding: const EdgeInsets.all(16),
+                                          color: Colors.grey[300],
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              Icon(Icons.broken_image, size: 48, color: Colors.grey[600]),
+                                              const SizedBox(height: 8),
+                                              Text(
+                                                'الصورة غير متاحة',
+                                                style: TextStyle(color: Colors.grey[600]),
+                                              ),
+                                            ],
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                );
+                              }
+                              
+                              // Handle network images (fallback)
+                              return Center(
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(vertical: 10),
+                                  child: Image.network(
+                                    src,
+                                    fit: BoxFit.contain,
+                                    loadingBuilder: (context, child, loadingProgress) {
+                                      if (loadingProgress == null) return child;
+                                      return const CircularProgressIndicator();
+                                    },
+                                    errorBuilder: (context, error, stackTrace) {
+                                      return Container(
+                                        padding: const EdgeInsets.all(16),
+                                        color: Colors.grey[300],
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Icon(Icons.broken_image, size: 48, color: Colors.grey[600]),
+                                            const SizedBox(height: 8),
+                                            Text(
+                                              'فشل تحميل الصورة',
+                                              style: TextStyle(color: Colors.grey[600]),
+                                            ),
+                                          ],
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                        ],
                       ),
                     ],
                   ),

@@ -10,6 +10,8 @@ class HtmlContent extends Equatable {
   final String? categoryId;
   final String? imageUrl;
   final String? date;
+  final List<String>? imageUrls; // Multiple images for carousel
+  
   const HtmlContent({
     required this.title,
     required this.htmlContent,
@@ -19,6 +21,7 @@ class HtmlContent extends Equatable {
     this.categoryId,
     this.imageUrl,
     this.date,
+    this.imageUrls,
   });
 
   HtmlContent copyWith({
@@ -30,6 +33,7 @@ class HtmlContent extends Equatable {
     String? categoryId,
     String? imageUrl,
     String? date,
+    List<String>? imageUrls,
   }) {
     return HtmlContent(
       title: title ?? this.title,
@@ -40,6 +44,7 @@ class HtmlContent extends Equatable {
       categoryId: categoryId ?? this.categoryId,
       imageUrl: imageUrl ?? this.imageUrl,
       date: date ?? this.date,
+      imageUrls: imageUrls ?? this.imageUrls,
     );
   }
 
@@ -52,7 +57,8 @@ class HtmlContent extends Equatable {
     articleId, 
     categoryId, 
     imageUrl, 
-    date
+    date,
+    imageUrls,
   ];
   
   /// Create an HtmlContent from a RecentArticles object

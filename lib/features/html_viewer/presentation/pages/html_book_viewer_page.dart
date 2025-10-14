@@ -53,7 +53,6 @@ class _HtmlBookViewerContent extends StatelessWidget {
                     ),
                   ),
                   const PageNavigation(),
-
                 ],
               ),
             ),

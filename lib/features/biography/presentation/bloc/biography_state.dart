@@ -9,6 +9,8 @@ class BiographyState extends Equatable {
   final int? lastPage;
   final int? total;
   final bool hasMore;
+  final PageDetail? pageDetail;
+  final int? loadingPageId;
 
   const BiographyState({
     required this.status,
@@ -17,6 +19,8 @@ class BiographyState extends Equatable {
     this.lastPage,
     this.total,
     this.hasMore = false,
+    this.pageDetail,
+    this.loadingPageId,
   });
 
   BiographyState copyWith({
@@ -26,6 +30,8 @@ class BiographyState extends Equatable {
     int? lastPage,
     int? total,
     bool? hasMore,
+    PageDetail? pageDetail,
+    int? loadingPageId,
   }) {
     return BiographyState(
       status: status ?? this.status,
@@ -34,10 +40,12 @@ class BiographyState extends Equatable {
       lastPage: lastPage ?? this.lastPage,
       total: total ?? this.total,
       hasMore: hasMore ?? this.hasMore,
+      pageDetail: pageDetail ?? this.pageDetail,
+      loadingPageId: loadingPageId,
     );
   }
 
   @override
-  List<Object?> get props => [status, pages, currentPage, lastPage, total, hasMore];
+  List<Object?> get props => [status, pages, currentPage, lastPage, total, hasMore, pageDetail, loadingPageId];
 }
 
