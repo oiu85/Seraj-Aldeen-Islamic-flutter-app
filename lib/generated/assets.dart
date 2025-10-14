@@ -20,6 +20,8 @@ class Assets {
   static const String imagesAppbarImageRight = 'assets/images/appbar_image_right.png';
   static const String imagesBookCard = 'assets/images/book_card.png';
   static const String imagesBookColored = 'assets/images/book_colored.png';
+  static const String imagesFacebook = 'assets/images/facebook.png';
+  static const String imagesInstagram = 'assets/images/instagram.png';
   static const String imagesMainCardBackground = 'assets/images/main_card_background.png';
   static const String imagesQuran = 'assets/images/quran.png';
   static const String imagesSchool = 'assets/images/school.png';
@@ -30,9 +32,13 @@ class Assets {
   static const String imagesShaikImage = 'assets/images/shaik_image.png';
   static const String imagesShaikImageRemovebgPreview = 'assets/images/shaik_image-removebg-preview.png';
   static const String imagesSplashScreen = 'assets/images/splash_screen.png';
+  static const String imagesTelegram = 'assets/images/telegram.png';
+  static const String imagesTwitter = 'assets/images/twitter.png';
   static const String imagesVedioIcon = 'assets/images/vedio_icon.png';
   static const String imagesViewrExamplw2 = 'assets/images/viewr_examplw2.png';
   static const String imagesViwerExample = 'assets/images/viwer_example.png';
+  static const String imagesWhatsapp = 'assets/images/whatsapp.png';
+  static const String imagesYoutube = 'assets/images/youtube.png';
   static const String lottieLoading = 'assets/lottie/loading.json';
   static const String lottieNoData = 'assets/lottie/NoData.json';
   static const String lottieNoInternet = 'assets/lottie/NoInternet.json';

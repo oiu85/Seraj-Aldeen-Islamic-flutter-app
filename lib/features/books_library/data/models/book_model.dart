@@ -78,6 +78,10 @@ abstract class BookItem with _$BookItem {
     String? file,
     String? format,
     String? publisher_id,
+    @JsonKey(name: 'book_file_url') String? bookFileUrl,
+    @JsonKey(name: 'book_file_epub_url') String? bookFileEpubUrl,
+    @JsonKey(name: 'book_file_kfx_url') String? bookFileKfxUrl,
+    @JsonKey(name: 'book_pic_url') String? bookPicUrl,
   }) = _BookItem;
 
   factory BookItem.fromJson(Map<String, dynamic> json) =>
@@ -248,6 +252,10 @@ abstract class CategoryBookItem with _$CategoryBookItem {
     String? file,
     String? format,
     String? publisher_id,
+    @JsonKey(name: 'book_file_url') String? bookFileUrl,
+    @JsonKey(name: 'book_file_epub_url') String? bookFileEpubUrl,
+    @JsonKey(name: 'book_file_kfx_url') String? bookFileKfxUrl,
+    @JsonKey(name: 'book_pic_url') String? bookPicUrl,
   }) = _CategoryBookItem;
 
   factory CategoryBookItem.fromJson(Map<String, dynamic> json) =>

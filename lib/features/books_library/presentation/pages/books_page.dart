@@ -193,11 +193,10 @@ Widget _buildTheRow({
                 context: context,
                 viewCont: book.visitor_count?.toString() ?? '0',
                 title: '',
-                imageNamePath: '',
                 width: 180.w,
                 height: 320.h,
                 book: book.title ?? '',
-                bookImagePath: Assets.images.bookCard.path,
+                bookPicUrl: book.bookPicUrl,
                 onTap: () {
                   showModalBottomSheet(
                     context: context,

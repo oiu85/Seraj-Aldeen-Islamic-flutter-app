@@ -7,6 +7,7 @@ class AppScaffold extends StatelessWidget {
   final PreferredSizeWidget? appBar;
   final Widget? drawer;
   final Widget? floatingActionButton;
+  final FloatingActionButtonLocation? floatingActionButtonLocation;
   final Widget? bottomNavigationBar;
   final Color? backgroundColor;
 
@@ -16,6 +17,7 @@ class AppScaffold extends StatelessWidget {
     this.appBar,
     this.drawer,
     this.floatingActionButton,
+    this.floatingActionButtonLocation,
     this.bottomNavigationBar,
     this.backgroundColor,
   });
@@ -25,6 +27,7 @@ class AppScaffold extends StatelessWidget {
     Key? key,
     required Widget body,
     Widget? floatingActionButton,
+    FloatingActionButtonLocation? floatingActionButtonLocation,
     Widget? bottomNavigationBar,
     Color? backgroundColor,
   }) {
@@ -34,6 +37,7 @@ class AppScaffold extends StatelessWidget {
       appBar: _defaultAppBar(),
       drawer: _defaultDrawer(),
       floatingActionButton: floatingActionButton,
+      floatingActionButtonLocation: floatingActionButtonLocation,
       bottomNavigationBar: _defaultBottomBar(),
       backgroundColor: backgroundColor,
     );
@@ -46,6 +50,7 @@ class AppScaffold extends StatelessWidget {
     PreferredSizeWidget? appBar,
     Widget? drawer,
     Widget? floatingActionButton,
+    FloatingActionButtonLocation? floatingActionButtonLocation,
     Widget? bottomNavigationBar,
     Color? backgroundColor,
   }) {
@@ -55,6 +60,7 @@ class AppScaffold extends StatelessWidget {
       appBar: appBar ?? _defaultCustomAppBar(),
       drawer: drawer,
       floatingActionButton: floatingActionButton,
+      floatingActionButtonLocation: floatingActionButtonLocation,
       bottomNavigationBar: bottomNavigationBar,
       backgroundColor: backgroundColor,
     );
@@ -64,6 +70,7 @@ class AppScaffold extends StatelessWidget {
     Key? key,
     required Widget body,
     Widget? floatingActionButton,
+    FloatingActionButtonLocation? floatingActionButtonLocation,
     Widget? bottomNavigationBar,
     Color? backgroundColor,
   }) {
@@ -71,6 +78,7 @@ class AppScaffold extends StatelessWidget {
       key: key,
       body: body,
       floatingActionButton: floatingActionButton,
+      floatingActionButtonLocation: floatingActionButtonLocation,
       bottomNavigationBar: bottomNavigationBar,
       backgroundColor: backgroundColor,
     );
@@ -83,6 +91,7 @@ class AppScaffold extends StatelessWidget {
       drawer: drawer,
       body: body,
       floatingActionButton: floatingActionButton,
+      floatingActionButtonLocation: floatingActionButtonLocation,
       bottomNavigationBar: bottomNavigationBar,
       backgroundColor: backgroundColor,
     );

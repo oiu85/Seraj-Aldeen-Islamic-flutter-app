@@ -9,7 +9,6 @@ import 'package:seraj_aldean_flutter_app/core/shared/widgets/filter_button.dart'
 import 'package:seraj_aldean_flutter_app/core/shared/widgets/ui_status_handling.dart';
 import 'package:seraj_aldean_flutter_app/gen/fonts.gen.dart';
 
-import '../../../../gen/assets.gen.dart';
 import '../bloc/books_bloc.dart';
 import '../bloc/books_event.dart';
 import '../bloc/books_state.dart';
@@ -192,11 +191,10 @@ class _SoundsBookPageState extends State<SoundsBookPage> {
           context: context,
           viewCont: book.visitor_count ?? '0',
           title: '',
-          imageNamePath: Assets.images.serajName.path,
           width: 10,
           height: 10.h,
           book: book.title ?? '',
-          bookImagePath: Assets.images.bookCard.path,
+          bookPicUrl: book.bookPicUrl,
           onTap: () {
             showModalBottomSheet(
               context: context,

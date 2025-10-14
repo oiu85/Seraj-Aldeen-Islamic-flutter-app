@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:seraj_aldean_flutter_app/core/responsive/screen_util_res.dart';
 
 import '../../../../config/appconfig/app_colors.dart';
@@ -9,10 +10,9 @@ Widget bookCardBuild({
   required String book,
   required String viewCont,
   required String title,
-  required String imageNamePath,
   required double width,
   required double height,
-  required String bookImagePath,
+  String? bookPicUrl, // Network URL for book image
   bool isLoading = false,
   bool isSoundBook = false,
   VoidCallback? onTap,
@@ -26,7 +26,35 @@ Widget bookCardBuild({
         mainAxisSize: MainAxisSize.min,
         children: [
             SizedBox(height: 8.h),
-            Image.asset(bookImagePath, width: 92, height: 136),
+            // Book cover image
+            SizedBox(
+              width: 92,
+              height: 136,
+              child: bookPicUrl != null && bookPicUrl.isNotEmpty
+                  ? _buildBookImage(bookPicUrl)
+                  : Container(
+                      color: AppColors.grey.withOpacity(0.1),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.book,
+                            size: 40,
+                            color: AppColors.grey,
+                          ),
+                          SizedBox(height: 4.h),
+                          Text(
+                            'غلاف الكتاب',
+                            style: TextStyle(
+                              fontSize: 10,
+                              color: AppColors.grey,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ],
+                      ),
+                    ),
+            ),
             SizedBox(height: 8.h),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 4.w),
@@ -120,4 +148,84 @@ Widget bookCardBuild({
       ),
     ),
   );
+}
+
+// Helper function to build book image (supports both local assets and network URLs)
+Widget _buildBookImage(String imagePath) {
+  // Check if it's a local asset path or a network URL
+  final isLocalAsset = imagePath.startsWith('assets/') || 
+                       (!imagePath.startsWith('http://') && !imagePath.startsWith('https://'));
+  
+  if (isLocalAsset) {
+    // Use Image.asset for local assets
+    return Image.asset(
+      imagePath,
+      width: 92,
+      height: 136,
+      fit: BoxFit.cover,
+      errorBuilder: (context, error, stackTrace) {
+        return Container(
+          color: AppColors.grey.withOpacity(0.1),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                Icons.book,
+                size: 40,
+                color: AppColors.grey,
+              ),
+              SizedBox(height: 4.h),
+              Text(
+                'غلاف الكتاب',
+                style: TextStyle(
+                  fontSize: 10,
+                  color: AppColors.grey,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  } else {
+    // Use CachedNetworkImage for network URLs
+    return CachedNetworkImage(
+      imageUrl: imagePath,
+      width: 92,
+      height: 136,
+      fit: BoxFit.cover,
+      placeholder: (context, url) => Container(
+        color: AppColors.grey.withOpacity(0.1),
+        child: Center(
+          child: CircularProgressIndicator(
+            color: AppColors.primary,
+            strokeWidth: 2,
+          ),
+        ),
+      ),
+      errorWidget: (context, url, error) => Container(
+        color: AppColors.grey.withOpacity(0.1),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.book,
+              size: 40,
+              color: AppColors.grey,
+            ),
+            SizedBox(height: 4.h),
+            Text(
+              'غلاف الكتاب',
+              style: TextStyle(
+                fontSize: 10,
+                color: AppColors.grey,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }

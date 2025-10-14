@@ -63,6 +63,12 @@ class $AssetsImagesGen {
   /// File path: assets/images/book_colored.png
   AssetGenImage get bookColored => const AssetGenImage('assets/images/book_colored.png');
 
+  /// File path: assets/images/facebook.png
+  AssetGenImage get facebook => const AssetGenImage('assets/images/facebook.png');
+
+  /// File path: assets/images/instagram.png
+  AssetGenImage get instagram => const AssetGenImage('assets/images/instagram.png');
+
   /// File path: assets/images/main_card_background.png
   AssetGenImage get mainCardBackground => const AssetGenImage('assets/images/main_card_background.png');
 
@@ -90,6 +96,12 @@ class $AssetsImagesGen {
   /// File path: assets/images/splash_screen.png
   AssetGenImage get splashScreen => const AssetGenImage('assets/images/splash_screen.png');
 
+  /// File path: assets/images/telegram.png
+  AssetGenImage get telegram => const AssetGenImage('assets/images/telegram.png');
+
+  /// File path: assets/images/twitter.png
+  AssetGenImage get twitter => const AssetGenImage('assets/images/twitter.png');
+
   /// File path: assets/images/vedio_icon.png
   AssetGenImage get vedioIcon => const AssetGenImage('assets/images/vedio_icon.png');
 
@@ -99,6 +111,12 @@ class $AssetsImagesGen {
   /// File path: assets/images/viwer_example.png
   AssetGenImage get viwerExample => const AssetGenImage('assets/images/viwer_example.png');
 
+  /// File path: assets/images/whatsapp.png
+  AssetGenImage get whatsapp => const AssetGenImage('assets/images/whatsapp.png');
+
+  /// File path: assets/images/youtube.png
+  AssetGenImage get youtube => const AssetGenImage('assets/images/youtube.png');
+
   /// List of all assets
   List<AssetGenImage> get values => [
         searchEmpty,
@@ -107,6 +125,8 @@ class $AssetsImagesGen {
         appbarImageRight,
         bookCard,
         bookColored,
+        facebook,
+        instagram,
         mainCardBackground,
         quran,
         school,
@@ -116,9 +136,13 @@ class $AssetsImagesGen {
         shaikImageRemovebgPreview,
         shaikImage,
         splashScreen,
+        telegram,
+        twitter,
         vedioIcon,
         viewrExamplw2,
-        viwerExample
+        viwerExample,
+        whatsapp,
+        youtube
       ];
 }
 

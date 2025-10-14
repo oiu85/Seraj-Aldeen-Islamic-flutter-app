@@ -15,6 +15,16 @@ import '../bloc/search_state.dart';
 import '../widgets/search_result_card.dart';
 import '../../data/models/search_model.dart';
 
+// Navigation imports
+import '../../../books_library/presentation/widgets/book_info_bottom_sheet.dart';
+import '../../../books_library/presentation/bloc/books_bloc.dart';
+import '../../../sounds_library/presentation/widgets/music_player.dart';
+import '../../../sounds_library/data/models/sound_model.dart';
+import '../../../html_viewer/presentation/pages/html_book_viewer_page.dart';
+import '../../../html_viewer/domain/models/html_content.dart';
+import '../../../video_library/presentation/pages/player_page.dart';
+import '../../../image_galary/presentation/pages/category_gallery_page.dart';
+
 class GlobalSearch extends StatefulWidget {
   const GlobalSearch({super.key});
 
@@ -459,19 +469,163 @@ class _GlobalSearchState extends State<GlobalSearch> {
   }
 
   void _navigateToDetail(BuildContext context, SearchResultItem item) {
-    // Navigation will be implemented later
-    // For now, just show the item was clicked
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(
-          'تم اختيار: ${item.title ?? ""}',
-          style: TextStyle(
-            fontFamily: FontFamily.tajawal,
-            fontSize: 14.f,
+    final type = item.type?.toLowerCase();
+    
+    switch (type) {
+      case 'book':
+      case 'books':
+        _navigateToBook(context, item);
+        break;
+      
+      case 'sound':
+      case 'sounds':
+        _navigateToSound(context, item);
+        break;
+      
+      case 'article':
+      case 'articles':
+        _navigateToArticle(context, item);
+        break;
+      
+      case 'page':
+      case 'pages':
+        _navigateToPage(context, item);
+        break;
+      
+      case 'video':
+      case 'videos':
+        _navigateToVideo(context, item);
+        break;
+      
+      case 'photo_gallery':
+      case 'photo_galleries':
+        _navigateToPhotoGallery(context, item);
+        break;
+      
+      default:
+        // Show error message for unsupported types
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              'نوع العنصر غير مدعوم: ${item.type ?? "غير معروف"}',
+              style: TextStyle(
+                fontFamily: FontFamily.tajawal,
+                fontSize: 14.f,
+              ),
+            ),
+            backgroundColor: Colors.red,
+            duration: Duration(seconds: 2),
           ),
+        );
+    }
+  }
+
+  void _navigateToBook(BuildContext context, SearchResultItem item) {
+    if (item.id == null) return;
+    
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (bottomSheetContext) => BlocProvider(
+        create: (_) => getIt<BooksBloc>(),
+        child: BookInfoBottomSheet(
+          bookId: item.id!,
         ),
-        backgroundColor: AppColors.primary,
-        duration: Duration(seconds: 2),
+      ),
+    );
+  }
+
+  void _navigateToSound(BuildContext context, SearchResultItem item) {
+    // Convert SearchResultItem to SoundItem
+    final soundItem = SoundItem(
+      id: item.id,
+      title: item.title,
+      summary: item.summary ?? item.description,
+      date: item.date,
+      visitor_count: item.visitor_count,
+      is_new: item.is_new,
+      priority: item.priority,
+      sound_file_url: item.sound_file_url,
+    );
+    
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => MusicPlayer(
+          sound: soundItem,
+          categoryTitle: item.category?.cat_title,
+        ),
+      ),
+    );
+  }
+
+  void _navigateToArticle(BuildContext context, SearchResultItem item) {
+    // Convert SearchResultItem to HtmlContent for articles
+    final htmlContent = HtmlContent(
+      title: item.title ?? 'مقال',
+      htmlContent: item.content ?? item.description ?? '',
+      summary: item.summary,
+      description: item.description,
+      articleId: item.id,
+      imageUrl: item.picture,
+      date: item.date,
+    );
+    
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => HtmlBookViewerPage(
+          htmlContent: htmlContent,
+        ),
+      ),
+    );
+  }
+
+  void _navigateToPage(BuildContext context, SearchResultItem item) {
+    // Convert SearchResultItem to HtmlContent for pages (biography)
+    final htmlContent = HtmlContent(
+      title: item.title ?? 'صفحة',
+      htmlContent: item.content ?? item.description ?? '',
+      summary: item.summary,
+      description: item.description,
+      imageUrl: item.picture,
+      date: item.date,
+    );
+    
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => HtmlBookViewerPage(
+          htmlContent: htmlContent,
+        ),
+      ),
+    );
+  }
+
+  void _navigateToVideo(BuildContext context, SearchResultItem item) {
+    if (item.id == null) return;
+    
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => PlayerPage(
+          videoId: item.id!,
+        ),
+      ),
+    );
+  }
+
+  void _navigateToPhotoGallery(BuildContext context, SearchResultItem item) {
+    if (item.category?.cat_id == null) return;
+    
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => CategoryGalleryPage(
+          categoryId: item.category!.cat_id!,
+          categoryTitle: item.category?.cat_title ?? 'معرض الصور',
+        ),
       ),
     );
   }

@@ -88,6 +88,10 @@ _BookItem _$BookItemFromJson(Map<String, dynamic> json) => _BookItem(
       file: json['file'] as String?,
       format: json['format'] as String?,
       publisher_id: json['publisher_id'] as String?,
+      bookFileUrl: json['book_file_url'] as String?,
+      bookFileEpubUrl: json['book_file_epub_url'] as String?,
+      bookFileKfxUrl: json['book_file_kfx_url'] as String?,
+      bookPicUrl: json['book_pic_url'] as String?,
     );
 
 Map<String, dynamic> _$BookItemToJson(_BookItem instance) => <String, dynamic>{
@@ -101,6 +105,10 @@ Map<String, dynamic> _$BookItemToJson(_BookItem instance) => <String, dynamic>{
       'file': instance.file,
       'format': instance.format,
       'publisher_id': instance.publisher_id,
+      'book_file_url': instance.bookFileUrl,
+      'book_file_epub_url': instance.bookFileEpubUrl,
+      'book_file_kfx_url': instance.bookFileKfxUrl,
+      'book_pic_url': instance.bookPicUrl,
     };
 
 _BookPaginationData _$BookPaginationDataFromJson(Map<String, dynamic> json) =>
@@ -349,6 +357,10 @@ _CategoryBookItem _$CategoryBookItemFromJson(Map<String, dynamic> json) =>
       file: json['file'] as String?,
       format: json['format'] as String?,
       publisher_id: json['publisher_id'] as String?,
+      bookFileUrl: json['book_file_url'] as String?,
+      bookFileEpubUrl: json['book_file_epub_url'] as String?,
+      bookFileKfxUrl: json['book_file_kfx_url'] as String?,
+      bookPicUrl: json['book_pic_url'] as String?,
     );
 
 Map<String, dynamic> _$CategoryBookItemToJson(_CategoryBookItem instance) =>
@@ -363,6 +375,10 @@ Map<String, dynamic> _$CategoryBookItemToJson(_CategoryBookItem instance) =>
       'file': instance.file,
       'format': instance.format,
       'publisher_id': instance.publisher_id,
+      'book_file_url': instance.bookFileUrl,
+      'book_file_epub_url': instance.bookFileEpubUrl,
+      'book_file_kfx_url': instance.bookFileKfxUrl,
+      'book_pic_url': instance.bookPicUrl,
     };
 
 _CategoryBooksPagination _$CategoryBooksPaginationFromJson(

@@ -3,13 +3,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:seraj_aldean_flutter_app/core/responsive/screen_util_res.dart';
+import 'package:seraj_aldean_flutter_app/core/responsive/screen_utils.dart';
 import 'package:seraj_aldean_flutter_app/core/routes.dart';
 import 'package:seraj_aldean_flutter_app/features/global_search/presentation/pages/global_search.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
 
 import '../../../../config/appconfig/app_colors.dart';
 import '../../../../core/di/app_dependencies.dart';
 import '../../../../core/shared/widgets/app_scaffold.dart';
+import '../../../../core/shared/widgets/social_networks.dart';
 import '../../../../core/shared/widgets/ui_status_handling.dart';
 import '../../../../gen/assets.gen.dart';
 import '../../../../gen/fonts.gen.dart';
@@ -75,6 +78,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     return BlocProvider.value(
       value: _homeBloc,
       child: AppScaffold.clean(
+        floatingActionButton: SocialNetworksExpandableFab(iconSize: 60,),
+        floatingActionButtonLocation: ExpandableFab.location,
         bottomNavigationBar: CustomBottomNavBar(
           selectedIndex: _selectedIndex,
           onDestinationSelected: _onDestinationSelected,

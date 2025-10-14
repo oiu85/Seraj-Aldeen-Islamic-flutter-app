@@ -1444,6 +1444,14 @@ mixin _$BookItem {
   String? get file;
   String? get format;
   String? get publisher_id;
+  @JsonKey(name: 'book_file_url')
+  String? get bookFileUrl;
+  @JsonKey(name: 'book_file_epub_url')
+  String? get bookFileEpubUrl;
+  @JsonKey(name: 'book_file_kfx_url')
+  String? get bookFileKfxUrl;
+  @JsonKey(name: 'book_pic_url')
+  String? get bookPicUrl;
 
   /// Create a copy of BookItem
   /// with the given fields replaced by the non-null parameter values.
@@ -1472,17 +1480,39 @@ mixin _$BookItem {
             (identical(other.file, file) || other.file == file) &&
             (identical(other.format, format) || other.format == format) &&
             (identical(other.publisher_id, publisher_id) ||
-                other.publisher_id == publisher_id));
+                other.publisher_id == publisher_id) &&
+            (identical(other.bookFileUrl, bookFileUrl) ||
+                other.bookFileUrl == bookFileUrl) &&
+            (identical(other.bookFileEpubUrl, bookFileEpubUrl) ||
+                other.bookFileEpubUrl == bookFileEpubUrl) &&
+            (identical(other.bookFileKfxUrl, bookFileKfxUrl) ||
+                other.bookFileKfxUrl == bookFileKfxUrl) &&
+            (identical(other.bookPicUrl, bookPicUrl) ||
+                other.bookPicUrl == bookPicUrl));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, title, summary, date,
-      visitor_count, is_new, priority, file, format, publisher_id);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      title,
+      summary,
+      date,
+      visitor_count,
+      is_new,
+      priority,
+      file,
+      format,
+      publisher_id,
+      bookFileUrl,
+      bookFileEpubUrl,
+      bookFileKfxUrl,
+      bookPicUrl);
 
   @override
   String toString() {
-    return 'BookItem(id: $id, title: $title, summary: $summary, date: $date, visitor_count: $visitor_count, is_new: $is_new, priority: $priority, file: $file, format: $format, publisher_id: $publisher_id)';
+    return 'BookItem(id: $id, title: $title, summary: $summary, date: $date, visitor_count: $visitor_count, is_new: $is_new, priority: $priority, file: $file, format: $format, publisher_id: $publisher_id, bookFileUrl: $bookFileUrl, bookFileEpubUrl: $bookFileEpubUrl, bookFileKfxUrl: $bookFileKfxUrl, bookPicUrl: $bookPicUrl)';
   }
 }
 
@@ -1501,7 +1531,11 @@ abstract mixin class $BookItemCopyWith<$Res> {
       String? priority,
       String? file,
       String? format,
-      String? publisher_id});
+      String? publisher_id,
+      @JsonKey(name: 'book_file_url') String? bookFileUrl,
+      @JsonKey(name: 'book_file_epub_url') String? bookFileEpubUrl,
+      @JsonKey(name: 'book_file_kfx_url') String? bookFileKfxUrl,
+      @JsonKey(name: 'book_pic_url') String? bookPicUrl});
 }
 
 /// @nodoc
@@ -1526,6 +1560,10 @@ class _$BookItemCopyWithImpl<$Res> implements $BookItemCopyWith<$Res> {
     Object? file = freezed,
     Object? format = freezed,
     Object? publisher_id = freezed,
+    Object? bookFileUrl = freezed,
+    Object? bookFileEpubUrl = freezed,
+    Object? bookFileKfxUrl = freezed,
+    Object? bookPicUrl = freezed,
   }) {
     return _then(_self.copyWith(
       id: freezed == id
@@ -1567,6 +1605,22 @@ class _$BookItemCopyWithImpl<$Res> implements $BookItemCopyWith<$Res> {
       publisher_id: freezed == publisher_id
           ? _self.publisher_id
           : publisher_id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      bookFileUrl: freezed == bookFileUrl
+          ? _self.bookFileUrl
+          : bookFileUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      bookFileEpubUrl: freezed == bookFileEpubUrl
+          ? _self.bookFileEpubUrl
+          : bookFileEpubUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      bookFileKfxUrl: freezed == bookFileKfxUrl
+          ? _self.bookFileKfxUrl
+          : bookFileKfxUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      bookPicUrl: freezed == bookPicUrl
+          ? _self.bookPicUrl
+          : bookPicUrl // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -1675,7 +1729,11 @@ extension BookItemPatterns on BookItem {
             String? priority,
             String? file,
             String? format,
-            String? publisher_id)?
+            String? publisher_id,
+            @JsonKey(name: 'book_file_url') String? bookFileUrl,
+            @JsonKey(name: 'book_file_epub_url') String? bookFileEpubUrl,
+            @JsonKey(name: 'book_file_kfx_url') String? bookFileKfxUrl,
+            @JsonKey(name: 'book_pic_url') String? bookPicUrl)?
         $default, {
     required TResult orElse(),
   }) {
@@ -1692,7 +1750,11 @@ extension BookItemPatterns on BookItem {
             _that.priority,
             _that.file,
             _that.format,
-            _that.publisher_id);
+            _that.publisher_id,
+            _that.bookFileUrl,
+            _that.bookFileEpubUrl,
+            _that.bookFileKfxUrl,
+            _that.bookPicUrl);
       case _:
         return orElse();
     }
@@ -1723,7 +1785,11 @@ extension BookItemPatterns on BookItem {
             String? priority,
             String? file,
             String? format,
-            String? publisher_id)
+            String? publisher_id,
+            @JsonKey(name: 'book_file_url') String? bookFileUrl,
+            @JsonKey(name: 'book_file_epub_url') String? bookFileEpubUrl,
+            @JsonKey(name: 'book_file_kfx_url') String? bookFileKfxUrl,
+            @JsonKey(name: 'book_pic_url') String? bookPicUrl)
         $default,
   ) {
     final _that = this;
@@ -1739,7 +1805,11 @@ extension BookItemPatterns on BookItem {
             _that.priority,
             _that.file,
             _that.format,
-            _that.publisher_id);
+            _that.publisher_id,
+            _that.bookFileUrl,
+            _that.bookFileEpubUrl,
+            _that.bookFileKfxUrl,
+            _that.bookPicUrl);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -1769,7 +1839,11 @@ extension BookItemPatterns on BookItem {
             String? priority,
             String? file,
             String? format,
-            String? publisher_id)?
+            String? publisher_id,
+            @JsonKey(name: 'book_file_url') String? bookFileUrl,
+            @JsonKey(name: 'book_file_epub_url') String? bookFileEpubUrl,
+            @JsonKey(name: 'book_file_kfx_url') String? bookFileKfxUrl,
+            @JsonKey(name: 'book_pic_url') String? bookPicUrl)?
         $default,
   ) {
     final _that = this;
@@ -1785,7 +1859,11 @@ extension BookItemPatterns on BookItem {
             _that.priority,
             _that.file,
             _that.format,
-            _that.publisher_id);
+            _that.publisher_id,
+            _that.bookFileUrl,
+            _that.bookFileEpubUrl,
+            _that.bookFileKfxUrl,
+            _that.bookPicUrl);
       case _:
         return null;
     }
@@ -1805,7 +1883,11 @@ class _BookItem implements BookItem {
       this.priority,
       this.file,
       this.format,
-      this.publisher_id});
+      this.publisher_id,
+      @JsonKey(name: 'book_file_url') this.bookFileUrl,
+      @JsonKey(name: 'book_file_epub_url') this.bookFileEpubUrl,
+      @JsonKey(name: 'book_file_kfx_url') this.bookFileKfxUrl,
+      @JsonKey(name: 'book_pic_url') this.bookPicUrl});
   factory _BookItem.fromJson(Map<String, dynamic> json) =>
       _$BookItemFromJson(json);
 
@@ -1831,6 +1913,18 @@ class _BookItem implements BookItem {
   final String? format;
   @override
   final String? publisher_id;
+  @override
+  @JsonKey(name: 'book_file_url')
+  final String? bookFileUrl;
+  @override
+  @JsonKey(name: 'book_file_epub_url')
+  final String? bookFileEpubUrl;
+  @override
+  @JsonKey(name: 'book_file_kfx_url')
+  final String? bookFileKfxUrl;
+  @override
+  @JsonKey(name: 'book_pic_url')
+  final String? bookPicUrl;
 
   /// Create a copy of BookItem
   /// with the given fields replaced by the non-null parameter values.
@@ -1864,17 +1958,39 @@ class _BookItem implements BookItem {
             (identical(other.file, file) || other.file == file) &&
             (identical(other.format, format) || other.format == format) &&
             (identical(other.publisher_id, publisher_id) ||
-                other.publisher_id == publisher_id));
+                other.publisher_id == publisher_id) &&
+            (identical(other.bookFileUrl, bookFileUrl) ||
+                other.bookFileUrl == bookFileUrl) &&
+            (identical(other.bookFileEpubUrl, bookFileEpubUrl) ||
+                other.bookFileEpubUrl == bookFileEpubUrl) &&
+            (identical(other.bookFileKfxUrl, bookFileKfxUrl) ||
+                other.bookFileKfxUrl == bookFileKfxUrl) &&
+            (identical(other.bookPicUrl, bookPicUrl) ||
+                other.bookPicUrl == bookPicUrl));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, title, summary, date,
-      visitor_count, is_new, priority, file, format, publisher_id);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      title,
+      summary,
+      date,
+      visitor_count,
+      is_new,
+      priority,
+      file,
+      format,
+      publisher_id,
+      bookFileUrl,
+      bookFileEpubUrl,
+      bookFileKfxUrl,
+      bookPicUrl);
 
   @override
   String toString() {
-    return 'BookItem(id: $id, title: $title, summary: $summary, date: $date, visitor_count: $visitor_count, is_new: $is_new, priority: $priority, file: $file, format: $format, publisher_id: $publisher_id)';
+    return 'BookItem(id: $id, title: $title, summary: $summary, date: $date, visitor_count: $visitor_count, is_new: $is_new, priority: $priority, file: $file, format: $format, publisher_id: $publisher_id, bookFileUrl: $bookFileUrl, bookFileEpubUrl: $bookFileEpubUrl, bookFileKfxUrl: $bookFileKfxUrl, bookPicUrl: $bookPicUrl)';
   }
 }
 
@@ -1895,7 +2011,11 @@ abstract mixin class _$BookItemCopyWith<$Res>
       String? priority,
       String? file,
       String? format,
-      String? publisher_id});
+      String? publisher_id,
+      @JsonKey(name: 'book_file_url') String? bookFileUrl,
+      @JsonKey(name: 'book_file_epub_url') String? bookFileEpubUrl,
+      @JsonKey(name: 'book_file_kfx_url') String? bookFileKfxUrl,
+      @JsonKey(name: 'book_pic_url') String? bookPicUrl});
 }
 
 /// @nodoc
@@ -1920,6 +2040,10 @@ class __$BookItemCopyWithImpl<$Res> implements _$BookItemCopyWith<$Res> {
     Object? file = freezed,
     Object? format = freezed,
     Object? publisher_id = freezed,
+    Object? bookFileUrl = freezed,
+    Object? bookFileEpubUrl = freezed,
+    Object? bookFileKfxUrl = freezed,
+    Object? bookPicUrl = freezed,
   }) {
     return _then(_BookItem(
       id: freezed == id
@@ -1961,6 +2085,22 @@ class __$BookItemCopyWithImpl<$Res> implements _$BookItemCopyWith<$Res> {
       publisher_id: freezed == publisher_id
           ? _self.publisher_id
           : publisher_id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      bookFileUrl: freezed == bookFileUrl
+          ? _self.bookFileUrl
+          : bookFileUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      bookFileEpubUrl: freezed == bookFileEpubUrl
+          ? _self.bookFileEpubUrl
+          : bookFileEpubUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      bookFileKfxUrl: freezed == bookFileKfxUrl
+          ? _self.bookFileKfxUrl
+          : bookFileKfxUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      bookPicUrl: freezed == bookPicUrl
+          ? _self.bookPicUrl
+          : bookPicUrl // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -6621,6 +6761,14 @@ mixin _$CategoryBookItem {
   String? get file;
   String? get format;
   String? get publisher_id;
+  @JsonKey(name: 'book_file_url')
+  String? get bookFileUrl;
+  @JsonKey(name: 'book_file_epub_url')
+  String? get bookFileEpubUrl;
+  @JsonKey(name: 'book_file_kfx_url')
+  String? get bookFileKfxUrl;
+  @JsonKey(name: 'book_pic_url')
+  String? get bookPicUrl;
 
   /// Create a copy of CategoryBookItem
   /// with the given fields replaced by the non-null parameter values.
@@ -6650,17 +6798,39 @@ mixin _$CategoryBookItem {
             (identical(other.file, file) || other.file == file) &&
             (identical(other.format, format) || other.format == format) &&
             (identical(other.publisher_id, publisher_id) ||
-                other.publisher_id == publisher_id));
+                other.publisher_id == publisher_id) &&
+            (identical(other.bookFileUrl, bookFileUrl) ||
+                other.bookFileUrl == bookFileUrl) &&
+            (identical(other.bookFileEpubUrl, bookFileEpubUrl) ||
+                other.bookFileEpubUrl == bookFileEpubUrl) &&
+            (identical(other.bookFileKfxUrl, bookFileKfxUrl) ||
+                other.bookFileKfxUrl == bookFileKfxUrl) &&
+            (identical(other.bookPicUrl, bookPicUrl) ||
+                other.bookPicUrl == bookPicUrl));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, title, summary, date,
-      visitor_count, is_new, priority, file, format, publisher_id);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      title,
+      summary,
+      date,
+      visitor_count,
+      is_new,
+      priority,
+      file,
+      format,
+      publisher_id,
+      bookFileUrl,
+      bookFileEpubUrl,
+      bookFileKfxUrl,
+      bookPicUrl);
 
   @override
   String toString() {
-    return 'CategoryBookItem(id: $id, title: $title, summary: $summary, date: $date, visitor_count: $visitor_count, is_new: $is_new, priority: $priority, file: $file, format: $format, publisher_id: $publisher_id)';
+    return 'CategoryBookItem(id: $id, title: $title, summary: $summary, date: $date, visitor_count: $visitor_count, is_new: $is_new, priority: $priority, file: $file, format: $format, publisher_id: $publisher_id, bookFileUrl: $bookFileUrl, bookFileEpubUrl: $bookFileEpubUrl, bookFileKfxUrl: $bookFileKfxUrl, bookPicUrl: $bookPicUrl)';
   }
 }
 
@@ -6680,7 +6850,11 @@ abstract mixin class $CategoryBookItemCopyWith<$Res> {
       String? priority,
       String? file,
       String? format,
-      String? publisher_id});
+      String? publisher_id,
+      @JsonKey(name: 'book_file_url') String? bookFileUrl,
+      @JsonKey(name: 'book_file_epub_url') String? bookFileEpubUrl,
+      @JsonKey(name: 'book_file_kfx_url') String? bookFileKfxUrl,
+      @JsonKey(name: 'book_pic_url') String? bookPicUrl});
 }
 
 /// @nodoc
@@ -6706,6 +6880,10 @@ class _$CategoryBookItemCopyWithImpl<$Res>
     Object? file = freezed,
     Object? format = freezed,
     Object? publisher_id = freezed,
+    Object? bookFileUrl = freezed,
+    Object? bookFileEpubUrl = freezed,
+    Object? bookFileKfxUrl = freezed,
+    Object? bookPicUrl = freezed,
   }) {
     return _then(_self.copyWith(
       id: freezed == id
@@ -6747,6 +6925,22 @@ class _$CategoryBookItemCopyWithImpl<$Res>
       publisher_id: freezed == publisher_id
           ? _self.publisher_id
           : publisher_id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      bookFileUrl: freezed == bookFileUrl
+          ? _self.bookFileUrl
+          : bookFileUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      bookFileEpubUrl: freezed == bookFileEpubUrl
+          ? _self.bookFileEpubUrl
+          : bookFileEpubUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      bookFileKfxUrl: freezed == bookFileKfxUrl
+          ? _self.bookFileKfxUrl
+          : bookFileKfxUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      bookPicUrl: freezed == bookPicUrl
+          ? _self.bookPicUrl
+          : bookPicUrl // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -6855,7 +7049,11 @@ extension CategoryBookItemPatterns on CategoryBookItem {
             String? priority,
             String? file,
             String? format,
-            String? publisher_id)?
+            String? publisher_id,
+            @JsonKey(name: 'book_file_url') String? bookFileUrl,
+            @JsonKey(name: 'book_file_epub_url') String? bookFileEpubUrl,
+            @JsonKey(name: 'book_file_kfx_url') String? bookFileKfxUrl,
+            @JsonKey(name: 'book_pic_url') String? bookPicUrl)?
         $default, {
     required TResult orElse(),
   }) {
@@ -6872,7 +7070,11 @@ extension CategoryBookItemPatterns on CategoryBookItem {
             _that.priority,
             _that.file,
             _that.format,
-            _that.publisher_id);
+            _that.publisher_id,
+            _that.bookFileUrl,
+            _that.bookFileEpubUrl,
+            _that.bookFileKfxUrl,
+            _that.bookPicUrl);
       case _:
         return orElse();
     }
@@ -6903,7 +7105,11 @@ extension CategoryBookItemPatterns on CategoryBookItem {
             String? priority,
             String? file,
             String? format,
-            String? publisher_id)
+            String? publisher_id,
+            @JsonKey(name: 'book_file_url') String? bookFileUrl,
+            @JsonKey(name: 'book_file_epub_url') String? bookFileEpubUrl,
+            @JsonKey(name: 'book_file_kfx_url') String? bookFileKfxUrl,
+            @JsonKey(name: 'book_pic_url') String? bookPicUrl)
         $default,
   ) {
     final _that = this;
@@ -6919,7 +7125,11 @@ extension CategoryBookItemPatterns on CategoryBookItem {
             _that.priority,
             _that.file,
             _that.format,
-            _that.publisher_id);
+            _that.publisher_id,
+            _that.bookFileUrl,
+            _that.bookFileEpubUrl,
+            _that.bookFileKfxUrl,
+            _that.bookPicUrl);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -6949,7 +7159,11 @@ extension CategoryBookItemPatterns on CategoryBookItem {
             String? priority,
             String? file,
             String? format,
-            String? publisher_id)?
+            String? publisher_id,
+            @JsonKey(name: 'book_file_url') String? bookFileUrl,
+            @JsonKey(name: 'book_file_epub_url') String? bookFileEpubUrl,
+            @JsonKey(name: 'book_file_kfx_url') String? bookFileKfxUrl,
+            @JsonKey(name: 'book_pic_url') String? bookPicUrl)?
         $default,
   ) {
     final _that = this;
@@ -6965,7 +7179,11 @@ extension CategoryBookItemPatterns on CategoryBookItem {
             _that.priority,
             _that.file,
             _that.format,
-            _that.publisher_id);
+            _that.publisher_id,
+            _that.bookFileUrl,
+            _that.bookFileEpubUrl,
+            _that.bookFileKfxUrl,
+            _that.bookPicUrl);
       case _:
         return null;
     }
@@ -6985,7 +7203,11 @@ class _CategoryBookItem implements CategoryBookItem {
       this.priority,
       this.file,
       this.format,
-      this.publisher_id});
+      this.publisher_id,
+      @JsonKey(name: 'book_file_url') this.bookFileUrl,
+      @JsonKey(name: 'book_file_epub_url') this.bookFileEpubUrl,
+      @JsonKey(name: 'book_file_kfx_url') this.bookFileKfxUrl,
+      @JsonKey(name: 'book_pic_url') this.bookPicUrl});
   factory _CategoryBookItem.fromJson(Map<String, dynamic> json) =>
       _$CategoryBookItemFromJson(json);
 
@@ -7011,6 +7233,18 @@ class _CategoryBookItem implements CategoryBookItem {
   final String? format;
   @override
   final String? publisher_id;
+  @override
+  @JsonKey(name: 'book_file_url')
+  final String? bookFileUrl;
+  @override
+  @JsonKey(name: 'book_file_epub_url')
+  final String? bookFileEpubUrl;
+  @override
+  @JsonKey(name: 'book_file_kfx_url')
+  final String? bookFileKfxUrl;
+  @override
+  @JsonKey(name: 'book_pic_url')
+  final String? bookPicUrl;
 
   /// Create a copy of CategoryBookItem
   /// with the given fields replaced by the non-null parameter values.
@@ -7044,17 +7278,39 @@ class _CategoryBookItem implements CategoryBookItem {
             (identical(other.file, file) || other.file == file) &&
             (identical(other.format, format) || other.format == format) &&
             (identical(other.publisher_id, publisher_id) ||
-                other.publisher_id == publisher_id));
+                other.publisher_id == publisher_id) &&
+            (identical(other.bookFileUrl, bookFileUrl) ||
+                other.bookFileUrl == bookFileUrl) &&
+            (identical(other.bookFileEpubUrl, bookFileEpubUrl) ||
+                other.bookFileEpubUrl == bookFileEpubUrl) &&
+            (identical(other.bookFileKfxUrl, bookFileKfxUrl) ||
+                other.bookFileKfxUrl == bookFileKfxUrl) &&
+            (identical(other.bookPicUrl, bookPicUrl) ||
+                other.bookPicUrl == bookPicUrl));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, title, summary, date,
-      visitor_count, is_new, priority, file, format, publisher_id);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      title,
+      summary,
+      date,
+      visitor_count,
+      is_new,
+      priority,
+      file,
+      format,
+      publisher_id,
+      bookFileUrl,
+      bookFileEpubUrl,
+      bookFileKfxUrl,
+      bookPicUrl);
 
   @override
   String toString() {
-    return 'CategoryBookItem(id: $id, title: $title, summary: $summary, date: $date, visitor_count: $visitor_count, is_new: $is_new, priority: $priority, file: $file, format: $format, publisher_id: $publisher_id)';
+    return 'CategoryBookItem(id: $id, title: $title, summary: $summary, date: $date, visitor_count: $visitor_count, is_new: $is_new, priority: $priority, file: $file, format: $format, publisher_id: $publisher_id, bookFileUrl: $bookFileUrl, bookFileEpubUrl: $bookFileEpubUrl, bookFileKfxUrl: $bookFileKfxUrl, bookPicUrl: $bookPicUrl)';
   }
 }
 
@@ -7076,7 +7332,11 @@ abstract mixin class _$CategoryBookItemCopyWith<$Res>
       String? priority,
       String? file,
       String? format,
-      String? publisher_id});
+      String? publisher_id,
+      @JsonKey(name: 'book_file_url') String? bookFileUrl,
+      @JsonKey(name: 'book_file_epub_url') String? bookFileEpubUrl,
+      @JsonKey(name: 'book_file_kfx_url') String? bookFileKfxUrl,
+      @JsonKey(name: 'book_pic_url') String? bookPicUrl});
 }
 
 /// @nodoc
@@ -7102,6 +7362,10 @@ class __$CategoryBookItemCopyWithImpl<$Res>
     Object? file = freezed,
     Object? format = freezed,
     Object? publisher_id = freezed,
+    Object? bookFileUrl = freezed,
+    Object? bookFileEpubUrl = freezed,
+    Object? bookFileKfxUrl = freezed,
+    Object? bookPicUrl = freezed,
   }) {
     return _then(_CategoryBookItem(
       id: freezed == id
@@ -7143,6 +7407,22 @@ class __$CategoryBookItemCopyWithImpl<$Res>
       publisher_id: freezed == publisher_id
           ? _self.publisher_id
           : publisher_id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      bookFileUrl: freezed == bookFileUrl
+          ? _self.bookFileUrl
+          : bookFileUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      bookFileEpubUrl: freezed == bookFileEpubUrl
+          ? _self.bookFileEpubUrl
+          : bookFileEpubUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      bookFileKfxUrl: freezed == bookFileKfxUrl
+          ? _self.bookFileKfxUrl
+          : bookFileKfxUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      bookPicUrl: freezed == bookPicUrl
+          ? _self.bookPicUrl
+          : bookPicUrl // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }

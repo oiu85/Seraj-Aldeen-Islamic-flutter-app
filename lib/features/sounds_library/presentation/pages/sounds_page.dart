@@ -7,9 +7,9 @@ import 'package:seraj_aldean_flutter_app/core/responsive/screen_util_res.dart';
 import 'package:seraj_aldean_flutter_app/core/routes.dart';
 import 'package:seraj_aldean_flutter_app/core/shared/widgets/app_scaffold.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:seraj_aldean_flutter_app/generated/assets.dart';
 import '../../../../core/shared/widgets/decoration_app_bar.dart';
 import '../../../../core/shared/widgets/ui_status_handling.dart';
-import '../../../../gen/assets.gen.dart';
 import '../../../../gen/fonts.gen.dart';
 import '../../../books_library/presentation/widgets/book_card.dart';
 import '../bloc/sounds_bloc.dart';
@@ -322,10 +322,9 @@ class _SoundsPageContentState extends State<_SoundsPageContent> {
                         book: book.title ?? '',
                         viewCont: book.contentCount?.toString() ?? '0',
                         title: book.title ?? '',
-                        imageNamePath: '',
                         width: double.infinity,
                         height: double.infinity,
-                        bookImagePath: Assets.images.bookColored.path,
+                        bookPicUrl :Assets.imagesBookColored,
                         isSoundBook: true,
                         isLoading: false,
                         onTap: () {
