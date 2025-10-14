@@ -59,6 +59,9 @@ class $AssetsImagesGen {
   /// File path: assets/images/shaik_image.png
   AssetGenImage get shaikImage => const AssetGenImage('assets/images/shaik_image.png');
 
+  /// File path: assets/images/splash_screen.png
+  AssetGenImage get splashScreen => const AssetGenImage('assets/images/splash_screen.png');
+
   /// File path: assets/images/vedio_icon.png
   AssetGenImage get vedioIcon => const AssetGenImage('assets/images/vedio_icon.png');
 
@@ -84,6 +87,7 @@ class $AssetsImagesGen {
         shaik,
         shaikImageRemovebgPreview,
         shaikImage,
+        splashScreen,
         vedioIcon,
         viewrExamplw2,
         viwerExample

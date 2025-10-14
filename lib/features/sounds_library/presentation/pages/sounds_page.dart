@@ -44,7 +44,7 @@ class _SoundsPageContentState extends State<_SoundsPageContent> {
 
   void _handleTabChange(int newIndex) {
     setState(() => selectedTabIndex = newIndex);
-    
+
     // Load audio books when switching to audio books tab
     if (newIndex == 1) {
       context.read<SoundsBloc>().add(LoadAudioBooksEvent());
@@ -287,7 +287,8 @@ class _SoundsPageContentState extends State<_SoundsPageContent> {
                 // Parent Category Title
                 if (state.audioBookParentCategory != null)
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20.p, vertical: 8.p),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 20.p, vertical: 8.p),
                     child: Text(
                       state.audioBookParentCategory!.title ?? '',
                       style: TextStyle(
@@ -300,7 +301,7 @@ class _SoundsPageContentState extends State<_SoundsPageContent> {
                     ),
                   ),
                 SizedBox(height: 12.h),
-                
+
                 // Grid of Audio Book Cards
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 12.w),

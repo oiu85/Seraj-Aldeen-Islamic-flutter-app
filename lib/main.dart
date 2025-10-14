@@ -9,7 +9,7 @@ import 'package:seraj_aldean_flutter_app/core/di/app_dependencies.dart';
 import 'package:seraj_aldean_flutter_app/core/shared/widgets/close_app_button.dart';
 import 'package:seraj_aldean_flutter_app/core/theme/font_size_manager.dart';
 import 'package:seraj_aldean_flutter_app/core/theme/theme_manager.dart';
-import 'package:seraj_aldean_flutter_app/features/home/presentation/pages/home_page.dart';
+import 'package:seraj_aldean_flutter_app/features/splassh_screen/presentation/pages/splassh_screen.dart';
 import 'package:seraj_aldean_flutter_app/routes.dart';
 
 void main() async {
@@ -48,8 +48,6 @@ class _MyAppState extends State<MyApp> {
         final mediaQuery = MediaQuery.of(context);
         // Update AppColors when theme changes
         AppColors.setDarkMode(themeManager.isDarkMode);
-
-        //? Note: Use key to force complete rebuild on theme or font size change
         return MediaQuery(
           data: mediaQuery.copyWith(
             textScaler: const TextScaler.linear(1),
@@ -90,7 +88,7 @@ class _MyAppState extends State<MyApp> {
               );
             },
             child: const CloseAppWillPopScope(
-              child: HomePage(),
+              child: SplasshScreen(),
             ),
           ),
         );

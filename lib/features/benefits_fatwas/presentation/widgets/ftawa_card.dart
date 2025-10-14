@@ -18,7 +18,6 @@ Widget lessonCardBuild({
 }) {
   // Using extension methods for easier access
   // No need for helper methods - use extensions directly: 25.w, 30.h, 16.f
-
   return SizedBox(
     height: height,
     width: width,
@@ -100,7 +99,7 @@ Widget lessonCardBuild({
           Expanded(
             flex: 0,
             child: Padding(
-              padding:  EdgeInsets.symmetric(horizontal: 8.0.p),
+              padding: EdgeInsets.symmetric(horizontal: 8.0.p),
               child: Text(
                 lesson,
                 style: TextStyle(
@@ -114,9 +113,6 @@ Widget lessonCardBuild({
               ),
             ),
           ),
-
-
-
           GestureDetector(
             onTap: isLoading ? null : onTap,
             child: Container(
@@ -132,7 +128,8 @@ Widget lessonCardBuild({
                       height: 22.h,
                       child: CircularProgressIndicator(
                         strokeWidth: 2.5.w,
-                        valueColor: AlwaysStoppedAnimation<Color>(AppColors.white),
+                        valueColor:
+                            AlwaysStoppedAnimation<Color>(AppColors.white),
                       ),
                     )
                   : Text(

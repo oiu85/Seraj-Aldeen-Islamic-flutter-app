@@ -12,6 +12,7 @@ import 'package:seraj_aldean_flutter_app/features/sounds_library/presentation/bl
 import 'package:seraj_aldean_flutter_app/features/sounds_library/presentation/pages/audio_book_sounds_page.dart';
 import 'package:seraj_aldean_flutter_app/features/sounds_library/presentation/pages/sounds_page.dart';
 import 'package:seraj_aldean_flutter_app/features/video_library/presentation/pages/player_page.dart';
+import 'package:seraj_aldean_flutter_app/features/splassh_screen/presentation/pages/splassh_screen.dart';
 import 'core/routes.dart';
 import 'features/settings/presentation/pages/contact_use.dart';
 import 'features/sounds_library/presentation/pages/sub_category_sounds.dart';
@@ -19,6 +20,7 @@ import 'features/video_library/presentation/pages/video_page.dart';
 
 List<GetPage<dynamic>>? routes=[
  GetPage(name:"/", page: ()=>const HomePage()),
+ GetPage(name:"/splash", page: ()=>const SplasshScreen()),
 
   GetPage(name: AppRoute.biography, page: ()=> const BiographyPage()),
   GetPage(name: AppRoute.benefits, page: ()=> const BenefitsPage()),
