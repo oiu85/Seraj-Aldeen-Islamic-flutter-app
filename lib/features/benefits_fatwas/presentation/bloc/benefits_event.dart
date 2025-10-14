@@ -25,3 +25,14 @@ class LoadCategoryContentEvent extends BenefitsEvent {
   @override
   List<Object?> get props => [categoryId, page, perPage];
 }
+
+class LoadArticleDetailEvent extends BenefitsEvent {
+  final int articleId;
+
+  const LoadArticleDetailEvent({
+    required this.articleId,
+  });
+
+  @override
+  List<Object?> get props => [articleId];
+}

@@ -152,9 +152,7 @@ class _BenefitsCategoriesPageState extends State<BenefitsCategoriesPage> {
                 width: 180.w,
                 height: 240.h,
                 context: context,
-                onTap: () {
-                  // TODO: Navigate to article details page
-                },
+                articleId: article.id,
               ),
               index: index,
               key: ValueKey('article_grid_item_$index'),

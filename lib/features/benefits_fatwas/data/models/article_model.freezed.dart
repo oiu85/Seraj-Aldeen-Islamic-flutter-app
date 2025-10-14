@@ -4235,4 +4235,2283 @@ class __$ContentPaginationCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
+mixin _$ArticleDetailResponse {
+  bool? get success;
+  ArticleDetail? get data;
+  String? get message;
+
+  /// Create a copy of ArticleDetailResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ArticleDetailResponseCopyWith<ArticleDetailResponse> get copyWith =>
+      _$ArticleDetailResponseCopyWithImpl<ArticleDetailResponse>(
+          this as ArticleDetailResponse, _$identity);
+
+  /// Serializes this ArticleDetailResponse to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is ArticleDetailResponse &&
+            (identical(other.success, success) || other.success == success) &&
+            (identical(other.data, data) || other.data == data) &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, success, data, message);
+
+  @override
+  String toString() {
+    return 'ArticleDetailResponse(success: $success, data: $data, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ArticleDetailResponseCopyWith<$Res> {
+  factory $ArticleDetailResponseCopyWith(ArticleDetailResponse value,
+          $Res Function(ArticleDetailResponse) _then) =
+      _$ArticleDetailResponseCopyWithImpl;
+  @useResult
+  $Res call({bool? success, ArticleDetail? data, String? message});
+
+  $ArticleDetailCopyWith<$Res>? get data;
+}
+
+/// @nodoc
+class _$ArticleDetailResponseCopyWithImpl<$Res>
+    implements $ArticleDetailResponseCopyWith<$Res> {
+  _$ArticleDetailResponseCopyWithImpl(this._self, this._then);
+
+  final ArticleDetailResponse _self;
+  final $Res Function(ArticleDetailResponse) _then;
+
+  /// Create a copy of ArticleDetailResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? success = freezed,
+    Object? data = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(_self.copyWith(
+      success: freezed == success
+          ? _self.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      data: freezed == data
+          ? _self.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as ArticleDetail?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+
+  /// Create a copy of ArticleDetailResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ArticleDetailCopyWith<$Res>? get data {
+    if (_self.data == null) {
+      return null;
+    }
+
+    return $ArticleDetailCopyWith<$Res>(_self.data!, (value) {
+      return _then(_self.copyWith(data: value));
+    });
+  }
+}
+
+/// Adds pattern-matching-related methods to [ArticleDetailResponse].
+extension ArticleDetailResponsePatterns on ArticleDetailResponse {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_ArticleDetailResponse value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _ArticleDetailResponse() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_ArticleDetailResponse value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ArticleDetailResponse():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_ArticleDetailResponse value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ArticleDetailResponse() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(bool? success, ArticleDetail? data, String? message)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _ArticleDetailResponse() when $default != null:
+        return $default(_that.success, _that.data, _that.message);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(bool? success, ArticleDetail? data, String? message)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ArticleDetailResponse():
+        return $default(_that.success, _that.data, _that.message);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(bool? success, ArticleDetail? data, String? message)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ArticleDetailResponse() when $default != null:
+        return $default(_that.success, _that.data, _that.message);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _ArticleDetailResponse implements ArticleDetailResponse {
+  const _ArticleDetailResponse({this.success, this.data, this.message});
+  factory _ArticleDetailResponse.fromJson(Map<String, dynamic> json) =>
+      _$ArticleDetailResponseFromJson(json);
+
+  @override
+  final bool? success;
+  @override
+  final ArticleDetail? data;
+  @override
+  final String? message;
+
+  /// Create a copy of ArticleDetailResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$ArticleDetailResponseCopyWith<_ArticleDetailResponse> get copyWith =>
+      __$ArticleDetailResponseCopyWithImpl<_ArticleDetailResponse>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$ArticleDetailResponseToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _ArticleDetailResponse &&
+            (identical(other.success, success) || other.success == success) &&
+            (identical(other.data, data) || other.data == data) &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, success, data, message);
+
+  @override
+  String toString() {
+    return 'ArticleDetailResponse(success: $success, data: $data, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$ArticleDetailResponseCopyWith<$Res>
+    implements $ArticleDetailResponseCopyWith<$Res> {
+  factory _$ArticleDetailResponseCopyWith(_ArticleDetailResponse value,
+          $Res Function(_ArticleDetailResponse) _then) =
+      __$ArticleDetailResponseCopyWithImpl;
+  @override
+  @useResult
+  $Res call({bool? success, ArticleDetail? data, String? message});
+
+  @override
+  $ArticleDetailCopyWith<$Res>? get data;
+}
+
+/// @nodoc
+class __$ArticleDetailResponseCopyWithImpl<$Res>
+    implements _$ArticleDetailResponseCopyWith<$Res> {
+  __$ArticleDetailResponseCopyWithImpl(this._self, this._then);
+
+  final _ArticleDetailResponse _self;
+  final $Res Function(_ArticleDetailResponse) _then;
+
+  /// Create a copy of ArticleDetailResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? success = freezed,
+    Object? data = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(_ArticleDetailResponse(
+      success: freezed == success
+          ? _self.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      data: freezed == data
+          ? _self.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as ArticleDetail?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+
+  /// Create a copy of ArticleDetailResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ArticleDetailCopyWith<$Res>? get data {
+    if (_self.data == null) {
+      return null;
+    }
+
+    return $ArticleDetailCopyWith<$Res>(_self.data!, (value) {
+      return _then(_self.copyWith(data: value));
+    });
+  }
+}
+
+/// @nodoc
+mixin _$ArticleDetail {
+  @JsonKey(name: 'article_id', fromJson: _stringToInt)
+  int? get articleId;
+  @JsonKey(name: 'article_cat_id')
+  String? get articleCatId;
+  @JsonKey(name: 'article_title')
+  String? get articleTitle;
+  @JsonKey(name: 'article_ts')
+  String? get articleTs;
+  @JsonKey(name: 'article_summary')
+  String? get articleSummary;
+  @JsonKey(name: 'article_des')
+  String? get articleDes;
+  @JsonKey(name: 'article_pic')
+  String? get articlePic;
+  @JsonKey(name: 'article_pic_pos')
+  String? get articlePicPos;
+  @JsonKey(name: 'article_visitor', fromJson: _stringToInt)
+  int? get articleVisitor;
+  @JsonKey(name: 'article_is_new', fromJson: _stringToBool)
+  bool? get articleIsNew;
+  @JsonKey(name: 'article_priority')
+  String? get articlePriority;
+  @JsonKey(name: 'article_active_vote', fromJson: _stringToBool)
+  bool? get articleActiveVote;
+  @JsonKey(name: 'article_active_hint', fromJson: _stringToBool)
+  bool? get articleActiveHint;
+  @JsonKey(name: 'article_active', fromJson: _stringToBool)
+  bool? get articleActive;
+  @JsonKey(name: 'article_date')
+  String? get articleDate;
+  @JsonKey(name: 'article_pic_active', fromJson: _stringToBool)
+  bool? get articlePicActive;
+  @JsonKey(name: 'article_last_article', fromJson: _stringToBool)
+  bool? get articleLastArticle;
+  @JsonKey(name: 'article_publisher_id')
+  String? get articlePublisherId;
+  @JsonKey(name: 'article_source')
+  String? get articleSource;
+  @JsonKey(name: 'article_source_url')
+  String? get articleSourceUrl;
+  @JsonKey(name: 'article_youtube_id')
+  String? get articleYoutubeId;
+  @JsonKey(name: 'article_file')
+  String? get articleFile;
+  @JsonKey(name: 'article_user_add_hint_nsup', fromJson: _stringToBool)
+  bool? get articleUserAddHintNsup;
+  ArticleDetailCategory? get category;
+  List<dynamic>? get captions;
+  List<dynamic>? get votes;
+
+  /// Create a copy of ArticleDetail
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ArticleDetailCopyWith<ArticleDetail> get copyWith =>
+      _$ArticleDetailCopyWithImpl<ArticleDetail>(
+          this as ArticleDetail, _$identity);
+
+  /// Serializes this ArticleDetail to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is ArticleDetail &&
+            (identical(other.articleId, articleId) ||
+                other.articleId == articleId) &&
+            (identical(other.articleCatId, articleCatId) ||
+                other.articleCatId == articleCatId) &&
+            (identical(other.articleTitle, articleTitle) ||
+                other.articleTitle == articleTitle) &&
+            (identical(other.articleTs, articleTs) ||
+                other.articleTs == articleTs) &&
+            (identical(other.articleSummary, articleSummary) ||
+                other.articleSummary == articleSummary) &&
+            (identical(other.articleDes, articleDes) ||
+                other.articleDes == articleDes) &&
+            (identical(other.articlePic, articlePic) ||
+                other.articlePic == articlePic) &&
+            (identical(other.articlePicPos, articlePicPos) ||
+                other.articlePicPos == articlePicPos) &&
+            (identical(other.articleVisitor, articleVisitor) ||
+                other.articleVisitor == articleVisitor) &&
+            (identical(other.articleIsNew, articleIsNew) ||
+                other.articleIsNew == articleIsNew) &&
+            (identical(other.articlePriority, articlePriority) ||
+                other.articlePriority == articlePriority) &&
+            (identical(other.articleActiveVote, articleActiveVote) ||
+                other.articleActiveVote == articleActiveVote) &&
+            (identical(other.articleActiveHint, articleActiveHint) ||
+                other.articleActiveHint == articleActiveHint) &&
+            (identical(other.articleActive, articleActive) ||
+                other.articleActive == articleActive) &&
+            (identical(other.articleDate, articleDate) ||
+                other.articleDate == articleDate) &&
+            (identical(other.articlePicActive, articlePicActive) ||
+                other.articlePicActive == articlePicActive) &&
+            (identical(other.articleLastArticle, articleLastArticle) ||
+                other.articleLastArticle == articleLastArticle) &&
+            (identical(other.articlePublisherId, articlePublisherId) ||
+                other.articlePublisherId == articlePublisherId) &&
+            (identical(other.articleSource, articleSource) ||
+                other.articleSource == articleSource) &&
+            (identical(other.articleSourceUrl, articleSourceUrl) ||
+                other.articleSourceUrl == articleSourceUrl) &&
+            (identical(other.articleYoutubeId, articleYoutubeId) ||
+                other.articleYoutubeId == articleYoutubeId) &&
+            (identical(other.articleFile, articleFile) ||
+                other.articleFile == articleFile) &&
+            (identical(other.articleUserAddHintNsup, articleUserAddHintNsup) ||
+                other.articleUserAddHintNsup == articleUserAddHintNsup) &&
+            (identical(other.category, category) ||
+                other.category == category) &&
+            const DeepCollectionEquality().equals(other.captions, captions) &&
+            const DeepCollectionEquality().equals(other.votes, votes));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        articleId,
+        articleCatId,
+        articleTitle,
+        articleTs,
+        articleSummary,
+        articleDes,
+        articlePic,
+        articlePicPos,
+        articleVisitor,
+        articleIsNew,
+        articlePriority,
+        articleActiveVote,
+        articleActiveHint,
+        articleActive,
+        articleDate,
+        articlePicActive,
+        articleLastArticle,
+        articlePublisherId,
+        articleSource,
+        articleSourceUrl,
+        articleYoutubeId,
+        articleFile,
+        articleUserAddHintNsup,
+        category,
+        const DeepCollectionEquality().hash(captions),
+        const DeepCollectionEquality().hash(votes)
+      ]);
+
+  @override
+  String toString() {
+    return 'ArticleDetail(articleId: $articleId, articleCatId: $articleCatId, articleTitle: $articleTitle, articleTs: $articleTs, articleSummary: $articleSummary, articleDes: $articleDes, articlePic: $articlePic, articlePicPos: $articlePicPos, articleVisitor: $articleVisitor, articleIsNew: $articleIsNew, articlePriority: $articlePriority, articleActiveVote: $articleActiveVote, articleActiveHint: $articleActiveHint, articleActive: $articleActive, articleDate: $articleDate, articlePicActive: $articlePicActive, articleLastArticle: $articleLastArticle, articlePublisherId: $articlePublisherId, articleSource: $articleSource, articleSourceUrl: $articleSourceUrl, articleYoutubeId: $articleYoutubeId, articleFile: $articleFile, articleUserAddHintNsup: $articleUserAddHintNsup, category: $category, captions: $captions, votes: $votes)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ArticleDetailCopyWith<$Res> {
+  factory $ArticleDetailCopyWith(
+          ArticleDetail value, $Res Function(ArticleDetail) _then) =
+      _$ArticleDetailCopyWithImpl;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'article_id', fromJson: _stringToInt) int? articleId,
+      @JsonKey(name: 'article_cat_id') String? articleCatId,
+      @JsonKey(name: 'article_title') String? articleTitle,
+      @JsonKey(name: 'article_ts') String? articleTs,
+      @JsonKey(name: 'article_summary') String? articleSummary,
+      @JsonKey(name: 'article_des') String? articleDes,
+      @JsonKey(name: 'article_pic') String? articlePic,
+      @JsonKey(name: 'article_pic_pos') String? articlePicPos,
+      @JsonKey(name: 'article_visitor', fromJson: _stringToInt)
+      int? articleVisitor,
+      @JsonKey(name: 'article_is_new', fromJson: _stringToBool)
+      bool? articleIsNew,
+      @JsonKey(name: 'article_priority') String? articlePriority,
+      @JsonKey(name: 'article_active_vote', fromJson: _stringToBool)
+      bool? articleActiveVote,
+      @JsonKey(name: 'article_active_hint', fromJson: _stringToBool)
+      bool? articleActiveHint,
+      @JsonKey(name: 'article_active', fromJson: _stringToBool)
+      bool? articleActive,
+      @JsonKey(name: 'article_date') String? articleDate,
+      @JsonKey(name: 'article_pic_active', fromJson: _stringToBool)
+      bool? articlePicActive,
+      @JsonKey(name: 'article_last_article', fromJson: _stringToBool)
+      bool? articleLastArticle,
+      @JsonKey(name: 'article_publisher_id') String? articlePublisherId,
+      @JsonKey(name: 'article_source') String? articleSource,
+      @JsonKey(name: 'article_source_url') String? articleSourceUrl,
+      @JsonKey(name: 'article_youtube_id') String? articleYoutubeId,
+      @JsonKey(name: 'article_file') String? articleFile,
+      @JsonKey(name: 'article_user_add_hint_nsup', fromJson: _stringToBool)
+      bool? articleUserAddHintNsup,
+      ArticleDetailCategory? category,
+      List<dynamic>? captions,
+      List<dynamic>? votes});
+
+  $ArticleDetailCategoryCopyWith<$Res>? get category;
+}
+
+/// @nodoc
+class _$ArticleDetailCopyWithImpl<$Res>
+    implements $ArticleDetailCopyWith<$Res> {
+  _$ArticleDetailCopyWithImpl(this._self, this._then);
+
+  final ArticleDetail _self;
+  final $Res Function(ArticleDetail) _then;
+
+  /// Create a copy of ArticleDetail
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? articleId = freezed,
+    Object? articleCatId = freezed,
+    Object? articleTitle = freezed,
+    Object? articleTs = freezed,
+    Object? articleSummary = freezed,
+    Object? articleDes = freezed,
+    Object? articlePic = freezed,
+    Object? articlePicPos = freezed,
+    Object? articleVisitor = freezed,
+    Object? articleIsNew = freezed,
+    Object? articlePriority = freezed,
+    Object? articleActiveVote = freezed,
+    Object? articleActiveHint = freezed,
+    Object? articleActive = freezed,
+    Object? articleDate = freezed,
+    Object? articlePicActive = freezed,
+    Object? articleLastArticle = freezed,
+    Object? articlePublisherId = freezed,
+    Object? articleSource = freezed,
+    Object? articleSourceUrl = freezed,
+    Object? articleYoutubeId = freezed,
+    Object? articleFile = freezed,
+    Object? articleUserAddHintNsup = freezed,
+    Object? category = freezed,
+    Object? captions = freezed,
+    Object? votes = freezed,
+  }) {
+    return _then(_self.copyWith(
+      articleId: freezed == articleId
+          ? _self.articleId
+          : articleId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      articleCatId: freezed == articleCatId
+          ? _self.articleCatId
+          : articleCatId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      articleTitle: freezed == articleTitle
+          ? _self.articleTitle
+          : articleTitle // ignore: cast_nullable_to_non_nullable
+              as String?,
+      articleTs: freezed == articleTs
+          ? _self.articleTs
+          : articleTs // ignore: cast_nullable_to_non_nullable
+              as String?,
+      articleSummary: freezed == articleSummary
+          ? _self.articleSummary
+          : articleSummary // ignore: cast_nullable_to_non_nullable
+              as String?,
+      articleDes: freezed == articleDes
+          ? _self.articleDes
+          : articleDes // ignore: cast_nullable_to_non_nullable
+              as String?,
+      articlePic: freezed == articlePic
+          ? _self.articlePic
+          : articlePic // ignore: cast_nullable_to_non_nullable
+              as String?,
+      articlePicPos: freezed == articlePicPos
+          ? _self.articlePicPos
+          : articlePicPos // ignore: cast_nullable_to_non_nullable
+              as String?,
+      articleVisitor: freezed == articleVisitor
+          ? _self.articleVisitor
+          : articleVisitor // ignore: cast_nullable_to_non_nullable
+              as int?,
+      articleIsNew: freezed == articleIsNew
+          ? _self.articleIsNew
+          : articleIsNew // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      articlePriority: freezed == articlePriority
+          ? _self.articlePriority
+          : articlePriority // ignore: cast_nullable_to_non_nullable
+              as String?,
+      articleActiveVote: freezed == articleActiveVote
+          ? _self.articleActiveVote
+          : articleActiveVote // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      articleActiveHint: freezed == articleActiveHint
+          ? _self.articleActiveHint
+          : articleActiveHint // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      articleActive: freezed == articleActive
+          ? _self.articleActive
+          : articleActive // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      articleDate: freezed == articleDate
+          ? _self.articleDate
+          : articleDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      articlePicActive: freezed == articlePicActive
+          ? _self.articlePicActive
+          : articlePicActive // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      articleLastArticle: freezed == articleLastArticle
+          ? _self.articleLastArticle
+          : articleLastArticle // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      articlePublisherId: freezed == articlePublisherId
+          ? _self.articlePublisherId
+          : articlePublisherId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      articleSource: freezed == articleSource
+          ? _self.articleSource
+          : articleSource // ignore: cast_nullable_to_non_nullable
+              as String?,
+      articleSourceUrl: freezed == articleSourceUrl
+          ? _self.articleSourceUrl
+          : articleSourceUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      articleYoutubeId: freezed == articleYoutubeId
+          ? _self.articleYoutubeId
+          : articleYoutubeId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      articleFile: freezed == articleFile
+          ? _self.articleFile
+          : articleFile // ignore: cast_nullable_to_non_nullable
+              as String?,
+      articleUserAddHintNsup: freezed == articleUserAddHintNsup
+          ? _self.articleUserAddHintNsup
+          : articleUserAddHintNsup // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      category: freezed == category
+          ? _self.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as ArticleDetailCategory?,
+      captions: freezed == captions
+          ? _self.captions
+          : captions // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>?,
+      votes: freezed == votes
+          ? _self.votes
+          : votes // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>?,
+    ));
+  }
+
+  /// Create a copy of ArticleDetail
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ArticleDetailCategoryCopyWith<$Res>? get category {
+    if (_self.category == null) {
+      return null;
+    }
+
+    return $ArticleDetailCategoryCopyWith<$Res>(_self.category!, (value) {
+      return _then(_self.copyWith(category: value));
+    });
+  }
+}
+
+/// Adds pattern-matching-related methods to [ArticleDetail].
+extension ArticleDetailPatterns on ArticleDetail {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_ArticleDetail value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _ArticleDetail() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_ArticleDetail value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ArticleDetail():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_ArticleDetail value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ArticleDetail() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'article_id', fromJson: _stringToInt) int? articleId,
+            @JsonKey(name: 'article_cat_id') String? articleCatId,
+            @JsonKey(name: 'article_title') String? articleTitle,
+            @JsonKey(name: 'article_ts') String? articleTs,
+            @JsonKey(name: 'article_summary') String? articleSummary,
+            @JsonKey(name: 'article_des') String? articleDes,
+            @JsonKey(name: 'article_pic') String? articlePic,
+            @JsonKey(name: 'article_pic_pos') String? articlePicPos,
+            @JsonKey(name: 'article_visitor', fromJson: _stringToInt)
+            int? articleVisitor,
+            @JsonKey(name: 'article_is_new', fromJson: _stringToBool)
+            bool? articleIsNew,
+            @JsonKey(name: 'article_priority') String? articlePriority,
+            @JsonKey(name: 'article_active_vote', fromJson: _stringToBool)
+            bool? articleActiveVote,
+            @JsonKey(name: 'article_active_hint', fromJson: _stringToBool)
+            bool? articleActiveHint,
+            @JsonKey(name: 'article_active', fromJson: _stringToBool)
+            bool? articleActive,
+            @JsonKey(name: 'article_date') String? articleDate,
+            @JsonKey(name: 'article_pic_active', fromJson: _stringToBool)
+            bool? articlePicActive,
+            @JsonKey(name: 'article_last_article', fromJson: _stringToBool)
+            bool? articleLastArticle,
+            @JsonKey(name: 'article_publisher_id') String? articlePublisherId,
+            @JsonKey(name: 'article_source') String? articleSource,
+            @JsonKey(name: 'article_source_url') String? articleSourceUrl,
+            @JsonKey(name: 'article_youtube_id') String? articleYoutubeId,
+            @JsonKey(name: 'article_file') String? articleFile,
+            @JsonKey(
+                name: 'article_user_add_hint_nsup', fromJson: _stringToBool)
+            bool? articleUserAddHintNsup,
+            ArticleDetailCategory? category,
+            List<dynamic>? captions,
+            List<dynamic>? votes)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _ArticleDetail() when $default != null:
+        return $default(
+            _that.articleId,
+            _that.articleCatId,
+            _that.articleTitle,
+            _that.articleTs,
+            _that.articleSummary,
+            _that.articleDes,
+            _that.articlePic,
+            _that.articlePicPos,
+            _that.articleVisitor,
+            _that.articleIsNew,
+            _that.articlePriority,
+            _that.articleActiveVote,
+            _that.articleActiveHint,
+            _that.articleActive,
+            _that.articleDate,
+            _that.articlePicActive,
+            _that.articleLastArticle,
+            _that.articlePublisherId,
+            _that.articleSource,
+            _that.articleSourceUrl,
+            _that.articleYoutubeId,
+            _that.articleFile,
+            _that.articleUserAddHintNsup,
+            _that.category,
+            _that.captions,
+            _that.votes);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'article_id', fromJson: _stringToInt) int? articleId,
+            @JsonKey(name: 'article_cat_id') String? articleCatId,
+            @JsonKey(name: 'article_title') String? articleTitle,
+            @JsonKey(name: 'article_ts') String? articleTs,
+            @JsonKey(name: 'article_summary') String? articleSummary,
+            @JsonKey(name: 'article_des') String? articleDes,
+            @JsonKey(name: 'article_pic') String? articlePic,
+            @JsonKey(name: 'article_pic_pos') String? articlePicPos,
+            @JsonKey(name: 'article_visitor', fromJson: _stringToInt)
+            int? articleVisitor,
+            @JsonKey(name: 'article_is_new', fromJson: _stringToBool)
+            bool? articleIsNew,
+            @JsonKey(name: 'article_priority') String? articlePriority,
+            @JsonKey(name: 'article_active_vote', fromJson: _stringToBool)
+            bool? articleActiveVote,
+            @JsonKey(name: 'article_active_hint', fromJson: _stringToBool)
+            bool? articleActiveHint,
+            @JsonKey(name: 'article_active', fromJson: _stringToBool)
+            bool? articleActive,
+            @JsonKey(name: 'article_date') String? articleDate,
+            @JsonKey(name: 'article_pic_active', fromJson: _stringToBool)
+            bool? articlePicActive,
+            @JsonKey(name: 'article_last_article', fromJson: _stringToBool)
+            bool? articleLastArticle,
+            @JsonKey(name: 'article_publisher_id') String? articlePublisherId,
+            @JsonKey(name: 'article_source') String? articleSource,
+            @JsonKey(name: 'article_source_url') String? articleSourceUrl,
+            @JsonKey(name: 'article_youtube_id') String? articleYoutubeId,
+            @JsonKey(name: 'article_file') String? articleFile,
+            @JsonKey(
+                name: 'article_user_add_hint_nsup', fromJson: _stringToBool)
+            bool? articleUserAddHintNsup,
+            ArticleDetailCategory? category,
+            List<dynamic>? captions,
+            List<dynamic>? votes)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ArticleDetail():
+        return $default(
+            _that.articleId,
+            _that.articleCatId,
+            _that.articleTitle,
+            _that.articleTs,
+            _that.articleSummary,
+            _that.articleDes,
+            _that.articlePic,
+            _that.articlePicPos,
+            _that.articleVisitor,
+            _that.articleIsNew,
+            _that.articlePriority,
+            _that.articleActiveVote,
+            _that.articleActiveHint,
+            _that.articleActive,
+            _that.articleDate,
+            _that.articlePicActive,
+            _that.articleLastArticle,
+            _that.articlePublisherId,
+            _that.articleSource,
+            _that.articleSourceUrl,
+            _that.articleYoutubeId,
+            _that.articleFile,
+            _that.articleUserAddHintNsup,
+            _that.category,
+            _that.captions,
+            _that.votes);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(name: 'article_id', fromJson: _stringToInt) int? articleId,
+            @JsonKey(name: 'article_cat_id') String? articleCatId,
+            @JsonKey(name: 'article_title') String? articleTitle,
+            @JsonKey(name: 'article_ts') String? articleTs,
+            @JsonKey(name: 'article_summary') String? articleSummary,
+            @JsonKey(name: 'article_des') String? articleDes,
+            @JsonKey(name: 'article_pic') String? articlePic,
+            @JsonKey(name: 'article_pic_pos') String? articlePicPos,
+            @JsonKey(name: 'article_visitor', fromJson: _stringToInt)
+            int? articleVisitor,
+            @JsonKey(name: 'article_is_new', fromJson: _stringToBool)
+            bool? articleIsNew,
+            @JsonKey(name: 'article_priority') String? articlePriority,
+            @JsonKey(name: 'article_active_vote', fromJson: _stringToBool)
+            bool? articleActiveVote,
+            @JsonKey(name: 'article_active_hint', fromJson: _stringToBool)
+            bool? articleActiveHint,
+            @JsonKey(name: 'article_active', fromJson: _stringToBool)
+            bool? articleActive,
+            @JsonKey(name: 'article_date') String? articleDate,
+            @JsonKey(name: 'article_pic_active', fromJson: _stringToBool)
+            bool? articlePicActive,
+            @JsonKey(name: 'article_last_article', fromJson: _stringToBool)
+            bool? articleLastArticle,
+            @JsonKey(name: 'article_publisher_id') String? articlePublisherId,
+            @JsonKey(name: 'article_source') String? articleSource,
+            @JsonKey(name: 'article_source_url') String? articleSourceUrl,
+            @JsonKey(name: 'article_youtube_id') String? articleYoutubeId,
+            @JsonKey(name: 'article_file') String? articleFile,
+            @JsonKey(
+                name: 'article_user_add_hint_nsup', fromJson: _stringToBool)
+            bool? articleUserAddHintNsup,
+            ArticleDetailCategory? category,
+            List<dynamic>? captions,
+            List<dynamic>? votes)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ArticleDetail() when $default != null:
+        return $default(
+            _that.articleId,
+            _that.articleCatId,
+            _that.articleTitle,
+            _that.articleTs,
+            _that.articleSummary,
+            _that.articleDes,
+            _that.articlePic,
+            _that.articlePicPos,
+            _that.articleVisitor,
+            _that.articleIsNew,
+            _that.articlePriority,
+            _that.articleActiveVote,
+            _that.articleActiveHint,
+            _that.articleActive,
+            _that.articleDate,
+            _that.articlePicActive,
+            _that.articleLastArticle,
+            _that.articlePublisherId,
+            _that.articleSource,
+            _that.articleSourceUrl,
+            _that.articleYoutubeId,
+            _that.articleFile,
+            _that.articleUserAddHintNsup,
+            _that.category,
+            _that.captions,
+            _that.votes);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _ArticleDetail implements ArticleDetail {
+  const _ArticleDetail(
+      {@JsonKey(name: 'article_id', fromJson: _stringToInt) this.articleId,
+      @JsonKey(name: 'article_cat_id') this.articleCatId,
+      @JsonKey(name: 'article_title') this.articleTitle,
+      @JsonKey(name: 'article_ts') this.articleTs,
+      @JsonKey(name: 'article_summary') this.articleSummary,
+      @JsonKey(name: 'article_des') this.articleDes,
+      @JsonKey(name: 'article_pic') this.articlePic,
+      @JsonKey(name: 'article_pic_pos') this.articlePicPos,
+      @JsonKey(name: 'article_visitor', fromJson: _stringToInt)
+      this.articleVisitor,
+      @JsonKey(name: 'article_is_new', fromJson: _stringToBool)
+      this.articleIsNew,
+      @JsonKey(name: 'article_priority') this.articlePriority,
+      @JsonKey(name: 'article_active_vote', fromJson: _stringToBool)
+      this.articleActiveVote,
+      @JsonKey(name: 'article_active_hint', fromJson: _stringToBool)
+      this.articleActiveHint,
+      @JsonKey(name: 'article_active', fromJson: _stringToBool)
+      this.articleActive,
+      @JsonKey(name: 'article_date') this.articleDate,
+      @JsonKey(name: 'article_pic_active', fromJson: _stringToBool)
+      this.articlePicActive,
+      @JsonKey(name: 'article_last_article', fromJson: _stringToBool)
+      this.articleLastArticle,
+      @JsonKey(name: 'article_publisher_id') this.articlePublisherId,
+      @JsonKey(name: 'article_source') this.articleSource,
+      @JsonKey(name: 'article_source_url') this.articleSourceUrl,
+      @JsonKey(name: 'article_youtube_id') this.articleYoutubeId,
+      @JsonKey(name: 'article_file') this.articleFile,
+      @JsonKey(name: 'article_user_add_hint_nsup', fromJson: _stringToBool)
+      this.articleUserAddHintNsup,
+      this.category,
+      final List<dynamic>? captions,
+      final List<dynamic>? votes})
+      : _captions = captions,
+        _votes = votes;
+  factory _ArticleDetail.fromJson(Map<String, dynamic> json) =>
+      _$ArticleDetailFromJson(json);
+
+  @override
+  @JsonKey(name: 'article_id', fromJson: _stringToInt)
+  final int? articleId;
+  @override
+  @JsonKey(name: 'article_cat_id')
+  final String? articleCatId;
+  @override
+  @JsonKey(name: 'article_title')
+  final String? articleTitle;
+  @override
+  @JsonKey(name: 'article_ts')
+  final String? articleTs;
+  @override
+  @JsonKey(name: 'article_summary')
+  final String? articleSummary;
+  @override
+  @JsonKey(name: 'article_des')
+  final String? articleDes;
+  @override
+  @JsonKey(name: 'article_pic')
+  final String? articlePic;
+  @override
+  @JsonKey(name: 'article_pic_pos')
+  final String? articlePicPos;
+  @override
+  @JsonKey(name: 'article_visitor', fromJson: _stringToInt)
+  final int? articleVisitor;
+  @override
+  @JsonKey(name: 'article_is_new', fromJson: _stringToBool)
+  final bool? articleIsNew;
+  @override
+  @JsonKey(name: 'article_priority')
+  final String? articlePriority;
+  @override
+  @JsonKey(name: 'article_active_vote', fromJson: _stringToBool)
+  final bool? articleActiveVote;
+  @override
+  @JsonKey(name: 'article_active_hint', fromJson: _stringToBool)
+  final bool? articleActiveHint;
+  @override
+  @JsonKey(name: 'article_active', fromJson: _stringToBool)
+  final bool? articleActive;
+  @override
+  @JsonKey(name: 'article_date')
+  final String? articleDate;
+  @override
+  @JsonKey(name: 'article_pic_active', fromJson: _stringToBool)
+  final bool? articlePicActive;
+  @override
+  @JsonKey(name: 'article_last_article', fromJson: _stringToBool)
+  final bool? articleLastArticle;
+  @override
+  @JsonKey(name: 'article_publisher_id')
+  final String? articlePublisherId;
+  @override
+  @JsonKey(name: 'article_source')
+  final String? articleSource;
+  @override
+  @JsonKey(name: 'article_source_url')
+  final String? articleSourceUrl;
+  @override
+  @JsonKey(name: 'article_youtube_id')
+  final String? articleYoutubeId;
+  @override
+  @JsonKey(name: 'article_file')
+  final String? articleFile;
+  @override
+  @JsonKey(name: 'article_user_add_hint_nsup', fromJson: _stringToBool)
+  final bool? articleUserAddHintNsup;
+  @override
+  final ArticleDetailCategory? category;
+  final List<dynamic>? _captions;
+  @override
+  List<dynamic>? get captions {
+    final value = _captions;
+    if (value == null) return null;
+    if (_captions is EqualUnmodifiableListView) return _captions;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<dynamic>? _votes;
+  @override
+  List<dynamic>? get votes {
+    final value = _votes;
+    if (value == null) return null;
+    if (_votes is EqualUnmodifiableListView) return _votes;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  /// Create a copy of ArticleDetail
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$ArticleDetailCopyWith<_ArticleDetail> get copyWith =>
+      __$ArticleDetailCopyWithImpl<_ArticleDetail>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$ArticleDetailToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _ArticleDetail &&
+            (identical(other.articleId, articleId) ||
+                other.articleId == articleId) &&
+            (identical(other.articleCatId, articleCatId) ||
+                other.articleCatId == articleCatId) &&
+            (identical(other.articleTitle, articleTitle) ||
+                other.articleTitle == articleTitle) &&
+            (identical(other.articleTs, articleTs) ||
+                other.articleTs == articleTs) &&
+            (identical(other.articleSummary, articleSummary) ||
+                other.articleSummary == articleSummary) &&
+            (identical(other.articleDes, articleDes) ||
+                other.articleDes == articleDes) &&
+            (identical(other.articlePic, articlePic) ||
+                other.articlePic == articlePic) &&
+            (identical(other.articlePicPos, articlePicPos) ||
+                other.articlePicPos == articlePicPos) &&
+            (identical(other.articleVisitor, articleVisitor) ||
+                other.articleVisitor == articleVisitor) &&
+            (identical(other.articleIsNew, articleIsNew) ||
+                other.articleIsNew == articleIsNew) &&
+            (identical(other.articlePriority, articlePriority) ||
+                other.articlePriority == articlePriority) &&
+            (identical(other.articleActiveVote, articleActiveVote) ||
+                other.articleActiveVote == articleActiveVote) &&
+            (identical(other.articleActiveHint, articleActiveHint) ||
+                other.articleActiveHint == articleActiveHint) &&
+            (identical(other.articleActive, articleActive) ||
+                other.articleActive == articleActive) &&
+            (identical(other.articleDate, articleDate) ||
+                other.articleDate == articleDate) &&
+            (identical(other.articlePicActive, articlePicActive) ||
+                other.articlePicActive == articlePicActive) &&
+            (identical(other.articleLastArticle, articleLastArticle) ||
+                other.articleLastArticle == articleLastArticle) &&
+            (identical(other.articlePublisherId, articlePublisherId) ||
+                other.articlePublisherId == articlePublisherId) &&
+            (identical(other.articleSource, articleSource) ||
+                other.articleSource == articleSource) &&
+            (identical(other.articleSourceUrl, articleSourceUrl) ||
+                other.articleSourceUrl == articleSourceUrl) &&
+            (identical(other.articleYoutubeId, articleYoutubeId) ||
+                other.articleYoutubeId == articleYoutubeId) &&
+            (identical(other.articleFile, articleFile) ||
+                other.articleFile == articleFile) &&
+            (identical(other.articleUserAddHintNsup, articleUserAddHintNsup) ||
+                other.articleUserAddHintNsup == articleUserAddHintNsup) &&
+            (identical(other.category, category) ||
+                other.category == category) &&
+            const DeepCollectionEquality().equals(other._captions, _captions) &&
+            const DeepCollectionEquality().equals(other._votes, _votes));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        articleId,
+        articleCatId,
+        articleTitle,
+        articleTs,
+        articleSummary,
+        articleDes,
+        articlePic,
+        articlePicPos,
+        articleVisitor,
+        articleIsNew,
+        articlePriority,
+        articleActiveVote,
+        articleActiveHint,
+        articleActive,
+        articleDate,
+        articlePicActive,
+        articleLastArticle,
+        articlePublisherId,
+        articleSource,
+        articleSourceUrl,
+        articleYoutubeId,
+        articleFile,
+        articleUserAddHintNsup,
+        category,
+        const DeepCollectionEquality().hash(_captions),
+        const DeepCollectionEquality().hash(_votes)
+      ]);
+
+  @override
+  String toString() {
+    return 'ArticleDetail(articleId: $articleId, articleCatId: $articleCatId, articleTitle: $articleTitle, articleTs: $articleTs, articleSummary: $articleSummary, articleDes: $articleDes, articlePic: $articlePic, articlePicPos: $articlePicPos, articleVisitor: $articleVisitor, articleIsNew: $articleIsNew, articlePriority: $articlePriority, articleActiveVote: $articleActiveVote, articleActiveHint: $articleActiveHint, articleActive: $articleActive, articleDate: $articleDate, articlePicActive: $articlePicActive, articleLastArticle: $articleLastArticle, articlePublisherId: $articlePublisherId, articleSource: $articleSource, articleSourceUrl: $articleSourceUrl, articleYoutubeId: $articleYoutubeId, articleFile: $articleFile, articleUserAddHintNsup: $articleUserAddHintNsup, category: $category, captions: $captions, votes: $votes)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$ArticleDetailCopyWith<$Res>
+    implements $ArticleDetailCopyWith<$Res> {
+  factory _$ArticleDetailCopyWith(
+          _ArticleDetail value, $Res Function(_ArticleDetail) _then) =
+      __$ArticleDetailCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'article_id', fromJson: _stringToInt) int? articleId,
+      @JsonKey(name: 'article_cat_id') String? articleCatId,
+      @JsonKey(name: 'article_title') String? articleTitle,
+      @JsonKey(name: 'article_ts') String? articleTs,
+      @JsonKey(name: 'article_summary') String? articleSummary,
+      @JsonKey(name: 'article_des') String? articleDes,
+      @JsonKey(name: 'article_pic') String? articlePic,
+      @JsonKey(name: 'article_pic_pos') String? articlePicPos,
+      @JsonKey(name: 'article_visitor', fromJson: _stringToInt)
+      int? articleVisitor,
+      @JsonKey(name: 'article_is_new', fromJson: _stringToBool)
+      bool? articleIsNew,
+      @JsonKey(name: 'article_priority') String? articlePriority,
+      @JsonKey(name: 'article_active_vote', fromJson: _stringToBool)
+      bool? articleActiveVote,
+      @JsonKey(name: 'article_active_hint', fromJson: _stringToBool)
+      bool? articleActiveHint,
+      @JsonKey(name: 'article_active', fromJson: _stringToBool)
+      bool? articleActive,
+      @JsonKey(name: 'article_date') String? articleDate,
+      @JsonKey(name: 'article_pic_active', fromJson: _stringToBool)
+      bool? articlePicActive,
+      @JsonKey(name: 'article_last_article', fromJson: _stringToBool)
+      bool? articleLastArticle,
+      @JsonKey(name: 'article_publisher_id') String? articlePublisherId,
+      @JsonKey(name: 'article_source') String? articleSource,
+      @JsonKey(name: 'article_source_url') String? articleSourceUrl,
+      @JsonKey(name: 'article_youtube_id') String? articleYoutubeId,
+      @JsonKey(name: 'article_file') String? articleFile,
+      @JsonKey(name: 'article_user_add_hint_nsup', fromJson: _stringToBool)
+      bool? articleUserAddHintNsup,
+      ArticleDetailCategory? category,
+      List<dynamic>? captions,
+      List<dynamic>? votes});
+
+  @override
+  $ArticleDetailCategoryCopyWith<$Res>? get category;
+}
+
+/// @nodoc
+class __$ArticleDetailCopyWithImpl<$Res>
+    implements _$ArticleDetailCopyWith<$Res> {
+  __$ArticleDetailCopyWithImpl(this._self, this._then);
+
+  final _ArticleDetail _self;
+  final $Res Function(_ArticleDetail) _then;
+
+  /// Create a copy of ArticleDetail
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? articleId = freezed,
+    Object? articleCatId = freezed,
+    Object? articleTitle = freezed,
+    Object? articleTs = freezed,
+    Object? articleSummary = freezed,
+    Object? articleDes = freezed,
+    Object? articlePic = freezed,
+    Object? articlePicPos = freezed,
+    Object? articleVisitor = freezed,
+    Object? articleIsNew = freezed,
+    Object? articlePriority = freezed,
+    Object? articleActiveVote = freezed,
+    Object? articleActiveHint = freezed,
+    Object? articleActive = freezed,
+    Object? articleDate = freezed,
+    Object? articlePicActive = freezed,
+    Object? articleLastArticle = freezed,
+    Object? articlePublisherId = freezed,
+    Object? articleSource = freezed,
+    Object? articleSourceUrl = freezed,
+    Object? articleYoutubeId = freezed,
+    Object? articleFile = freezed,
+    Object? articleUserAddHintNsup = freezed,
+    Object? category = freezed,
+    Object? captions = freezed,
+    Object? votes = freezed,
+  }) {
+    return _then(_ArticleDetail(
+      articleId: freezed == articleId
+          ? _self.articleId
+          : articleId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      articleCatId: freezed == articleCatId
+          ? _self.articleCatId
+          : articleCatId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      articleTitle: freezed == articleTitle
+          ? _self.articleTitle
+          : articleTitle // ignore: cast_nullable_to_non_nullable
+              as String?,
+      articleTs: freezed == articleTs
+          ? _self.articleTs
+          : articleTs // ignore: cast_nullable_to_non_nullable
+              as String?,
+      articleSummary: freezed == articleSummary
+          ? _self.articleSummary
+          : articleSummary // ignore: cast_nullable_to_non_nullable
+              as String?,
+      articleDes: freezed == articleDes
+          ? _self.articleDes
+          : articleDes // ignore: cast_nullable_to_non_nullable
+              as String?,
+      articlePic: freezed == articlePic
+          ? _self.articlePic
+          : articlePic // ignore: cast_nullable_to_non_nullable
+              as String?,
+      articlePicPos: freezed == articlePicPos
+          ? _self.articlePicPos
+          : articlePicPos // ignore: cast_nullable_to_non_nullable
+              as String?,
+      articleVisitor: freezed == articleVisitor
+          ? _self.articleVisitor
+          : articleVisitor // ignore: cast_nullable_to_non_nullable
+              as int?,
+      articleIsNew: freezed == articleIsNew
+          ? _self.articleIsNew
+          : articleIsNew // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      articlePriority: freezed == articlePriority
+          ? _self.articlePriority
+          : articlePriority // ignore: cast_nullable_to_non_nullable
+              as String?,
+      articleActiveVote: freezed == articleActiveVote
+          ? _self.articleActiveVote
+          : articleActiveVote // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      articleActiveHint: freezed == articleActiveHint
+          ? _self.articleActiveHint
+          : articleActiveHint // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      articleActive: freezed == articleActive
+          ? _self.articleActive
+          : articleActive // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      articleDate: freezed == articleDate
+          ? _self.articleDate
+          : articleDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      articlePicActive: freezed == articlePicActive
+          ? _self.articlePicActive
+          : articlePicActive // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      articleLastArticle: freezed == articleLastArticle
+          ? _self.articleLastArticle
+          : articleLastArticle // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      articlePublisherId: freezed == articlePublisherId
+          ? _self.articlePublisherId
+          : articlePublisherId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      articleSource: freezed == articleSource
+          ? _self.articleSource
+          : articleSource // ignore: cast_nullable_to_non_nullable
+              as String?,
+      articleSourceUrl: freezed == articleSourceUrl
+          ? _self.articleSourceUrl
+          : articleSourceUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      articleYoutubeId: freezed == articleYoutubeId
+          ? _self.articleYoutubeId
+          : articleYoutubeId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      articleFile: freezed == articleFile
+          ? _self.articleFile
+          : articleFile // ignore: cast_nullable_to_non_nullable
+              as String?,
+      articleUserAddHintNsup: freezed == articleUserAddHintNsup
+          ? _self.articleUserAddHintNsup
+          : articleUserAddHintNsup // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      category: freezed == category
+          ? _self.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as ArticleDetailCategory?,
+      captions: freezed == captions
+          ? _self._captions
+          : captions // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>?,
+      votes: freezed == votes
+          ? _self._votes
+          : votes // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>?,
+    ));
+  }
+
+  /// Create a copy of ArticleDetail
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ArticleDetailCategoryCopyWith<$Res>? get category {
+    if (_self.category == null) {
+      return null;
+    }
+
+    return $ArticleDetailCategoryCopyWith<$Res>(_self.category!, (value) {
+      return _then(_self.copyWith(category: value));
+    });
+  }
+}
+
+/// @nodoc
+mixin _$ArticleDetailCategory {
+  @JsonKey(name: 'cat_id', fromJson: _stringToInt)
+  int? get catId;
+  @JsonKey(name: 'cat_father_id')
+  String? get catFatherId;
+  @JsonKey(name: 'cat_menus')
+  String? get catMenus;
+  @JsonKey(name: 'cat_title')
+  String? get catTitle;
+  @JsonKey(name: 'cat_note')
+  String? get catNote;
+  @JsonKey(name: 'cat_pic')
+  String? get catPic;
+  @JsonKey(name: 'cat_sup')
+  String? get catSup;
+  @JsonKey(name: 'cat_date')
+  String? get catDate;
+  @JsonKey(name: 'cat_pic_active', fromJson: _stringToBool)
+  bool? get catPicActive;
+  @JsonKey(name: 'cat_lan')
+  String? get catLan;
+  @JsonKey(name: 'cat_pos')
+  String? get catPos;
+  @JsonKey(name: 'cat_active', fromJson: _stringToBool)
+  bool? get catActive;
+  @JsonKey(name: 'cat_show_menu', fromJson: _stringToBool)
+  bool? get catShowMenu;
+  @JsonKey(name: 'cat_show_main', fromJson: _stringToBool)
+  bool? get catShowMain;
+  @JsonKey(name: 'cat_agent')
+  String? get catAgent;
+
+  /// Create a copy of ArticleDetailCategory
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ArticleDetailCategoryCopyWith<ArticleDetailCategory> get copyWith =>
+      _$ArticleDetailCategoryCopyWithImpl<ArticleDetailCategory>(
+          this as ArticleDetailCategory, _$identity);
+
+  /// Serializes this ArticleDetailCategory to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is ArticleDetailCategory &&
+            (identical(other.catId, catId) || other.catId == catId) &&
+            (identical(other.catFatherId, catFatherId) ||
+                other.catFatherId == catFatherId) &&
+            (identical(other.catMenus, catMenus) ||
+                other.catMenus == catMenus) &&
+            (identical(other.catTitle, catTitle) ||
+                other.catTitle == catTitle) &&
+            (identical(other.catNote, catNote) || other.catNote == catNote) &&
+            (identical(other.catPic, catPic) || other.catPic == catPic) &&
+            (identical(other.catSup, catSup) || other.catSup == catSup) &&
+            (identical(other.catDate, catDate) || other.catDate == catDate) &&
+            (identical(other.catPicActive, catPicActive) ||
+                other.catPicActive == catPicActive) &&
+            (identical(other.catLan, catLan) || other.catLan == catLan) &&
+            (identical(other.catPos, catPos) || other.catPos == catPos) &&
+            (identical(other.catActive, catActive) ||
+                other.catActive == catActive) &&
+            (identical(other.catShowMenu, catShowMenu) ||
+                other.catShowMenu == catShowMenu) &&
+            (identical(other.catShowMain, catShowMain) ||
+                other.catShowMain == catShowMain) &&
+            (identical(other.catAgent, catAgent) ||
+                other.catAgent == catAgent));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      catId,
+      catFatherId,
+      catMenus,
+      catTitle,
+      catNote,
+      catPic,
+      catSup,
+      catDate,
+      catPicActive,
+      catLan,
+      catPos,
+      catActive,
+      catShowMenu,
+      catShowMain,
+      catAgent);
+
+  @override
+  String toString() {
+    return 'ArticleDetailCategory(catId: $catId, catFatherId: $catFatherId, catMenus: $catMenus, catTitle: $catTitle, catNote: $catNote, catPic: $catPic, catSup: $catSup, catDate: $catDate, catPicActive: $catPicActive, catLan: $catLan, catPos: $catPos, catActive: $catActive, catShowMenu: $catShowMenu, catShowMain: $catShowMain, catAgent: $catAgent)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ArticleDetailCategoryCopyWith<$Res> {
+  factory $ArticleDetailCategoryCopyWith(ArticleDetailCategory value,
+          $Res Function(ArticleDetailCategory) _then) =
+      _$ArticleDetailCategoryCopyWithImpl;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'cat_id', fromJson: _stringToInt) int? catId,
+      @JsonKey(name: 'cat_father_id') String? catFatherId,
+      @JsonKey(name: 'cat_menus') String? catMenus,
+      @JsonKey(name: 'cat_title') String? catTitle,
+      @JsonKey(name: 'cat_note') String? catNote,
+      @JsonKey(name: 'cat_pic') String? catPic,
+      @JsonKey(name: 'cat_sup') String? catSup,
+      @JsonKey(name: 'cat_date') String? catDate,
+      @JsonKey(name: 'cat_pic_active', fromJson: _stringToBool)
+      bool? catPicActive,
+      @JsonKey(name: 'cat_lan') String? catLan,
+      @JsonKey(name: 'cat_pos') String? catPos,
+      @JsonKey(name: 'cat_active', fromJson: _stringToBool) bool? catActive,
+      @JsonKey(name: 'cat_show_menu', fromJson: _stringToBool)
+      bool? catShowMenu,
+      @JsonKey(name: 'cat_show_main', fromJson: _stringToBool)
+      bool? catShowMain,
+      @JsonKey(name: 'cat_agent') String? catAgent});
+}
+
+/// @nodoc
+class _$ArticleDetailCategoryCopyWithImpl<$Res>
+    implements $ArticleDetailCategoryCopyWith<$Res> {
+  _$ArticleDetailCategoryCopyWithImpl(this._self, this._then);
+
+  final ArticleDetailCategory _self;
+  final $Res Function(ArticleDetailCategory) _then;
+
+  /// Create a copy of ArticleDetailCategory
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? catId = freezed,
+    Object? catFatherId = freezed,
+    Object? catMenus = freezed,
+    Object? catTitle = freezed,
+    Object? catNote = freezed,
+    Object? catPic = freezed,
+    Object? catSup = freezed,
+    Object? catDate = freezed,
+    Object? catPicActive = freezed,
+    Object? catLan = freezed,
+    Object? catPos = freezed,
+    Object? catActive = freezed,
+    Object? catShowMenu = freezed,
+    Object? catShowMain = freezed,
+    Object? catAgent = freezed,
+  }) {
+    return _then(_self.copyWith(
+      catId: freezed == catId
+          ? _self.catId
+          : catId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      catFatherId: freezed == catFatherId
+          ? _self.catFatherId
+          : catFatherId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      catMenus: freezed == catMenus
+          ? _self.catMenus
+          : catMenus // ignore: cast_nullable_to_non_nullable
+              as String?,
+      catTitle: freezed == catTitle
+          ? _self.catTitle
+          : catTitle // ignore: cast_nullable_to_non_nullable
+              as String?,
+      catNote: freezed == catNote
+          ? _self.catNote
+          : catNote // ignore: cast_nullable_to_non_nullable
+              as String?,
+      catPic: freezed == catPic
+          ? _self.catPic
+          : catPic // ignore: cast_nullable_to_non_nullable
+              as String?,
+      catSup: freezed == catSup
+          ? _self.catSup
+          : catSup // ignore: cast_nullable_to_non_nullable
+              as String?,
+      catDate: freezed == catDate
+          ? _self.catDate
+          : catDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      catPicActive: freezed == catPicActive
+          ? _self.catPicActive
+          : catPicActive // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      catLan: freezed == catLan
+          ? _self.catLan
+          : catLan // ignore: cast_nullable_to_non_nullable
+              as String?,
+      catPos: freezed == catPos
+          ? _self.catPos
+          : catPos // ignore: cast_nullable_to_non_nullable
+              as String?,
+      catActive: freezed == catActive
+          ? _self.catActive
+          : catActive // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      catShowMenu: freezed == catShowMenu
+          ? _self.catShowMenu
+          : catShowMenu // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      catShowMain: freezed == catShowMain
+          ? _self.catShowMain
+          : catShowMain // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      catAgent: freezed == catAgent
+          ? _self.catAgent
+          : catAgent // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [ArticleDetailCategory].
+extension ArticleDetailCategoryPatterns on ArticleDetailCategory {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_ArticleDetailCategory value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _ArticleDetailCategory() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_ArticleDetailCategory value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ArticleDetailCategory():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_ArticleDetailCategory value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ArticleDetailCategory() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'cat_id', fromJson: _stringToInt) int? catId,
+            @JsonKey(name: 'cat_father_id') String? catFatherId,
+            @JsonKey(name: 'cat_menus') String? catMenus,
+            @JsonKey(name: 'cat_title') String? catTitle,
+            @JsonKey(name: 'cat_note') String? catNote,
+            @JsonKey(name: 'cat_pic') String? catPic,
+            @JsonKey(name: 'cat_sup') String? catSup,
+            @JsonKey(name: 'cat_date') String? catDate,
+            @JsonKey(name: 'cat_pic_active', fromJson: _stringToBool)
+            bool? catPicActive,
+            @JsonKey(name: 'cat_lan') String? catLan,
+            @JsonKey(name: 'cat_pos') String? catPos,
+            @JsonKey(name: 'cat_active', fromJson: _stringToBool)
+            bool? catActive,
+            @JsonKey(name: 'cat_show_menu', fromJson: _stringToBool)
+            bool? catShowMenu,
+            @JsonKey(name: 'cat_show_main', fromJson: _stringToBool)
+            bool? catShowMain,
+            @JsonKey(name: 'cat_agent') String? catAgent)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _ArticleDetailCategory() when $default != null:
+        return $default(
+            _that.catId,
+            _that.catFatherId,
+            _that.catMenus,
+            _that.catTitle,
+            _that.catNote,
+            _that.catPic,
+            _that.catSup,
+            _that.catDate,
+            _that.catPicActive,
+            _that.catLan,
+            _that.catPos,
+            _that.catActive,
+            _that.catShowMenu,
+            _that.catShowMain,
+            _that.catAgent);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'cat_id', fromJson: _stringToInt) int? catId,
+            @JsonKey(name: 'cat_father_id') String? catFatherId,
+            @JsonKey(name: 'cat_menus') String? catMenus,
+            @JsonKey(name: 'cat_title') String? catTitle,
+            @JsonKey(name: 'cat_note') String? catNote,
+            @JsonKey(name: 'cat_pic') String? catPic,
+            @JsonKey(name: 'cat_sup') String? catSup,
+            @JsonKey(name: 'cat_date') String? catDate,
+            @JsonKey(name: 'cat_pic_active', fromJson: _stringToBool)
+            bool? catPicActive,
+            @JsonKey(name: 'cat_lan') String? catLan,
+            @JsonKey(name: 'cat_pos') String? catPos,
+            @JsonKey(name: 'cat_active', fromJson: _stringToBool)
+            bool? catActive,
+            @JsonKey(name: 'cat_show_menu', fromJson: _stringToBool)
+            bool? catShowMenu,
+            @JsonKey(name: 'cat_show_main', fromJson: _stringToBool)
+            bool? catShowMain,
+            @JsonKey(name: 'cat_agent') String? catAgent)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ArticleDetailCategory():
+        return $default(
+            _that.catId,
+            _that.catFatherId,
+            _that.catMenus,
+            _that.catTitle,
+            _that.catNote,
+            _that.catPic,
+            _that.catSup,
+            _that.catDate,
+            _that.catPicActive,
+            _that.catLan,
+            _that.catPos,
+            _that.catActive,
+            _that.catShowMenu,
+            _that.catShowMain,
+            _that.catAgent);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(name: 'cat_id', fromJson: _stringToInt) int? catId,
+            @JsonKey(name: 'cat_father_id') String? catFatherId,
+            @JsonKey(name: 'cat_menus') String? catMenus,
+            @JsonKey(name: 'cat_title') String? catTitle,
+            @JsonKey(name: 'cat_note') String? catNote,
+            @JsonKey(name: 'cat_pic') String? catPic,
+            @JsonKey(name: 'cat_sup') String? catSup,
+            @JsonKey(name: 'cat_date') String? catDate,
+            @JsonKey(name: 'cat_pic_active', fromJson: _stringToBool)
+            bool? catPicActive,
+            @JsonKey(name: 'cat_lan') String? catLan,
+            @JsonKey(name: 'cat_pos') String? catPos,
+            @JsonKey(name: 'cat_active', fromJson: _stringToBool)
+            bool? catActive,
+            @JsonKey(name: 'cat_show_menu', fromJson: _stringToBool)
+            bool? catShowMenu,
+            @JsonKey(name: 'cat_show_main', fromJson: _stringToBool)
+            bool? catShowMain,
+            @JsonKey(name: 'cat_agent') String? catAgent)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ArticleDetailCategory() when $default != null:
+        return $default(
+            _that.catId,
+            _that.catFatherId,
+            _that.catMenus,
+            _that.catTitle,
+            _that.catNote,
+            _that.catPic,
+            _that.catSup,
+            _that.catDate,
+            _that.catPicActive,
+            _that.catLan,
+            _that.catPos,
+            _that.catActive,
+            _that.catShowMenu,
+            _that.catShowMain,
+            _that.catAgent);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _ArticleDetailCategory implements ArticleDetailCategory {
+  const _ArticleDetailCategory(
+      {@JsonKey(name: 'cat_id', fromJson: _stringToInt) this.catId,
+      @JsonKey(name: 'cat_father_id') this.catFatherId,
+      @JsonKey(name: 'cat_menus') this.catMenus,
+      @JsonKey(name: 'cat_title') this.catTitle,
+      @JsonKey(name: 'cat_note') this.catNote,
+      @JsonKey(name: 'cat_pic') this.catPic,
+      @JsonKey(name: 'cat_sup') this.catSup,
+      @JsonKey(name: 'cat_date') this.catDate,
+      @JsonKey(name: 'cat_pic_active', fromJson: _stringToBool)
+      this.catPicActive,
+      @JsonKey(name: 'cat_lan') this.catLan,
+      @JsonKey(name: 'cat_pos') this.catPos,
+      @JsonKey(name: 'cat_active', fromJson: _stringToBool) this.catActive,
+      @JsonKey(name: 'cat_show_menu', fromJson: _stringToBool) this.catShowMenu,
+      @JsonKey(name: 'cat_show_main', fromJson: _stringToBool) this.catShowMain,
+      @JsonKey(name: 'cat_agent') this.catAgent});
+  factory _ArticleDetailCategory.fromJson(Map<String, dynamic> json) =>
+      _$ArticleDetailCategoryFromJson(json);
+
+  @override
+  @JsonKey(name: 'cat_id', fromJson: _stringToInt)
+  final int? catId;
+  @override
+  @JsonKey(name: 'cat_father_id')
+  final String? catFatherId;
+  @override
+  @JsonKey(name: 'cat_menus')
+  final String? catMenus;
+  @override
+  @JsonKey(name: 'cat_title')
+  final String? catTitle;
+  @override
+  @JsonKey(name: 'cat_note')
+  final String? catNote;
+  @override
+  @JsonKey(name: 'cat_pic')
+  final String? catPic;
+  @override
+  @JsonKey(name: 'cat_sup')
+  final String? catSup;
+  @override
+  @JsonKey(name: 'cat_date')
+  final String? catDate;
+  @override
+  @JsonKey(name: 'cat_pic_active', fromJson: _stringToBool)
+  final bool? catPicActive;
+  @override
+  @JsonKey(name: 'cat_lan')
+  final String? catLan;
+  @override
+  @JsonKey(name: 'cat_pos')
+  final String? catPos;
+  @override
+  @JsonKey(name: 'cat_active', fromJson: _stringToBool)
+  final bool? catActive;
+  @override
+  @JsonKey(name: 'cat_show_menu', fromJson: _stringToBool)
+  final bool? catShowMenu;
+  @override
+  @JsonKey(name: 'cat_show_main', fromJson: _stringToBool)
+  final bool? catShowMain;
+  @override
+  @JsonKey(name: 'cat_agent')
+  final String? catAgent;
+
+  /// Create a copy of ArticleDetailCategory
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$ArticleDetailCategoryCopyWith<_ArticleDetailCategory> get copyWith =>
+      __$ArticleDetailCategoryCopyWithImpl<_ArticleDetailCategory>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$ArticleDetailCategoryToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _ArticleDetailCategory &&
+            (identical(other.catId, catId) || other.catId == catId) &&
+            (identical(other.catFatherId, catFatherId) ||
+                other.catFatherId == catFatherId) &&
+            (identical(other.catMenus, catMenus) ||
+                other.catMenus == catMenus) &&
+            (identical(other.catTitle, catTitle) ||
+                other.catTitle == catTitle) &&
+            (identical(other.catNote, catNote) || other.catNote == catNote) &&
+            (identical(other.catPic, catPic) || other.catPic == catPic) &&
+            (identical(other.catSup, catSup) || other.catSup == catSup) &&
+            (identical(other.catDate, catDate) || other.catDate == catDate) &&
+            (identical(other.catPicActive, catPicActive) ||
+                other.catPicActive == catPicActive) &&
+            (identical(other.catLan, catLan) || other.catLan == catLan) &&
+            (identical(other.catPos, catPos) || other.catPos == catPos) &&
+            (identical(other.catActive, catActive) ||
+                other.catActive == catActive) &&
+            (identical(other.catShowMenu, catShowMenu) ||
+                other.catShowMenu == catShowMenu) &&
+            (identical(other.catShowMain, catShowMain) ||
+                other.catShowMain == catShowMain) &&
+            (identical(other.catAgent, catAgent) ||
+                other.catAgent == catAgent));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      catId,
+      catFatherId,
+      catMenus,
+      catTitle,
+      catNote,
+      catPic,
+      catSup,
+      catDate,
+      catPicActive,
+      catLan,
+      catPos,
+      catActive,
+      catShowMenu,
+      catShowMain,
+      catAgent);
+
+  @override
+  String toString() {
+    return 'ArticleDetailCategory(catId: $catId, catFatherId: $catFatherId, catMenus: $catMenus, catTitle: $catTitle, catNote: $catNote, catPic: $catPic, catSup: $catSup, catDate: $catDate, catPicActive: $catPicActive, catLan: $catLan, catPos: $catPos, catActive: $catActive, catShowMenu: $catShowMenu, catShowMain: $catShowMain, catAgent: $catAgent)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$ArticleDetailCategoryCopyWith<$Res>
+    implements $ArticleDetailCategoryCopyWith<$Res> {
+  factory _$ArticleDetailCategoryCopyWith(_ArticleDetailCategory value,
+          $Res Function(_ArticleDetailCategory) _then) =
+      __$ArticleDetailCategoryCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'cat_id', fromJson: _stringToInt) int? catId,
+      @JsonKey(name: 'cat_father_id') String? catFatherId,
+      @JsonKey(name: 'cat_menus') String? catMenus,
+      @JsonKey(name: 'cat_title') String? catTitle,
+      @JsonKey(name: 'cat_note') String? catNote,
+      @JsonKey(name: 'cat_pic') String? catPic,
+      @JsonKey(name: 'cat_sup') String? catSup,
+      @JsonKey(name: 'cat_date') String? catDate,
+      @JsonKey(name: 'cat_pic_active', fromJson: _stringToBool)
+      bool? catPicActive,
+      @JsonKey(name: 'cat_lan') String? catLan,
+      @JsonKey(name: 'cat_pos') String? catPos,
+      @JsonKey(name: 'cat_active', fromJson: _stringToBool) bool? catActive,
+      @JsonKey(name: 'cat_show_menu', fromJson: _stringToBool)
+      bool? catShowMenu,
+      @JsonKey(name: 'cat_show_main', fromJson: _stringToBool)
+      bool? catShowMain,
+      @JsonKey(name: 'cat_agent') String? catAgent});
+}
+
+/// @nodoc
+class __$ArticleDetailCategoryCopyWithImpl<$Res>
+    implements _$ArticleDetailCategoryCopyWith<$Res> {
+  __$ArticleDetailCategoryCopyWithImpl(this._self, this._then);
+
+  final _ArticleDetailCategory _self;
+  final $Res Function(_ArticleDetailCategory) _then;
+
+  /// Create a copy of ArticleDetailCategory
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? catId = freezed,
+    Object? catFatherId = freezed,
+    Object? catMenus = freezed,
+    Object? catTitle = freezed,
+    Object? catNote = freezed,
+    Object? catPic = freezed,
+    Object? catSup = freezed,
+    Object? catDate = freezed,
+    Object? catPicActive = freezed,
+    Object? catLan = freezed,
+    Object? catPos = freezed,
+    Object? catActive = freezed,
+    Object? catShowMenu = freezed,
+    Object? catShowMain = freezed,
+    Object? catAgent = freezed,
+  }) {
+    return _then(_ArticleDetailCategory(
+      catId: freezed == catId
+          ? _self.catId
+          : catId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      catFatherId: freezed == catFatherId
+          ? _self.catFatherId
+          : catFatherId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      catMenus: freezed == catMenus
+          ? _self.catMenus
+          : catMenus // ignore: cast_nullable_to_non_nullable
+              as String?,
+      catTitle: freezed == catTitle
+          ? _self.catTitle
+          : catTitle // ignore: cast_nullable_to_non_nullable
+              as String?,
+      catNote: freezed == catNote
+          ? _self.catNote
+          : catNote // ignore: cast_nullable_to_non_nullable
+              as String?,
+      catPic: freezed == catPic
+          ? _self.catPic
+          : catPic // ignore: cast_nullable_to_non_nullable
+              as String?,
+      catSup: freezed == catSup
+          ? _self.catSup
+          : catSup // ignore: cast_nullable_to_non_nullable
+              as String?,
+      catDate: freezed == catDate
+          ? _self.catDate
+          : catDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      catPicActive: freezed == catPicActive
+          ? _self.catPicActive
+          : catPicActive // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      catLan: freezed == catLan
+          ? _self.catLan
+          : catLan // ignore: cast_nullable_to_non_nullable
+              as String?,
+      catPos: freezed == catPos
+          ? _self.catPos
+          : catPos // ignore: cast_nullable_to_non_nullable
+              as String?,
+      catActive: freezed == catActive
+          ? _self.catActive
+          : catActive // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      catShowMenu: freezed == catShowMenu
+          ? _self.catShowMenu
+          : catShowMenu // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      catShowMain: freezed == catShowMain
+          ? _self.catShowMain
+          : catShowMain // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      catAgent: freezed == catAgent
+          ? _self.catAgent
+          : catAgent // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
 // dart format on

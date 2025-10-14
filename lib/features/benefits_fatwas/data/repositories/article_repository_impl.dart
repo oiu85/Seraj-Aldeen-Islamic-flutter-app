@@ -94,4 +94,46 @@ class BenefitsFatwasRepositoryImpl implements BenefitsFatwasRepository {
   bool _isValidCategoryContentResponse(CategoryContentResponse response) {
     return response.success == true && response.data != null;
   }
+
+  @override
+  Future<Either<Exception, ArticleDetailResponse>> getArticleDetail({
+    required int articleId,
+  }) async {
+    try {
+      if (articleId <= 0) {
+        AppLogger.error('Invalid article ID: $articleId');
+        return Left(Exception('Invalid article ID'));
+      }
+      
+      AppLogger.info('Fetching article detail for ID: $articleId');
+      
+      final endpoint = '/articles/$articleId';
+      final response = await networkClient.get(endpoint);
+      
+      if (response.statusCode == 200 && response.data != null) {
+        final articleDetailResponse = ArticleDetailResponse.fromJson(response.data);
+        
+        if (_isValidArticleDetailResponse(articleDetailResponse)) {
+          AppLogger.info('Article detail fetched successfully');
+          return Right(articleDetailResponse);
+        } else {
+          AppLogger.error('Invalid article detail response structure');
+          return Left(Exception('Invalid response structure'));
+        }
+      } else {
+        AppLogger.error('HTTP error ${response.statusCode}');
+        return Left(Exception('HTTP error ${response.statusCode}'));
+      }
+    } on DioException catch (e) {
+      AppLogger.apiError('DioException in getArticleDetail', e);
+      return Left(Exception(e.message ?? 'Network error'));
+    } catch (e) {
+      AppLogger.error('Unexpected error in getArticleDetail: $e');
+      return Left(Exception('Parse error'));
+    }
+  }
+  
+  bool _isValidArticleDetailResponse(ArticleDetailResponse response) {
+    return response.success == true && response.data != null;
+  }
 }

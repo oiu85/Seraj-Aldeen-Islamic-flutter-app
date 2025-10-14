@@ -8,6 +8,8 @@ class BenefitsState extends Equatable {
   final List<ArticleItem> categoryContent;
   final bool hasNextPage;
   final int currentPage;
+  final ArticleDetail? articleDetail;
+  final int? loadingArticleId;
 
   const BenefitsState({
     required this.status,
@@ -15,6 +17,8 @@ class BenefitsState extends Equatable {
     this.categoryContent = const [],
     this.hasNextPage = false,
     this.currentPage = 1,
+    this.articleDetail,
+    this.loadingArticleId,
   });
 
   BenefitsState copyWith({
@@ -23,6 +27,8 @@ class BenefitsState extends Equatable {
     List<ArticleItem>? categoryContent,
     bool? hasNextPage,
     int? currentPage,
+    ArticleDetail? articleDetail,
+    int? loadingArticleId,
   }) {
     return BenefitsState(
       status: status ?? this.status,
@@ -30,11 +36,13 @@ class BenefitsState extends Equatable {
       categoryContent: categoryContent ?? this.categoryContent,
       hasNextPage: hasNextPage ?? this.hasNextPage,
       currentPage: currentPage ?? this.currentPage,
+      articleDetail: articleDetail ?? this.articleDetail,
+      loadingArticleId: loadingArticleId,
     );
   }
 
   @override
-  List<Object?> get props => [status, categories, categoryContent, hasNextPage, currentPage];
+  List<Object?> get props => [status, categories, categoryContent, hasNextPage, currentPage, articleDetail, loadingArticleId];
 
   @override
   bool get stringify => true;

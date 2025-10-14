@@ -5,6 +5,7 @@ import '../../features/biography/data/di/biography_di.dart';
 import '../../features/books_library/di/books_di.dart';
 import '../../features/global_search/di/search_di.dart';
 import '../../features/home/data/di/home_di.dart';
+import '../../features/html_viewer/injection.dart';
 import '../../features/image_galary/di/gallery_di.dart';
 import '../../features/sounds_library/di/sounds_di.dart';
 import '../../features/video_library/di/videos_di.dart';
@@ -28,4 +29,5 @@ void setupAppDependencies() {
   setupBooksDependencies(getIt);
   setupGalleryDependencies(getIt);
   setupSearchDependencies(getIt);
+  registerHtmlViewerDependencies(getIt);
 }

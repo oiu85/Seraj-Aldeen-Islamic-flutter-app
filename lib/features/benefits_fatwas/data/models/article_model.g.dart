@@ -207,3 +207,124 @@ Map<String, dynamic> _$ContentPaginationToJson(_ContentPagination instance) =>
       'next_page': instance.nextPage,
       'previous_page': instance.previousPage,
     };
+
+_ArticleDetailResponse _$ArticleDetailResponseFromJson(
+        Map<String, dynamic> json) =>
+    _ArticleDetailResponse(
+      success: json['success'] as bool?,
+      data: json['data'] == null
+          ? null
+          : ArticleDetail.fromJson(json['data'] as Map<String, dynamic>),
+      message: json['message'] as String?,
+    );
+
+Map<String, dynamic> _$ArticleDetailResponseToJson(
+        _ArticleDetailResponse instance) =>
+    <String, dynamic>{
+      'success': instance.success,
+      'data': instance.data,
+      'message': instance.message,
+    };
+
+_ArticleDetail _$ArticleDetailFromJson(Map<String, dynamic> json) =>
+    _ArticleDetail(
+      articleId: _stringToInt(json['article_id']),
+      articleCatId: json['article_cat_id'] as String?,
+      articleTitle: json['article_title'] as String?,
+      articleTs: json['article_ts'] as String?,
+      articleSummary: json['article_summary'] as String?,
+      articleDes: json['article_des'] as String?,
+      articlePic: json['article_pic'] as String?,
+      articlePicPos: json['article_pic_pos'] as String?,
+      articleVisitor: _stringToInt(json['article_visitor']),
+      articleIsNew: _stringToBool(json['article_is_new']),
+      articlePriority: json['article_priority'] as String?,
+      articleActiveVote: _stringToBool(json['article_active_vote']),
+      articleActiveHint: _stringToBool(json['article_active_hint']),
+      articleActive: _stringToBool(json['article_active']),
+      articleDate: json['article_date'] as String?,
+      articlePicActive: _stringToBool(json['article_pic_active']),
+      articleLastArticle: _stringToBool(json['article_last_article']),
+      articlePublisherId: json['article_publisher_id'] as String?,
+      articleSource: json['article_source'] as String?,
+      articleSourceUrl: json['article_source_url'] as String?,
+      articleYoutubeId: json['article_youtube_id'] as String?,
+      articleFile: json['article_file'] as String?,
+      articleUserAddHintNsup: _stringToBool(json['article_user_add_hint_nsup']),
+      category: json['category'] == null
+          ? null
+          : ArticleDetailCategory.fromJson(
+              json['category'] as Map<String, dynamic>),
+      captions: json['captions'] as List<dynamic>?,
+      votes: json['votes'] as List<dynamic>?,
+    );
+
+Map<String, dynamic> _$ArticleDetailToJson(_ArticleDetail instance) =>
+    <String, dynamic>{
+      'article_id': instance.articleId,
+      'article_cat_id': instance.articleCatId,
+      'article_title': instance.articleTitle,
+      'article_ts': instance.articleTs,
+      'article_summary': instance.articleSummary,
+      'article_des': instance.articleDes,
+      'article_pic': instance.articlePic,
+      'article_pic_pos': instance.articlePicPos,
+      'article_visitor': instance.articleVisitor,
+      'article_is_new': instance.articleIsNew,
+      'article_priority': instance.articlePriority,
+      'article_active_vote': instance.articleActiveVote,
+      'article_active_hint': instance.articleActiveHint,
+      'article_active': instance.articleActive,
+      'article_date': instance.articleDate,
+      'article_pic_active': instance.articlePicActive,
+      'article_last_article': instance.articleLastArticle,
+      'article_publisher_id': instance.articlePublisherId,
+      'article_source': instance.articleSource,
+      'article_source_url': instance.articleSourceUrl,
+      'article_youtube_id': instance.articleYoutubeId,
+      'article_file': instance.articleFile,
+      'article_user_add_hint_nsup': instance.articleUserAddHintNsup,
+      'category': instance.category,
+      'captions': instance.captions,
+      'votes': instance.votes,
+    };
+
+_ArticleDetailCategory _$ArticleDetailCategoryFromJson(
+        Map<String, dynamic> json) =>
+    _ArticleDetailCategory(
+      catId: _stringToInt(json['cat_id']),
+      catFatherId: json['cat_father_id'] as String?,
+      catMenus: json['cat_menus'] as String?,
+      catTitle: json['cat_title'] as String?,
+      catNote: json['cat_note'] as String?,
+      catPic: json['cat_pic'] as String?,
+      catSup: json['cat_sup'] as String?,
+      catDate: json['cat_date'] as String?,
+      catPicActive: _stringToBool(json['cat_pic_active']),
+      catLan: json['cat_lan'] as String?,
+      catPos: json['cat_pos'] as String?,
+      catActive: _stringToBool(json['cat_active']),
+      catShowMenu: _stringToBool(json['cat_show_menu']),
+      catShowMain: _stringToBool(json['cat_show_main']),
+      catAgent: json['cat_agent'] as String?,
+    );
+
+Map<String, dynamic> _$ArticleDetailCategoryToJson(
+        _ArticleDetailCategory instance) =>
+    <String, dynamic>{
+      'cat_id': instance.catId,
+      'cat_father_id': instance.catFatherId,
+      'cat_menus': instance.catMenus,
+      'cat_title': instance.catTitle,
+      'cat_note': instance.catNote,
+      'cat_pic': instance.catPic,
+      'cat_sup': instance.catSup,
+      'cat_date': instance.catDate,
+      'cat_pic_active': instance.catPicActive,
+      'cat_lan': instance.catLan,
+      'cat_pos': instance.catPos,
+      'cat_active': instance.catActive,
+      'cat_show_menu': instance.catShowMenu,
+      'cat_show_main': instance.catShowMain,
+      'cat_agent': instance.catAgent,
+    };

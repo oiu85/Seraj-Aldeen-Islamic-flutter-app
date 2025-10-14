@@ -180,6 +180,7 @@ Widget _buildTheRow(int rowIndex, String categoryTitle, List articleItems, {int?
                   width: 50.w,
                   height: 50.h,
                   context: context,
+                  articleId: article.id,
                 ),
                 rowIndex: rowIndex,
                 cardIndex: index,

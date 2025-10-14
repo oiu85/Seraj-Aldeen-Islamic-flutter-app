@@ -155,3 +155,75 @@ abstract class ContentPagination with _$ContentPagination {
   factory ContentPagination.fromJson(Map<String, dynamic> json) =>
       _$ContentPaginationFromJson(json);
 }
+
+// Article Detail Models
+@freezed
+abstract class ArticleDetailResponse with _$ArticleDetailResponse {
+  const factory ArticleDetailResponse({
+    bool? success,
+    ArticleDetail? data,
+    String? message,
+  }) = _ArticleDetailResponse;
+
+  factory ArticleDetailResponse.fromJson(Map<String, dynamic> json) =>
+      _$ArticleDetailResponseFromJson(json);
+}
+
+@freezed
+abstract class ArticleDetail with _$ArticleDetail {
+  const factory ArticleDetail({
+    @JsonKey(name: 'article_id', fromJson: _stringToInt) int? articleId,
+    @JsonKey(name: 'article_cat_id') String? articleCatId,
+    @JsonKey(name: 'article_title') String? articleTitle,
+    @JsonKey(name: 'article_ts') String? articleTs,
+    @JsonKey(name: 'article_summary') String? articleSummary,
+    @JsonKey(name: 'article_des') String? articleDes,
+    @JsonKey(name: 'article_pic') String? articlePic,
+    @JsonKey(name: 'article_pic_pos') String? articlePicPos,
+    @JsonKey(name: 'article_visitor', fromJson: _stringToInt) int? articleVisitor,
+    @JsonKey(name: 'article_is_new', fromJson: _stringToBool) bool? articleIsNew,
+    @JsonKey(name: 'article_priority') String? articlePriority,
+    @JsonKey(name: 'article_active_vote', fromJson: _stringToBool) bool? articleActiveVote,
+    @JsonKey(name: 'article_active_hint', fromJson: _stringToBool) bool? articleActiveHint,
+    @JsonKey(name: 'article_active', fromJson: _stringToBool) bool? articleActive,
+    @JsonKey(name: 'article_date') String? articleDate,
+    @JsonKey(name: 'article_pic_active', fromJson: _stringToBool) bool? articlePicActive,
+    @JsonKey(name: 'article_last_article', fromJson: _stringToBool) bool? articleLastArticle,
+    @JsonKey(name: 'article_publisher_id') String? articlePublisherId,
+    @JsonKey(name: 'article_source') String? articleSource,
+    @JsonKey(name: 'article_source_url') String? articleSourceUrl,
+    @JsonKey(name: 'article_youtube_id') String? articleYoutubeId,
+    @JsonKey(name: 'article_file') String? articleFile,
+    @JsonKey(name: 'article_user_add_hint_nsup', fromJson: _stringToBool) bool? articleUserAddHintNsup,
+    ArticleDetailCategory? category,
+    List<dynamic>? captions,
+    List<dynamic>? votes,
+  }) = _ArticleDetail;
+
+  factory ArticleDetail.fromJson(Map<String, dynamic> json) =>
+      _$ArticleDetailFromJson(json);
+}
+
+@freezed
+abstract class ArticleDetailCategory with _$ArticleDetailCategory {
+  const factory ArticleDetailCategory({
+    @JsonKey(name: 'cat_id', fromJson: _stringToInt) int? catId,
+    @JsonKey(name: 'cat_father_id') String? catFatherId,
+    @JsonKey(name: 'cat_menus') String? catMenus,
+    @JsonKey(name: 'cat_title') String? catTitle,
+    @JsonKey(name: 'cat_note') String? catNote,
+    @JsonKey(name: 'cat_pic') String? catPic,
+    @JsonKey(name: 'cat_sup') String? catSup,
+    @JsonKey(name: 'cat_date') String? catDate,
+    @JsonKey(name: 'cat_pic_active', fromJson: _stringToBool) bool? catPicActive,
+    @JsonKey(name: 'cat_lan') String? catLan,
+    @JsonKey(name: 'cat_pos') String? catPos,
+    @JsonKey(name: 'cat_active', fromJson: _stringToBool) bool? catActive,
+    @JsonKey(name: 'cat_show_menu', fromJson: _stringToBool) bool? catShowMenu,
+    @JsonKey(name: 'cat_show_main', fromJson: _stringToBool) bool? catShowMain,
+    @JsonKey(name: 'cat_agent') String? catAgent,
+  }) = _ArticleDetailCategory;
+
+  factory ArticleDetailCategory.fromJson(Map<String, dynamic> json) =>
+      _$ArticleDetailCategoryFromJson(json);
+}

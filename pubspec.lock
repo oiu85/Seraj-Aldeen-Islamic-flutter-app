@@ -487,7 +487,7 @@ packages:
     source: hosted
     version: "5.12.0"
   flutter_html:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: flutter_html
       sha256: "38a2fd702ffdf3243fb7441ab58aa1bc7e6922d95a50db76534de8260638558d"
@@ -766,7 +766,7 @@ packages:
     source: hosted
     version: "2.0.0"
   html:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: html
       sha256: "6d1264f2dffa1b1101c25a91dff0dc2daee4c18e87cd8538729773c073dbf602"

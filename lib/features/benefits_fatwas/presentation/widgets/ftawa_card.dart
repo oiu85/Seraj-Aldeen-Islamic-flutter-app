@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:seraj_aldean_flutter_app/core/responsive/screen_util_res.dart';
 
 import '../../../../config/appconfig/app_colors.dart';
+import '../../../../features/html_viewer/domain/models/html_content.dart';
+import '../../../../features/html_viewer/presentation/pages/html_book_viewer_page.dart';
 import '../../../../gen/assets.gen.dart';
 import '../../../../gen/fonts.gen.dart';
+import '../bloc/benefits_bloc.dart';
+import '../bloc/benefits_event.dart';
+import '../bloc/benefits_state.dart';
 
 Widget lessonCardBuild({
   required BuildContext context,
@@ -13,7 +20,58 @@ Widget lessonCardBuild({
   required String imageNamePath,
   required double width,
   required double height,
-  bool isLoading = false,
+  required int? articleId,
+}) {
+  return BlocConsumer<BenefitsBloc, BenefitsState>(
+    listener: (context, state) {
+      // When article detail is loaded, navigate to HTML viewer
+      if (state.articleDetail != null && state.loadingArticleId == null) {
+        final article = state.articleDetail!;
+        final htmlContent = HtmlContent(
+          title: article.articleTitle ?? 'مقال',
+          htmlContent: article.articleDes ?? '',
+          summary: article.articleSummary,
+          articleId: article.articleId,
+          categoryId: article.articleCatId,
+          imageUrl: article.articlePic,
+          date: article.articleDate,
+        );
+        
+        // Navigate to HTML viewer
+        Get.to(() => HtmlBookViewerPage(htmlContent: htmlContent));
+      }
+    },
+    builder: (context, state) {
+      final isLoading = state.loadingArticleId == articleId;
+      
+      return _buildCard(
+        context: context,
+        lesson: lesson,
+        viewCont: viewCont,
+        title: title,
+        imageNamePath: imageNamePath,
+        width: width,
+        height: height,
+        isLoading: isLoading,
+        onTap: articleId != null ? () {
+          context.read<BenefitsBloc>().add(
+            LoadArticleDetailEvent(articleId: articleId),
+          );
+        } : null,
+      );
+    },
+  );
+}
+
+Widget _buildCard({
+  required BuildContext context,
+  required String lesson,
+  required String viewCont,
+  required String title,
+  required String imageNamePath,
+  required double width,
+  required double height,
+  required bool isLoading,
   VoidCallback? onTap,
 }) {
   // Using extension methods for easier access

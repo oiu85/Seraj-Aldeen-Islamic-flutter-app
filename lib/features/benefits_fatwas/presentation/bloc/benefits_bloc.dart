@@ -14,6 +14,7 @@ class BenefitsBloc extends Bloc<BenefitsEvent, BenefitsState> {
       : super(BenefitsState(status: BlocStatus.initial())) {
     on<LoadArticleCategoriesEvent>(_onLoadArticleCategories);
     on<LoadCategoryContentEvent>(_onLoadCategoryContent);
+    on<LoadArticleDetailEvent>(_onLoadArticleDetail);
   }
 
   Future<void> _onLoadArticleCategories(
@@ -158,6 +159,44 @@ class BenefitsBloc extends Bloc<BenefitsEvent, BenefitsState> {
         hasNextPage: hasNextPage,
         currentPage: currentPage,
       ));
+    }
+  }
+
+  Future<void> _onLoadArticleDetail(
+    LoadArticleDetailEvent event,
+    Emitter<BenefitsState> emit,
+  ) async {
+    try {
+      AppLogger.info('Loading article detail for ID: ${event.articleId}');
+      
+      // Set loading state for this specific article
+      emit(state.copyWith(loadingArticleId: event.articleId));
+
+      final result = await benefitsFatwasRepository.getArticleDetail(
+        articleId: event.articleId,
+      );
+
+      result.fold(
+        (exception) {
+          AppLogger.error('Failed to load article detail: ${exception.toString()}');
+          emit(state.copyWith(loadingArticleId: null));
+        },
+        (response) {
+          if (response.success == true && response.data != null) {
+            AppLogger.info('Article detail loaded successfully');
+            emit(state.copyWith(
+              articleDetail: response.data,
+              loadingArticleId: null,
+            ));
+          } else {
+            AppLogger.error('Invalid article detail response');
+            emit(state.copyWith(loadingArticleId: null));
+          }
+        },
+      );
+    } catch (e) {
+      AppLogger.error('Unexpected error in _onLoadArticleDetail: $e');
+      emit(state.copyWith(loadingArticleId: null));
     }
   }
 }

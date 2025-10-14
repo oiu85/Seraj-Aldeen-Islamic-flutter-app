@@ -8,4 +8,7 @@ abstract class BenefitsFatwasRepository {
     required int page,
     required int perPage,
   });
+  Future<Either<Exception, ArticleDetailResponse>> getArticleDetail({
+    required int articleId,
+  });
 }
