@@ -11,9 +11,11 @@ class ApiConfig {
   static const String booksCategories = "/categories/books/main";
   static const String photoGalleriesCategories = "/categories/photo_galleries/main";
   static const String search = "/search";
+  static const String contactUs = "/contact-us";
   
   // Helper method to get full URL with query parameters
-  static String getFullUrl(String endpoint) {
+  static String getFullUrl(String endpoint)
+  {
     return baseUrl + endpoint;
   }
   

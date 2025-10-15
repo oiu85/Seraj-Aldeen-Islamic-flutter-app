@@ -72,7 +72,7 @@ class SocialNetworksExpandableFab extends StatelessWidget {
         blur: 5,
       ),
       openButtonBuilder: RotateFloatingActionButtonBuilder(
-        child: Icon(Icons.share, color: AppColors.white),
+        child: Icon(Icons.chat_outlined, color: AppColors.white),
         fabSize: ExpandableFabSize.regular,
         backgroundColor: openButtonColor ?? AppColors.primary,
         shape: const CircleBorder(),

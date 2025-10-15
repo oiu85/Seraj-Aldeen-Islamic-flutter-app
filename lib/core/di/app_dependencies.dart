@@ -7,6 +7,7 @@ import '../../features/global_search/di/search_di.dart';
 import '../../features/home/data/di/home_di.dart';
 import '../../features/html_viewer/injection.dart';
 import '../../features/image_galary/di/gallery_di.dart';
+import '../../features/settings/data/di/contact_di.dart';
 import '../../features/sounds_library/di/sounds_di.dart';
 import '../../features/video_library/di/videos_di.dart';
 import '../network/network_client.dart';
@@ -29,5 +30,6 @@ void setupAppDependencies() {
   setupBooksDependencies(getIt);
   setupGalleryDependencies(getIt);
   setupSearchDependencies(getIt);
+  setupContactDependencies(getIt);
   registerHtmlViewerDependencies(getIt);
 }

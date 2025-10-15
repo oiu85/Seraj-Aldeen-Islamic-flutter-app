@@ -68,9 +68,9 @@ class ContactFormValidator {
     return null;
   }
 
-  /// Generates a random captcha code
+  /// Generates a random captcha code with only numbers
   static String generateCaptcha({int length = 6}) {
-    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    const chars = '0123456789';
     final random = Random.secure();
     return String.fromCharCodes(
       Iterable.generate(

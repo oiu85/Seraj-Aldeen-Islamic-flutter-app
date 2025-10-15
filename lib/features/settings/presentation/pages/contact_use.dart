@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:seraj_aldean_flutter_app/core/responsive/screen_util_res.dart';
 import 'package:seraj_aldean_flutter_app/config/appconfig/app_colors.dart';
 import 'package:seraj_aldean_flutter_app/core/shared/widgets/app_scaffold.dart';
@@ -8,15 +9,31 @@ import 'package:seraj_aldean_flutter_app/features/settings/presentation/widgets/
 import 'package:seraj_aldean_flutter_app/features/settings/presentation/widgets/contact_field_label.dart';
 import 'package:seraj_aldean_flutter_app/features/settings/presentation/widgets/contact_captcha_display.dart';
 import 'package:seraj_aldean_flutter_app/features/settings/presentation/widgets/contact_action_button.dart';
+import 'package:seraj_aldean_flutter_app/core/di/app_dependencies.dart';
+import 'package:seraj_aldean_flutter_app/features/settings/presentation/bloc/contact_bloc.dart';
+import 'package:seraj_aldean_flutter_app/features/settings/presentation/bloc/contact_event.dart';
+import 'package:seraj_aldean_flutter_app/features/settings/presentation/bloc/contact_state.dart';
 
-class ContactUsPage extends StatefulWidget {
+class ContactUsPage extends StatelessWidget {
   const ContactUsPage({super.key});
 
   @override
-  State<ContactUsPage> createState() => _ContactUsPageState();
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => getIt<ContactBloc>(),
+      child: const _ContactUsPageContent(),
+    );
+  }
 }
 
-class _ContactUsPageState extends State<ContactUsPage> {
+class _ContactUsPageContent extends StatefulWidget {
+  const _ContactUsPageContent();
+
+  @override
+  State<_ContactUsPageContent> createState() => _ContactUsPageState();
+}
+
+class _ContactUsPageState extends State<_ContactUsPageContent> {
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
@@ -26,7 +43,6 @@ class _ContactUsPageState extends State<ContactUsPage> {
   final _captchaController = TextEditingController();
 
   String _captchaCode = '';
-  bool _isLoading = false;
 
   @override
   void initState() {
@@ -62,16 +78,15 @@ class _ContactUsPageState extends State<ContactUsPage> {
 
   void _submitForm() {
     if (_formKey.currentState!.validate()) {
-      setState(() => _isLoading = true);
-
-      // Simulate API call
-      Future.delayed(const Duration(seconds: 2), () {
-        if (mounted) {
-          setState(() => _isLoading = false);
-          _showSuccessMessage();
-          _resetForm();
-        }
-      });
+      context.read<ContactBloc>().add(
+            SubmitContactFormEvent(
+              senderName: _nameController.text.trim(),
+              senderEmail: _emailController.text.trim(),
+              senderPhone: _phoneController.text.trim(),
+              senderCountry: _countryController.text.trim(),
+              senderMessage: _messageController.text.trim(),
+            ),
+          );
     }
   }
 
@@ -84,65 +99,100 @@ class _ContactUsPageState extends State<ContactUsPage> {
     _messageController.clear();
     _captchaController.clear();
     _generateCaptcha();
+    context.read<ContactBloc>().add(const ResetContactFormEvent());
   }
 
-  void _showSuccessMessage() {
+  void _showSuccessMessage(String message) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Container(
-          padding: EdgeInsets.symmetric(vertical: 4.h),
-          child: Row(
-            children: [
-              Container(
-                padding: EdgeInsets.all(8.w),
-                decoration: BoxDecoration(
-                  color: AppColors.white.withValues(alpha: 0.2),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Icon(
-                  Icons.check_circle,
-                  color: AppColors.white,
-                  size: 24,
-                ),
-              ),
-              SizedBox(width: 12.w),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      'تم الإرسال بنجاح!',
-                      style: TextStyle(
-                        fontFamily: FontFamily.tajawal,
-                        fontSize: 16.f,
-                        fontWeight: FontWeight.bold,
-                        color: AppColors.white,
-                      ),
+        content: Row(
+          children: [
+            Icon(
+              Icons.check_circle,
+              color: AppColors.white,
+              size: 24,
+            ),
+            SizedBox(width: 12.w),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    'تم الإرسال بنجاح!',
+                    style: TextStyle(
+                      fontFamily: FontFamily.tajawal,
+                      fontSize: 16.f,
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.white,
                     ),
-                    SizedBox(height: 2.h),
-                    Text(
-                      'تم إرسال رسالتك بنجاح! سنتواصل معك قريباً',
-                      style: TextStyle(
-                        fontFamily: FontFamily.tajawal,
-                        fontSize: 13.f,
-                        fontWeight: FontWeight.w400,
-                        color: AppColors.white,
-                      ),
+                  ),
+                  SizedBox(height: 2.h),
+                  Text(
+                    message,
+                    style: TextStyle(
+                      fontFamily: FontFamily.tajawal,
+                      fontSize: 13.f,
+                      fontWeight: FontWeight.w400,
+                      color: AppColors.white,
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
         backgroundColor: AppColors.primary,
-        duration: const Duration(seconds: 5),
-        behavior: SnackBarBehavior.floating,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15),
+        duration: const Duration(seconds: 4),
+        behavior: SnackBarBehavior.fixed,
+        elevation: 8,
+      ),
+    );
+  }
+
+  void _showErrorMessage(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Row(
+          children: [
+            Icon(
+              Icons.error_outline,
+              color: AppColors.white,
+              size: 24,
+            ),
+            SizedBox(width: 12.w),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    'فشل الإرسال!',
+                    style: TextStyle(
+                      fontFamily: FontFamily.tajawal,
+                      fontSize: 16.f,
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.white,
+                    ),
+                  ),
+                  SizedBox(height: 2.h),
+                  Text(
+                    message,
+                    style: TextStyle(
+                      fontFamily: FontFamily.tajawal,
+                      fontSize: 13.f,
+                      fontWeight: FontWeight.w400,
+                      color: AppColors.white,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
-        margin: EdgeInsets.all(16.w),
+        backgroundColor: AppColors.error,
+        duration: const Duration(seconds: 4),
+        behavior: SnackBarBehavior.fixed,
         elevation: 8,
       ),
     );
@@ -150,12 +200,26 @@ class _ContactUsPageState extends State<ContactUsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return AppScaffold.custom(
-      body: Stack(
-        children: [
-          _buildForm(context),
-          if (_isLoading) _buildLoadingOverlay(),
-        ],
+    return BlocListener<ContactBloc, ContactState>(
+      listener: (context, state) {
+        if (state.status.isSuccess()) {
+          _showSuccessMessage(state.successMessage ?? 'تم إرسال رسالتك بنجاح');
+          _resetForm();
+        } else if (state.status.isFail()) {
+          _showErrorMessage(state.status.error ?? 'حدث خطأ أثناء إرسال الرسالة');
+        }
+      },
+      child: AppScaffold.custom(
+        body: BlocBuilder<ContactBloc, ContactState>(
+          builder: (context, state) {
+            return Stack(
+              children: [
+                _buildForm(context),
+                if (state.status.isLoading()) _buildLoadingOverlay(),
+              ],
+            );
+          },
+        ),
       ),
     );
   }
