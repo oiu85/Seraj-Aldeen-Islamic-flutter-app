@@ -8,6 +8,7 @@ import 'package:seraj_aldean_flutter_app/config/appconfig/app_colors.dart';
 import 'package:seraj_aldean_flutter_app/core/di/app_dependencies.dart';
 import 'package:seraj_aldean_flutter_app/core/shared/widgets/close_app_button.dart';
 import 'package:seraj_aldean_flutter_app/core/theme/font_size_manager.dart';
+import 'package:seraj_aldean_flutter_app/core/theme/fullscreen_manager.dart';
 import 'package:seraj_aldean_flutter_app/core/theme/theme_manager.dart';
 import 'package:seraj_aldean_flutter_app/features/splassh_screen/presentation/pages/splassh_screen.dart';
 import 'package:seraj_aldean_flutter_app/routes.dart';
@@ -18,13 +19,15 @@ void main() async {
   //? Initialize dependencies
   setupAppDependencies();
 
-  await SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
-
+  // Initialize FullScreenManager and apply saved setting
+  final fullScreenManager = FullScreenManager();
+  
   runApp(
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => ThemeManager()),
         ChangeNotifierProvider(create: (_) => FontSizeManager()),
+        ChangeNotifierProvider.value(value: fullScreenManager),
       ],
       child: const MyApp(),
     ),
@@ -41,10 +44,8 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
-
-    return Consumer2<ThemeManager, FontSizeManager>(
-      builder: (context, themeManager, fontSizeManager, _) {
+    return Consumer3<ThemeManager, FontSizeManager, FullScreenManager>(
+      builder: (context, themeManager, fontSizeManager, fullScreenManager, _) {
         final mediaQuery = MediaQuery.of(context);
         // Update AppColors when theme changes
         AppColors.setDarkMode(themeManager.isDarkMode);
