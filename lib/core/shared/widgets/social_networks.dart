@@ -190,7 +190,6 @@ class SocialNetworksExpandableFab extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Icon(Icons.language_outlined, color: AppColors.primary,),
                   Text(
                     'الموقع الرسمي',
                     style: TextStyle(
