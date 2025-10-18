@@ -32,6 +32,7 @@ class Assets {
   static const String imagesShaikImage = 'assets/images/shaik_image.png';
   static const String imagesShaikImageRemovebgPreview = 'assets/images/shaik_image-removebg-preview.png';
   static const String imagesSplashScreen = 'assets/images/splash_screen.png';
+  static const String imagesSplasshScreenDifrentFont = 'assets/images/splassh_screen_difrent_font.png';
   static const String imagesTelegram = 'assets/images/telegram.png';
   static const String imagesTwitter = 'assets/images/twitter.png';
   static const String imagesVedioIcon = 'assets/images/vedio_icon.png';
@@ -47,6 +48,7 @@ class Assets {
   static const String svgBiobgrphy = 'assets/svg/biobgrphy.svg';
   static const String svgBook = 'assets/svg/book.svg';
   static const String svgBooks = 'assets/svg/books.svg';
+  static const String svgChossenPapers = 'assets/svg/chossen_papers.svg';
   static const String svgDocument = 'assets/svg/document.svg';
   static const String svgGalary = 'assets/svg/galary.svg';
   static const String svgGalery = 'assets/svg/galery.svg';

@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:seraj_aldean_flutter_app/core/responsive/screen_util_res.dart';
-import 'package:seraj_aldean_flutter_app/core/responsive/screen_utils.dart';
 import 'package:seraj_aldean_flutter_app/core/routes.dart';
 import 'package:seraj_aldean_flutter_app/features/global_search/presentation/pages/global_search.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -238,6 +237,10 @@ class _HomeContentViewState extends State<_HomeContentView> {
         'assetPath': Assets.svg.book.path,
         'onTap': () => Get.toNamed(AppRoute.booksPage),
       },
+      "أبحاث مختارة من كتب الإمام": {
+        'assetPath': Assets.svg.chossenPapers.path,
+        'onTap': () => Get.toNamed(AppRoute.selectedPapers),
+      },
       "فوائد وفتاوى": {
         'assetPath': Assets.svg.papers.path,
         'onTap': () => Get.toNamed(AppRoute.benefits),
@@ -281,6 +284,15 @@ class _HomeContentViewState extends State<_HomeContentView> {
             menuConfig[menuName]?['assetPath'] ?? Assets.svg.document.path,
         'onTap': menuConfig[menuName]?['onTap'] ?? () {},
       });
+
+      // Insert static menu "أبحاث مختارة من كتب الإمام" after "كُتُب الإمام"
+      if (menuName == 'كُتُب الإمام') {
+        filteredMenus.add({
+          'title': 'أبحاث مختارة من كتب الإمام',
+          'assetPath': Assets.svg.chossenPapers.path,
+          'onTap': () => Get.toNamed(AppRoute.selectedPapers),
+        });
+      }
     }
 
     return Column(

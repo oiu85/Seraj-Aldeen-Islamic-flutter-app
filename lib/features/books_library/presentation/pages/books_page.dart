@@ -99,6 +99,9 @@ class BooksPage extends StatelessWidget {
             final category = entry.value;
             final books = category.data ?? [];
             
+            // Skip category with id=2 (shown in home page as static menu)
+            if (category.id == 2) return const SizedBox.shrink();
+            
             if (books.isEmpty) return const SizedBox.shrink();
             
             return _buildTheRow(

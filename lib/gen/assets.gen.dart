@@ -184,6 +184,9 @@ class $AssetsSvgGen {
   /// File path: assets/svg/books.svg
   SvgGenImage get books => const SvgGenImage('assets/svg/books.svg');
 
+  /// File path: assets/svg/chossen_papers.svg
+  SvgGenImage get chossenPapers => const SvgGenImage('assets/svg/chossen_papers.svg');
+
   /// File path: assets/svg/document.svg
   SvgGenImage get document => const SvgGenImage('assets/svg/document.svg');
 
@@ -231,6 +234,7 @@ class $AssetsSvgGen {
         biobgrphy,
         book,
         books,
+        chossenPapers,
         document,
         galary,
         galery,

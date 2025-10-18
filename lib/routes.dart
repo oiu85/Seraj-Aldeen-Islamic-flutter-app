@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:seraj_aldean_flutter_app/features/benefits_fatwas/presentation/pages/Benefits_page.dart';
 import 'package:seraj_aldean_flutter_app/features/biography/presentation/pages/biography_page.dart';
 import 'package:seraj_aldean_flutter_app/features/books_library/presentation/pages/books_page.dart';
+import 'package:seraj_aldean_flutter_app/features/books_library/presentation/pages/category_book_page.dart';
 import 'package:seraj_aldean_flutter_app/features/home/presentation/pages/home_page.dart';
 import 'package:seraj_aldean_flutter_app/features/image_galary/presentation/pages/gallery.dart';
 import 'package:seraj_aldean_flutter_app/features/settings/presentation/pages/about_app_page.dart';
@@ -44,6 +45,13 @@ List<GetPage<dynamic>>? routes=[
  ),
  GetPage(name: AppRoute.gallery, page: ()=> const Gallery()),
  GetPage(name: AppRoute.booksPage, page: ()=> const BooksPage()),
+ GetPage(
+   name: AppRoute.selectedPapers,
+   page: () => const SoundsBookPage(
+     categoryId: 2,
+     categoryTitle: 'أبحاث مختارة من كتب الإمام',
+   ),
+ ),
  GetPage(name: AppRoute.contacUs, page: ()=> const ContactUsPage()),
  GetPage(name: AppRoute.aboutApp, page: ()=> const AboutAppPage()),
 ];
