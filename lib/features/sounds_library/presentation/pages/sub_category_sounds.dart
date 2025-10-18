@@ -122,9 +122,6 @@ class _SubCategorySoundsContentState extends State<_SubCategorySoundsContent> {
                     SubDescCard(
                       title: state.categoryInfo?.title ?? widget.categoryTitle,
                       content: state.categoryInfo?.note ?? '',
-                      onMoreTap: () {
-                        // TODO: Navigate to full content page
-                      },
                     ),
                   SizedBox(height: 40.h),
                   // Display sounds in groups of 3

@@ -17,7 +17,7 @@ class AboutAppPage extends StatelessWidget {
         slivers: [
           // App Bar with Sheikh's Name
           SliverAppBar(
-            expandedHeight: 230.h,
+            expandedHeight: 250.h,
             floating: false,
             pinned: true,
             backgroundColor: AppColors.primary,
@@ -35,7 +35,7 @@ class AboutAppPage extends StatelessWidget {
                 'حول التطبيق',
                 style: TextStyle(
                   fontFamily: FontFamily.tajawal,
-                  fontSize: 24.f,
+                  fontSize: 20.f,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
                 ),
@@ -60,22 +60,19 @@ class AboutAppPage extends StatelessWidget {
                         child: Image.asset(
                           Assets.images.appbarImageLeft.path,
                           fit: BoxFit.cover,
-                          width: 100,
+                          width: 120,
                         ),
                       ),
                     ),
                     // Sheikh Image
                     Center(
-                      child: Padding(
-                        padding: EdgeInsets.only(top: 10.h),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(20.r),
-                          child: Image.asset(
-                            Assets.images.abdullahSerajAldeen.path,
-                            height: 140.h,
-                            width: 200.w,
-                            fit: BoxFit.contain,
-                          ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(20.r),
+                        child: Image.asset(
+                          Assets.images.abdullahSerajAldeen.path,
+                          height: 140.h,
+                          width: 200.w,
+                          fit: BoxFit.contain,
                         ),
                       ),
                     ),
@@ -101,7 +98,7 @@ class AboutAppPage extends StatelessWidget {
                   SizedBox(height: 20.h),
 
                   // About Sheikh Section
-                  _buildSectionTitle('عن الشيخ')
+                  _buildSectionTitle('عن الشيخ رحمه الله تعالى')
                       .animate()
                       .fadeIn(duration: 500.ms, delay: 400.ms)
                       .slideX(begin: -0.2, end: 0, duration: 500.ms, delay: 400.ms),
@@ -227,12 +224,11 @@ class AboutAppPage extends StatelessWidget {
           ),
           SizedBox(height: 8.h),
           Text(
-            'رحمه الله ورضي عنه',
+            'رحمه الله تعالى ورضي عنه',
             style: TextStyle(
               fontFamily: FontFamily.tajawal,
-              fontSize: 14.f,
+              fontSize: 16.f,
               color: AppColors.textSecondary,
-              fontStyle: FontStyle.italic,
             ),
             textAlign: TextAlign.center,
           ),

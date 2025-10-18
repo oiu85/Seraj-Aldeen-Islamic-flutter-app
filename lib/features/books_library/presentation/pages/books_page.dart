@@ -8,7 +8,6 @@ import 'package:seraj_aldean_flutter_app/core/shared/widgets/decoration_app_bar.
 import 'package:seraj_aldean_flutter_app/core/shared/widgets/ui_status_handling.dart';
 
 import '../../../../config/appconfig/app_colors.dart';
-import '../../../../gen/assets.gen.dart';
 import '../../../../gen/fonts.gen.dart';
 import '../bloc/books_bloc.dart';
 import '../bloc/books_event.dart';
@@ -90,9 +89,6 @@ class BooksPage extends StatelessWidget {
               child: BookDescCard(
                 title: state.pageInfo.first.title ?? 'كلمة حول كتب الشيخ',
                 content: state.pageInfo.first.content ?? '',
-                onMoreTap: () {
-                  // TODO: Navigate to full content page
-                },
               ),
             ),
           

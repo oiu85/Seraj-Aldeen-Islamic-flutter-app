@@ -188,15 +188,20 @@ class SocialNetworksExpandableFab extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text(
-                'الموقع الرسمي للتطبيق',
-                style: TextStyle(
-                  fontFamily: FontFamily.tajawal,
-                  fontSize: 24.f,
-                  fontWeight: FontWeight.bold,
-                  color: AppColors.primary,
-                ),
-                textAlign: TextAlign.center,
+              Row(
+                children: [
+                  Icon(Icons.language_outlined, color: AppColors.primary,),
+                  Text(
+                    'الموقع الرسمي',
+                    style: TextStyle(
+                      fontFamily: FontFamily.tajawal,
+                      fontSize: 24.f,
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.primary,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
               ),
               SizedBox(height: 4.h),
               Text(

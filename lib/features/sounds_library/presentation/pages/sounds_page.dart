@@ -68,10 +68,7 @@ class _SoundsPageContentState extends State<_SoundsPageContent> {
                 if (state.pageInfo != null) {
                   return DescCard(
                     title: state.pageInfo!.title ?? "كلمة حول دروس الشيخ",
-                    content: _stripHtmlTags(state.pageInfo!.content ?? ""),
-                    onMoreTap: () {
-                      // TODO: Navigate to full page content
-                    },
+                    content: state.pageInfo!.content ?? "",
                   );
                 }
                 return const SizedBox.shrink();
@@ -359,10 +356,5 @@ class _SoundsPageContentState extends State<_SoundsPageContent> {
         );
       },
     );
-  }
-
-  String _stripHtmlTags(String htmlString) {
-    final RegExp exp = RegExp(r"<[^>]*>", multiLine: true, caseSensitive: true);
-    return htmlString.replaceAll(exp, '').replaceAll('&nbsp;', ' ').trim();
   }
 }

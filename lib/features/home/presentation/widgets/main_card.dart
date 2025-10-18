@@ -14,7 +14,7 @@ class MainCard extends StatelessWidget {
   Widget build(BuildContext context) {
     print("the font size is========================================  ${14.f}");
     return InkWell(
-      onTap: (){
+      onTap: () {
         Get.toNamed(AppRoute.biography);
       },
       child: Card(
@@ -28,20 +28,23 @@ class MainCard extends StatelessWidget {
           decoration: BoxDecoration(
             image: DecorationImage(
               fit: BoxFit.cover,
-                image:AssetImage(Assets.images.mainCardBackground.path,),
+              image: AssetImage(
+                Assets.images.mainCardBackground.path,
+              ),
             ),
           ),
           child: Stack(
             children: [
               Positioned.fill(
                 child: Padding(
-                  padding: EdgeInsets.only(top: 30.0.p, right: 12.p, left: 12.p),
+                  padding:
+                      EdgeInsets.only(top: 16.0.p, right: 12.p, left: 12.p),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Text(
-                        "أهلاً بكم في التطبيق الرسمي \nوالوحيد لللإمام الشيخ:",
+                        "أهلاً بكم في التطبيق الرسمي \nوالوحيد للإمام الشيخ:",
                         style: TextStyle(
                           fontFamily: FontFamily.tajawal,
                           fontSize: 20.f,
@@ -50,34 +53,32 @@ class MainCard extends StatelessWidget {
                         ),
                         softWrap: true,
                       ),
-                      SizedBox(height: 12.h,),
+                      SizedBox(
+                        height: 3.h,
+                      ),
                       Text(
                         "عبدالله سراج الدين",
                         style: TextStyle(
                           fontWeight: FontWeight.w700,
-                          fontSize: 20.f,
+                          fontSize: 24.f,
                           fontFamily: FontFamily.tajawal,
                           color: AppColors.white,
                         ),
                       ),
-                      Container(
-                        width: 183.w,
-                        height: 2.h,
-                        decoration: BoxDecoration(
-                          color: AppColors.white.withAlpha(204),
-                        ),
+                      SizedBox(
+                        height: 3.h,
                       ),
-                      SizedBox(height: 11.h,),
                       Text(
-                        "رحمه الله ورضي عنه ",
+                        "رحمه الله تعالى ورضي عنه ",
                         style: TextStyle(
-                          fontFamily: FontFamily.tajawal,
-                          fontSize: 18.f,
-                          fontWeight: FontWeight.w700,
-                          color: AppColors.white
-                        ),
+                            fontFamily: FontFamily.tajawal,
+                            fontSize: 18.f,
+                            fontWeight: FontWeight.w700,
+                            color: AppColors.white),
                       ),
-                      SizedBox(height: 12.h,),
+                      SizedBox(
+                        height: 3.h,
+                      ),
                       Text(
                         "1442-1342 هــ",
                         style: TextStyle(
@@ -87,6 +88,14 @@ class MainCard extends StatelessWidget {
                           color: AppColors.white,
                         ),
                       ),
+                      SizedBox(
+                        height: 3.h,
+                      ),
+                      Text(
+                          style: TextStyle(fontSize: 12.f, fontWeight: FontWeight.bold,
+                            fontFamily: FontFamily.tajawal,
+                            color: AppColors.white,),
+                          "بإشراف الشيخ: \nعبد الله محمد محيي الدين \n سراج الدين (الحفيد)\n و د. بكري بريمو السمان")
                     ],
                   ),
                 ),
@@ -101,8 +110,8 @@ class MainCard extends StatelessWidget {
                   child: Image.asset(
                     Assets.images.abdullahSerajAldeen.path,
                     fit: BoxFit.contain,
-                    height: 158,
-                    width: 158,
+                    height: 170,
+                    width: 170,
                   ),
                 ),
               ),
@@ -113,7 +122,6 @@ class MainCard extends StatelessWidget {
     );
   }
 }
-
 
 // InkWell(
 // onTap: (){

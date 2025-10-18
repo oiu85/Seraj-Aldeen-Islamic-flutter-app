@@ -6,6 +6,8 @@ import 'package:seraj_aldean_flutter_app/core/responsive/screen_util_res.dart';
 import '../../../../config/appconfig/app_colors.dart';
 import '../../../../gen/assets.gen.dart';
 import '../../../../gen/fonts.gen.dart';
+import '../../../html_viewer/domain/models/html_content.dart';
+import '../../../html_viewer/presentation/pages/html_book_viewer_page.dart';
 
 class SubDescCard extends StatelessWidget {
   final String title;
@@ -19,9 +21,41 @@ class SubDescCard extends StatelessWidget {
     this.onMoreTap,
   });
 
+  String _stripHtmlTags(String htmlString) {
+    final RegExp exp = RegExp(r"<[^>]*>", multiLine: true, caseSensitive: true);
+    return htmlString.replaceAll(exp, '').replaceAll('&nbsp;', ' ').trim();
+  }
+
+  void _navigateToHtmlViewer(BuildContext context) {
+    final htmlContent = HtmlContent(
+      title: title,
+      htmlContent: content,
+    );
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => HtmlBookViewerPage(htmlContent: htmlContent),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return  Container(
+    final cleanContent = _stripHtmlTags(content);
+    final displayContent = cleanContent.length > 200
+        ? cleanContent.substring(0, 200)
+        : cleanContent;
+
+    return GestureDetector(
+      onTap: () {
+        if (onMoreTap != null) {
+          onMoreTap!();
+        } else {
+          _navigateToHtmlViewer(context);
+        }
+      },
+      child: Container(
       decoration: BoxDecoration(
         color: AppColors.cardBackground,
         borderRadius: BorderRadius.circular(20.r),
@@ -71,7 +105,7 @@ class SubDescCard extends StatelessWidget {
             height: 10.h,
           ),
           Text(
-            content,
+            displayContent,
             textAlign: TextAlign.justify,
             style: TextStyle(
                 fontSize: 11,
@@ -87,7 +121,13 @@ class SubDescCard extends StatelessWidget {
             height: 20.h,
           ),
           GestureDetector(
-            onTap: onMoreTap,
+            onTap: () {
+              if (onMoreTap != null) {
+                onMoreTap!();
+              } else {
+                _navigateToHtmlViewer(context);
+              }
+            },
             child: Container(
               height: 32.h,
               width: 113.w,
@@ -119,10 +159,11 @@ class SubDescCard extends StatelessWidget {
           ),
         ],
       ),
-    )
-        .animate()
-        .fadeIn(duration: 800.ms, delay: 100.ms)
-        .slideY(begin: 0.4, end: 0, duration: 600.ms, delay: 100.ms)
-        .scale(begin: const Offset(0.95, 0.95), end: const Offset(1.0, 1.0), duration: 500.ms, delay: 200.ms);
+      )
+          .animate()
+          .fadeIn(duration: 800.ms, delay: 100.ms)
+          .slideY(begin: 0.4, end: 0, duration: 600.ms, delay: 100.ms)
+          .scale(begin: const Offset(0.95, 0.95), end: const Offset(1.0, 1.0), duration: 500.ms, delay: 200.ms),
+    );
   }
 }
