@@ -110,6 +110,8 @@ class SocialNetworksExpandableFab extends StatelessWidget {
           size: size,
         ),
         
+
+        
         // WhatsApp
         _buildSocialButton(
           context,
@@ -135,7 +137,10 @@ class SocialNetworksExpandableFab extends StatelessWidget {
           url: 'https://t.me/srajaldencom',
           platformName: 'تلغرام',
           size: size,
+
         ),
+        // Official Website Card (Centered)
+        _buildWebsiteCard(context, size),
       ],
     );
   }
@@ -157,6 +162,54 @@ class SocialNetworksExpandableFab extends StatelessWidget {
         child: Image.asset(
           imagePath,
           fit: BoxFit.contain,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildWebsiteCard(BuildContext context, double size) {
+    return Center(
+      child: InkWell(
+        onTap: () => _launchUrl(context, 'https://www.srajalden.com', 'الموقع الرسمي'),
+        borderRadius: BorderRadius.circular(12.r),
+        child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+          decoration: BoxDecoration(
+            color: AppColors.white,
+            borderRadius: BorderRadius.circular(12.r),
+            boxShadow: [
+              BoxShadow(
+                color: AppColors.black.withValues(alpha: 0.1),
+                blurRadius: 8,
+                offset: Offset(0, 2),
+              ),
+            ],
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                'الموقع الرسمي للتطبيق',
+                style: TextStyle(
+                  fontFamily: FontFamily.tajawal,
+                  fontSize: 24.f,
+                  fontWeight: FontWeight.bold,
+                  color: AppColors.primary,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(height: 4.h),
+              Text(
+                'www.srajalden.com',
+                style: TextStyle(
+                  fontFamily: FontFamily.tajawal,
+                  fontSize: 24.f,
+                  color: AppColors.black.withValues(alpha: 0.7),
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -269,6 +322,9 @@ class SocialNetworksExpandableFabWithLabels extends StatelessWidget {
           size: size,
         ),
         
+        // Official Website Card (Centered)
+        _buildWebsiteCard(context, size),
+        
         // WhatsApp
         _buildSocialButtonWithLabel(
           context,
@@ -315,6 +371,52 @@ class SocialNetworksExpandableFabWithLabels extends StatelessWidget {
         child: Image.asset(
           imagePath,
           fit: BoxFit.cover,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildWebsiteCard(BuildContext context, double size) {
+    return InkWell(
+      onTap: () => _launchUrl(context, 'https://www.srajalden.com', 'الموقع الرسمي'),
+      borderRadius: BorderRadius.circular(12.r),
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+        decoration: BoxDecoration(
+          color: AppColors.white,
+          borderRadius: BorderRadius.circular(12.r),
+          boxShadow: [
+            BoxShadow(
+              color: AppColors.black.withValues(alpha: 0.1),
+              blurRadius: 8,
+              offset: Offset(0, 2),
+            ),
+          ],
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              'الموقع الرسمي للتطبيق',
+              style: TextStyle(
+                fontFamily: FontFamily.tajawal,
+                fontSize: 16.f,
+                fontWeight: FontWeight.bold,
+                color: AppColors.primary,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(height: 4.h),
+            Text(
+              'www.srajalden.com',
+              style: TextStyle(
+                fontFamily: FontFamily.tajawal,
+                fontSize: 16.f,
+                color: AppColors.black.withValues(alpha: 0.7),
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ],
         ),
       ),
     );

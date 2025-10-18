@@ -19,7 +19,7 @@ class _SplasshScreenState extends State<SplasshScreen> {
   }
 
   void _navigateToHome() {
-    Future.delayed(const Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 4), () {
       if (mounted) {
         Get.off(
           () => const CloseAppWillPopScope(
