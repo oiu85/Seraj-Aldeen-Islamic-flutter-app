@@ -99,6 +99,9 @@ class $AssetsImagesGen {
   /// File path: assets/images/splassh_screen_difrent_font.png
   AssetGenImage get splasshScreenDifrentFont => const AssetGenImage('assets/images/splassh_screen_difrent_font.png');
 
+  /// File path: assets/images/splassh_screen_final.png
+  AssetGenImage get splasshScreenFinal => const AssetGenImage('assets/images/splassh_screen_final.png');
+
   /// File path: assets/images/telegram.png
   AssetGenImage get telegram => const AssetGenImage('assets/images/telegram.png');
 
@@ -140,6 +143,7 @@ class $AssetsImagesGen {
         shaikImage,
         splashScreen,
         splasshScreenDifrentFont,
+        splasshScreenFinal,
         telegram,
         twitter,
         vedioIcon,

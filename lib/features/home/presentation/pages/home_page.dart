@@ -163,7 +163,9 @@ class _HomeContentViewState extends State<_HomeContentView> {
         child: ListView(
           children: [
             _buildAnimatedMainCard(),
-            SizedBox(height: 20.h),
+            SizedBox(height: 24.h),
+            _buildAnimatedSectionTitle2(),
+            SizedBox(height: 10.h,),
             _buildAnimatedSectionTitle(),
             SizedBox(height: 10.h),
             _buildAnimatedListTiles(state.menus),
@@ -210,6 +212,110 @@ class _HomeContentViewState extends State<_HomeContentView> {
     );
 
     return title
+        .animate()
+        .fadeIn(
+          duration: 800.ms,
+          delay: 600.ms,
+          curve: Curves.easeOutCubic,
+        )
+        .slideX(
+          begin: -0.2,
+          end: 0,
+          duration: 700.ms,
+          delay: 600.ms,
+          curve: Curves.easeOutCubic,
+        );
+  }
+
+  Widget _buildAnimatedSectionTitle2() {
+    Widget container = Container(
+      width: double.infinity,
+      clipBehavior: Clip.antiAlias,
+      decoration: BoxDecoration(
+        color: AppColors.cardBackground,
+        borderRadius: BorderRadius.circular(10.r),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          // Title
+          Align(
+            alignment: Alignment.centerRight,
+            child: Text(
+              'هذا التطبيق بإشراف:',
+              textAlign: TextAlign.right,
+              style: TextStyle(
+                color: AppColors.textPrimary,
+                fontSize: 16.f,
+                fontFamily: FontFamily.tajawal,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          SizedBox(height: 12.h),
+          
+          // First supervisor
+          Row(
+            textDirection: TextDirection.rtl,
+            children: [
+              Container(
+                width: 6.w,
+                height: 6.h,
+                decoration: BoxDecoration(
+                  color: AppColors.primary,
+                  shape: BoxShape.circle,
+                ),
+              ),
+              SizedBox(width: 6.w),
+              Expanded(
+                child: Text(
+                  'الشيخ عبدالله محمد محيي الدين سراج الدين ( الحفيد)',
+                  textAlign: TextAlign.right,
+                  style: TextStyle(
+                    color: AppColors.textPrimary,
+                    fontSize: 16.f,
+                    fontFamily: FontFamily.tajawal,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          
+          SizedBox(height: 12.h),
+          
+          // Second supervisor
+          Row(
+            textDirection: TextDirection.rtl,
+            children: [
+              Container(
+                width: 6.w,
+                height: 6.h,
+                decoration: BoxDecoration(
+                  color: AppColors.primary,
+                  shape: BoxShape.circle,
+                ),
+              ),
+              SizedBox(width: 6.w),
+              Expanded(
+                child: Text(
+                  'الدكتور بكري بريمو السّمان',
+                  textAlign: TextAlign.right,
+                  style: TextStyle(
+                    color: AppColors.textPrimary,
+                    fontSize: 16.f,
+                    fontFamily: FontFamily.tajawal,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+
+    return container
         .animate()
         .fadeIn(
           duration: 800.ms,

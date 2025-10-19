@@ -38,64 +38,53 @@ class MainCard extends StatelessWidget {
               Positioned.fill(
                 child: Padding(
                   padding:
-                      EdgeInsets.only(top: 16.0.p, right: 12.p, left: 12.p),
+                      EdgeInsets.only(top: 40.p, right: 12.p, left: 12.p),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Text(
-                        "أهلاً بكم في التطبيق الرسمي \nوالوحيد للإمام الشيخ:",
+                        "أهلاً بكم في التطبيق الرسمي \nللإمام الشيخ:",
                         style: TextStyle(
                           fontFamily: FontFamily.tajawal,
                           fontSize: 20.f,
-                          fontWeight: FontWeight.w400,
                           color: AppColors.white,
                         ),
                         softWrap: true,
                       ),
                       SizedBox(
-                        height: 3.h,
+                        height: 20.h,
                       ),
                       Text(
                         "عبدالله سراج الدين",
                         style: TextStyle(
                           fontWeight: FontWeight.w700,
-                          fontSize: 24.f,
+                          fontSize: 26.f,
                           fontFamily: FontFamily.tajawal,
                           color: AppColors.white,
                         ),
                       ),
                       SizedBox(
-                        height: 3.h,
+                        height: 20.h,
                       ),
                       Text(
                         "رحمه الله تعالى ورضي عنه ",
                         style: TextStyle(
                             fontFamily: FontFamily.tajawal,
-                            fontSize: 18.f,
-                            fontWeight: FontWeight.w700,
+                            fontSize: 16.f,
                             color: AppColors.white),
                       ),
                       SizedBox(
                         height: 3.h,
                       ),
                       Text(
-                        "1442-1342 هــ",
+                        "١٣٤٢-١٤٢٢هــ",
                         style: TextStyle(
-                          fontSize: 18.f,
-                          fontWeight: FontWeight.w400,
+                          fontSize: 16.f,
                           fontFamily: FontFamily.tajawal,
                           color: AppColors.white,
                         ),
                       ),
-                      SizedBox(
-                        height: 3.h,
-                      ),
-                      Text(
-                          style: TextStyle(fontSize: 12.f, fontWeight: FontWeight.bold,
-                            fontFamily: FontFamily.tajawal,
-                            color: AppColors.white,),
-                          "بإشراف الشيخ: \nعبد الله محمد محيي الدين \n سراج الدين (الحفيد)\n و د. بكري بريمو السمان")
                     ],
                   ),
                 ),

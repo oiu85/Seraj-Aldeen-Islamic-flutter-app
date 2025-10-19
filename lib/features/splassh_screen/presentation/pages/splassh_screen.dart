@@ -38,7 +38,7 @@ class _SplasshScreenState extends State<SplasshScreen> {
         child: DecoratedBox(
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage(Assets.images.splasshScreenDifrentFont.path),
+              image: AssetImage(Assets.images.splasshScreenFinal.path),
               fit: BoxFit.cover,
             ),
           ),

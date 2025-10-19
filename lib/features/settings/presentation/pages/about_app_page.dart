@@ -107,8 +107,7 @@ class AboutAppPage extends StatelessWidget {
 
                   _buildContentCard(
                     icon: Icons.person,
-                    content:
-                        'فضيلة الإمام الشيخ عبدالله سراج الدين الحسيني، رحمه الله ورضي عنه، من أبرز علماء الأمة الإسلامية في العصر الحديث. كان عالماً جليلاً وفقيهاً مجتهداً، اشتهر بعلمه الغزير وورعه وتقواه.',
+                    content: 'هو رضي الله عنه من كبار علماء الأمة الإسلامية في هذا العصر .. قال عنه علماء الحجاز والشام والهند وباكستان يوم وفاته: (كبير علماء وأولياء الأمة المحمدية في فترته الزمنية).'
                   ).animate()
                       .fadeIn(duration: 600.ms, delay: 500.ms)
                       .slideY(begin: 0.2, end: 0, duration: 500.ms, delay: 500.ms),
@@ -125,8 +124,7 @@ class AboutAppPage extends StatelessWidget {
 
                   _buildContentCard(
                     icon: Icons.phone_android,
-                    content:
-                        'تطبيق الشيخ عبدالله سراج الدين هو منصة شاملة تهدف إلى نشر علم وتراث الشيخ، رحمه الله، وإتاحة الوصول إلى كتبه وفتاواه ومحاضراته الصوتية والمرئية لجميع المسلمين في أنحاء العالم.',
+                    content: 'هو منصة شاملة تهدف إلى نشر علم وتراث الشيخ الإمام، وإتاحة الوصول إلى كتبه وفتاواه ومحاضراته لجميع الناس أينما كانوا.'
                   ).animate()
                       .fadeIn(duration: 600.ms, delay: 700.ms)
                       .slideY(begin: 0.2, end: 0, duration: 500.ms, delay: 700.ms),
@@ -157,8 +155,7 @@ class AboutAppPage extends StatelessWidget {
 
                   _buildContentCard(
                     icon: Icons.menu_book,
-                    content:
-                        'يسعى هذا التطبيق إلى حفظ التراث العلمي للشيخ عبدالله سراج الدين وتقديمه للأجيال القادمة بطريقة عصرية وميسرة، ليستفيد منه طلاب العلم والباحثون والمهتمون بالعلوم الشرعية.',
+                    content:'يسعى هذا التطبيق إلى حفظ التراث العلمي للشيخ الإمام عبد الله سراج الدين رضي الله عنه وتقديمه بطريقة عصرية ميسرة ليستفيد منه  الباحثون عن الحقيقة في كل مكان.'
                   ).animate()
                       .fadeIn(duration: 600.ms, delay: 1100.ms)
                       .slideY(begin: 0.2, end: 0, duration: 500.ms, delay: 1100.ms),
@@ -406,7 +403,7 @@ class AboutAppPage extends StatelessWidget {
           ),
           SizedBox(height: 12.h),
           Text(
-            'رَحِمَهُ اللهُ رَحْمَةً وَاسِعَةً',
+            'رَضِيَ اللهُ عَنْهُ وَنَفَعَنَا بِهِ',
             style: TextStyle(
               fontFamily: FontFamily.amiri,
               fontSize: 22.f,
@@ -418,7 +415,7 @@ class AboutAppPage extends StatelessWidget {
           ),
           SizedBox(height: 8.h),
           Text(
-            'وَأَسْكَنَهُ فَسِيحَ جَنَّاتِهِ',
+            'وَأَسكَنَهُ الفِردَوسَ الأَعْلَى',
             style: TextStyle(
               fontFamily: FontFamily.amiri,
               fontSize: 20.f,
