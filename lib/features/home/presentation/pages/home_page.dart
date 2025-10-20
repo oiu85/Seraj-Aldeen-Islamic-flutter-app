@@ -269,7 +269,7 @@ class _HomeContentViewState extends State<_HomeContentView> {
               SizedBox(width: 6.w),
               Expanded(
                 child: Text(
-                  'الشيخ عبدالله محمد محيي الدين سراج الدين ( الحفيد)',
+                  'الشيخ عبد الله محمد محيي الدين سراج الدين ( الحفيد)',
                   textAlign: TextAlign.right,
                   style: TextStyle(
                     color: AppColors.textPrimary,

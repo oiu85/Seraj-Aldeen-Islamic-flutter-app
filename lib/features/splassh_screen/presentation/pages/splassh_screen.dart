@@ -32,17 +32,16 @@ class _SplasshScreenState extends State<SplasshScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SizedBox.expand(
-        child: DecoratedBox(
-          decoration: BoxDecoration(
-            image: DecorationImage(
+    return SafeArea(
+      child: Column(
+        children: [
+          Expanded(
+            child: Image(
               image: AssetImage(Assets.images.splasshScreenFinal.path),
               fit: BoxFit.cover,
             ),
           ),
-        ),
+        ],
       ),
     );
   }

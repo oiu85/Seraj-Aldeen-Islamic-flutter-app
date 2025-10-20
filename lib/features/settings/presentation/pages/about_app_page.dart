@@ -209,7 +209,7 @@ class AboutAppPage extends StatelessWidget {
           ),
           SizedBox(height: 8.h),
           Text(
-            'عبدالله سراج الدين الحسيني',
+            'عبد الله سراج الدين الحسيني',
             style: TextStyle(
               fontFamily: FontFamily.amiri,
               fontSize: 24.f,

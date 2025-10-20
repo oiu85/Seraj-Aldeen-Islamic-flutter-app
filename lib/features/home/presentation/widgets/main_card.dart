@@ -56,7 +56,7 @@ class MainCard extends StatelessWidget {
                         height: 20.h,
                       ),
                       Text(
-                        "عبدالله سراج الدين",
+                        "عبد الله سراج الدين",
                         style: TextStyle(
                           fontWeight: FontWeight.w700,
                           fontSize: 26.f,
