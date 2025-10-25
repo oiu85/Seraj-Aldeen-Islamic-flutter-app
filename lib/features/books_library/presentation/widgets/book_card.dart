@@ -92,7 +92,7 @@ Widget bookCardBuild({
                   color: AppColors.grey,
                   fontWeight: FontWeight.bold,
                 ),
-                maxLines: 2,
+                maxLines: 2,  // Increased from 2 to 3 lines
                 overflow: TextOverflow.ellipsis,
                 textAlign: TextAlign.center,
               ),

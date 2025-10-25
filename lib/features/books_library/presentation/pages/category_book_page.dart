@@ -88,7 +88,7 @@ class _SoundsBookPageState extends State<SoundsBookPage> {
       options: pageOptions,
       selectedValue: state.currentPage,
       hintText: '',
-      width: 70.w,
+      width: 80.w,
       height: 45.h,
       backgroundColor: AppColors.primary.withValues(alpha: 0.1),
       textColor: AppColors.primary,
@@ -107,7 +107,7 @@ class _SoundsBookPageState extends State<SoundsBookPage> {
       child: AppScaffold.clean(
         backgroundColor: AppColors.background,
         body: Container(
-          padding: EdgeInsets.symmetric(horizontal: 5.p),
+          padding: EdgeInsets.symmetric(horizontal: 2.p),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -119,7 +119,7 @@ class _SoundsBookPageState extends State<SoundsBookPage> {
                     child: Text(
                       widget.categoryTitle,
                       style: TextStyle(
-                        fontSize: 24.f,
+                        fontSize: 22.f,
                         fontFamily: FontFamily.tajawal,
                         fontWeight: FontWeight.bold,
                       ),

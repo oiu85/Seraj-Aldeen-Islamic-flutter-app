@@ -81,7 +81,7 @@ class _FilterButtonState<T> extends State<FilterButton<T>> {
         vertical: ScreenUtilRes.height(0)
       ),
       height: widget.height ?? ScreenUtilRes.height(40),
-      width: widget.width ?? ScreenUtilRes.width(70),
+      width: widget.width ?? ScreenUtilRes.width(80),
       decoration: BoxDecoration(
         border: Border.all(
           width: 0.6,
@@ -113,7 +113,7 @@ class _FilterButtonState<T> extends State<FilterButton<T>> {
           return DropdownMenuItem<T>(
             value: option.value,
             child: Padding(
-              padding: const EdgeInsets.only(right: 8.0),
+              padding: const EdgeInsets.only(right: 2),
               child: Text(
                 option.label,
                 style: TextStyle(

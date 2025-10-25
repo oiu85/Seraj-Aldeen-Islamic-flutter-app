@@ -218,14 +218,19 @@ class _BookInfoBottomSheetState extends State<BookInfoBottomSheet> {
   Widget _BookHeader({required dynamic book}) {
     return Column(
       children: [
-        // Book title
-        Text(
-          book.bookTitle ?? 'كتاب',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: 20.f,
-            fontFamily: FontFamily.tajawal,
-            fontWeight: FontWeight.bold,
+        // Book title - ensures full title is displayed without truncation
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 8.w),
+          child: Text(
+            book.bookTitle ?? 'كتاب',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 20.f,
+              fontFamily: FontFamily.tajawal,
+              fontWeight: FontWeight.bold,
+            ),
+            // No maxLines or overflow - allows full text to wrap
+            softWrap: true,
           ),
         ),
 
