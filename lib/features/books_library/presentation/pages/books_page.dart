@@ -5,6 +5,7 @@ import 'package:seraj_aldean_flutter_app/core/di/app_dependencies.dart';
 import 'package:seraj_aldean_flutter_app/core/responsive/screen_util_res.dart';
 import 'package:seraj_aldean_flutter_app/core/shared/widgets/app_scaffold.dart';
 import 'package:seraj_aldean_flutter_app/core/shared/widgets/decoration_app_bar.dart';
+import 'package:seraj_aldean_flutter_app/core/shared/widgets/filter_button.dart';
 import 'package:seraj_aldean_flutter_app/core/shared/widgets/ui_status_handling.dart';
 
 import '../../../../config/appconfig/app_colors.dart';
@@ -15,59 +16,141 @@ import '../bloc/books_state.dart';
 import '../widgets/book_card.dart';
 import '../widgets/book_desc_card.dart';
 import '../widgets/book_info_bottom_sheet.dart';
-import 'category_book_page.dart';
 
-// Static book data model
-class BookData {
-  final String title;
-  final String viewCount;
-  final String bookName;
-  final String bookImagePath;
-  final bool isSoundBook;
-  final VoidCallback? onTap;
-
-  BookData({
-    required this.title,
-    required this.viewCount,
-    required this.bookName,
-    required this.bookImagePath,
-    this.isSoundBook = false,
-    this.onTap,
-  });
-}
-
-// Row data model
-class RowData {
-  final String title;
-  final String imagePath;
-  final List<BookData> books;
-  final VoidCallback? onViewAllTap;
-
-  RowData({
-    required this.title,
-    required this.imagePath,
-    required this.books,
-    this.onViewAllTap,
-  });
-}
-
-class BooksPage extends StatelessWidget {
+class BooksPage extends StatefulWidget {
   const BooksPage({super.key});
 
   @override
+  State<BooksPage> createState() => _BooksPageState();
+}
+
+class _BooksPageState extends State<BooksPage> {
+  late BooksBloc _booksBloc;
+  final ScrollController _scrollController = ScrollController();
+  
+  // Category ID for main books (from API: categories/books/1/content)
+  static const int _mainBooksCategoryId = 1;
+
+  @override
+  void initState() {
+    super.initState();
+    _booksBloc = getIt<BooksBloc>();
+    // Load both main categories (for description) and category books (for grid)
+    _booksBloc.add(LoadBookMainCategoriesEvent());
+    _booksBloc.add(LoadCategoryBooksEvent(
+      categoryId: _mainBooksCategoryId,
+      page: 1,
+      perPage: 6,
+    ));
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  void _navigateToPage(int page) {
+    _booksBloc.add(LoadCategoryBooksEvent(
+      categoryId: _mainBooksCategoryId,
+      page: page,
+      perPage: 6,
+    ));
+    
+    // Scroll to top when changing pages
+    if (_scrollController.hasClients) {
+      _scrollController.animateTo(
+        0,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeOut,
+      );
+    }
+  }
+
+  Widget _buildPageFilter(BooksState state) {
+    if (state.totalPages <= 1) {
+      return const SizedBox.shrink();
+    }
+
+    // Generate page options
+    final pageOptions = List.generate(
+      state.totalPages,
+      (index) => FilterOption<int>(
+        value: index + 1,
+        label: '${index + 1}',
+        isSelected: state.currentPage == (index + 1),
+      ),
+    );
+
+    return FilterButton<int>(
+      options: pageOptions,
+      selectedValue: state.currentPage,
+      hintText: '',
+      width: 70.w,
+      height: 45.h,
+      backgroundColor: AppColors.primary.withValues(alpha: 0.1),
+      textColor: AppColors.primary,
+      onChanged: (page) {
+        if (page != null && page != state.currentPage) {
+          _navigateToPage(page);
+        }
+      },
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => getIt<BooksBloc>()..add(LoadBookMainCategoriesEvent()),
+    return BlocProvider.value(
+      value: _booksBloc,
       child: AppScaffold.clean(
         backgroundColor: AppColors.background,
         body: BlocBuilder<BooksBloc, BooksState>(
           builder: (context, state) {
-            return SimpleLottieHandler(
-              blocStatus: state.status,
-              successWidget: _buildContent(context, state),
-              onRetry: () {
-                context.read<BooksBloc>().add(LoadBookMainCategoriesEvent());
-              },
+            return SingleChildScrollView(
+              controller: _scrollController,
+              child: Column(
+                children: [
+                  // Header with title
+                  DecorationAppBar(title: "كتب الإمام"),
+                  SizedBox(height: 30.h),
+                  
+                  // Description Card from API (from main categories)
+                  if (state.pageInfo.isNotEmpty)
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 20.w),
+                      child: BookDescCard(
+                        title: state.pageInfo.first.title ?? 'كلمة حول كتب الشيخ',
+                        content: state.pageInfo.first.content ?? '',
+                      ),
+                    ),
+                  
+                  SizedBox(height: 20.h),
+                  
+                  // Page filter button
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20.w),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'تحميل كُتُب الإمام بصيغ متعددة',
+                          style: TextStyle(
+                            fontSize: 18.f,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: FontFamily.tajawal,
+                          ),
+                        ),
+                        _buildPageFilter(state),
+                      ],
+                    ),
+                  ),
+                  
+                  SizedBox(height: 20.h),
+                  
+                  // Books grid with loading/error handling
+                  _buildBooksContent(state),
+                ],
+              ),
             );
           },
         ),
@@ -75,177 +158,92 @@ class BooksPage extends StatelessWidget {
     );
   }
 
-  Widget _buildContent(BuildContext context, BooksState state) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          DecorationAppBar(title: "كتب الإمام"),
-          SizedBox(height: 30.h),
-          
-          // Description Card from API
-          if (state.pageInfo.isNotEmpty)
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.w),
-              child: BookDescCard(
-                title: state.pageInfo.first.title ?? 'كلمة حول كتب الشيخ',
-                content: state.pageInfo.first.content ?? '',
+  Widget _buildBooksContent(BooksState state) {
+    return SimpleLottieHandler(
+      blocStatus: state.categoryBooksStatus,
+      successWidget: state.categoryBooks.isEmpty
+          ? Center(
+              child: Padding(
+                padding: EdgeInsets.symmetric(vertical: 40.h),
+                child: Text(
+                  'لا توجد كتب',
+                  style: TextStyle(
+                    fontSize: 18.f,
+                    fontFamily: FontFamily.tajawal,
+                  ),
+                ),
               ),
-            ),
-          
-          SizedBox(height: 20.h),
-          
-          // Categories from API
-          ...state.categories.asMap().entries.map((entry) {
-            final category = entry.value;
-            final books = category.data ?? [];
-            
-            // Skip category with id=2 (shown in home page as static menu)
-            if (category.id == 2) return const SizedBox.shrink();
-            
-            if (books.isEmpty) return const SizedBox.shrink();
-            
-            return _buildTheRow(
-              context: context,
-              rowIndex: entry.key,
-              categoryTitle: category.title ?? '',
-              categoryId: category.id ?? 0,
-              books: books,
-            );
-          }),
-        ],
-      ),
+            )
+          : _buildBooksGrid(state),
+      onRetry: () {
+        _booksBloc.add(LoadCategoryBooksEvent(
+          categoryId: _mainBooksCategoryId,
+          page: 1,
+          perPage: 6,
+        ));
+      },
     );
   }
 
-}
-
-
-Widget _buildTheRow({
-  required BuildContext context,
-  required int rowIndex,
-  required String categoryTitle,
-  required int categoryId,
-  required List<dynamic> books,
-}) {
-  return Column(
-    children: [
-      SizedBox(height: 10.h,),
-      // Animated section header
-      Container(
-        padding: EdgeInsets.symmetric(horizontal: 20.p),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              categoryTitle,
-              style: TextStyle(
-                fontSize: 18.f,
-                fontWeight: FontWeight.bold,
-                fontFamily: FontFamily.tajawal,
-              ),
-            ).animate()
-                .fadeIn(duration: 600.ms, delay: (200 + rowIndex * 200).ms)
-                .slideX(begin: -0.2, end: 0, duration: 600.ms, delay: (200 + rowIndex * 200).ms),
-            InkWell(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => SoundsBookPage(
-                      categoryId: categoryId,
-                      categoryTitle: categoryTitle,
-                    ),
-                  ),
-                );
-              },
-              child: Text(
-                "الكل",
-                style: TextStyle(
-                  fontSize: 18.f,
-                  fontFamily: FontFamily.tajawal,
-                  fontWeight: FontWeight.bold,
-                ),
-              ).animate()
-                  .fadeIn(duration: 600.ms, delay: (300 + rowIndex * 200).ms)
-                  .slideX(begin: 0.2, end: 0, duration: 600.ms, delay: (300 + rowIndex * 200).ms),
-            ),
-          ],
+  Widget _buildBooksGrid(BooksState state) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 20.w),
+      child: GridView.builder(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          crossAxisSpacing: 10.w,
+          mainAxisSpacing: 10.h,
+          childAspectRatio: 0.52,
         ),
-      ),
-      SizedBox(
-        height: 12.h,
-      ),
-      // Animated horizontal list
-      SizedBox(
-        height: 304.h,
-
-        child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          padding: EdgeInsets.symmetric(horizontal: 20.w),
-          itemCount: books.length > 3 ? 3 : books.length,
-          itemBuilder: (context, index) {
-            final book = books[index];
-            return Container(
-              width: 220.w,
-              margin: EdgeInsets.only(left: 10.w),
-              child: bookCardBuild(
+        itemCount: state.categoryBooks.length,
+        itemBuilder: (context, index) {
+          final book = state.categoryBooks[index];
+          return bookCardBuild(
+            context: context,
+            viewCont: book.visitor_count ?? '0',
+            title: '',
+            width: 10,
+            height: 10.h,
+            book: book.title ?? '',
+            bookPicUrl: book.bookPicUrl,
+            onTap: () {
+              showModalBottomSheet(
                 context: context,
-                viewCont: book.visitor_count?.toString() ?? '0',
-                title: '',
-                width: 180.w,
-                height: 320.h,
-                book: book.title ?? '',
-                bookPicUrl: book.bookPicUrl,
-                onTap: () {
-                  showModalBottomSheet(
-                    context: context,
-                    isScrollControlled: true,
-                    backgroundColor: Colors.transparent,
-                    builder: (bottomSheetContext) => BlocProvider.value(
-                      value: context.read<BooksBloc>(),
-                      child: BookInfoBottomSheet(
-                        bookId: book.id ?? 0,
-                      ),
-                    ),
-                  );
-                },
-              ).animate()
-                  .fadeIn(
+                isScrollControlled: true,
+                backgroundColor: Colors.transparent,
+                builder: (bottomSheetContext) => BlocProvider.value(
+                  value: _booksBloc,
+                  child: BookInfoBottomSheet(
+                    bookId: book.id ?? 0,
+                  ),
+                ),
+              );
+            },
+          )
+              .animate()
+              .fadeIn(
                 duration: 500.ms,
-                delay: (400 + rowIndex * 200 + index * 100).ms,
+                delay: (index * 100).ms,
                 curve: Curves.easeOutCubic,
               )
-                  .slideX(
+              .slideY(
                 begin: 0.3,
                 end: 0,
                 duration: 500.ms,
-                delay: (400 + rowIndex * 200 + index * 100).ms,
+                delay: (index * 100).ms,
                 curve: Curves.easeOutCubic,
               )
-                  .scale(
+              .scale(
                 begin: const Offset(0.9, 0.9),
                 end: const Offset(1.0, 1.0),
                 duration: 400.ms,
-                delay: (500 + rowIndex * 200 + index * 100).ms,
+                delay: (index * 100 + 100).ms,
                 curve: Curves.easeOutBack,
-              ),
-            );
-          },
-        ),
+              );
+        },
       ),
-      SizedBox(height: 20.h,),
-    ],
-  ).animate()
-      .fadeIn(
-    duration: 800.ms,
-    delay: (100 + rowIndex * 200).ms,
-    curve: Curves.easeOutCubic,
-  )
-      .slideY(
-    begin: 0.2,
-    end: 0,
-    duration: 600.ms,
-    delay: (100 + rowIndex * 200).ms,
-    curve: Curves.easeOutCubic,
-  );
+    );
+  }
 }

@@ -58,7 +58,7 @@ class _SoundsBookPageState extends State<SoundsBookPage> {
       page: page,
       perPage: 6,
     ));
-    
+
     // Scroll to top when changing pages
     if (_scrollController.hasClients) {
       _scrollController.animateTo(
