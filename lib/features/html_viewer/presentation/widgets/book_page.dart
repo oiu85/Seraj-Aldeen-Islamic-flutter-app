@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../../../core/responsive/device_type.dart';
 
 import '../../../../gen/fonts.gen.dart';
@@ -13,6 +14,71 @@ import 'image_carousel_viewer.dart';
 
 class BookPage extends StatelessWidget {
   const BookPage({Key? key}) : super(key: key);
+  
+  /// Launch URL when link is tapped
+  Future<void> _launchUrl(String? url, BuildContext context) async {
+    if (url == null || url.isEmpty) return;
+    
+    try {
+      // Convert relative URLs to absolute URLs
+      String absoluteUrl = url;
+      
+      // Check if URL is relative (doesn't start with http:// or https://)
+      if (!url.startsWith('http://') && !url.startsWith('https://')) {
+        // Website base URL for links (different from API base URL)
+        const String webBaseUrl = 'https://www.srajalden.com';
+        
+        // Handle different types of relative URLs
+        if (url.startsWith('/')) {
+          // Absolute path (e.g., /files/book/book1.pdf)
+          absoluteUrl = '$webBaseUrl$url';
+        } else {
+          // Relative path (e.g., index.php?page=...)
+          absoluteUrl = '$webBaseUrl/$url';
+        }
+        
+        debugPrint('Converted relative URL: $url → $absoluteUrl');
+      }
+      
+      final Uri uri = Uri.parse(absoluteUrl);
+      if (await canLaunchUrl(uri)) {
+        await launchUrl(
+          uri,
+          mode: LaunchMode.externalApplication,
+        );
+      } else {
+        // Show error message if URL cannot be launched
+        if (context.mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                'لا يمكن فتح الرابط',
+                style: TextStyle(fontFamily: FontFamily.tajawal),
+              ),
+              backgroundColor: Colors.red,
+              duration: const Duration(seconds: 2),
+            ),
+          );
+        }
+      }
+    } catch (e) {
+      debugPrint('Error launching URL: $url - $e');
+      // Show error message on exception
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              'خطأ في فتح الرابط',
+              style: TextStyle(fontFamily: FontFamily.tajawal),
+            ),
+            backgroundColor: Colors.red,
+            duration: const Duration(seconds: 2),
+          ),
+        );
+      }
+    }
+  }
+  
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HtmlViewerBloc, HtmlViewerState>(
@@ -140,6 +206,9 @@ class BookPage extends StatelessWidget {
                       // HTML content
                       Html(
                         data: state.currentPage!.content,
+                        onLinkTap: (url, attributes, element) {
+                          _launchUrl(url, context);
+                        },
                         style: {
                           "body": Style(
                             fontFamily: FontFamily.tajawal,
@@ -183,11 +252,11 @@ class BookPage extends StatelessWidget {
                             // borderRadius: BorderRadius.circular(8.0),
                           ),
                           "a": Style(
-                            fontSize: FontSize(
-                                ResponsiveTextService.calculateFontSize(
-                                    context, 18)),
-                            color: Colors.blue,
+                            fontFamily: FontFamily.tajawal,
+                            fontSize: FontSize(fontSize),
+                            color: state.isDarkMode ? Colors.lightBlueAccent : Colors.blue,
                             textDecoration: TextDecoration.underline,
+                            fontWeight: FontWeight.w500,
                           ),
                           "img": Style(
                             width: Width(contentWidth * 0.9),

@@ -44,10 +44,10 @@ class MainCard extends StatelessWidget {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Text(
-                        "أهلاً بكم في التطبيق الرسمي \nللإمام الشيخ:",
+                        "أهلاً بكم في التطبيق \nالرسمي للإمام الشيخ:",
                         style: TextStyle(
                           fontFamily: FontFamily.tajawal,
-                          fontSize: 20.f,
+                          fontSize: 23.f,
                           color: AppColors.white,
                         ),
                         softWrap: true,
