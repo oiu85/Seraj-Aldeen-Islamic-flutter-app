@@ -25,125 +25,114 @@ Widget bookCardBuild({
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-            SizedBox(height: 8.h),
-            // Book cover image
-            SizedBox(
-              width: 92,
-              height: 136,
-              child: bookPicUrl != null && bookPicUrl.isNotEmpty
-                  ? _buildBookImage(bookPicUrl)
-                  : Container(
-                      color: AppColors.grey.withOpacity(0.1),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.book,
-                            size: 40,
-                            color: AppColors.grey,
-                          ),
-                          SizedBox(height: 4.h),
-                          Text(
-                            'غلاف الكتاب',
-                            style: TextStyle(
-                              fontSize: 10,
-                              color: AppColors.grey,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                        ],
-                      ),
-                    ),
-            ),
-            SizedBox(height: 8.h),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 4.w),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "الدرس:",
-                    style: TextStyle(
-                      fontSize: 14.f,
-                      fontFamily: FontFamily.tajawal,
-                      color: AppColors.grey,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Row(
-                    children: [
-                      Text(
-                        viewCont,
-                        style: TextStyle(
-                          fontSize: 16.f,
-                          fontFamily: FontFamily.tajawal,
+          SizedBox(height: 8.h),
+          // Book cover image
+          SizedBox(
+            width: 92,
+            height: 136,
+            child: bookPicUrl != null && bookPicUrl.isNotEmpty
+                ? _buildBookImage(bookPicUrl)
+                : Container(
+                    color: AppColors.grey.withOpacity(0.1),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.book,
+                          size: 40,
                           color: AppColors.grey,
                         ),
-                      ),
-                      IconButton(
-                        onPressed: () {},
-                        icon: Icon(Icons.remove_red_eye_outlined),
-                        iconSize: 22.f,
-                        color: AppColors.grey,
-                      ),
-                    ],
+                        SizedBox(height: 4.h),
+                        Text(
+                          'غلاف الكتاب',
+                          style: TextStyle(
+                            fontSize: 10,
+                            color: AppColors.grey,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
+                  ),
+          ),
+          SizedBox(height: 8.h),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 4.w),
+            child: Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    viewCont,
+                    style: TextStyle(
+                      fontSize: 16.f,
+                      fontFamily: FontFamily.tajawal,
+                      color: AppColors.grey,
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () {},
+                    icon: Icon(Icons.remove_red_eye_outlined),
+                    iconSize: 22.f,
+                    color: AppColors.grey,
                   ),
                 ],
               ),
             ),
-            SizedBox(height: 4.h),
-            Expanded(
-              flex: 1,
-              child: Padding(
-                padding:  EdgeInsets.symmetric(horizontal: 8.0.p),
-                child: Text(
-                  book,
-                  style: TextStyle(
-                    fontSize: 14.f,
-                    fontFamily: FontFamily.tajawal,
-                    color: AppColors.grey,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  textAlign: TextAlign.center,
+          ),
+          Expanded(
+            flex: 1,
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8.0.p),
+              child: Text(
+                book,
+                style: TextStyle(
+                  fontSize: 14.f,
+                  fontFamily: FontFamily.tajawal,
+                  color: AppColors.grey,
+                  fontWeight: FontWeight.bold,
                 ),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.center,
               ),
             ),
-            SizedBox(height: 8.h),
-            InkWell(
-              onTap: isLoading ? null : onTap,
-              child: Container(
-                margin: EdgeInsets.symmetric(horizontal: 4.w),
-                padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 12.h),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(80.r),
-                  color: isLoading ? AppColors.grey : AppColors.primary,
-                ),
-                child: isLoading
-                    ? SizedBox(
-                        width: 20.w,
-                        height: 20.h,
-                        child: CircularProgressIndicator(
-                          strokeWidth: 2.0.w,
-                          valueColor: AlwaysStoppedAnimation<Color>(AppColors.white),
-                        ),
-                      )
-                    : Container(
+          ),
+          SizedBox(height: 8.h),
+          InkWell(
+            onTap: isLoading ? null : onTap,
+            child: Container(
+              margin: EdgeInsets.symmetric(horizontal: 4.w),
+              padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 12.h),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(80.r),
+                color: isLoading ? AppColors.grey : AppColors.primary,
+              ),
+              child: isLoading
+                  ? SizedBox(
+                      width: 20.w,
+                      height: 20.h,
+                      child: CircularProgressIndicator(
+                        strokeWidth: 2.0.w,
+                        valueColor:
+                            AlwaysStoppedAnimation<Color>(AppColors.white),
+                      ),
+                    )
+                  : Container(
                       child: Text(
-                          isSoundBook ? "الاستماع للكتاب" : "عرض التفاصيل",
-                          style: TextStyle(
-                            fontFamily: FontFamily.tajawal,
-                            color: AppColors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 11.f,
-                          ),
-                          textAlign: TextAlign.center,
+                        isSoundBook ? "الاستماع للكتاب" : "عرض التفاصيل",
+                        style: TextStyle(
+                          fontFamily: FontFamily.tajawal,
+                          color: AppColors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 11.f,
                         ),
+                        textAlign: TextAlign.center,
+                      ),
                     ),
-              ),
             ),
-            SizedBox(height: 12.h),
+          ),
+          SizedBox(height: 12.h),
         ],
       ),
     ),
@@ -153,9 +142,9 @@ Widget bookCardBuild({
 // Helper function to build book image (supports both local assets and network URLs)
 Widget _buildBookImage(String imagePath) {
   // Check if it's a local asset path or a network URL
-  final isLocalAsset = imagePath.startsWith('assets/') || 
-                       (!imagePath.startsWith('http://') && !imagePath.startsWith('https://'));
-  
+  final isLocalAsset = imagePath.startsWith('assets/') ||
+      (!imagePath.startsWith('http://') && !imagePath.startsWith('https://'));
+
   if (isLocalAsset) {
     // Use Image.asset for local assets
     return Image.asset(
