@@ -4,6 +4,7 @@ import 'package:html/dom.dart' as dom;
 import '../models/html_content.dart';
 import '../models/page_content.dart';
 import '../../data/repositories/html_viewer_repository.dart';
+import '../../data/utils/arabic_poetry_formatter.dart';
 
 /// Implementation of the [HtmlViewerRepository]
 class HtmlViewerRepositoryImpl implements HtmlViewerRepository {
@@ -13,8 +14,12 @@ class HtmlViewerRepositoryImpl implements HtmlViewerRepository {
 
   @override
   List<PageContent> parseHtmlToPages(HtmlContent htmlContent) {
-    final document = html_parser.parse(htmlContent.htmlContent);
-
+    // Format Arabic poetry before parsing
+    final formattedHtml = ArabicPoetryFormatter.formatArabicPoetry(
+      htmlContent.htmlContent,
+    );
+    
+    final document = html_parser.parse(formattedHtml);
 
     final String textContent = document.body?.text ?? '';
 

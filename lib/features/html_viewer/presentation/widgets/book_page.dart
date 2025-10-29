@@ -239,17 +239,6 @@ class BookPage extends StatelessWidget {
                             lineHeight: LineHeight(lineHeight),
                             textAlign: TextAlign.start,
                             color: state.isDarkMode ? Colors.white70 : AppColors.textPrimary,
-                            //? For Adding Shadow To The Text :
-                            // textShadow: [
-                            //   Shadow(
-                            //       blurRadius: 5.0,
-                            //       color: Colors.grey.withOpacity(0.6),
-                            //       offset: Offset(2.0, 2.0)
-                            //   ),
-                            // ],
-                            // backgroundColor: Colors.yellow.withOpacity(0.1),
-                            // padding: EdgeInsets.symmetric(horizontal: 4.0, vertical: 2.0),
-                            // borderRadius: BorderRadius.circular(8.0),
                           ),
                           "a": Style(
                             fontFamily: FontFamily.tajawal,
@@ -262,6 +251,47 @@ class BookPage extends StatelessWidget {
                             width: Width(contentWidth * 0.9),
                             padding: HtmlPaddings.symmetric(vertical: 10),
                           ),
+                           // Poetry-specific styling
+                           ".poetry-paragraph": Style(
+                             margin: Margins.symmetric(vertical: 12),
+                           ),
+                           ".poetry-verse-container": Style(
+                             margin: Margins.symmetric(vertical: 12),
+                             padding: HtmlPaddings.symmetric(horizontal: 4),
+                           ),
+                           "table.poetry-verse-line": Style(
+                             margin: Margins.symmetric(vertical: 6),
+                           ),
+                           "td.poetry-hemistich-first": Style(
+                             fontFamily: FontFamily.amiri,
+                             fontSize: FontSize(fontSize * 0.9), // Smaller font
+                             fontWeight: FontWeight.w500,
+                             color: state.isDarkMode ? Colors.white : AppColors.textPrimary,
+                             lineHeight: LineHeight(1.6),
+                           ),
+                           "td.poetry-hemistich-second": Style(
+                             fontFamily: FontFamily.amiri,
+                             fontSize: FontSize(fontSize * 0.9), // Smaller font
+                             fontWeight: FontWeight.w500,
+                             color: state.isDarkMode ? Colors.white : AppColors.textPrimary,
+                             lineHeight: LineHeight(1.6),
+                           ),
+                           ".poetry-verse-single": Style(
+                             fontFamily: FontFamily.amiri,
+                             fontSize: FontSize(fontSize * 1.0),
+                             fontWeight: FontWeight.w600,
+                             color: state.isDarkMode ? Colors.amber : AppColors.primary,
+                             margin: Margins.symmetric(vertical: 8),
+                           ),
+                           // General table styling for poetry
+                           "table": Style(
+                             margin: Margins.zero,
+                             padding: HtmlPaddings.zero,
+                           ),
+                           "td": Style(
+                             padding: HtmlPaddings.all(4),
+                             verticalAlign: VerticalAlign.top,
+                           ),
                         },
                         extensions: [
                           TagExtension(

@@ -88,6 +88,11 @@ _SoundItem _$SoundItemFromJson(Map<String, dynamic> json) => _SoundItem(
       priority: json['priority'] as String?,
       file: json['file'] as String?,
       sound_file_url: json['sound_file_url'] as String?,
+      soundPic: json['soundPic'] as String?,
+      soundSource: json['soundSource'] as String?,
+      soundSourceUrl: json['soundSourceUrl'] as String?,
+      soundYoutubeId: json['soundYoutubeId'] as String?,
+      publisherId: json['publisherId'] as String?,
     );
 
 Map<String, dynamic> _$SoundItemToJson(_SoundItem instance) =>
@@ -101,6 +106,11 @@ Map<String, dynamic> _$SoundItemToJson(_SoundItem instance) =>
       'priority': instance.priority,
       'file': instance.file,
       'sound_file_url': instance.sound_file_url,
+      'soundPic': instance.soundPic,
+      'soundSource': instance.soundSource,
+      'soundSourceUrl': instance.soundSourceUrl,
+      'soundYoutubeId': instance.soundYoutubeId,
+      'publisherId': instance.publisherId,
     };
 
 _SoundPaginationData _$SoundPaginationDataFromJson(Map<String, dynamic> json) =>
@@ -302,4 +312,125 @@ Map<String, dynamic> _$AudioBookSubcategoryToJson(
       'show_in_menu': instance.showInMenu,
       'show_in_main': instance.showInMain,
       'content_count': instance.contentCount,
+    };
+
+_SoundDetailResponse _$SoundDetailResponseFromJson(Map<String, dynamic> json) =>
+    _SoundDetailResponse(
+      success: json['success'] as bool?,
+      data: json['data'] == null
+          ? null
+          : SoundDetailData.fromJson(json['data'] as Map<String, dynamic>),
+      message: json['message'] as String?,
+    );
+
+Map<String, dynamic> _$SoundDetailResponseToJson(
+        _SoundDetailResponse instance) =>
+    <String, dynamic>{
+      'success': instance.success,
+      'data': instance.data,
+      'message': instance.message,
+    };
+
+_SoundDetailData _$SoundDetailDataFromJson(Map<String, dynamic> json) =>
+    _SoundDetailData(
+      soundId: _stringToInt(json['sound_id']),
+      soundCatId: json['sound_cat_id'] as String?,
+      soundTitle: json['sound_title'] as String?,
+      soundTs: json['soundTs'] as String?,
+      soundSummary: json['sound_summary'] as String?,
+      soundDes: json['sound_des'] as String?,
+      soundPic: json['sound_pic'] as String?,
+      soundPicPos: json['sound_pic_pos'] as String?,
+      soundVisitor: _stringToInt(json['sound_visitor']),
+      soundIsNew: _stringToBool(json['sound_is_new']),
+      soundPriority: json['sound_priority'] as String?,
+      soundActiveVote: _stringToBool(json['sound_active_vote']),
+      soundActiveHint: _stringToBool(json['sound_active_hint']),
+      soundActive: _stringToBool(json['sound_active']),
+      soundDate: json['sound_date'] as String?,
+      soundPicActive: _stringToBool(json['sound_pic_active']),
+      soundLastSound: _stringToBool(json['sound_last_sound']),
+      soundPublisherId: json['sound_publisher_id'] as String?,
+      soundSource: json['sound_source'] as String?,
+      soundSourceUrl: json['sound_source_url'] as String?,
+      soundYoutubeId: json['sound_youtube_id'] as String?,
+      soundFile: json['sound_file'] as String?,
+      soundUserAddHintNsup: _stringToBool(json['sound_user_add_hint_nsup']),
+      soundFileUrl: json['sound_file_url'] as String?,
+      category: json['category'] == null
+          ? null
+          : SoundDetailCategory.fromJson(
+              json['category'] as Map<String, dynamic>),
+      captions: json['captions'] as List<dynamic>?,
+      votes: json['votes'] as List<dynamic>?,
+    );
+
+Map<String, dynamic> _$SoundDetailDataToJson(_SoundDetailData instance) =>
+    <String, dynamic>{
+      'sound_id': instance.soundId,
+      'sound_cat_id': instance.soundCatId,
+      'sound_title': instance.soundTitle,
+      'soundTs': instance.soundTs,
+      'sound_summary': instance.soundSummary,
+      'sound_des': instance.soundDes,
+      'sound_pic': instance.soundPic,
+      'sound_pic_pos': instance.soundPicPos,
+      'sound_visitor': instance.soundVisitor,
+      'sound_is_new': instance.soundIsNew,
+      'sound_priority': instance.soundPriority,
+      'sound_active_vote': instance.soundActiveVote,
+      'sound_active_hint': instance.soundActiveHint,
+      'sound_active': instance.soundActive,
+      'sound_date': instance.soundDate,
+      'sound_pic_active': instance.soundPicActive,
+      'sound_last_sound': instance.soundLastSound,
+      'sound_publisher_id': instance.soundPublisherId,
+      'sound_source': instance.soundSource,
+      'sound_source_url': instance.soundSourceUrl,
+      'sound_youtube_id': instance.soundYoutubeId,
+      'sound_file': instance.soundFile,
+      'sound_user_add_hint_nsup': instance.soundUserAddHintNsup,
+      'sound_file_url': instance.soundFileUrl,
+      'category': instance.category,
+      'captions': instance.captions,
+      'votes': instance.votes,
+    };
+
+_SoundDetailCategory _$SoundDetailCategoryFromJson(Map<String, dynamic> json) =>
+    _SoundDetailCategory(
+      catId: _stringToInt(json['cat_id']),
+      catFatherId: json['cat_father_id'] as String?,
+      catMenus: json['cat_menus'] as String?,
+      catTitle: json['cat_title'] as String?,
+      catNote: json['cat_note'] as String?,
+      catPic: json['cat_pic'] as String?,
+      catSup: json['cat_sup'] as String?,
+      catDate: json['cat_date'] as String?,
+      catPicActive: _stringToBool(json['cat_pic_active']),
+      catLan: json['cat_lan'] as String?,
+      catPos: json['cat_pos'] as String?,
+      catActive: _stringToBool(json['cat_active']),
+      catShowMenu: _stringToBool(json['cat_show_menu']),
+      catShowMain: _stringToBool(json['cat_show_main']),
+      catAgent: json['cat_agent'] as String?,
+    );
+
+Map<String, dynamic> _$SoundDetailCategoryToJson(
+        _SoundDetailCategory instance) =>
+    <String, dynamic>{
+      'cat_id': instance.catId,
+      'cat_father_id': instance.catFatherId,
+      'cat_menus': instance.catMenus,
+      'cat_title': instance.catTitle,
+      'cat_note': instance.catNote,
+      'cat_pic': instance.catPic,
+      'cat_sup': instance.catSup,
+      'cat_date': instance.catDate,
+      'cat_pic_active': instance.catPicActive,
+      'cat_lan': instance.catLan,
+      'cat_pos': instance.catPos,
+      'cat_active': instance.catActive,
+      'cat_show_menu': instance.catShowMenu,
+      'cat_show_main': instance.catShowMain,
+      'cat_agent': instance.catAgent,
     };

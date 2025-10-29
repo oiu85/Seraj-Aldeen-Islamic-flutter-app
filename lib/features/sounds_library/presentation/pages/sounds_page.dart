@@ -234,6 +234,51 @@ class _SoundsPageContentState extends State<_SoundsPageContent> {
                                 ),
                               );
                             }),
+                            
+                            // Load More Button
+                            if (state.categoriesHasNextPage)
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 20.w,
+                                  vertical: 16.h,
+                                ),
+                                child: state.status.isLoadingMore()
+                                    ? const Center(
+                                        child: CircularProgressIndicator(),
+                                      )
+                                    : ElevatedButton.icon(
+                                        onPressed: () {
+                                          context.read<SoundsBloc>().add(
+                                                LoadSoundCategoriesEvent(
+                                                  page: state.categoriesCurrentPage + 1,
+                                                  perPage: 10,
+                                                ),
+                                              );
+                                        },
+                                        icon: const Icon(Icons.refresh),
+                                        label: Text(
+                                          'تحميل المزيد من الفئات (${state.categoriesCurrentPage}/${state.categoriesTotalPages ?? "..."})',
+                                          style: TextStyle(
+                                            fontSize: 16.f,
+                                            fontFamily: FontFamily.tajawal,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: AppColors.primary,
+                                          foregroundColor: Colors.white,
+                                          padding: EdgeInsets.symmetric(
+                                            horizontal: 24.w,
+                                            vertical: 12.h,
+                                          ),
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(30.r),
+                                          ),
+                                        ),
+                                      ),
+                              ),
+                            
+                            SizedBox(height: 20.h),
                           ],
                         ),
                       );

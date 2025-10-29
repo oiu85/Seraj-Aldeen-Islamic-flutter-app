@@ -6,7 +6,6 @@ import 'package:seraj_aldean_flutter_app/core/responsive/screen_util_res.dart';
 import '../../../../config/appconfig/app_colors.dart';
 import '../../../../features/html_viewer/domain/models/html_content.dart';
 import '../../../../features/html_viewer/presentation/pages/html_book_viewer_page.dart';
-import '../../../../gen/assets.gen.dart';
 import '../../../../gen/fonts.gen.dart';
 import '../bloc/benefits_bloc.dart';
 import '../bloc/benefits_event.dart';
@@ -84,91 +83,82 @@ Widget _buildCard({
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
+          // Expanded(
+          //   flex: 3,
+          //   child: Column(
+          //     mainAxisSize: MainAxisSize.min,
+          //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          //     children: [
+          //       Padding(
+          //         padding: EdgeInsets.only(top: 12.p),
+          //         child: Image.asset(
+          //           Assets.images.quran.path,
+          //           width: 58,
+          //           height: 50,
+          //         ),
+          //       ),
+          //       Text(
+          //         title,
+          //         style: TextStyle(
+          //           fontFamily: FontFamily.amiri,
+          //           fontSize: 18.f,
+          //           fontWeight: FontWeight.bold,
+          //           color: AppColors.primary,
+          //         ),
+          //         textAlign: TextAlign.center,
+          //       ),
+          //       Image.asset(
+          //         imageNamePath,
+          //         width: 86,
+          //         height: 24,
+          //       ),
+          //     ],
+          //   ),
+          // ),
+          // Lesson text - centered and larger, no truncation
           Expanded(
             flex: 3,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            child: Center(
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16.0.p, vertical: 12.h),
+                  child: Text(
+                    lesson,
+                    style: TextStyle(
+                      fontSize: 22.f,
+                      fontFamily: FontFamily.tajawal,
+                      color: AppColors.textPrimary,
+                      fontWeight: FontWeight.bold,
+                      height: 1.4,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ),
+            ),
+          ),
+          
+          // View count - moved to bottom
+          Padding(
+            padding: EdgeInsets.only(right: 8.p, left: 8.p, bottom: 8.h),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Padding(
-                  padding: EdgeInsets.only(top: 12.p),
-                  child: Image.asset(
-                    Assets.images.quran.path,
-                    width: 58,
-                    height: 50,
-                  ),
+                Icon(
+                  Icons.remove_red_eye_outlined,
+                  size: 18.f,
+                  color: AppColors.grey,
                 ),
+                SizedBox(width: 4.w),
                 Text(
-                  title,
+                  viewCont,
                   style: TextStyle(
-                    fontFamily: FontFamily.amiri,
-                    fontSize: 18.f,
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.primary,
+                    fontSize: 14.f,
+                    fontFamily: FontFamily.tajawal,
+                    color: AppColors.grey,
                   ),
-                  textAlign: TextAlign.center,
-                ),
-                Image.asset(
-                  imageNamePath,
-                  width: 86,
-                  height: 24,
                 ),
               ],
-            ),
-          ),
-          Expanded(
-            flex: 1,
-            child: Padding(
-              padding: EdgeInsets.only(right: 8.p, left: 4.p),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "الدرس:",
-                    style: TextStyle(
-                      fontSize: 14.f,
-                      fontFamily: FontFamily.tajawal,
-                      color: AppColors.grey,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Row(
-                    children: [
-                      Text(
-                        viewCont,
-                        style: TextStyle(
-                          fontSize: 16.f,
-                          fontFamily: FontFamily.tajawal,
-                          color: AppColors.grey,
-                        ),
-                      ),
-                      IconButton(
-                        onPressed: () {},
-                        icon: Icon(Icons.remove_red_eye_outlined),
-                        iconSize: 22.f,
-                        color: AppColors.grey,
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Expanded(
-            flex: 0,
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 8.0.p),
-              child: Text(
-                lesson,
-                style: TextStyle(
-                  fontSize: 12.f,
-                  fontFamily: FontFamily.tajawal,
-                  color: AppColors.grey,
-                  fontWeight: FontWeight.bold,
-                ),
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-              ),
             ),
           ),
           GestureDetector(

@@ -19,6 +19,7 @@ class SoundsBloc extends Bloc<SoundsEvent, SoundsState> {
     on<LoadSoundCategoriesEvent>(_onLoadSoundCategories);
     on<LoadAudioBooksEvent>(_onLoadAudioBooks);
     on<LoadCategoryContentEvent>(_onLoadCategoryContent);
+    on<LoadSoundDetailEvent>(_onLoadSoundDetail);
     on<InitializeAudioPlayerEvent>(_onInitializeAudioPlayer);
     on<TogglePlayPauseEvent>(_onTogglePlayPause);
     on<UpdateAudioPositionEvent>(_onUpdateAudioPosition);
@@ -43,14 +44,24 @@ class SoundsBloc extends Bloc<SoundsEvent, SoundsState> {
     Emitter<SoundsState> emit,
   ) async {
     try {
-      _emitLoadingState(emit);
-      AppLogger.info('Loading sound categories from API');
+      final isLoadingMore = event.page > 1;
+      
+      if (!isLoadingMore) {
+        _emitLoadingState(emit);
+      } else {
+        emit(state.copyWith(status: BlocStatus.loadingMore()));
+      }
+      
+      AppLogger.info('Loading sound categories from API - page: ${event.page}, perPage: ${event.perPage}');
 
-      final result = await soundRepository.getSoundCategories();
+      final result = await soundRepository.getSoundCategories(
+        page: event.page,
+        perPage: event.perPage,
+      );
 
       result.fold(
         (exception) => _handleError(emit, exception.toString()),
-        (response) => _handleSuccess(emit, response),
+        (response) => _handleSuccess(emit, response, isLoadingMore),
       );
     } catch (e) {
       _handleUnexpectedError(emit, e);
@@ -70,22 +81,36 @@ class SoundsBloc extends Bloc<SoundsEvent, SoundsState> {
     }
   }
 
-  void _handleSuccess(Emitter<SoundsState> emit, SoundResponse response) {
+  void _handleSuccess(Emitter<SoundsState> emit, SoundResponse response, bool isLoadingMore) {
     if (!_isValidResponse(response)) {
       _handleError(emit, 'Invalid response structure');
       return;
     }
 
-    final validCategories = _processCategories(response.data!.categories!);
+    final newCategories = _processCategories(response.data!.categories!);
     final pageInfo = _extractPageInfo(response.data!.pages);
     
-    AppLogger.info('Loaded ${validCategories.length} valid sound categories');
+    // Extract pagination info
+    final pagination = response.data!.pagination;
+    final hasNextPage = pagination?.hasNextPage ?? false;
+    final currentPage = pagination?.currentPage ?? 1;
+    final totalPages = pagination?.totalPages;
+    
+    // Merge categories if loading more, otherwise replace
+    final allCategories = isLoadingMore
+        ? [...state.categories, ...newCategories]
+        : newCategories;
+    
+    AppLogger.info('Loaded ${newCategories.length} new categories, total: ${allCategories.length}');
 
-    if (!emit.isDone && state.status.isLoading()) {
+    if (!emit.isDone) {
       emit(state.copyWith(
         status: BlocStatus.success(),
-        categories: validCategories,
+        categories: allCategories,
         pageInfo: pageInfo,
+        categoriesHasNextPage: hasNextPage,
+        categoriesCurrentPage: currentPage,
+        categoriesTotalPages: totalPages,
       ));
     }
   }
@@ -127,6 +152,45 @@ class SoundsBloc extends Bloc<SoundsEvent, SoundsState> {
     if (!emit.isDone && state.status.isLoading()) {
       emit(state.copyWith(
         status: BlocStatus.fail(error: 'حدث خطأ غير متوقع'),
+      ));
+    }
+  }
+  
+  Future<void> _onLoadSoundDetail(
+    LoadSoundDetailEvent event,
+    Emitter<SoundsState> emit,
+  ) async {
+    try {
+      emit(state.copyWith(soundDetailStatus: BlocStatus.loading()));
+      AppLogger.info('Loading sound detail for sound ID: ${event.soundId}');
+
+      final result = await soundRepository.getSoundDetail(soundId: event.soundId);
+
+      result.fold(
+        (exception) {
+          AppLogger.error('Failed to load sound detail: $exception');
+          emit(state.copyWith(
+            soundDetailStatus: BlocStatus.fail(error: exception.toString()),
+          ));
+        },
+        (response) {
+          if (response.success == true && response.data != null) {
+            AppLogger.info('Sound detail loaded successfully');
+            emit(state.copyWith(
+              soundDetailStatus: BlocStatus.success(),
+              soundDetail: response.data,
+            ));
+          } else {
+            emit(state.copyWith(
+              soundDetailStatus: BlocStatus.fail(error: 'Invalid response'),
+            ));
+          }
+        },
+      );
+    } catch (e) {
+      AppLogger.error('Unexpected error loading sound detail: $e');
+      emit(state.copyWith(
+        soundDetailStatus: BlocStatus.fail(error: 'حدث خطأ غير متوقع'),
       ));
     }
   }
@@ -309,14 +373,17 @@ class SoundsBloc extends Bloc<SoundsEvent, SoundsState> {
       AppLogger.error('Failed to initialize with URL: $url, Error: $e');
       
       // Try alternative URL if available
-      if (alternativeUrls != null && 
-          _alternativeUrlIndex[soundId]! < alternativeUrls.length) {
-        final altUrl = alternativeUrls[_alternativeUrlIndex[soundId]!];
-        _alternativeUrlIndex[soundId] = _alternativeUrlIndex[soundId]! + 1;
-        await _tryInitializeWithUrl(soundId, altUrl, alternativeUrls, emit);
-      } else {
-        add(AudioPlayerErrorEvent(soundId: soundId));
+      if (alternativeUrls != null && alternativeUrls.isNotEmpty) {
+        final currentIndex = _alternativeUrlIndex[soundId] ?? 0;
+        if (currentIndex < alternativeUrls.length) {
+          final altUrl = alternativeUrls[currentIndex];
+          _alternativeUrlIndex[soundId] = currentIndex + 1;
+          await _tryInitializeWithUrl(soundId, altUrl, alternativeUrls, emit);
+          return; // Exit early after trying alternative URL
+        }
       }
+      // If no alternative URLs or all alternatives tried, emit error
+      add(AudioPlayerErrorEvent(soundId: soundId));
     }
   }
 

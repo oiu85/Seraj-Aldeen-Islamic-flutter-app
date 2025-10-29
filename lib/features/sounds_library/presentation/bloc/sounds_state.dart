@@ -51,6 +51,11 @@ class SoundsState extends Equatable {
   final bool hasNextPage;
   final int currentPage;
   
+  // Category pagination
+  final bool categoriesHasNextPage;
+  final int categoriesCurrentPage;
+  final int? categoriesTotalPages;
+  
   // Audio Books
   final BlocStatus audioBookStatus;
   final CategoryInfo? audioBookParentCategory;
@@ -58,6 +63,10 @@ class SoundsState extends Equatable {
   
   // Audio player states - map of soundId to player state
   final Map<String, AudioPlayerState> audioPlayerStates;
+  
+  // Sound detail
+  final SoundDetailData? soundDetail;
+  final BlocStatus soundDetailStatus;
 
   const SoundsState({
     required this.status,
@@ -67,10 +76,15 @@ class SoundsState extends Equatable {
     this.categoryContent = const [],
     this.hasNextPage = false,
     this.currentPage = 1,
+    this.categoriesHasNextPage = false,
+    this.categoriesCurrentPage = 1,
+    this.categoriesTotalPages,
     this.audioBookStatus = const BlocStatus.initial(),
     this.audioBookParentCategory,
     this.audioBookSubcategories = const [],
     this.audioPlayerStates = const {},
+    this.soundDetail,
+    this.soundDetailStatus = const BlocStatus.initial(),
   });
 
   SoundsState copyWith({
@@ -81,10 +95,15 @@ class SoundsState extends Equatable {
     List<SoundItem>? categoryContent,
     bool? hasNextPage,
     int? currentPage,
+    bool? categoriesHasNextPage,
+    int? categoriesCurrentPage,
+    int? categoriesTotalPages,
     BlocStatus? audioBookStatus,
     CategoryInfo? audioBookParentCategory,
     List<AudioBookSubcategory>? audioBookSubcategories,
     Map<String, AudioPlayerState>? audioPlayerStates,
+    SoundDetailData? soundDetail,
+    BlocStatus? soundDetailStatus,
   }) {
     return SoundsState(
       status: status ?? this.status,
@@ -94,10 +113,15 @@ class SoundsState extends Equatable {
       categoryContent: categoryContent ?? this.categoryContent,
       hasNextPage: hasNextPage ?? this.hasNextPage,
       currentPage: currentPage ?? this.currentPage,
+      categoriesHasNextPage: categoriesHasNextPage ?? this.categoriesHasNextPage,
+      categoriesCurrentPage: categoriesCurrentPage ?? this.categoriesCurrentPage,
+      categoriesTotalPages: categoriesTotalPages ?? this.categoriesTotalPages,
       audioBookStatus: audioBookStatus ?? this.audioBookStatus,
       audioBookParentCategory: audioBookParentCategory ?? this.audioBookParentCategory,
       audioBookSubcategories: audioBookSubcategories ?? this.audioBookSubcategories,
       audioPlayerStates: audioPlayerStates ?? this.audioPlayerStates,
+      soundDetail: soundDetail,
+      soundDetailStatus: soundDetailStatus ?? this.soundDetailStatus,
     );
   }
 
@@ -115,10 +139,15 @@ class SoundsState extends Equatable {
     categoryContent, 
     hasNextPage, 
     currentPage,
+    categoriesHasNextPage,
+    categoriesCurrentPage,
+    categoriesTotalPages,
     audioBookStatus,
     audioBookParentCategory,
     audioBookSubcategories,
     audioPlayerStates,
+    soundDetail,
+    soundDetailStatus,
   ];
 
   @override

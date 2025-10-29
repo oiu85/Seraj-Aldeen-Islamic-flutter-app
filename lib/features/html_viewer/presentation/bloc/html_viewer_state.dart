@@ -29,7 +29,7 @@ class HtmlViewerState extends Equatable {
     this.currentPage,
     this.pages = const [],
     this.errorMessage,
-    this.textSize = 16.0,
+    this.textSize = 12.0,
     this.isDarkMode = false,
     this.isSharing = false,
     this.extractedText,

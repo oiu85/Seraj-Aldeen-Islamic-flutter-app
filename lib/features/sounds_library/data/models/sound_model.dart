@@ -77,6 +77,12 @@ abstract class SoundItem with _$SoundItem {
     String? priority,
     String? file,
     String? sound_file_url,
+    // Additional fields for detailed display
+    String? soundPic,
+    String? soundSource,
+    String? soundSourceUrl,
+    String? soundYoutubeId,
+    String? publisherId,
   }) = _SoundItem;
 
   factory SoundItem.fromJson(Map<String, dynamic> json) =>
@@ -215,4 +221,77 @@ abstract class AudioBookSubcategory with _$AudioBookSubcategory {
 
   factory AudioBookSubcategory.fromJson(Map<String, dynamic> json) =>
       _$AudioBookSubcategoryFromJson(json);
+}
+
+// Sound Detail Models
+@freezed
+abstract class SoundDetailResponse with _$SoundDetailResponse {
+  const factory SoundDetailResponse({
+    bool? success,
+    SoundDetailData? data,
+    String? message,
+  }) = _SoundDetailResponse;
+
+  factory SoundDetailResponse.fromJson(Map<String, dynamic> json) =>
+      _$SoundDetailResponseFromJson(json);
+}
+
+@freezed
+abstract class SoundDetailData with _$SoundDetailData {
+  const factory SoundDetailData({
+    @JsonKey(name: 'sound_id', fromJson: _stringToInt) int? soundId,
+    @JsonKey(name: 'sound_cat_id') String? soundCatId,
+    @JsonKey(name: 'sound_title') String? soundTitle,
+    String? soundTs,
+    @JsonKey(name: 'sound_summary') String? soundSummary,
+    @JsonKey(name: 'sound_des') String? soundDes,
+    @JsonKey(name: 'sound_pic') String? soundPic,
+    @JsonKey(name: 'sound_pic_pos') String? soundPicPos,
+    @JsonKey(name: 'sound_visitor', fromJson: _stringToInt) int? soundVisitor,
+    @JsonKey(name: 'sound_is_new', fromJson: _stringToBool) bool? soundIsNew,
+    @JsonKey(name: 'sound_priority') String? soundPriority,
+    @JsonKey(name: 'sound_active_vote', fromJson: _stringToBool) bool? soundActiveVote,
+    @JsonKey(name: 'sound_active_hint', fromJson: _stringToBool) bool? soundActiveHint,
+    @JsonKey(name: 'sound_active', fromJson: _stringToBool) bool? soundActive,
+    @JsonKey(name: 'sound_date') String? soundDate,
+    @JsonKey(name: 'sound_pic_active', fromJson: _stringToBool) bool? soundPicActive,
+    @JsonKey(name: 'sound_last_sound', fromJson: _stringToBool) bool? soundLastSound,
+    @JsonKey(name: 'sound_publisher_id') String? soundPublisherId,
+    @JsonKey(name: 'sound_source') String? soundSource,
+    @JsonKey(name: 'sound_source_url') String? soundSourceUrl,
+    @JsonKey(name: 'sound_youtube_id') String? soundYoutubeId,
+    @JsonKey(name: 'sound_file') String? soundFile,
+    @JsonKey(name: 'sound_user_add_hint_nsup', fromJson: _stringToBool) bool? soundUserAddHintNsup,
+    @JsonKey(name: 'sound_file_url') String? soundFileUrl,
+    SoundDetailCategory? category,
+    List<dynamic>? captions,
+    List<dynamic>? votes,
+  }) = _SoundDetailData;
+
+  factory SoundDetailData.fromJson(Map<String, dynamic> json) =>
+      _$SoundDetailDataFromJson(json);
+}
+
+@freezed
+abstract class SoundDetailCategory with _$SoundDetailCategory {
+  const factory SoundDetailCategory({
+    @JsonKey(name: 'cat_id', fromJson: _stringToInt) int? catId,
+    @JsonKey(name: 'cat_father_id') String? catFatherId,
+    @JsonKey(name: 'cat_menus') String? catMenus,
+    @JsonKey(name: 'cat_title') String? catTitle,
+    @JsonKey(name: 'cat_note') String? catNote,
+    @JsonKey(name: 'cat_pic') String? catPic,
+    @JsonKey(name: 'cat_sup') String? catSup,
+    @JsonKey(name: 'cat_date') String? catDate,
+    @JsonKey(name: 'cat_pic_active', fromJson: _stringToBool) bool? catPicActive,
+    @JsonKey(name: 'cat_lan') String? catLan,
+    @JsonKey(name: 'cat_pos') String? catPos,
+    @JsonKey(name: 'cat_active', fromJson: _stringToBool) bool? catActive,
+    @JsonKey(name: 'cat_show_menu', fromJson: _stringToBool) bool? catShowMenu,
+    @JsonKey(name: 'cat_show_main', fromJson: _stringToBool) bool? catShowMain,
+    @JsonKey(name: 'cat_agent') String? catAgent,
+  }) = _SoundDetailCategory;
+
+  factory SoundDetailCategory.fromJson(Map<String, dynamic> json) =>
+      _$SoundDetailCategoryFromJson(json);
 }

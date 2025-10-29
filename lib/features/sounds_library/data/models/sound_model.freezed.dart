@@ -1446,7 +1446,12 @@ mixin _$SoundItem {
   bool? get is_new;
   String? get priority;
   String? get file;
-  String? get sound_file_url;
+  String? get sound_file_url; // Additional fields for detailed display
+  String? get soundPic;
+  String? get soundSource;
+  String? get soundSourceUrl;
+  String? get soundYoutubeId;
+  String? get publisherId;
 
   /// Create a copy of SoundItem
   /// with the given fields replaced by the non-null parameter values.
@@ -1474,17 +1479,41 @@ mixin _$SoundItem {
                 other.priority == priority) &&
             (identical(other.file, file) || other.file == file) &&
             (identical(other.sound_file_url, sound_file_url) ||
-                other.sound_file_url == sound_file_url));
+                other.sound_file_url == sound_file_url) &&
+            (identical(other.soundPic, soundPic) ||
+                other.soundPic == soundPic) &&
+            (identical(other.soundSource, soundSource) ||
+                other.soundSource == soundSource) &&
+            (identical(other.soundSourceUrl, soundSourceUrl) ||
+                other.soundSourceUrl == soundSourceUrl) &&
+            (identical(other.soundYoutubeId, soundYoutubeId) ||
+                other.soundYoutubeId == soundYoutubeId) &&
+            (identical(other.publisherId, publisherId) ||
+                other.publisherId == publisherId));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, title, summary, date,
-      visitor_count, is_new, priority, file, sound_file_url);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      title,
+      summary,
+      date,
+      visitor_count,
+      is_new,
+      priority,
+      file,
+      sound_file_url,
+      soundPic,
+      soundSource,
+      soundSourceUrl,
+      soundYoutubeId,
+      publisherId);
 
   @override
   String toString() {
-    return 'SoundItem(id: $id, title: $title, summary: $summary, date: $date, visitor_count: $visitor_count, is_new: $is_new, priority: $priority, file: $file, sound_file_url: $sound_file_url)';
+    return 'SoundItem(id: $id, title: $title, summary: $summary, date: $date, visitor_count: $visitor_count, is_new: $is_new, priority: $priority, file: $file, sound_file_url: $sound_file_url, soundPic: $soundPic, soundSource: $soundSource, soundSourceUrl: $soundSourceUrl, soundYoutubeId: $soundYoutubeId, publisherId: $publisherId)';
   }
 }
 
@@ -1502,7 +1531,12 @@ abstract mixin class $SoundItemCopyWith<$Res> {
       @JsonKey(fromJson: _stringToBool) bool? is_new,
       String? priority,
       String? file,
-      String? sound_file_url});
+      String? sound_file_url,
+      String? soundPic,
+      String? soundSource,
+      String? soundSourceUrl,
+      String? soundYoutubeId,
+      String? publisherId});
 }
 
 /// @nodoc
@@ -1526,6 +1560,11 @@ class _$SoundItemCopyWithImpl<$Res> implements $SoundItemCopyWith<$Res> {
     Object? priority = freezed,
     Object? file = freezed,
     Object? sound_file_url = freezed,
+    Object? soundPic = freezed,
+    Object? soundSource = freezed,
+    Object? soundSourceUrl = freezed,
+    Object? soundYoutubeId = freezed,
+    Object? publisherId = freezed,
   }) {
     return _then(_self.copyWith(
       id: freezed == id
@@ -1563,6 +1602,26 @@ class _$SoundItemCopyWithImpl<$Res> implements $SoundItemCopyWith<$Res> {
       sound_file_url: freezed == sound_file_url
           ? _self.sound_file_url
           : sound_file_url // ignore: cast_nullable_to_non_nullable
+              as String?,
+      soundPic: freezed == soundPic
+          ? _self.soundPic
+          : soundPic // ignore: cast_nullable_to_non_nullable
+              as String?,
+      soundSource: freezed == soundSource
+          ? _self.soundSource
+          : soundSource // ignore: cast_nullable_to_non_nullable
+              as String?,
+      soundSourceUrl: freezed == soundSourceUrl
+          ? _self.soundSourceUrl
+          : soundSourceUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      soundYoutubeId: freezed == soundYoutubeId
+          ? _self.soundYoutubeId
+          : soundYoutubeId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      publisherId: freezed == publisherId
+          ? _self.publisherId
+          : publisherId // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -1670,7 +1729,12 @@ extension SoundItemPatterns on SoundItem {
             @JsonKey(fromJson: _stringToBool) bool? is_new,
             String? priority,
             String? file,
-            String? sound_file_url)?
+            String? sound_file_url,
+            String? soundPic,
+            String? soundSource,
+            String? soundSourceUrl,
+            String? soundYoutubeId,
+            String? publisherId)?
         $default, {
     required TResult orElse(),
   }) {
@@ -1686,7 +1750,12 @@ extension SoundItemPatterns on SoundItem {
             _that.is_new,
             _that.priority,
             _that.file,
-            _that.sound_file_url);
+            _that.sound_file_url,
+            _that.soundPic,
+            _that.soundSource,
+            _that.soundSourceUrl,
+            _that.soundYoutubeId,
+            _that.publisherId);
       case _:
         return orElse();
     }
@@ -1716,7 +1785,12 @@ extension SoundItemPatterns on SoundItem {
             @JsonKey(fromJson: _stringToBool) bool? is_new,
             String? priority,
             String? file,
-            String? sound_file_url)
+            String? sound_file_url,
+            String? soundPic,
+            String? soundSource,
+            String? soundSourceUrl,
+            String? soundYoutubeId,
+            String? publisherId)
         $default,
   ) {
     final _that = this;
@@ -1731,7 +1805,12 @@ extension SoundItemPatterns on SoundItem {
             _that.is_new,
             _that.priority,
             _that.file,
-            _that.sound_file_url);
+            _that.sound_file_url,
+            _that.soundPic,
+            _that.soundSource,
+            _that.soundSourceUrl,
+            _that.soundYoutubeId,
+            _that.publisherId);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -1760,7 +1839,12 @@ extension SoundItemPatterns on SoundItem {
             @JsonKey(fromJson: _stringToBool) bool? is_new,
             String? priority,
             String? file,
-            String? sound_file_url)?
+            String? sound_file_url,
+            String? soundPic,
+            String? soundSource,
+            String? soundSourceUrl,
+            String? soundYoutubeId,
+            String? publisherId)?
         $default,
   ) {
     final _that = this;
@@ -1775,7 +1859,12 @@ extension SoundItemPatterns on SoundItem {
             _that.is_new,
             _that.priority,
             _that.file,
-            _that.sound_file_url);
+            _that.sound_file_url,
+            _that.soundPic,
+            _that.soundSource,
+            _that.soundSourceUrl,
+            _that.soundYoutubeId,
+            _that.publisherId);
       case _:
         return null;
     }
@@ -1794,7 +1883,12 @@ class _SoundItem implements SoundItem {
       @JsonKey(fromJson: _stringToBool) this.is_new,
       this.priority,
       this.file,
-      this.sound_file_url});
+      this.sound_file_url,
+      this.soundPic,
+      this.soundSource,
+      this.soundSourceUrl,
+      this.soundYoutubeId,
+      this.publisherId});
   factory _SoundItem.fromJson(Map<String, dynamic> json) =>
       _$SoundItemFromJson(json);
 
@@ -1818,6 +1912,17 @@ class _SoundItem implements SoundItem {
   final String? file;
   @override
   final String? sound_file_url;
+// Additional fields for detailed display
+  @override
+  final String? soundPic;
+  @override
+  final String? soundSource;
+  @override
+  final String? soundSourceUrl;
+  @override
+  final String? soundYoutubeId;
+  @override
+  final String? publisherId;
 
   /// Create a copy of SoundItem
   /// with the given fields replaced by the non-null parameter values.
@@ -1850,17 +1955,41 @@ class _SoundItem implements SoundItem {
                 other.priority == priority) &&
             (identical(other.file, file) || other.file == file) &&
             (identical(other.sound_file_url, sound_file_url) ||
-                other.sound_file_url == sound_file_url));
+                other.sound_file_url == sound_file_url) &&
+            (identical(other.soundPic, soundPic) ||
+                other.soundPic == soundPic) &&
+            (identical(other.soundSource, soundSource) ||
+                other.soundSource == soundSource) &&
+            (identical(other.soundSourceUrl, soundSourceUrl) ||
+                other.soundSourceUrl == soundSourceUrl) &&
+            (identical(other.soundYoutubeId, soundYoutubeId) ||
+                other.soundYoutubeId == soundYoutubeId) &&
+            (identical(other.publisherId, publisherId) ||
+                other.publisherId == publisherId));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, title, summary, date,
-      visitor_count, is_new, priority, file, sound_file_url);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      title,
+      summary,
+      date,
+      visitor_count,
+      is_new,
+      priority,
+      file,
+      sound_file_url,
+      soundPic,
+      soundSource,
+      soundSourceUrl,
+      soundYoutubeId,
+      publisherId);
 
   @override
   String toString() {
-    return 'SoundItem(id: $id, title: $title, summary: $summary, date: $date, visitor_count: $visitor_count, is_new: $is_new, priority: $priority, file: $file, sound_file_url: $sound_file_url)';
+    return 'SoundItem(id: $id, title: $title, summary: $summary, date: $date, visitor_count: $visitor_count, is_new: $is_new, priority: $priority, file: $file, sound_file_url: $sound_file_url, soundPic: $soundPic, soundSource: $soundSource, soundSourceUrl: $soundSourceUrl, soundYoutubeId: $soundYoutubeId, publisherId: $publisherId)';
   }
 }
 
@@ -1881,7 +2010,12 @@ abstract mixin class _$SoundItemCopyWith<$Res>
       @JsonKey(fromJson: _stringToBool) bool? is_new,
       String? priority,
       String? file,
-      String? sound_file_url});
+      String? sound_file_url,
+      String? soundPic,
+      String? soundSource,
+      String? soundSourceUrl,
+      String? soundYoutubeId,
+      String? publisherId});
 }
 
 /// @nodoc
@@ -1905,6 +2039,11 @@ class __$SoundItemCopyWithImpl<$Res> implements _$SoundItemCopyWith<$Res> {
     Object? priority = freezed,
     Object? file = freezed,
     Object? sound_file_url = freezed,
+    Object? soundPic = freezed,
+    Object? soundSource = freezed,
+    Object? soundSourceUrl = freezed,
+    Object? soundYoutubeId = freezed,
+    Object? publisherId = freezed,
   }) {
     return _then(_SoundItem(
       id: freezed == id
@@ -1942,6 +2081,26 @@ class __$SoundItemCopyWithImpl<$Res> implements _$SoundItemCopyWith<$Res> {
       sound_file_url: freezed == sound_file_url
           ? _self.sound_file_url
           : sound_file_url // ignore: cast_nullable_to_non_nullable
+              as String?,
+      soundPic: freezed == soundPic
+          ? _self.soundPic
+          : soundPic // ignore: cast_nullable_to_non_nullable
+              as String?,
+      soundSource: freezed == soundSource
+          ? _self.soundSource
+          : soundSource // ignore: cast_nullable_to_non_nullable
+              as String?,
+      soundSourceUrl: freezed == soundSourceUrl
+          ? _self.soundSourceUrl
+          : soundSourceUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      soundYoutubeId: freezed == soundYoutubeId
+          ? _self.soundYoutubeId
+          : soundYoutubeId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      publisherId: freezed == publisherId
+          ? _self.publisherId
+          : publisherId // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -6080,6 +6239,2297 @@ class __$AudioBookSubcategoryCopyWithImpl<$Res>
           ? _self.contentCount
           : contentCount // ignore: cast_nullable_to_non_nullable
               as int?,
+    ));
+  }
+}
+
+/// @nodoc
+mixin _$SoundDetailResponse {
+  bool? get success;
+  SoundDetailData? get data;
+  String? get message;
+
+  /// Create a copy of SoundDetailResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $SoundDetailResponseCopyWith<SoundDetailResponse> get copyWith =>
+      _$SoundDetailResponseCopyWithImpl<SoundDetailResponse>(
+          this as SoundDetailResponse, _$identity);
+
+  /// Serializes this SoundDetailResponse to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is SoundDetailResponse &&
+            (identical(other.success, success) || other.success == success) &&
+            (identical(other.data, data) || other.data == data) &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, success, data, message);
+
+  @override
+  String toString() {
+    return 'SoundDetailResponse(success: $success, data: $data, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $SoundDetailResponseCopyWith<$Res> {
+  factory $SoundDetailResponseCopyWith(
+          SoundDetailResponse value, $Res Function(SoundDetailResponse) _then) =
+      _$SoundDetailResponseCopyWithImpl;
+  @useResult
+  $Res call({bool? success, SoundDetailData? data, String? message});
+
+  $SoundDetailDataCopyWith<$Res>? get data;
+}
+
+/// @nodoc
+class _$SoundDetailResponseCopyWithImpl<$Res>
+    implements $SoundDetailResponseCopyWith<$Res> {
+  _$SoundDetailResponseCopyWithImpl(this._self, this._then);
+
+  final SoundDetailResponse _self;
+  final $Res Function(SoundDetailResponse) _then;
+
+  /// Create a copy of SoundDetailResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? success = freezed,
+    Object? data = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(_self.copyWith(
+      success: freezed == success
+          ? _self.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      data: freezed == data
+          ? _self.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as SoundDetailData?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+
+  /// Create a copy of SoundDetailResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SoundDetailDataCopyWith<$Res>? get data {
+    if (_self.data == null) {
+      return null;
+    }
+
+    return $SoundDetailDataCopyWith<$Res>(_self.data!, (value) {
+      return _then(_self.copyWith(data: value));
+    });
+  }
+}
+
+/// Adds pattern-matching-related methods to [SoundDetailResponse].
+extension SoundDetailResponsePatterns on SoundDetailResponse {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_SoundDetailResponse value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _SoundDetailResponse() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_SoundDetailResponse value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _SoundDetailResponse():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_SoundDetailResponse value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _SoundDetailResponse() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(bool? success, SoundDetailData? data, String? message)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _SoundDetailResponse() when $default != null:
+        return $default(_that.success, _that.data, _that.message);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(bool? success, SoundDetailData? data, String? message)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _SoundDetailResponse():
+        return $default(_that.success, _that.data, _that.message);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(bool? success, SoundDetailData? data, String? message)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _SoundDetailResponse() when $default != null:
+        return $default(_that.success, _that.data, _that.message);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _SoundDetailResponse implements SoundDetailResponse {
+  const _SoundDetailResponse({this.success, this.data, this.message});
+  factory _SoundDetailResponse.fromJson(Map<String, dynamic> json) =>
+      _$SoundDetailResponseFromJson(json);
+
+  @override
+  final bool? success;
+  @override
+  final SoundDetailData? data;
+  @override
+  final String? message;
+
+  /// Create a copy of SoundDetailResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$SoundDetailResponseCopyWith<_SoundDetailResponse> get copyWith =>
+      __$SoundDetailResponseCopyWithImpl<_SoundDetailResponse>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$SoundDetailResponseToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _SoundDetailResponse &&
+            (identical(other.success, success) || other.success == success) &&
+            (identical(other.data, data) || other.data == data) &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, success, data, message);
+
+  @override
+  String toString() {
+    return 'SoundDetailResponse(success: $success, data: $data, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$SoundDetailResponseCopyWith<$Res>
+    implements $SoundDetailResponseCopyWith<$Res> {
+  factory _$SoundDetailResponseCopyWith(_SoundDetailResponse value,
+          $Res Function(_SoundDetailResponse) _then) =
+      __$SoundDetailResponseCopyWithImpl;
+  @override
+  @useResult
+  $Res call({bool? success, SoundDetailData? data, String? message});
+
+  @override
+  $SoundDetailDataCopyWith<$Res>? get data;
+}
+
+/// @nodoc
+class __$SoundDetailResponseCopyWithImpl<$Res>
+    implements _$SoundDetailResponseCopyWith<$Res> {
+  __$SoundDetailResponseCopyWithImpl(this._self, this._then);
+
+  final _SoundDetailResponse _self;
+  final $Res Function(_SoundDetailResponse) _then;
+
+  /// Create a copy of SoundDetailResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? success = freezed,
+    Object? data = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(_SoundDetailResponse(
+      success: freezed == success
+          ? _self.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      data: freezed == data
+          ? _self.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as SoundDetailData?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+
+  /// Create a copy of SoundDetailResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SoundDetailDataCopyWith<$Res>? get data {
+    if (_self.data == null) {
+      return null;
+    }
+
+    return $SoundDetailDataCopyWith<$Res>(_self.data!, (value) {
+      return _then(_self.copyWith(data: value));
+    });
+  }
+}
+
+/// @nodoc
+mixin _$SoundDetailData {
+  @JsonKey(name: 'sound_id', fromJson: _stringToInt)
+  int? get soundId;
+  @JsonKey(name: 'sound_cat_id')
+  String? get soundCatId;
+  @JsonKey(name: 'sound_title')
+  String? get soundTitle;
+  String? get soundTs;
+  @JsonKey(name: 'sound_summary')
+  String? get soundSummary;
+  @JsonKey(name: 'sound_des')
+  String? get soundDes;
+  @JsonKey(name: 'sound_pic')
+  String? get soundPic;
+  @JsonKey(name: 'sound_pic_pos')
+  String? get soundPicPos;
+  @JsonKey(name: 'sound_visitor', fromJson: _stringToInt)
+  int? get soundVisitor;
+  @JsonKey(name: 'sound_is_new', fromJson: _stringToBool)
+  bool? get soundIsNew;
+  @JsonKey(name: 'sound_priority')
+  String? get soundPriority;
+  @JsonKey(name: 'sound_active_vote', fromJson: _stringToBool)
+  bool? get soundActiveVote;
+  @JsonKey(name: 'sound_active_hint', fromJson: _stringToBool)
+  bool? get soundActiveHint;
+  @JsonKey(name: 'sound_active', fromJson: _stringToBool)
+  bool? get soundActive;
+  @JsonKey(name: 'sound_date')
+  String? get soundDate;
+  @JsonKey(name: 'sound_pic_active', fromJson: _stringToBool)
+  bool? get soundPicActive;
+  @JsonKey(name: 'sound_last_sound', fromJson: _stringToBool)
+  bool? get soundLastSound;
+  @JsonKey(name: 'sound_publisher_id')
+  String? get soundPublisherId;
+  @JsonKey(name: 'sound_source')
+  String? get soundSource;
+  @JsonKey(name: 'sound_source_url')
+  String? get soundSourceUrl;
+  @JsonKey(name: 'sound_youtube_id')
+  String? get soundYoutubeId;
+  @JsonKey(name: 'sound_file')
+  String? get soundFile;
+  @JsonKey(name: 'sound_user_add_hint_nsup', fromJson: _stringToBool)
+  bool? get soundUserAddHintNsup;
+  @JsonKey(name: 'sound_file_url')
+  String? get soundFileUrl;
+  SoundDetailCategory? get category;
+  List<dynamic>? get captions;
+  List<dynamic>? get votes;
+
+  /// Create a copy of SoundDetailData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $SoundDetailDataCopyWith<SoundDetailData> get copyWith =>
+      _$SoundDetailDataCopyWithImpl<SoundDetailData>(
+          this as SoundDetailData, _$identity);
+
+  /// Serializes this SoundDetailData to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is SoundDetailData &&
+            (identical(other.soundId, soundId) || other.soundId == soundId) &&
+            (identical(other.soundCatId, soundCatId) ||
+                other.soundCatId == soundCatId) &&
+            (identical(other.soundTitle, soundTitle) ||
+                other.soundTitle == soundTitle) &&
+            (identical(other.soundTs, soundTs) || other.soundTs == soundTs) &&
+            (identical(other.soundSummary, soundSummary) ||
+                other.soundSummary == soundSummary) &&
+            (identical(other.soundDes, soundDes) ||
+                other.soundDes == soundDes) &&
+            (identical(other.soundPic, soundPic) ||
+                other.soundPic == soundPic) &&
+            (identical(other.soundPicPos, soundPicPos) ||
+                other.soundPicPos == soundPicPos) &&
+            (identical(other.soundVisitor, soundVisitor) ||
+                other.soundVisitor == soundVisitor) &&
+            (identical(other.soundIsNew, soundIsNew) ||
+                other.soundIsNew == soundIsNew) &&
+            (identical(other.soundPriority, soundPriority) ||
+                other.soundPriority == soundPriority) &&
+            (identical(other.soundActiveVote, soundActiveVote) ||
+                other.soundActiveVote == soundActiveVote) &&
+            (identical(other.soundActiveHint, soundActiveHint) ||
+                other.soundActiveHint == soundActiveHint) &&
+            (identical(other.soundActive, soundActive) ||
+                other.soundActive == soundActive) &&
+            (identical(other.soundDate, soundDate) ||
+                other.soundDate == soundDate) &&
+            (identical(other.soundPicActive, soundPicActive) ||
+                other.soundPicActive == soundPicActive) &&
+            (identical(other.soundLastSound, soundLastSound) ||
+                other.soundLastSound == soundLastSound) &&
+            (identical(other.soundPublisherId, soundPublisherId) ||
+                other.soundPublisherId == soundPublisherId) &&
+            (identical(other.soundSource, soundSource) ||
+                other.soundSource == soundSource) &&
+            (identical(other.soundSourceUrl, soundSourceUrl) ||
+                other.soundSourceUrl == soundSourceUrl) &&
+            (identical(other.soundYoutubeId, soundYoutubeId) ||
+                other.soundYoutubeId == soundYoutubeId) &&
+            (identical(other.soundFile, soundFile) ||
+                other.soundFile == soundFile) &&
+            (identical(other.soundUserAddHintNsup, soundUserAddHintNsup) ||
+                other.soundUserAddHintNsup == soundUserAddHintNsup) &&
+            (identical(other.soundFileUrl, soundFileUrl) ||
+                other.soundFileUrl == soundFileUrl) &&
+            (identical(other.category, category) ||
+                other.category == category) &&
+            const DeepCollectionEquality().equals(other.captions, captions) &&
+            const DeepCollectionEquality().equals(other.votes, votes));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        soundId,
+        soundCatId,
+        soundTitle,
+        soundTs,
+        soundSummary,
+        soundDes,
+        soundPic,
+        soundPicPos,
+        soundVisitor,
+        soundIsNew,
+        soundPriority,
+        soundActiveVote,
+        soundActiveHint,
+        soundActive,
+        soundDate,
+        soundPicActive,
+        soundLastSound,
+        soundPublisherId,
+        soundSource,
+        soundSourceUrl,
+        soundYoutubeId,
+        soundFile,
+        soundUserAddHintNsup,
+        soundFileUrl,
+        category,
+        const DeepCollectionEquality().hash(captions),
+        const DeepCollectionEquality().hash(votes)
+      ]);
+
+  @override
+  String toString() {
+    return 'SoundDetailData(soundId: $soundId, soundCatId: $soundCatId, soundTitle: $soundTitle, soundTs: $soundTs, soundSummary: $soundSummary, soundDes: $soundDes, soundPic: $soundPic, soundPicPos: $soundPicPos, soundVisitor: $soundVisitor, soundIsNew: $soundIsNew, soundPriority: $soundPriority, soundActiveVote: $soundActiveVote, soundActiveHint: $soundActiveHint, soundActive: $soundActive, soundDate: $soundDate, soundPicActive: $soundPicActive, soundLastSound: $soundLastSound, soundPublisherId: $soundPublisherId, soundSource: $soundSource, soundSourceUrl: $soundSourceUrl, soundYoutubeId: $soundYoutubeId, soundFile: $soundFile, soundUserAddHintNsup: $soundUserAddHintNsup, soundFileUrl: $soundFileUrl, category: $category, captions: $captions, votes: $votes)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $SoundDetailDataCopyWith<$Res> {
+  factory $SoundDetailDataCopyWith(
+          SoundDetailData value, $Res Function(SoundDetailData) _then) =
+      _$SoundDetailDataCopyWithImpl;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'sound_id', fromJson: _stringToInt) int? soundId,
+      @JsonKey(name: 'sound_cat_id') String? soundCatId,
+      @JsonKey(name: 'sound_title') String? soundTitle,
+      String? soundTs,
+      @JsonKey(name: 'sound_summary') String? soundSummary,
+      @JsonKey(name: 'sound_des') String? soundDes,
+      @JsonKey(name: 'sound_pic') String? soundPic,
+      @JsonKey(name: 'sound_pic_pos') String? soundPicPos,
+      @JsonKey(name: 'sound_visitor', fromJson: _stringToInt) int? soundVisitor,
+      @JsonKey(name: 'sound_is_new', fromJson: _stringToBool) bool? soundIsNew,
+      @JsonKey(name: 'sound_priority') String? soundPriority,
+      @JsonKey(name: 'sound_active_vote', fromJson: _stringToBool)
+      bool? soundActiveVote,
+      @JsonKey(name: 'sound_active_hint', fromJson: _stringToBool)
+      bool? soundActiveHint,
+      @JsonKey(name: 'sound_active', fromJson: _stringToBool) bool? soundActive,
+      @JsonKey(name: 'sound_date') String? soundDate,
+      @JsonKey(name: 'sound_pic_active', fromJson: _stringToBool)
+      bool? soundPicActive,
+      @JsonKey(name: 'sound_last_sound', fromJson: _stringToBool)
+      bool? soundLastSound,
+      @JsonKey(name: 'sound_publisher_id') String? soundPublisherId,
+      @JsonKey(name: 'sound_source') String? soundSource,
+      @JsonKey(name: 'sound_source_url') String? soundSourceUrl,
+      @JsonKey(name: 'sound_youtube_id') String? soundYoutubeId,
+      @JsonKey(name: 'sound_file') String? soundFile,
+      @JsonKey(name: 'sound_user_add_hint_nsup', fromJson: _stringToBool)
+      bool? soundUserAddHintNsup,
+      @JsonKey(name: 'sound_file_url') String? soundFileUrl,
+      SoundDetailCategory? category,
+      List<dynamic>? captions,
+      List<dynamic>? votes});
+
+  $SoundDetailCategoryCopyWith<$Res>? get category;
+}
+
+/// @nodoc
+class _$SoundDetailDataCopyWithImpl<$Res>
+    implements $SoundDetailDataCopyWith<$Res> {
+  _$SoundDetailDataCopyWithImpl(this._self, this._then);
+
+  final SoundDetailData _self;
+  final $Res Function(SoundDetailData) _then;
+
+  /// Create a copy of SoundDetailData
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? soundId = freezed,
+    Object? soundCatId = freezed,
+    Object? soundTitle = freezed,
+    Object? soundTs = freezed,
+    Object? soundSummary = freezed,
+    Object? soundDes = freezed,
+    Object? soundPic = freezed,
+    Object? soundPicPos = freezed,
+    Object? soundVisitor = freezed,
+    Object? soundIsNew = freezed,
+    Object? soundPriority = freezed,
+    Object? soundActiveVote = freezed,
+    Object? soundActiveHint = freezed,
+    Object? soundActive = freezed,
+    Object? soundDate = freezed,
+    Object? soundPicActive = freezed,
+    Object? soundLastSound = freezed,
+    Object? soundPublisherId = freezed,
+    Object? soundSource = freezed,
+    Object? soundSourceUrl = freezed,
+    Object? soundYoutubeId = freezed,
+    Object? soundFile = freezed,
+    Object? soundUserAddHintNsup = freezed,
+    Object? soundFileUrl = freezed,
+    Object? category = freezed,
+    Object? captions = freezed,
+    Object? votes = freezed,
+  }) {
+    return _then(_self.copyWith(
+      soundId: freezed == soundId
+          ? _self.soundId
+          : soundId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      soundCatId: freezed == soundCatId
+          ? _self.soundCatId
+          : soundCatId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      soundTitle: freezed == soundTitle
+          ? _self.soundTitle
+          : soundTitle // ignore: cast_nullable_to_non_nullable
+              as String?,
+      soundTs: freezed == soundTs
+          ? _self.soundTs
+          : soundTs // ignore: cast_nullable_to_non_nullable
+              as String?,
+      soundSummary: freezed == soundSummary
+          ? _self.soundSummary
+          : soundSummary // ignore: cast_nullable_to_non_nullable
+              as String?,
+      soundDes: freezed == soundDes
+          ? _self.soundDes
+          : soundDes // ignore: cast_nullable_to_non_nullable
+              as String?,
+      soundPic: freezed == soundPic
+          ? _self.soundPic
+          : soundPic // ignore: cast_nullable_to_non_nullable
+              as String?,
+      soundPicPos: freezed == soundPicPos
+          ? _self.soundPicPos
+          : soundPicPos // ignore: cast_nullable_to_non_nullable
+              as String?,
+      soundVisitor: freezed == soundVisitor
+          ? _self.soundVisitor
+          : soundVisitor // ignore: cast_nullable_to_non_nullable
+              as int?,
+      soundIsNew: freezed == soundIsNew
+          ? _self.soundIsNew
+          : soundIsNew // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      soundPriority: freezed == soundPriority
+          ? _self.soundPriority
+          : soundPriority // ignore: cast_nullable_to_non_nullable
+              as String?,
+      soundActiveVote: freezed == soundActiveVote
+          ? _self.soundActiveVote
+          : soundActiveVote // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      soundActiveHint: freezed == soundActiveHint
+          ? _self.soundActiveHint
+          : soundActiveHint // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      soundActive: freezed == soundActive
+          ? _self.soundActive
+          : soundActive // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      soundDate: freezed == soundDate
+          ? _self.soundDate
+          : soundDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      soundPicActive: freezed == soundPicActive
+          ? _self.soundPicActive
+          : soundPicActive // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      soundLastSound: freezed == soundLastSound
+          ? _self.soundLastSound
+          : soundLastSound // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      soundPublisherId: freezed == soundPublisherId
+          ? _self.soundPublisherId
+          : soundPublisherId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      soundSource: freezed == soundSource
+          ? _self.soundSource
+          : soundSource // ignore: cast_nullable_to_non_nullable
+              as String?,
+      soundSourceUrl: freezed == soundSourceUrl
+          ? _self.soundSourceUrl
+          : soundSourceUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      soundYoutubeId: freezed == soundYoutubeId
+          ? _self.soundYoutubeId
+          : soundYoutubeId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      soundFile: freezed == soundFile
+          ? _self.soundFile
+          : soundFile // ignore: cast_nullable_to_non_nullable
+              as String?,
+      soundUserAddHintNsup: freezed == soundUserAddHintNsup
+          ? _self.soundUserAddHintNsup
+          : soundUserAddHintNsup // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      soundFileUrl: freezed == soundFileUrl
+          ? _self.soundFileUrl
+          : soundFileUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      category: freezed == category
+          ? _self.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as SoundDetailCategory?,
+      captions: freezed == captions
+          ? _self.captions
+          : captions // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>?,
+      votes: freezed == votes
+          ? _self.votes
+          : votes // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>?,
+    ));
+  }
+
+  /// Create a copy of SoundDetailData
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SoundDetailCategoryCopyWith<$Res>? get category {
+    if (_self.category == null) {
+      return null;
+    }
+
+    return $SoundDetailCategoryCopyWith<$Res>(_self.category!, (value) {
+      return _then(_self.copyWith(category: value));
+    });
+  }
+}
+
+/// Adds pattern-matching-related methods to [SoundDetailData].
+extension SoundDetailDataPatterns on SoundDetailData {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_SoundDetailData value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _SoundDetailData() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_SoundDetailData value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _SoundDetailData():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_SoundDetailData value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _SoundDetailData() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'sound_id', fromJson: _stringToInt) int? soundId,
+            @JsonKey(name: 'sound_cat_id') String? soundCatId,
+            @JsonKey(name: 'sound_title') String? soundTitle,
+            String? soundTs,
+            @JsonKey(name: 'sound_summary') String? soundSummary,
+            @JsonKey(name: 'sound_des') String? soundDes,
+            @JsonKey(name: 'sound_pic') String? soundPic,
+            @JsonKey(name: 'sound_pic_pos') String? soundPicPos,
+            @JsonKey(name: 'sound_visitor', fromJson: _stringToInt)
+            int? soundVisitor,
+            @JsonKey(name: 'sound_is_new', fromJson: _stringToBool)
+            bool? soundIsNew,
+            @JsonKey(name: 'sound_priority') String? soundPriority,
+            @JsonKey(name: 'sound_active_vote', fromJson: _stringToBool)
+            bool? soundActiveVote,
+            @JsonKey(name: 'sound_active_hint', fromJson: _stringToBool)
+            bool? soundActiveHint,
+            @JsonKey(name: 'sound_active', fromJson: _stringToBool)
+            bool? soundActive,
+            @JsonKey(name: 'sound_date') String? soundDate,
+            @JsonKey(name: 'sound_pic_active', fromJson: _stringToBool)
+            bool? soundPicActive,
+            @JsonKey(name: 'sound_last_sound', fromJson: _stringToBool)
+            bool? soundLastSound,
+            @JsonKey(name: 'sound_publisher_id') String? soundPublisherId,
+            @JsonKey(name: 'sound_source') String? soundSource,
+            @JsonKey(name: 'sound_source_url') String? soundSourceUrl,
+            @JsonKey(name: 'sound_youtube_id') String? soundYoutubeId,
+            @JsonKey(name: 'sound_file') String? soundFile,
+            @JsonKey(name: 'sound_user_add_hint_nsup', fromJson: _stringToBool)
+            bool? soundUserAddHintNsup,
+            @JsonKey(name: 'sound_file_url') String? soundFileUrl,
+            SoundDetailCategory? category,
+            List<dynamic>? captions,
+            List<dynamic>? votes)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _SoundDetailData() when $default != null:
+        return $default(
+            _that.soundId,
+            _that.soundCatId,
+            _that.soundTitle,
+            _that.soundTs,
+            _that.soundSummary,
+            _that.soundDes,
+            _that.soundPic,
+            _that.soundPicPos,
+            _that.soundVisitor,
+            _that.soundIsNew,
+            _that.soundPriority,
+            _that.soundActiveVote,
+            _that.soundActiveHint,
+            _that.soundActive,
+            _that.soundDate,
+            _that.soundPicActive,
+            _that.soundLastSound,
+            _that.soundPublisherId,
+            _that.soundSource,
+            _that.soundSourceUrl,
+            _that.soundYoutubeId,
+            _that.soundFile,
+            _that.soundUserAddHintNsup,
+            _that.soundFileUrl,
+            _that.category,
+            _that.captions,
+            _that.votes);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'sound_id', fromJson: _stringToInt) int? soundId,
+            @JsonKey(name: 'sound_cat_id') String? soundCatId,
+            @JsonKey(name: 'sound_title') String? soundTitle,
+            String? soundTs,
+            @JsonKey(name: 'sound_summary') String? soundSummary,
+            @JsonKey(name: 'sound_des') String? soundDes,
+            @JsonKey(name: 'sound_pic') String? soundPic,
+            @JsonKey(name: 'sound_pic_pos') String? soundPicPos,
+            @JsonKey(name: 'sound_visitor', fromJson: _stringToInt)
+            int? soundVisitor,
+            @JsonKey(name: 'sound_is_new', fromJson: _stringToBool)
+            bool? soundIsNew,
+            @JsonKey(name: 'sound_priority') String? soundPriority,
+            @JsonKey(name: 'sound_active_vote', fromJson: _stringToBool)
+            bool? soundActiveVote,
+            @JsonKey(name: 'sound_active_hint', fromJson: _stringToBool)
+            bool? soundActiveHint,
+            @JsonKey(name: 'sound_active', fromJson: _stringToBool)
+            bool? soundActive,
+            @JsonKey(name: 'sound_date') String? soundDate,
+            @JsonKey(name: 'sound_pic_active', fromJson: _stringToBool)
+            bool? soundPicActive,
+            @JsonKey(name: 'sound_last_sound', fromJson: _stringToBool)
+            bool? soundLastSound,
+            @JsonKey(name: 'sound_publisher_id') String? soundPublisherId,
+            @JsonKey(name: 'sound_source') String? soundSource,
+            @JsonKey(name: 'sound_source_url') String? soundSourceUrl,
+            @JsonKey(name: 'sound_youtube_id') String? soundYoutubeId,
+            @JsonKey(name: 'sound_file') String? soundFile,
+            @JsonKey(name: 'sound_user_add_hint_nsup', fromJson: _stringToBool)
+            bool? soundUserAddHintNsup,
+            @JsonKey(name: 'sound_file_url') String? soundFileUrl,
+            SoundDetailCategory? category,
+            List<dynamic>? captions,
+            List<dynamic>? votes)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _SoundDetailData():
+        return $default(
+            _that.soundId,
+            _that.soundCatId,
+            _that.soundTitle,
+            _that.soundTs,
+            _that.soundSummary,
+            _that.soundDes,
+            _that.soundPic,
+            _that.soundPicPos,
+            _that.soundVisitor,
+            _that.soundIsNew,
+            _that.soundPriority,
+            _that.soundActiveVote,
+            _that.soundActiveHint,
+            _that.soundActive,
+            _that.soundDate,
+            _that.soundPicActive,
+            _that.soundLastSound,
+            _that.soundPublisherId,
+            _that.soundSource,
+            _that.soundSourceUrl,
+            _that.soundYoutubeId,
+            _that.soundFile,
+            _that.soundUserAddHintNsup,
+            _that.soundFileUrl,
+            _that.category,
+            _that.captions,
+            _that.votes);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(name: 'sound_id', fromJson: _stringToInt) int? soundId,
+            @JsonKey(name: 'sound_cat_id') String? soundCatId,
+            @JsonKey(name: 'sound_title') String? soundTitle,
+            String? soundTs,
+            @JsonKey(name: 'sound_summary') String? soundSummary,
+            @JsonKey(name: 'sound_des') String? soundDes,
+            @JsonKey(name: 'sound_pic') String? soundPic,
+            @JsonKey(name: 'sound_pic_pos') String? soundPicPos,
+            @JsonKey(name: 'sound_visitor', fromJson: _stringToInt)
+            int? soundVisitor,
+            @JsonKey(name: 'sound_is_new', fromJson: _stringToBool)
+            bool? soundIsNew,
+            @JsonKey(name: 'sound_priority') String? soundPriority,
+            @JsonKey(name: 'sound_active_vote', fromJson: _stringToBool)
+            bool? soundActiveVote,
+            @JsonKey(name: 'sound_active_hint', fromJson: _stringToBool)
+            bool? soundActiveHint,
+            @JsonKey(name: 'sound_active', fromJson: _stringToBool)
+            bool? soundActive,
+            @JsonKey(name: 'sound_date') String? soundDate,
+            @JsonKey(name: 'sound_pic_active', fromJson: _stringToBool)
+            bool? soundPicActive,
+            @JsonKey(name: 'sound_last_sound', fromJson: _stringToBool)
+            bool? soundLastSound,
+            @JsonKey(name: 'sound_publisher_id') String? soundPublisherId,
+            @JsonKey(name: 'sound_source') String? soundSource,
+            @JsonKey(name: 'sound_source_url') String? soundSourceUrl,
+            @JsonKey(name: 'sound_youtube_id') String? soundYoutubeId,
+            @JsonKey(name: 'sound_file') String? soundFile,
+            @JsonKey(name: 'sound_user_add_hint_nsup', fromJson: _stringToBool)
+            bool? soundUserAddHintNsup,
+            @JsonKey(name: 'sound_file_url') String? soundFileUrl,
+            SoundDetailCategory? category,
+            List<dynamic>? captions,
+            List<dynamic>? votes)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _SoundDetailData() when $default != null:
+        return $default(
+            _that.soundId,
+            _that.soundCatId,
+            _that.soundTitle,
+            _that.soundTs,
+            _that.soundSummary,
+            _that.soundDes,
+            _that.soundPic,
+            _that.soundPicPos,
+            _that.soundVisitor,
+            _that.soundIsNew,
+            _that.soundPriority,
+            _that.soundActiveVote,
+            _that.soundActiveHint,
+            _that.soundActive,
+            _that.soundDate,
+            _that.soundPicActive,
+            _that.soundLastSound,
+            _that.soundPublisherId,
+            _that.soundSource,
+            _that.soundSourceUrl,
+            _that.soundYoutubeId,
+            _that.soundFile,
+            _that.soundUserAddHintNsup,
+            _that.soundFileUrl,
+            _that.category,
+            _that.captions,
+            _that.votes);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _SoundDetailData implements SoundDetailData {
+  const _SoundDetailData(
+      {@JsonKey(name: 'sound_id', fromJson: _stringToInt) this.soundId,
+      @JsonKey(name: 'sound_cat_id') this.soundCatId,
+      @JsonKey(name: 'sound_title') this.soundTitle,
+      this.soundTs,
+      @JsonKey(name: 'sound_summary') this.soundSummary,
+      @JsonKey(name: 'sound_des') this.soundDes,
+      @JsonKey(name: 'sound_pic') this.soundPic,
+      @JsonKey(name: 'sound_pic_pos') this.soundPicPos,
+      @JsonKey(name: 'sound_visitor', fromJson: _stringToInt) this.soundVisitor,
+      @JsonKey(name: 'sound_is_new', fromJson: _stringToBool) this.soundIsNew,
+      @JsonKey(name: 'sound_priority') this.soundPriority,
+      @JsonKey(name: 'sound_active_vote', fromJson: _stringToBool)
+      this.soundActiveVote,
+      @JsonKey(name: 'sound_active_hint', fromJson: _stringToBool)
+      this.soundActiveHint,
+      @JsonKey(name: 'sound_active', fromJson: _stringToBool) this.soundActive,
+      @JsonKey(name: 'sound_date') this.soundDate,
+      @JsonKey(name: 'sound_pic_active', fromJson: _stringToBool)
+      this.soundPicActive,
+      @JsonKey(name: 'sound_last_sound', fromJson: _stringToBool)
+      this.soundLastSound,
+      @JsonKey(name: 'sound_publisher_id') this.soundPublisherId,
+      @JsonKey(name: 'sound_source') this.soundSource,
+      @JsonKey(name: 'sound_source_url') this.soundSourceUrl,
+      @JsonKey(name: 'sound_youtube_id') this.soundYoutubeId,
+      @JsonKey(name: 'sound_file') this.soundFile,
+      @JsonKey(name: 'sound_user_add_hint_nsup', fromJson: _stringToBool)
+      this.soundUserAddHintNsup,
+      @JsonKey(name: 'sound_file_url') this.soundFileUrl,
+      this.category,
+      final List<dynamic>? captions,
+      final List<dynamic>? votes})
+      : _captions = captions,
+        _votes = votes;
+  factory _SoundDetailData.fromJson(Map<String, dynamic> json) =>
+      _$SoundDetailDataFromJson(json);
+
+  @override
+  @JsonKey(name: 'sound_id', fromJson: _stringToInt)
+  final int? soundId;
+  @override
+  @JsonKey(name: 'sound_cat_id')
+  final String? soundCatId;
+  @override
+  @JsonKey(name: 'sound_title')
+  final String? soundTitle;
+  @override
+  final String? soundTs;
+  @override
+  @JsonKey(name: 'sound_summary')
+  final String? soundSummary;
+  @override
+  @JsonKey(name: 'sound_des')
+  final String? soundDes;
+  @override
+  @JsonKey(name: 'sound_pic')
+  final String? soundPic;
+  @override
+  @JsonKey(name: 'sound_pic_pos')
+  final String? soundPicPos;
+  @override
+  @JsonKey(name: 'sound_visitor', fromJson: _stringToInt)
+  final int? soundVisitor;
+  @override
+  @JsonKey(name: 'sound_is_new', fromJson: _stringToBool)
+  final bool? soundIsNew;
+  @override
+  @JsonKey(name: 'sound_priority')
+  final String? soundPriority;
+  @override
+  @JsonKey(name: 'sound_active_vote', fromJson: _stringToBool)
+  final bool? soundActiveVote;
+  @override
+  @JsonKey(name: 'sound_active_hint', fromJson: _stringToBool)
+  final bool? soundActiveHint;
+  @override
+  @JsonKey(name: 'sound_active', fromJson: _stringToBool)
+  final bool? soundActive;
+  @override
+  @JsonKey(name: 'sound_date')
+  final String? soundDate;
+  @override
+  @JsonKey(name: 'sound_pic_active', fromJson: _stringToBool)
+  final bool? soundPicActive;
+  @override
+  @JsonKey(name: 'sound_last_sound', fromJson: _stringToBool)
+  final bool? soundLastSound;
+  @override
+  @JsonKey(name: 'sound_publisher_id')
+  final String? soundPublisherId;
+  @override
+  @JsonKey(name: 'sound_source')
+  final String? soundSource;
+  @override
+  @JsonKey(name: 'sound_source_url')
+  final String? soundSourceUrl;
+  @override
+  @JsonKey(name: 'sound_youtube_id')
+  final String? soundYoutubeId;
+  @override
+  @JsonKey(name: 'sound_file')
+  final String? soundFile;
+  @override
+  @JsonKey(name: 'sound_user_add_hint_nsup', fromJson: _stringToBool)
+  final bool? soundUserAddHintNsup;
+  @override
+  @JsonKey(name: 'sound_file_url')
+  final String? soundFileUrl;
+  @override
+  final SoundDetailCategory? category;
+  final List<dynamic>? _captions;
+  @override
+  List<dynamic>? get captions {
+    final value = _captions;
+    if (value == null) return null;
+    if (_captions is EqualUnmodifiableListView) return _captions;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<dynamic>? _votes;
+  @override
+  List<dynamic>? get votes {
+    final value = _votes;
+    if (value == null) return null;
+    if (_votes is EqualUnmodifiableListView) return _votes;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  /// Create a copy of SoundDetailData
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$SoundDetailDataCopyWith<_SoundDetailData> get copyWith =>
+      __$SoundDetailDataCopyWithImpl<_SoundDetailData>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$SoundDetailDataToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _SoundDetailData &&
+            (identical(other.soundId, soundId) || other.soundId == soundId) &&
+            (identical(other.soundCatId, soundCatId) ||
+                other.soundCatId == soundCatId) &&
+            (identical(other.soundTitle, soundTitle) ||
+                other.soundTitle == soundTitle) &&
+            (identical(other.soundTs, soundTs) || other.soundTs == soundTs) &&
+            (identical(other.soundSummary, soundSummary) ||
+                other.soundSummary == soundSummary) &&
+            (identical(other.soundDes, soundDes) ||
+                other.soundDes == soundDes) &&
+            (identical(other.soundPic, soundPic) ||
+                other.soundPic == soundPic) &&
+            (identical(other.soundPicPos, soundPicPos) ||
+                other.soundPicPos == soundPicPos) &&
+            (identical(other.soundVisitor, soundVisitor) ||
+                other.soundVisitor == soundVisitor) &&
+            (identical(other.soundIsNew, soundIsNew) ||
+                other.soundIsNew == soundIsNew) &&
+            (identical(other.soundPriority, soundPriority) ||
+                other.soundPriority == soundPriority) &&
+            (identical(other.soundActiveVote, soundActiveVote) ||
+                other.soundActiveVote == soundActiveVote) &&
+            (identical(other.soundActiveHint, soundActiveHint) ||
+                other.soundActiveHint == soundActiveHint) &&
+            (identical(other.soundActive, soundActive) ||
+                other.soundActive == soundActive) &&
+            (identical(other.soundDate, soundDate) ||
+                other.soundDate == soundDate) &&
+            (identical(other.soundPicActive, soundPicActive) ||
+                other.soundPicActive == soundPicActive) &&
+            (identical(other.soundLastSound, soundLastSound) ||
+                other.soundLastSound == soundLastSound) &&
+            (identical(other.soundPublisherId, soundPublisherId) ||
+                other.soundPublisherId == soundPublisherId) &&
+            (identical(other.soundSource, soundSource) ||
+                other.soundSource == soundSource) &&
+            (identical(other.soundSourceUrl, soundSourceUrl) ||
+                other.soundSourceUrl == soundSourceUrl) &&
+            (identical(other.soundYoutubeId, soundYoutubeId) ||
+                other.soundYoutubeId == soundYoutubeId) &&
+            (identical(other.soundFile, soundFile) ||
+                other.soundFile == soundFile) &&
+            (identical(other.soundUserAddHintNsup, soundUserAddHintNsup) ||
+                other.soundUserAddHintNsup == soundUserAddHintNsup) &&
+            (identical(other.soundFileUrl, soundFileUrl) ||
+                other.soundFileUrl == soundFileUrl) &&
+            (identical(other.category, category) ||
+                other.category == category) &&
+            const DeepCollectionEquality().equals(other._captions, _captions) &&
+            const DeepCollectionEquality().equals(other._votes, _votes));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        soundId,
+        soundCatId,
+        soundTitle,
+        soundTs,
+        soundSummary,
+        soundDes,
+        soundPic,
+        soundPicPos,
+        soundVisitor,
+        soundIsNew,
+        soundPriority,
+        soundActiveVote,
+        soundActiveHint,
+        soundActive,
+        soundDate,
+        soundPicActive,
+        soundLastSound,
+        soundPublisherId,
+        soundSource,
+        soundSourceUrl,
+        soundYoutubeId,
+        soundFile,
+        soundUserAddHintNsup,
+        soundFileUrl,
+        category,
+        const DeepCollectionEquality().hash(_captions),
+        const DeepCollectionEquality().hash(_votes)
+      ]);
+
+  @override
+  String toString() {
+    return 'SoundDetailData(soundId: $soundId, soundCatId: $soundCatId, soundTitle: $soundTitle, soundTs: $soundTs, soundSummary: $soundSummary, soundDes: $soundDes, soundPic: $soundPic, soundPicPos: $soundPicPos, soundVisitor: $soundVisitor, soundIsNew: $soundIsNew, soundPriority: $soundPriority, soundActiveVote: $soundActiveVote, soundActiveHint: $soundActiveHint, soundActive: $soundActive, soundDate: $soundDate, soundPicActive: $soundPicActive, soundLastSound: $soundLastSound, soundPublisherId: $soundPublisherId, soundSource: $soundSource, soundSourceUrl: $soundSourceUrl, soundYoutubeId: $soundYoutubeId, soundFile: $soundFile, soundUserAddHintNsup: $soundUserAddHintNsup, soundFileUrl: $soundFileUrl, category: $category, captions: $captions, votes: $votes)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$SoundDetailDataCopyWith<$Res>
+    implements $SoundDetailDataCopyWith<$Res> {
+  factory _$SoundDetailDataCopyWith(
+          _SoundDetailData value, $Res Function(_SoundDetailData) _then) =
+      __$SoundDetailDataCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'sound_id', fromJson: _stringToInt) int? soundId,
+      @JsonKey(name: 'sound_cat_id') String? soundCatId,
+      @JsonKey(name: 'sound_title') String? soundTitle,
+      String? soundTs,
+      @JsonKey(name: 'sound_summary') String? soundSummary,
+      @JsonKey(name: 'sound_des') String? soundDes,
+      @JsonKey(name: 'sound_pic') String? soundPic,
+      @JsonKey(name: 'sound_pic_pos') String? soundPicPos,
+      @JsonKey(name: 'sound_visitor', fromJson: _stringToInt) int? soundVisitor,
+      @JsonKey(name: 'sound_is_new', fromJson: _stringToBool) bool? soundIsNew,
+      @JsonKey(name: 'sound_priority') String? soundPriority,
+      @JsonKey(name: 'sound_active_vote', fromJson: _stringToBool)
+      bool? soundActiveVote,
+      @JsonKey(name: 'sound_active_hint', fromJson: _stringToBool)
+      bool? soundActiveHint,
+      @JsonKey(name: 'sound_active', fromJson: _stringToBool) bool? soundActive,
+      @JsonKey(name: 'sound_date') String? soundDate,
+      @JsonKey(name: 'sound_pic_active', fromJson: _stringToBool)
+      bool? soundPicActive,
+      @JsonKey(name: 'sound_last_sound', fromJson: _stringToBool)
+      bool? soundLastSound,
+      @JsonKey(name: 'sound_publisher_id') String? soundPublisherId,
+      @JsonKey(name: 'sound_source') String? soundSource,
+      @JsonKey(name: 'sound_source_url') String? soundSourceUrl,
+      @JsonKey(name: 'sound_youtube_id') String? soundYoutubeId,
+      @JsonKey(name: 'sound_file') String? soundFile,
+      @JsonKey(name: 'sound_user_add_hint_nsup', fromJson: _stringToBool)
+      bool? soundUserAddHintNsup,
+      @JsonKey(name: 'sound_file_url') String? soundFileUrl,
+      SoundDetailCategory? category,
+      List<dynamic>? captions,
+      List<dynamic>? votes});
+
+  @override
+  $SoundDetailCategoryCopyWith<$Res>? get category;
+}
+
+/// @nodoc
+class __$SoundDetailDataCopyWithImpl<$Res>
+    implements _$SoundDetailDataCopyWith<$Res> {
+  __$SoundDetailDataCopyWithImpl(this._self, this._then);
+
+  final _SoundDetailData _self;
+  final $Res Function(_SoundDetailData) _then;
+
+  /// Create a copy of SoundDetailData
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? soundId = freezed,
+    Object? soundCatId = freezed,
+    Object? soundTitle = freezed,
+    Object? soundTs = freezed,
+    Object? soundSummary = freezed,
+    Object? soundDes = freezed,
+    Object? soundPic = freezed,
+    Object? soundPicPos = freezed,
+    Object? soundVisitor = freezed,
+    Object? soundIsNew = freezed,
+    Object? soundPriority = freezed,
+    Object? soundActiveVote = freezed,
+    Object? soundActiveHint = freezed,
+    Object? soundActive = freezed,
+    Object? soundDate = freezed,
+    Object? soundPicActive = freezed,
+    Object? soundLastSound = freezed,
+    Object? soundPublisherId = freezed,
+    Object? soundSource = freezed,
+    Object? soundSourceUrl = freezed,
+    Object? soundYoutubeId = freezed,
+    Object? soundFile = freezed,
+    Object? soundUserAddHintNsup = freezed,
+    Object? soundFileUrl = freezed,
+    Object? category = freezed,
+    Object? captions = freezed,
+    Object? votes = freezed,
+  }) {
+    return _then(_SoundDetailData(
+      soundId: freezed == soundId
+          ? _self.soundId
+          : soundId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      soundCatId: freezed == soundCatId
+          ? _self.soundCatId
+          : soundCatId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      soundTitle: freezed == soundTitle
+          ? _self.soundTitle
+          : soundTitle // ignore: cast_nullable_to_non_nullable
+              as String?,
+      soundTs: freezed == soundTs
+          ? _self.soundTs
+          : soundTs // ignore: cast_nullable_to_non_nullable
+              as String?,
+      soundSummary: freezed == soundSummary
+          ? _self.soundSummary
+          : soundSummary // ignore: cast_nullable_to_non_nullable
+              as String?,
+      soundDes: freezed == soundDes
+          ? _self.soundDes
+          : soundDes // ignore: cast_nullable_to_non_nullable
+              as String?,
+      soundPic: freezed == soundPic
+          ? _self.soundPic
+          : soundPic // ignore: cast_nullable_to_non_nullable
+              as String?,
+      soundPicPos: freezed == soundPicPos
+          ? _self.soundPicPos
+          : soundPicPos // ignore: cast_nullable_to_non_nullable
+              as String?,
+      soundVisitor: freezed == soundVisitor
+          ? _self.soundVisitor
+          : soundVisitor // ignore: cast_nullable_to_non_nullable
+              as int?,
+      soundIsNew: freezed == soundIsNew
+          ? _self.soundIsNew
+          : soundIsNew // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      soundPriority: freezed == soundPriority
+          ? _self.soundPriority
+          : soundPriority // ignore: cast_nullable_to_non_nullable
+              as String?,
+      soundActiveVote: freezed == soundActiveVote
+          ? _self.soundActiveVote
+          : soundActiveVote // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      soundActiveHint: freezed == soundActiveHint
+          ? _self.soundActiveHint
+          : soundActiveHint // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      soundActive: freezed == soundActive
+          ? _self.soundActive
+          : soundActive // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      soundDate: freezed == soundDate
+          ? _self.soundDate
+          : soundDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      soundPicActive: freezed == soundPicActive
+          ? _self.soundPicActive
+          : soundPicActive // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      soundLastSound: freezed == soundLastSound
+          ? _self.soundLastSound
+          : soundLastSound // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      soundPublisherId: freezed == soundPublisherId
+          ? _self.soundPublisherId
+          : soundPublisherId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      soundSource: freezed == soundSource
+          ? _self.soundSource
+          : soundSource // ignore: cast_nullable_to_non_nullable
+              as String?,
+      soundSourceUrl: freezed == soundSourceUrl
+          ? _self.soundSourceUrl
+          : soundSourceUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      soundYoutubeId: freezed == soundYoutubeId
+          ? _self.soundYoutubeId
+          : soundYoutubeId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      soundFile: freezed == soundFile
+          ? _self.soundFile
+          : soundFile // ignore: cast_nullable_to_non_nullable
+              as String?,
+      soundUserAddHintNsup: freezed == soundUserAddHintNsup
+          ? _self.soundUserAddHintNsup
+          : soundUserAddHintNsup // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      soundFileUrl: freezed == soundFileUrl
+          ? _self.soundFileUrl
+          : soundFileUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      category: freezed == category
+          ? _self.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as SoundDetailCategory?,
+      captions: freezed == captions
+          ? _self._captions
+          : captions // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>?,
+      votes: freezed == votes
+          ? _self._votes
+          : votes // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>?,
+    ));
+  }
+
+  /// Create a copy of SoundDetailData
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SoundDetailCategoryCopyWith<$Res>? get category {
+    if (_self.category == null) {
+      return null;
+    }
+
+    return $SoundDetailCategoryCopyWith<$Res>(_self.category!, (value) {
+      return _then(_self.copyWith(category: value));
+    });
+  }
+}
+
+/// @nodoc
+mixin _$SoundDetailCategory {
+  @JsonKey(name: 'cat_id', fromJson: _stringToInt)
+  int? get catId;
+  @JsonKey(name: 'cat_father_id')
+  String? get catFatherId;
+  @JsonKey(name: 'cat_menus')
+  String? get catMenus;
+  @JsonKey(name: 'cat_title')
+  String? get catTitle;
+  @JsonKey(name: 'cat_note')
+  String? get catNote;
+  @JsonKey(name: 'cat_pic')
+  String? get catPic;
+  @JsonKey(name: 'cat_sup')
+  String? get catSup;
+  @JsonKey(name: 'cat_date')
+  String? get catDate;
+  @JsonKey(name: 'cat_pic_active', fromJson: _stringToBool)
+  bool? get catPicActive;
+  @JsonKey(name: 'cat_lan')
+  String? get catLan;
+  @JsonKey(name: 'cat_pos')
+  String? get catPos;
+  @JsonKey(name: 'cat_active', fromJson: _stringToBool)
+  bool? get catActive;
+  @JsonKey(name: 'cat_show_menu', fromJson: _stringToBool)
+  bool? get catShowMenu;
+  @JsonKey(name: 'cat_show_main', fromJson: _stringToBool)
+  bool? get catShowMain;
+  @JsonKey(name: 'cat_agent')
+  String? get catAgent;
+
+  /// Create a copy of SoundDetailCategory
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $SoundDetailCategoryCopyWith<SoundDetailCategory> get copyWith =>
+      _$SoundDetailCategoryCopyWithImpl<SoundDetailCategory>(
+          this as SoundDetailCategory, _$identity);
+
+  /// Serializes this SoundDetailCategory to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is SoundDetailCategory &&
+            (identical(other.catId, catId) || other.catId == catId) &&
+            (identical(other.catFatherId, catFatherId) ||
+                other.catFatherId == catFatherId) &&
+            (identical(other.catMenus, catMenus) ||
+                other.catMenus == catMenus) &&
+            (identical(other.catTitle, catTitle) ||
+                other.catTitle == catTitle) &&
+            (identical(other.catNote, catNote) || other.catNote == catNote) &&
+            (identical(other.catPic, catPic) || other.catPic == catPic) &&
+            (identical(other.catSup, catSup) || other.catSup == catSup) &&
+            (identical(other.catDate, catDate) || other.catDate == catDate) &&
+            (identical(other.catPicActive, catPicActive) ||
+                other.catPicActive == catPicActive) &&
+            (identical(other.catLan, catLan) || other.catLan == catLan) &&
+            (identical(other.catPos, catPos) || other.catPos == catPos) &&
+            (identical(other.catActive, catActive) ||
+                other.catActive == catActive) &&
+            (identical(other.catShowMenu, catShowMenu) ||
+                other.catShowMenu == catShowMenu) &&
+            (identical(other.catShowMain, catShowMain) ||
+                other.catShowMain == catShowMain) &&
+            (identical(other.catAgent, catAgent) ||
+                other.catAgent == catAgent));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      catId,
+      catFatherId,
+      catMenus,
+      catTitle,
+      catNote,
+      catPic,
+      catSup,
+      catDate,
+      catPicActive,
+      catLan,
+      catPos,
+      catActive,
+      catShowMenu,
+      catShowMain,
+      catAgent);
+
+  @override
+  String toString() {
+    return 'SoundDetailCategory(catId: $catId, catFatherId: $catFatherId, catMenus: $catMenus, catTitle: $catTitle, catNote: $catNote, catPic: $catPic, catSup: $catSup, catDate: $catDate, catPicActive: $catPicActive, catLan: $catLan, catPos: $catPos, catActive: $catActive, catShowMenu: $catShowMenu, catShowMain: $catShowMain, catAgent: $catAgent)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $SoundDetailCategoryCopyWith<$Res> {
+  factory $SoundDetailCategoryCopyWith(
+          SoundDetailCategory value, $Res Function(SoundDetailCategory) _then) =
+      _$SoundDetailCategoryCopyWithImpl;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'cat_id', fromJson: _stringToInt) int? catId,
+      @JsonKey(name: 'cat_father_id') String? catFatherId,
+      @JsonKey(name: 'cat_menus') String? catMenus,
+      @JsonKey(name: 'cat_title') String? catTitle,
+      @JsonKey(name: 'cat_note') String? catNote,
+      @JsonKey(name: 'cat_pic') String? catPic,
+      @JsonKey(name: 'cat_sup') String? catSup,
+      @JsonKey(name: 'cat_date') String? catDate,
+      @JsonKey(name: 'cat_pic_active', fromJson: _stringToBool)
+      bool? catPicActive,
+      @JsonKey(name: 'cat_lan') String? catLan,
+      @JsonKey(name: 'cat_pos') String? catPos,
+      @JsonKey(name: 'cat_active', fromJson: _stringToBool) bool? catActive,
+      @JsonKey(name: 'cat_show_menu', fromJson: _stringToBool)
+      bool? catShowMenu,
+      @JsonKey(name: 'cat_show_main', fromJson: _stringToBool)
+      bool? catShowMain,
+      @JsonKey(name: 'cat_agent') String? catAgent});
+}
+
+/// @nodoc
+class _$SoundDetailCategoryCopyWithImpl<$Res>
+    implements $SoundDetailCategoryCopyWith<$Res> {
+  _$SoundDetailCategoryCopyWithImpl(this._self, this._then);
+
+  final SoundDetailCategory _self;
+  final $Res Function(SoundDetailCategory) _then;
+
+  /// Create a copy of SoundDetailCategory
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? catId = freezed,
+    Object? catFatherId = freezed,
+    Object? catMenus = freezed,
+    Object? catTitle = freezed,
+    Object? catNote = freezed,
+    Object? catPic = freezed,
+    Object? catSup = freezed,
+    Object? catDate = freezed,
+    Object? catPicActive = freezed,
+    Object? catLan = freezed,
+    Object? catPos = freezed,
+    Object? catActive = freezed,
+    Object? catShowMenu = freezed,
+    Object? catShowMain = freezed,
+    Object? catAgent = freezed,
+  }) {
+    return _then(_self.copyWith(
+      catId: freezed == catId
+          ? _self.catId
+          : catId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      catFatherId: freezed == catFatherId
+          ? _self.catFatherId
+          : catFatherId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      catMenus: freezed == catMenus
+          ? _self.catMenus
+          : catMenus // ignore: cast_nullable_to_non_nullable
+              as String?,
+      catTitle: freezed == catTitle
+          ? _self.catTitle
+          : catTitle // ignore: cast_nullable_to_non_nullable
+              as String?,
+      catNote: freezed == catNote
+          ? _self.catNote
+          : catNote // ignore: cast_nullable_to_non_nullable
+              as String?,
+      catPic: freezed == catPic
+          ? _self.catPic
+          : catPic // ignore: cast_nullable_to_non_nullable
+              as String?,
+      catSup: freezed == catSup
+          ? _self.catSup
+          : catSup // ignore: cast_nullable_to_non_nullable
+              as String?,
+      catDate: freezed == catDate
+          ? _self.catDate
+          : catDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      catPicActive: freezed == catPicActive
+          ? _self.catPicActive
+          : catPicActive // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      catLan: freezed == catLan
+          ? _self.catLan
+          : catLan // ignore: cast_nullable_to_non_nullable
+              as String?,
+      catPos: freezed == catPos
+          ? _self.catPos
+          : catPos // ignore: cast_nullable_to_non_nullable
+              as String?,
+      catActive: freezed == catActive
+          ? _self.catActive
+          : catActive // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      catShowMenu: freezed == catShowMenu
+          ? _self.catShowMenu
+          : catShowMenu // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      catShowMain: freezed == catShowMain
+          ? _self.catShowMain
+          : catShowMain // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      catAgent: freezed == catAgent
+          ? _self.catAgent
+          : catAgent // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [SoundDetailCategory].
+extension SoundDetailCategoryPatterns on SoundDetailCategory {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_SoundDetailCategory value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _SoundDetailCategory() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_SoundDetailCategory value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _SoundDetailCategory():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_SoundDetailCategory value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _SoundDetailCategory() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'cat_id', fromJson: _stringToInt) int? catId,
+            @JsonKey(name: 'cat_father_id') String? catFatherId,
+            @JsonKey(name: 'cat_menus') String? catMenus,
+            @JsonKey(name: 'cat_title') String? catTitle,
+            @JsonKey(name: 'cat_note') String? catNote,
+            @JsonKey(name: 'cat_pic') String? catPic,
+            @JsonKey(name: 'cat_sup') String? catSup,
+            @JsonKey(name: 'cat_date') String? catDate,
+            @JsonKey(name: 'cat_pic_active', fromJson: _stringToBool)
+            bool? catPicActive,
+            @JsonKey(name: 'cat_lan') String? catLan,
+            @JsonKey(name: 'cat_pos') String? catPos,
+            @JsonKey(name: 'cat_active', fromJson: _stringToBool)
+            bool? catActive,
+            @JsonKey(name: 'cat_show_menu', fromJson: _stringToBool)
+            bool? catShowMenu,
+            @JsonKey(name: 'cat_show_main', fromJson: _stringToBool)
+            bool? catShowMain,
+            @JsonKey(name: 'cat_agent') String? catAgent)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _SoundDetailCategory() when $default != null:
+        return $default(
+            _that.catId,
+            _that.catFatherId,
+            _that.catMenus,
+            _that.catTitle,
+            _that.catNote,
+            _that.catPic,
+            _that.catSup,
+            _that.catDate,
+            _that.catPicActive,
+            _that.catLan,
+            _that.catPos,
+            _that.catActive,
+            _that.catShowMenu,
+            _that.catShowMain,
+            _that.catAgent);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'cat_id', fromJson: _stringToInt) int? catId,
+            @JsonKey(name: 'cat_father_id') String? catFatherId,
+            @JsonKey(name: 'cat_menus') String? catMenus,
+            @JsonKey(name: 'cat_title') String? catTitle,
+            @JsonKey(name: 'cat_note') String? catNote,
+            @JsonKey(name: 'cat_pic') String? catPic,
+            @JsonKey(name: 'cat_sup') String? catSup,
+            @JsonKey(name: 'cat_date') String? catDate,
+            @JsonKey(name: 'cat_pic_active', fromJson: _stringToBool)
+            bool? catPicActive,
+            @JsonKey(name: 'cat_lan') String? catLan,
+            @JsonKey(name: 'cat_pos') String? catPos,
+            @JsonKey(name: 'cat_active', fromJson: _stringToBool)
+            bool? catActive,
+            @JsonKey(name: 'cat_show_menu', fromJson: _stringToBool)
+            bool? catShowMenu,
+            @JsonKey(name: 'cat_show_main', fromJson: _stringToBool)
+            bool? catShowMain,
+            @JsonKey(name: 'cat_agent') String? catAgent)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _SoundDetailCategory():
+        return $default(
+            _that.catId,
+            _that.catFatherId,
+            _that.catMenus,
+            _that.catTitle,
+            _that.catNote,
+            _that.catPic,
+            _that.catSup,
+            _that.catDate,
+            _that.catPicActive,
+            _that.catLan,
+            _that.catPos,
+            _that.catActive,
+            _that.catShowMenu,
+            _that.catShowMain,
+            _that.catAgent);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(name: 'cat_id', fromJson: _stringToInt) int? catId,
+            @JsonKey(name: 'cat_father_id') String? catFatherId,
+            @JsonKey(name: 'cat_menus') String? catMenus,
+            @JsonKey(name: 'cat_title') String? catTitle,
+            @JsonKey(name: 'cat_note') String? catNote,
+            @JsonKey(name: 'cat_pic') String? catPic,
+            @JsonKey(name: 'cat_sup') String? catSup,
+            @JsonKey(name: 'cat_date') String? catDate,
+            @JsonKey(name: 'cat_pic_active', fromJson: _stringToBool)
+            bool? catPicActive,
+            @JsonKey(name: 'cat_lan') String? catLan,
+            @JsonKey(name: 'cat_pos') String? catPos,
+            @JsonKey(name: 'cat_active', fromJson: _stringToBool)
+            bool? catActive,
+            @JsonKey(name: 'cat_show_menu', fromJson: _stringToBool)
+            bool? catShowMenu,
+            @JsonKey(name: 'cat_show_main', fromJson: _stringToBool)
+            bool? catShowMain,
+            @JsonKey(name: 'cat_agent') String? catAgent)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _SoundDetailCategory() when $default != null:
+        return $default(
+            _that.catId,
+            _that.catFatherId,
+            _that.catMenus,
+            _that.catTitle,
+            _that.catNote,
+            _that.catPic,
+            _that.catSup,
+            _that.catDate,
+            _that.catPicActive,
+            _that.catLan,
+            _that.catPos,
+            _that.catActive,
+            _that.catShowMenu,
+            _that.catShowMain,
+            _that.catAgent);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _SoundDetailCategory implements SoundDetailCategory {
+  const _SoundDetailCategory(
+      {@JsonKey(name: 'cat_id', fromJson: _stringToInt) this.catId,
+      @JsonKey(name: 'cat_father_id') this.catFatherId,
+      @JsonKey(name: 'cat_menus') this.catMenus,
+      @JsonKey(name: 'cat_title') this.catTitle,
+      @JsonKey(name: 'cat_note') this.catNote,
+      @JsonKey(name: 'cat_pic') this.catPic,
+      @JsonKey(name: 'cat_sup') this.catSup,
+      @JsonKey(name: 'cat_date') this.catDate,
+      @JsonKey(name: 'cat_pic_active', fromJson: _stringToBool)
+      this.catPicActive,
+      @JsonKey(name: 'cat_lan') this.catLan,
+      @JsonKey(name: 'cat_pos') this.catPos,
+      @JsonKey(name: 'cat_active', fromJson: _stringToBool) this.catActive,
+      @JsonKey(name: 'cat_show_menu', fromJson: _stringToBool) this.catShowMenu,
+      @JsonKey(name: 'cat_show_main', fromJson: _stringToBool) this.catShowMain,
+      @JsonKey(name: 'cat_agent') this.catAgent});
+  factory _SoundDetailCategory.fromJson(Map<String, dynamic> json) =>
+      _$SoundDetailCategoryFromJson(json);
+
+  @override
+  @JsonKey(name: 'cat_id', fromJson: _stringToInt)
+  final int? catId;
+  @override
+  @JsonKey(name: 'cat_father_id')
+  final String? catFatherId;
+  @override
+  @JsonKey(name: 'cat_menus')
+  final String? catMenus;
+  @override
+  @JsonKey(name: 'cat_title')
+  final String? catTitle;
+  @override
+  @JsonKey(name: 'cat_note')
+  final String? catNote;
+  @override
+  @JsonKey(name: 'cat_pic')
+  final String? catPic;
+  @override
+  @JsonKey(name: 'cat_sup')
+  final String? catSup;
+  @override
+  @JsonKey(name: 'cat_date')
+  final String? catDate;
+  @override
+  @JsonKey(name: 'cat_pic_active', fromJson: _stringToBool)
+  final bool? catPicActive;
+  @override
+  @JsonKey(name: 'cat_lan')
+  final String? catLan;
+  @override
+  @JsonKey(name: 'cat_pos')
+  final String? catPos;
+  @override
+  @JsonKey(name: 'cat_active', fromJson: _stringToBool)
+  final bool? catActive;
+  @override
+  @JsonKey(name: 'cat_show_menu', fromJson: _stringToBool)
+  final bool? catShowMenu;
+  @override
+  @JsonKey(name: 'cat_show_main', fromJson: _stringToBool)
+  final bool? catShowMain;
+  @override
+  @JsonKey(name: 'cat_agent')
+  final String? catAgent;
+
+  /// Create a copy of SoundDetailCategory
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$SoundDetailCategoryCopyWith<_SoundDetailCategory> get copyWith =>
+      __$SoundDetailCategoryCopyWithImpl<_SoundDetailCategory>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$SoundDetailCategoryToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _SoundDetailCategory &&
+            (identical(other.catId, catId) || other.catId == catId) &&
+            (identical(other.catFatherId, catFatherId) ||
+                other.catFatherId == catFatherId) &&
+            (identical(other.catMenus, catMenus) ||
+                other.catMenus == catMenus) &&
+            (identical(other.catTitle, catTitle) ||
+                other.catTitle == catTitle) &&
+            (identical(other.catNote, catNote) || other.catNote == catNote) &&
+            (identical(other.catPic, catPic) || other.catPic == catPic) &&
+            (identical(other.catSup, catSup) || other.catSup == catSup) &&
+            (identical(other.catDate, catDate) || other.catDate == catDate) &&
+            (identical(other.catPicActive, catPicActive) ||
+                other.catPicActive == catPicActive) &&
+            (identical(other.catLan, catLan) || other.catLan == catLan) &&
+            (identical(other.catPos, catPos) || other.catPos == catPos) &&
+            (identical(other.catActive, catActive) ||
+                other.catActive == catActive) &&
+            (identical(other.catShowMenu, catShowMenu) ||
+                other.catShowMenu == catShowMenu) &&
+            (identical(other.catShowMain, catShowMain) ||
+                other.catShowMain == catShowMain) &&
+            (identical(other.catAgent, catAgent) ||
+                other.catAgent == catAgent));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      catId,
+      catFatherId,
+      catMenus,
+      catTitle,
+      catNote,
+      catPic,
+      catSup,
+      catDate,
+      catPicActive,
+      catLan,
+      catPos,
+      catActive,
+      catShowMenu,
+      catShowMain,
+      catAgent);
+
+  @override
+  String toString() {
+    return 'SoundDetailCategory(catId: $catId, catFatherId: $catFatherId, catMenus: $catMenus, catTitle: $catTitle, catNote: $catNote, catPic: $catPic, catSup: $catSup, catDate: $catDate, catPicActive: $catPicActive, catLan: $catLan, catPos: $catPos, catActive: $catActive, catShowMenu: $catShowMenu, catShowMain: $catShowMain, catAgent: $catAgent)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$SoundDetailCategoryCopyWith<$Res>
+    implements $SoundDetailCategoryCopyWith<$Res> {
+  factory _$SoundDetailCategoryCopyWith(_SoundDetailCategory value,
+          $Res Function(_SoundDetailCategory) _then) =
+      __$SoundDetailCategoryCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'cat_id', fromJson: _stringToInt) int? catId,
+      @JsonKey(name: 'cat_father_id') String? catFatherId,
+      @JsonKey(name: 'cat_menus') String? catMenus,
+      @JsonKey(name: 'cat_title') String? catTitle,
+      @JsonKey(name: 'cat_note') String? catNote,
+      @JsonKey(name: 'cat_pic') String? catPic,
+      @JsonKey(name: 'cat_sup') String? catSup,
+      @JsonKey(name: 'cat_date') String? catDate,
+      @JsonKey(name: 'cat_pic_active', fromJson: _stringToBool)
+      bool? catPicActive,
+      @JsonKey(name: 'cat_lan') String? catLan,
+      @JsonKey(name: 'cat_pos') String? catPos,
+      @JsonKey(name: 'cat_active', fromJson: _stringToBool) bool? catActive,
+      @JsonKey(name: 'cat_show_menu', fromJson: _stringToBool)
+      bool? catShowMenu,
+      @JsonKey(name: 'cat_show_main', fromJson: _stringToBool)
+      bool? catShowMain,
+      @JsonKey(name: 'cat_agent') String? catAgent});
+}
+
+/// @nodoc
+class __$SoundDetailCategoryCopyWithImpl<$Res>
+    implements _$SoundDetailCategoryCopyWith<$Res> {
+  __$SoundDetailCategoryCopyWithImpl(this._self, this._then);
+
+  final _SoundDetailCategory _self;
+  final $Res Function(_SoundDetailCategory) _then;
+
+  /// Create a copy of SoundDetailCategory
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? catId = freezed,
+    Object? catFatherId = freezed,
+    Object? catMenus = freezed,
+    Object? catTitle = freezed,
+    Object? catNote = freezed,
+    Object? catPic = freezed,
+    Object? catSup = freezed,
+    Object? catDate = freezed,
+    Object? catPicActive = freezed,
+    Object? catLan = freezed,
+    Object? catPos = freezed,
+    Object? catActive = freezed,
+    Object? catShowMenu = freezed,
+    Object? catShowMain = freezed,
+    Object? catAgent = freezed,
+  }) {
+    return _then(_SoundDetailCategory(
+      catId: freezed == catId
+          ? _self.catId
+          : catId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      catFatherId: freezed == catFatherId
+          ? _self.catFatherId
+          : catFatherId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      catMenus: freezed == catMenus
+          ? _self.catMenus
+          : catMenus // ignore: cast_nullable_to_non_nullable
+              as String?,
+      catTitle: freezed == catTitle
+          ? _self.catTitle
+          : catTitle // ignore: cast_nullable_to_non_nullable
+              as String?,
+      catNote: freezed == catNote
+          ? _self.catNote
+          : catNote // ignore: cast_nullable_to_non_nullable
+              as String?,
+      catPic: freezed == catPic
+          ? _self.catPic
+          : catPic // ignore: cast_nullable_to_non_nullable
+              as String?,
+      catSup: freezed == catSup
+          ? _self.catSup
+          : catSup // ignore: cast_nullable_to_non_nullable
+              as String?,
+      catDate: freezed == catDate
+          ? _self.catDate
+          : catDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      catPicActive: freezed == catPicActive
+          ? _self.catPicActive
+          : catPicActive // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      catLan: freezed == catLan
+          ? _self.catLan
+          : catLan // ignore: cast_nullable_to_non_nullable
+              as String?,
+      catPos: freezed == catPos
+          ? _self.catPos
+          : catPos // ignore: cast_nullable_to_non_nullable
+              as String?,
+      catActive: freezed == catActive
+          ? _self.catActive
+          : catActive // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      catShowMenu: freezed == catShowMenu
+          ? _self.catShowMenu
+          : catShowMenu // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      catShowMain: freezed == catShowMain
+          ? _self.catShowMain
+          : catShowMain // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      catAgent: freezed == catAgent
+          ? _self.catAgent
+          : catAgent // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }

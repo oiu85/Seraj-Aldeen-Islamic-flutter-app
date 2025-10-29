@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 import 'package:seraj_aldean_flutter_app/core/responsive/screen_util_res.dart';
 import '../../../../config/appconfig/app_colors.dart';
 import '../../../../gen/fonts.gen.dart';
 import '../../data/models/sound_model.dart';
+import '../bloc/sounds_bloc.dart';
+import '../bloc/sounds_event.dart';
+import '../bloc/sounds_state.dart';
 import '../widgets/real_media_player.dart';
 import '../widgets/music_player.dart';
 
@@ -54,8 +59,19 @@ class SoundCard extends StatelessWidget {
   void _handleTap(BuildContext context) {
     if (onTap != null) {
       onTap!();
+    } else if (soundId != null && soundItem != null) {
+      // Navigate to a page that will handle loading and show loading animation
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => _SoundDetailLoader(
+            soundId: soundId!,
+            categoryTitle: categoryTitle,
+          ),
+        ),
+      );
     } else if (soundItem != null) {
-      // Navigate to full music player
+      // Fallback: navigate directly with basic sound info
       Navigator.push(
         context,
         MaterialPageRoute(
@@ -198,5 +214,123 @@ class SoundCard extends StatelessWidget {
       // If parsing fails, return the original string
       return dateString;
     }
+  }
+}
+
+/// Widget to load sound detail and show loading animation
+class _SoundDetailLoader extends StatelessWidget {
+  final int soundId;
+  final String? categoryTitle;
+
+  const _SoundDetailLoader({
+    required this.soundId,
+    this.categoryTitle,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    // Create a new BlocProvider instance for this page
+    return BlocProvider(
+      create: (context) => GetIt.instance<SoundsBloc>()
+        ..add(LoadSoundDetailEvent(soundId: soundId)),
+      child: _SoundDetailLoaderContent(
+        soundId: soundId,
+        categoryTitle: categoryTitle,
+      ),
+    );
+  }
+}
+
+class _SoundDetailLoaderContent extends StatelessWidget {
+  final int soundId;
+  final String? categoryTitle;
+
+  const _SoundDetailLoaderContent({
+    required this.soundId,
+    this.categoryTitle,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocListener<SoundsBloc, SoundsState>(
+      listener: (context, state) {
+        if (state.soundDetailStatus.isSuccess() && state.soundDetail != null) {
+          final detail = state.soundDetail!;
+          
+          // Create SoundItem from detail data - use sound_des for full HTML description
+          final soundForPlayer = SoundItem(
+            id: detail.soundId,
+            title: detail.soundTitle,
+            summary: detail.soundDes ?? detail.soundSummary, // Use full HTML description
+            date: detail.soundDate,
+            visitor_count: detail.soundVisitor?.toString(),
+            is_new: detail.soundIsNew,
+            priority: detail.soundPriority,
+            file: detail.soundFile,
+            sound_file_url: detail.soundFileUrl,
+            soundPic: detail.soundPic,
+            soundSource: detail.soundSource,
+            soundSourceUrl: detail.soundSourceUrl,
+            soundYoutubeId: detail.soundYoutubeId,
+            publisherId: detail.soundPublisherId,
+          );
+          
+          // Navigate to music player with full data
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => MusicPlayer(
+                sound: soundForPlayer,
+                categoryTitle: categoryTitle ?? detail.category?.catTitle,
+              ),
+            ),
+          );
+        } else if (state.soundDetailStatus.isFail()) {
+          // Show error and go back
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                'فشل تحميل المعلومات',
+                style: TextStyle(fontFamily: FontFamily.tajawal),
+              ),
+              backgroundColor: Colors.red,
+            ),
+          );
+          Navigator.pop(context);
+        }
+      },
+      child: BlocBuilder<SoundsBloc, SoundsState>(
+        builder: (context, state) {
+          return Scaffold(
+            backgroundColor: AppColors.background,
+            body: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  // Loading indicator
+                  Container(
+                    width: 200.w,
+                    height: 200.h,
+                    child: CircularProgressIndicator(
+                      color: AppColors.primary,
+                      strokeWidth: 3,
+                    ),
+                  ),
+                  SizedBox(height: 20.h),
+                  Text(
+                    'جاري تحميل المعلومات...',
+                    style: TextStyle(
+                      fontFamily: FontFamily.tajawal,
+                      fontSize: 18.f,
+                      color: AppColors.textPrimary,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
+      ),
+    );
   }
 }

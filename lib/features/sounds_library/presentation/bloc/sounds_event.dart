@@ -1,6 +1,14 @@
 abstract class SoundsEvent {}
 
-class LoadSoundCategoriesEvent extends SoundsEvent {}
+class LoadSoundCategoriesEvent extends SoundsEvent {
+  final int page;
+  final int perPage;
+
+  LoadSoundCategoriesEvent({
+    this.page = 1,
+    this.perPage = 10,
+  });
+}
 
 class LoadAudioBooksEvent extends SoundsEvent {}
 
@@ -76,5 +84,13 @@ class AudioPlayerInitializedEvent extends SoundsEvent {
   AudioPlayerInitializedEvent({
     required this.soundId,
     required this.duration,
+  });
+}
+
+class LoadSoundDetailEvent extends SoundsEvent {
+  final int soundId;
+
+  LoadSoundDetailEvent({
+    required this.soundId,
   });
 }

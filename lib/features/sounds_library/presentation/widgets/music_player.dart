@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:seraj_aldean_flutter_app/core/responsive/screen_util_res.dart';
 import 'package:seraj_aldean_flutter_app/core/shared/widgets/app_scaffold.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../config/appconfig/app_colors.dart';
 import '../../../../gen/fonts.gen.dart';
@@ -60,7 +62,7 @@ class MusicPlayer extends StatelessWidget {
         iconTheme: IconThemeData(color: AppColors.black),
       ),
       backgroundColor: AppColors.background,
-      body: Container(
+      body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.all(24.w),
           child: Column(
@@ -81,7 +83,6 @@ class MusicPlayer extends StatelessWidget {
                       AppColors.primary.withValues(alpha: 0.6),
                     ],
                   ),
-
                 ),
                 child: Stack(
                   alignment: Alignment.center,
@@ -161,76 +162,17 @@ class MusicPlayer extends StatelessWidget {
                   sound.title ?? 'بدون عنوان',
                   style: TextStyle(
                     fontFamily: FontFamily.tajawal,
-                    fontSize: 22.f,
+                    fontSize: 24.f,
                     fontWeight: FontWeight.bold,
-                    color: AppColors.black,
+                    color: AppColors.textPrimary,
                   ),
                   textAlign: TextAlign.center,
-                  maxLines: 3,
-                  overflow: TextOverflow.ellipsis,
                 ),
               ),
 
-              SizedBox(height: 8.h),
+              SizedBox(height: 16.h),
 
-              // Sound metadata (date, views)
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    Icons.visibility,
-                    size: 24.f,
-                    color: AppColors.grey,
-                  ),
-                  SizedBox(width: 6.w),
-                  Text(
-                    sound.visitor_count ?? '0',
-                    style: TextStyle(
-                      fontFamily: FontFamily.tajawal,
-                      fontSize: 17.f,
-                      color: AppColors.grey,
-                    ),
-                  ),
-                  SizedBox(width: 20.w),
-                  Icon(
-                    Icons.calendar_month_outlined,
-                    size: 24.f,
-                    color: AppColors.grey,
-                  ),
-                  SizedBox(width: 6.w),
-                  Text(
-                    _formatDate(sound.date ?? ''),
-                    style: TextStyle(
-                      fontFamily: FontFamily.tajawal,
-                      fontSize: 16.f,
-                      color: AppColors.grey,
-                    ),
-                  ),
-                ],
-              ),
-
-              SizedBox(height: 12.h),
-
-              // Audio player
-              _buildAudioPlayer(context),
-
-
-              // Action buttons (Share)
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  // Share button
-                  _buildActionButton(
-                    icon: Icons.share,
-                    label: 'مشاركة',
-                    onTap: () => _shareSound(context),
-                  ),
-                ],
-              ),
-
-              SizedBox(height: 8.h),
-
-              // Sound summary (if available)
+              // Description directly under title - FULL LENGTH, NO CUT
               if (sound.summary != null && sound.summary!.isNotEmpty)
                 Container(
                   width: double.infinity,
@@ -238,36 +180,382 @@ class MusicPlayer extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: AppColors.cardBackground,
                     borderRadius: BorderRadius.circular(16.r),
- 
+                    boxShadow: [
+                      BoxShadow(
+                        color: AppColors.grey.withValues(alpha: 0.1),
+                        blurRadius: 8,
+                        offset: Offset(0, 2),
+                      ),
+                    ],
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        'الوصف',
-                        style: TextStyle(
-                          fontFamily: FontFamily.tajawal,
-                          fontSize: 16.f,
-                          fontWeight: FontWeight.bold,
-                          color: AppColors.black,
-                        ),
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.description_outlined,
+                            color: AppColors.primary,
+                            size: 22.f,
+                          ),
+                          SizedBox(width: 8.w),
+                          Text(
+                            'الوصف',
+                            style: TextStyle(
+                              fontFamily: FontFamily.tajawal,
+                              fontSize: 18.f,
+                              fontWeight: FontWeight.bold,
+                              color: AppColors.textPrimary,
+                            ),
+                          ),
+                        ],
                       ),
-                      SizedBox(height: 10.h),
-                      Text(
-                        sound.summary!,
-                        style: TextStyle(
-                          fontFamily: FontFamily.tajawal,
-                          fontSize: 14.f,
-                          color: AppColors.grey,
-                          height: 1.6,
+                      SizedBox(height: 12.h),
+                      // Render HTML content instead of plain text
+                      SingleChildScrollView(
+                        scrollDirection: Axis.vertical,
+                        child: Html(
+                          data: sound.summary!,
+                          style: {
+                            "body": Style(
+                              fontFamily: FontFamily.tajawal,
+                              fontSize: FontSize(16.f),
+                              color: AppColors.textPrimary,
+                              lineHeight: LineHeight(1.8),
+                              textAlign: TextAlign.start,
+                            ),
+                            "p": Style(
+                              fontFamily: FontFamily.tajawal,
+                              fontSize: FontSize(16.f),
+                              color: AppColors.textPrimary,
+                              lineHeight: LineHeight(1.8),
+                              textAlign: TextAlign.justify,
+                            ),
+                            "font": Style(
+                              fontFamily: FontFamily.tajawal,
+                              fontSize: FontSize(16.f),
+                              color: AppColors.textPrimary,
+                            ),
+                          },
                         ),
-                        textAlign: TextAlign.start,
                       ),
                     ],
                   ),
                 ),
 
               SizedBox(height: 20.h),
+
+              // Audio player
+              _buildAudioPlayer(context),
+
+              SizedBox(height: 20.h),
+
+              // Metadata and badges section
+              Container(
+                width: double.infinity,
+                padding: EdgeInsets.all(20.w),
+                decoration: BoxDecoration(
+                  color: AppColors.cardBackground,
+                  borderRadius: BorderRadius.circular(16.r),
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppColors.grey.withValues(alpha: 0.1),
+                      blurRadius: 8,
+                      offset: Offset(0, 2),
+                    ),
+                  ],
+                ),
+                child: Column(
+                  children: [
+                    // Date and views
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        // Date
+                        Expanded(
+                          child: Column(
+                            children: [
+                              Icon(
+                                Icons.calendar_today_outlined,
+                                size: 28.f,
+                                color: AppColors.primary,
+                              ),
+                              SizedBox(height: 8.h),
+                              Text(
+                                'تاريخ النشر',
+                                style: TextStyle(
+                                  fontFamily: FontFamily.tajawal,
+                                  fontSize: 14.f,
+                                  color: AppColors.grey,
+                                ),
+                              ),
+                              SizedBox(height: 4.h),
+                              Text(
+                                _formatDateArabic(sound.date ?? ''),
+                                style: TextStyle(
+                                  fontFamily: FontFamily.tajawal,
+                                  fontSize: 15.f,
+                                  fontWeight: FontWeight.bold,
+                                  color: AppColors.textPrimary,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
+                          ),
+                        ),
+                        
+                        // Vertical divider
+                        Container(
+                          height: 60.h,
+                          width: 1.w,
+                          color: AppColors.grey.withValues(alpha: 0.3),
+                        ),
+                        
+                        // Views
+                        Expanded(
+                          child: Column(
+                            children: [
+                              Icon(
+                                Icons.remove_red_eye_outlined,
+                                size: 28.f,
+                                color: AppColors.primary,
+                              ),
+                              SizedBox(height: 8.h),
+                              Text(
+                                'المشاهدات',
+                                style: TextStyle(
+                                  fontFamily: FontFamily.tajawal,
+                                  fontSize: 14.f,
+                                  color: AppColors.grey,
+                                ),
+                              ),
+                              SizedBox(height: 4.h),
+                              Text(
+                                sound.visitor_count ?? '0',
+                                style: TextStyle(
+                                  fontFamily: FontFamily.tajawal,
+                                  fontSize: 15.f,
+                                  fontWeight: FontWeight.bold,
+                                  color: AppColors.textPrimary,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                    
+                    // Badges
+                    if (sound.is_new == true || (sound.priority != null && sound.priority != '0' && sound.priority!.isNotEmpty)) ...[
+                      SizedBox(height: 16.h),
+                      Wrap(
+                        spacing: 12.w,
+                        runSpacing: 8.h,
+                        alignment: WrapAlignment.center,
+                        children: [
+                          if (sound.is_new == true)
+                            Container(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 16.w,
+                                vertical: 8.h,
+                              ),
+                              decoration: BoxDecoration(
+                                color: Colors.green.withValues(alpha: 0.1),
+                                borderRadius: BorderRadius.circular(20.r),
+                                border: Border.all(
+                                  color: Colors.green.withValues(alpha: 0.3),
+                                  width: 1.5,
+                                ),
+                              ),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Icon(
+                                    Icons.new_releases_outlined,
+                                    color: Colors.green,
+                                    size: 20.f,
+                                  ),
+                                  SizedBox(width: 6.w),
+                                  Text(
+                                    'جديد',
+                                    style: TextStyle(
+                                      fontFamily: FontFamily.tajawal,
+                                      fontSize: 15.f,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.green,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          if (sound.priority != null && sound.priority != '0' && sound.priority!.isNotEmpty)
+                            Container(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 16.w,
+                                vertical: 8.h,
+                              ),
+                              decoration: BoxDecoration(
+                                color: AppColors.primary.withValues(alpha: 0.1),
+                                borderRadius: BorderRadius.circular(20.r),
+                                border: Border.all(
+                                  color: AppColors.primary.withValues(alpha: 0.3),
+                                  width: 1.5,
+                                ),
+                              ),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Icon(
+                                    Icons.star_outline_rounded,
+                                    color: AppColors.primary,
+                                    size: 20.f,
+                                  ),
+                                  SizedBox(width: 6.w),
+                                  Text(
+                                    'مميز',
+                                    style: TextStyle(
+                                      fontFamily: FontFamily.tajawal,
+                                      fontSize: 15.f,
+                                      fontWeight: FontWeight.bold,
+                                      color: AppColors.primary,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                        ],
+                      ),
+                    ],
+                  ],
+                ),
+              ),
+
+              SizedBox(height: 20.h),
+
+              // Share button
+              _buildActionButton(
+                icon: Icons.share,
+                label: 'مشاركة',
+                onTap: () => _shareSound(context),
+              ),
+
+              SizedBox(height: 20.h),
+
+              // Additional sound information
+              Container(
+                width: double.infinity,
+                padding: EdgeInsets.all(20.w),
+                decoration: BoxDecoration(
+                  color: AppColors.cardBackground,
+                  borderRadius: BorderRadius.circular(16.r),
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppColors.grey.withValues(alpha: 0.1),
+                      blurRadius: 8,
+                      offset: Offset(0, 2),
+                    ),
+                  ],
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.info_outline,
+                          color: AppColors.primary,
+                          size: 22.f,
+                        ),
+                        SizedBox(width: 8.w),
+                        Text(
+                          'معلومات إضافية',
+                          style: TextStyle(
+                            fontFamily: FontFamily.tajawal,
+                            fontSize: 18.f,
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.textPrimary,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 16.h),
+                    
+                    // Sound ID
+                    if (sound.id != null) ...[
+                      _buildDetailRow('رقم التسجيل', sound.id.toString()),
+                      SizedBox(height: 12.h),
+                    ],
+                    
+                    // File name
+                    if (sound.file != null && sound.file!.isNotEmpty) ...[
+                      _buildDetailRow('اسم الملف', sound.file!),
+                      SizedBox(height: 12.h),
+                    ],
+                    
+                    // Priority
+                    if (sound.priority != null && sound.priority!.isNotEmpty && sound.priority != '0') ...[
+                      _buildDetailRow('الأولوية', sound.priority!),
+                      SizedBox(height: 12.h),
+                    ],
+                    
+                    // Category title (if available)
+                    if (categoryTitle != null && categoryTitle!.isNotEmpty) ...[
+                      _buildDetailRow('القسم', categoryTitle!),
+                      SizedBox(height: 12.h),
+                    ],
+                    
+                    // Status indicators
+                    if (sound.is_new == true) ...[
+                      _buildStatusRow('حالة', '🆕 جديد', Colors.green),
+                      SizedBox(height: 12.h),
+                    ],
+                    
+                    // Sound URL (shortened and clickable)
+                    if (sound.sound_file_url != null && sound.sound_file_url!.isNotEmpty) ...[
+                      _buildClickableUrlRow(
+                        'رابط التسجيل',
+                        sound.sound_file_url!,
+                      ),
+                      SizedBox(height: 12.h),
+                    ],
+                    
+                    // Publisher ID
+                    if (sound.publisherId != null && sound.publisherId != '0' && sound.publisherId!.isNotEmpty) ...[
+                      _buildDetailRow('معرف الناشر', sound.publisherId!),
+                      SizedBox(height: 12.h),
+                    ],
+                    
+                    // Sound Source
+                    if (sound.soundSource != null && sound.soundSource!.isNotEmpty) ...[
+                      _buildDetailRow('المصدر', sound.soundSource!),
+                      SizedBox(height: 12.h),
+                    ],
+                    
+                    // Sound Source URL
+                    if (sound.soundSourceUrl != null && sound.soundSourceUrl!.isNotEmpty) ...[
+                      _buildClickableUrlRow(
+                        'رابط المصدر',
+                        sound.soundSourceUrl!,
+                      ),
+                      SizedBox(height: 12.h),
+                    ],
+                    
+                    // YouTube ID
+                    if (sound.soundYoutubeId != null && sound.soundYoutubeId!.isNotEmpty) ...[
+                      _buildDetailRow('معرف YouTube', sound.soundYoutubeId!),
+                      SizedBox(height: 12.h),
+                    ],
+                    
+                    // Sound Picture
+                    if (sound.soundPic != null && sound.soundPic!.isNotEmpty && sound.soundPic != 'default.jpg') ...[
+                      _buildDetailRow('صورة الصوت', sound.soundPic!),
+                      SizedBox(height: 12.h),
+                    ],
+                  ],
+                ),
+              ),
+
+              SizedBox(height: 30.h),
             ],
           ),
         ),
@@ -357,13 +645,158 @@ class MusicPlayer extends StatelessWidget {
     );
   }
 
-  /// Formats date to show only year-month-day (YYYY-MM-DD)
-  String _formatDate(String dateString) {
+  /// Formats date in Arabic format
+  String _formatDateArabic(String dateString) {
     try {
       final date = DateTime.parse(dateString);
-      return '${date.year}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}';
+      final months = [
+        'يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو',
+        'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'
+      ];
+      return '${date.day} ${months[date.month - 1]} ${date.year}';
     } catch (e) {
       return dateString;
     }
+  }
+  
+  /// Builds a detail row with label and value
+  Widget _buildDetailRow(String label, String value, {bool isUrl = false}) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Expanded(
+          flex: 2,
+          child: Text(
+            label,
+            style: TextStyle(
+              fontFamily: FontFamily.tajawal,
+              fontSize: 14.f,
+              fontWeight: FontWeight.w600,
+              color: AppColors.grey,
+            ),
+          ),
+        ),
+        SizedBox(width: 8.w),
+        Expanded(
+          flex: 3,
+          child: Text(
+            value,
+            style: TextStyle(
+              fontFamily: FontFamily.tajawal,
+              fontSize: 14.f,
+              fontWeight: FontWeight.w500,
+              color: isUrl ? AppColors.primary : AppColors.textPrimary,
+              decoration: isUrl ? TextDecoration.underline : null,
+            ),
+            textAlign: TextAlign.start,
+          ),
+        ),
+      ],
+    );
+  }
+  
+  /// Shortens URL for display
+  String _shortenUrl(String url) {
+    if (url.length <= 40) return url;
+    return '${url.substring(0, 37)}...';
+  }
+  
+  /// Builds a clickable URL row
+  Widget _buildClickableUrlRow(String label, String url) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Expanded(
+          flex: 2,
+          child: Text(
+            label,
+            style: TextStyle(
+              fontFamily: FontFamily.tajawal,
+              fontSize: 14.f,
+              fontWeight: FontWeight.w600,
+              color: AppColors.grey,
+            ),
+          ),
+        ),
+        SizedBox(width: 8.w),
+        Expanded(
+          flex: 3,
+          child: InkWell(
+            onTap: () => _launchUrl(url),
+            child: Text(
+              _shortenUrl(url),
+              style: TextStyle(
+                fontFamily: FontFamily.tajawal,
+                fontSize: 14.f,
+                fontWeight: FontWeight.w500,
+                color: AppColors.primary,
+                decoration: TextDecoration.underline,
+              ),
+              textAlign: TextAlign.start,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+  
+  /// Launches URL in browser
+  Future<void> _launchUrl(String urlString) async {
+    try {
+      final Uri url = Uri.parse(urlString);
+      if (await canLaunchUrl(url)) {
+        await launchUrl(
+          url,
+          mode: LaunchMode.externalApplication,
+        );
+      } else {
+        // Show error message if URL can't be launched
+        debugPrint('Could not launch $urlString');
+      }
+    } catch (e) {
+      debugPrint('Error launching URL: $e');
+    }
+  }
+  
+  /// Builds a status row with colored indicator
+  Widget _buildStatusRow(String label, String value, Color color) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Expanded(
+          flex: 2,
+          child: Text(
+            label,
+            style: TextStyle(
+              fontFamily: FontFamily.tajawal,
+              fontSize: 14.f,
+              fontWeight: FontWeight.w600,
+              color: AppColors.grey,
+            ),
+          ),
+        ),
+        SizedBox(width: 8.w),
+        Expanded(
+          flex: 3,
+          child: Container(
+            padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
+            decoration: BoxDecoration(
+              color: color.withValues(alpha: 0.1),
+              borderRadius: BorderRadius.circular(8.r),
+              border: Border.all(color: color.withValues(alpha: 0.3)),
+            ),
+            child: Text(
+              value,
+              style: TextStyle(
+                fontFamily: FontFamily.tajawal,
+                fontSize: 14.f,
+                fontWeight: FontWeight.bold,
+                color: color,
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
   }
 }

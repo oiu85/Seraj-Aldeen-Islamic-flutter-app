@@ -6,13 +6,13 @@ import 'package:seraj_aldean_flutter_app/config/appconfig/app_colors.dart';
 import 'package:seraj_aldean_flutter_app/core/responsive/screen_util_res.dart';
 import 'package:seraj_aldean_flutter_app/core/shared/widgets/app_scaffold.dart';
 import 'package:seraj_aldean_flutter_app/core/shared/widgets/ui_status_handling.dart';
+import 'package:seraj_aldean_flutter_app/gen/fonts.gen.dart';
 
 import '../bloc/sounds_bloc.dart';
 import '../bloc/sounds_event.dart';
 import '../bloc/sounds_state.dart';
 import '../widgets/sound_card.dart';
 import '../widgets/sub_desc_card.dart';
-import '../widgets/sub_sounds_row_section_card.dart';
 
 class SubCategorySounds extends StatelessWidget {
   const SubCategorySounds({super.key});
@@ -71,6 +71,7 @@ class _SubCategorySoundsContentState extends State<_SubCategorySoundsContent> {
           LoadCategoryContentEvent(
             categoryId: widget.categoryId,
             page: state.currentPage + 1,
+            perPage: 6,
           ),
         );
       }
@@ -110,70 +111,76 @@ class _SubCategorySoundsContentState extends State<_SubCategorySoundsContent> {
             );
           }
 
-          if (state.status.isSuccess() && state.categoryContent.isNotEmpty) {
-            return SingleChildScrollView(
-              controller: _scrollController,
-              child: Column(
-                children: [
-                  SizedBox(height: 40.h),
-                  // Show description card only if category has a note
-                  if (state.categoryInfo?.note != null && 
-                      state.categoryInfo!.note!.isNotEmpty)
-                    SubDescCard(
-                      title: state.categoryInfo?.title ?? widget.categoryTitle,
-                      content: state.categoryInfo?.note ?? '',
-                    ),
-                  SizedBox(height: 40.h),
-                  // Display sounds in groups of 3
-                  ...List.generate(
-                    (state.categoryContent.length / 3).ceil(),
-                    (index) {
-                      final startIndex = index * 3;
-                      final endIndex = (startIndex + 3).clamp(0, state.categoryContent.length);
-                      final soundsInRow = state.categoryContent.sublist(startIndex, endIndex);
-
-                      return Padding(
-                        padding: EdgeInsets.only(bottom: 20.h),
-                        child: SubSoundsRowSectionCard(
-                          title: state.categoryInfo?.title ?? widget.categoryTitle,
-                          onSeeAll: () {},
-                          sectionIndex: index,
-                          cards: [
-                            ...soundsInRow.asMap().entries.map((entry) {
-                              final sound = entry.value;
-                              return [
-                                SoundCard(
-                                  title: sound.title ?? "",
-                                  visitorCount: sound.visitor_count ?? "0",
-                                  date: sound.date ?? "",
-                                  soundFileUrl: sound.sound_file_url,
-                                  soundId: sound.id,
-                                  soundItem: sound,
-                                  categoryTitle: state.categoryInfo?.title ?? widget.categoryTitle,
-                                ),
-                                if (entry.key < soundsInRow.length - 1)
-                                  SizedBox(width: 12.w),
-                              ];
-                            }).expand((element) => element),
-                          ],
-                        ),
-                      );
-                    },
+          return Column(
+            children: [
+              SizedBox(height: 20.h),
+              
+              // Description card (only if available)
+              if (state.categoryInfo?.note != null && 
+                  state.categoryInfo!.note!.isNotEmpty)
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16.w),
+                  child: SubDescCard(
+                    title: state.categoryInfo?.title ?? widget.categoryTitle,
+                    content: state.categoryInfo?.note ?? '',
                   ),
-                  // Loading more indicator
-                  if (state.status.isLoadingMore())
-                    Padding(
-                      padding: EdgeInsets.all(20.p),
-                      child: const CircularProgressIndicator(),
-                    ),
-                  SizedBox(height: 20.h),
-                ],
-              ),
-            );
-          }
+                ),
+              
+              if (state.categoryInfo?.note != null && 
+                  state.categoryInfo!.note!.isNotEmpty)
+                SizedBox(height: 20.h),
 
-          return const Center(
-            child: Text('لا توجد بيانات'),
+              // GridView for sounds
+              Expanded(
+                child: state.categoryContent.isEmpty
+                    ? Center(
+                        child: Text(
+                          'لا توجد بيانات',
+                          style: TextStyle(
+                            fontFamily: FontFamily.tajawal,
+                            fontSize: 16.f,
+                            color: AppColors.grey,
+                          ),
+                        ),
+                      )
+                    : RefreshIndicator(
+                        onRefresh: () async {
+                          context.read<SoundsBloc>().add(
+                            LoadCategoryContentEvent(categoryId: widget.categoryId),
+                          );
+                        },
+                        child: GridView.builder(
+                          controller: _scrollController,
+                          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
+                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            crossAxisSpacing: 12.w,
+                            mainAxisSpacing: 16.h,
+                            childAspectRatio: 0.85,
+                          ),
+                          itemCount: state.categoryContent.length + 
+                              (state.status.isLoadingMore() ? 2 : 0),
+                          itemBuilder: (context, index) {
+                            // Show loading indicator at the end
+                            if (index >= state.categoryContent.length) {
+                              return const Center(child: CircularProgressIndicator());
+                            }
+                            
+                            final sound = state.categoryContent[index];
+                            return SoundCard(
+                              title: sound.title ?? "",
+                              visitorCount: sound.visitor_count ?? "0",
+                              date: sound.date ?? "",
+                              soundFileUrl: sound.sound_file_url,
+                              soundId: sound.id,
+                              soundItem: sound,
+                              categoryTitle: state.categoryInfo?.title ?? widget.categoryTitle,
+                            );
+                          },
+                        ),
+                      ),
+              ),
+            ],
           );
         },
       ),

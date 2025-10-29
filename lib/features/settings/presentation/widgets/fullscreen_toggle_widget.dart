@@ -52,7 +52,7 @@ class FullScreenToggleWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'العرض بملئ الشاشة',
+                      'العرض بمل ء الشاشة',
                       style: TextStyle(
                         fontSize: 16.f,
                         fontWeight: FontWeight.bold,
