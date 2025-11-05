@@ -140,7 +140,7 @@ class SettingsPage extends StatelessWidget {
                 ),
                 SizedBox(height: 4.h),
                 Text(
-                  "SWBAI",
+                  "SWB",
                   style: TextStyle(
                     fontSize: 18.f,
                     fontWeight: FontWeight.bold,
