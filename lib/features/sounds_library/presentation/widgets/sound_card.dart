@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:seraj_aldean_flutter_app/core/responsive/screen_util_res.dart';
 import '../../../../config/appconfig/app_colors.dart';
+import '../../../../core/utils/share_utils.dart';
 import '../../../../gen/fonts.gen.dart';
 import '../../data/models/sound_model.dart';
 import '../bloc/sounds_bloc.dart';
@@ -144,13 +145,13 @@ class SoundCard extends StatelessWidget {
                           color: AppColors.grey,
                         ),
                       ),
-                      SizedBox(width: 16.w),
+                      SizedBox(width: 8.w),
                       Icon(
                         Icons.access_time,
                         size: 16.f,
                         color: AppColors.primary,
                       ),
-                      SizedBox(width: 6.w),
+                      SizedBox(width: 4.w),
                       Expanded(
                         child: Text(
                           _formatDate(date),
@@ -163,6 +164,26 @@ class SoundCard extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
+                      // Share button
+                      if (soundId != null)
+                        IconButton(
+                          icon: Icon(
+                            Icons.share,
+                            size: 18.f,
+                            color: AppColors.primary,
+                          ),
+                          onPressed: () {
+                            ShareUtils.showShareOptions(
+                              context: context,
+                              type: ContentType.sound,
+                              id: soundId!,
+                              title: title,
+                              additionalText: categoryTitle,
+                            );
+                          },
+                          padding: EdgeInsets.zero,
+                          constraints: const BoxConstraints(),
+                        ),
                     ],
                   ),
                 ),

@@ -4,6 +4,7 @@ import 'package:share_plus/share_plus.dart';
 
 import '../../../../gen/fonts.gen.dart';
 import '../../../../config/appconfig/app_colors.dart';
+import '../../../../core/utils/share_utils.dart';
 import '../bloc/html_viewer_bloc.dart';
 import '../bloc/html_viewer_event.dart';
 import '../bloc/html_viewer_state.dart';
@@ -110,29 +111,44 @@ class BookOptionsToolbar extends StatelessWidget {
   /// Share article content
   void _shareArticle(BuildContext context, HtmlViewerState state) {
     final title = state.htmlContent?.title ?? 'مقال';
-    final summary = state.htmlContent?.summary;
+    final articleId = state.htmlContent?.articleId;
     
-    // Prepare share text
-    String shareText = 'من تطبيق الشيخ عبدالله سراج الدين رحمه الله\n\n';
-    shareText += '📖 $title\n\n';
-    
-    if (summary != null && summary.isNotEmpty) {
-      shareText += summary;
+    // Check if we have an article ID to share with URL
+    if (articleId != null) {
+      // Use the new ShareUtils to show share options with proper URL
+      ShareUtils.showShareOptions(
+        context: context,
+        type: ContentType.article,
+        id: articleId,
+        title: title,
+        additionalText: state.htmlContent?.summary,
+      );
     } else {
-      // Extract first 200 characters from content if no summary
-      final content = state.htmlContent?.htmlContent ?? '';
-      final plainText = content.replaceAll(RegExp(r'<[^>]*>'), '');
-      final excerpt = plainText.length > 200 
-          ? '${plainText.substring(0, 200)}...' 
-          : plainText;
-      shareText += excerpt;
+      // Fallback to old share method if no article ID
+      final summary = state.htmlContent?.summary;
+      
+      // Prepare share text
+      String shareText = 'من تطبيق الشيخ عبدالله سراج الدين رحمه الله\n\n';
+      shareText += '📖 $title\n\n';
+      
+      if (summary != null && summary.isNotEmpty) {
+        shareText += summary;
+      } else {
+        // Extract first 200 characters from content if no summary
+        final content = state.htmlContent?.htmlContent ?? '';
+        final plainText = content.replaceAll(RegExp(r'<[^>]*>'), '');
+        final excerpt = plainText.length > 200 
+            ? '${plainText.substring(0, 200)}...' 
+            : plainText;
+        shareText += excerpt;
+      }
+      
+      // Share the content without URL
+      Share.share(
+        shareText,
+        subject: title,
+      );
     }
-    
-    // Share the content
-    Share.share(
-      shareText,
-      subject: title,
-    );
   }
 
   Widget _buildToolbarButton({

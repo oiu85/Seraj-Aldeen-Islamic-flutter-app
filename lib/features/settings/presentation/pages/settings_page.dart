@@ -69,6 +69,11 @@ class SettingsPage extends StatelessWidget {
                   
                   SizedBox(height: 10.h),
                   
+                  // Company Information
+                  _buildCompanyInfo(),
+                  
+                  SizedBox(height: 10.h),
+                  
                   // Download Path Widget
                   const DownloadPathWidget(),
                   
@@ -84,6 +89,87 @@ class SettingsPage extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildCompanyInfo() {
+    return Container(
+      margin: EdgeInsets.only(bottom: 12.h),
+      padding: EdgeInsets.all(16.w),
+      decoration: BoxDecoration(
+        color: AppColors.cardBackground,
+        borderRadius: BorderRadius.circular(20.r),
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.black.withValues(alpha: 0.05),
+            blurRadius: 4,
+            offset: const Offset(0, 1),
+          ),
+        ],
+      ),
+      child: Row(
+        children: [
+          // Icon
+          Container(
+            padding: EdgeInsets.all(12.w),
+            decoration: BoxDecoration(
+              color: AppColors.primary.withValues(alpha: 0.1),
+              borderRadius: BorderRadius.circular(12.r),
+            ),
+            child: Icon(
+              Icons.business_outlined,
+              color: AppColors.primary,
+              size: 24.f,
+            ),
+          ),
+          SizedBox(width: 16.w),
+          
+          // Company Info
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "تطوير وتصميم",
+                  style: TextStyle(
+                    fontSize: 14.f,
+                    fontFamily: FontFamily.tajawal,
+                    color: AppColors.textSecondary,
+                  ),
+                ),
+                SizedBox(height: 4.h),
+                Text(
+                  "SWBAI",
+                  style: TextStyle(
+                    fontSize: 18.f,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: FontFamily.tajawal,
+                    color: AppColors.primary,
+                    letterSpacing: 1.2,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          
+          // Badge or Logo placeholder
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
+            decoration: BoxDecoration(
+              color: AppColors.primary.withValues(alpha: 0.1),
+              borderRadius: BorderRadius.circular(8.r),
+            ),
+            child: Text(
+              "©",
+              style: TextStyle(
+                fontSize: 16.f,
+                fontWeight: FontWeight.bold,
+                color: AppColors.primary,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -1,6 +1,6 @@
 class ApiConfig {
   // Base URL
-  static const String baseUrl = "https://srajalden.swbai.com/api";
+  static const String baseUrl = "https://api.srajalden.com/api";
   
   // API Endpoints
   static const String menusBottomHeader = "/menus/position/bottom_header";

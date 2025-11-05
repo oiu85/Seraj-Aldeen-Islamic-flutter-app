@@ -6,6 +6,7 @@ import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../config/appconfig/app_colors.dart';
+import '../../../../core/utils/share_utils.dart';
 import '../../../../gen/fonts.gen.dart';
 import '../../data/models/sound_model.dart';
 import 'real_media_player.dart';
@@ -23,24 +24,39 @@ class MusicPlayer extends StatelessWidget {
 
   // Function to handle sharing
   void _shareSound(BuildContext context) {
-    final String soundUrl = sound.sound_file_url ?? '';
+    final soundId = sound.id;
     final String title = sound.title ?? 'مشاركة صوت';
-
-    if (soundUrl.isNotEmpty) {
-      Share.share(soundUrl, subject: title);
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            'لا يمكن مشاركة هذا الملف',
-            style: TextStyle(
-              fontFamily: FontFamily.tajawal,
-              fontSize: 14.f,
-            ),
-          ),
-          backgroundColor: Colors.red,
-        ),
+    
+    // Check if we have a sound ID to share with proper URL
+    if (soundId != null) {
+      // Use the new ShareUtils to show share options with proper URL
+      ShareUtils.showShareOptions(
+        context: context,
+        type: ContentType.sound,
+        id: soundId,
+        title: title,
+        additionalText: sound.summary ?? categoryTitle,
       );
+    } else {
+      // Fallback to sharing just the audio file URL if no ID
+      final String soundUrl = sound.sound_file_url ?? '';
+      
+      if (soundUrl.isNotEmpty) {
+        Share.share(soundUrl, subject: title);
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              'لا يمكن مشاركة هذا الملف',
+              style: TextStyle(
+                fontFamily: FontFamily.tajawal,
+                fontSize: 14.f,
+              ),
+            ),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
     }
   }
 

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:seraj_aldean_flutter_app/core/responsive/screen_util_res.dart';
 
 import '../../../../config/appconfig/app_colors.dart';
+import '../../../../core/utils/share_utils.dart';
 import '../../../../features/html_viewer/domain/models/html_content.dart';
 import '../../../../features/html_viewer/presentation/pages/html_book_viewer_page.dart';
 import '../../../../gen/fonts.gen.dart';
@@ -52,6 +53,7 @@ Widget lessonCardBuild({
         width: width,
         height: height,
         isLoading: isLoading,
+        articleId: articleId,
         onTap: articleId != null ? () {
           context.read<BenefitsBloc>().add(
             LoadArticleDetailEvent(articleId: articleId),
@@ -71,6 +73,7 @@ Widget _buildCard({
   required double width,
   required double height,
   required bool isLoading,
+  required int? articleId,
   VoidCallback? onTap,
 }) {
   // Using extension methods for easier access
@@ -138,26 +141,51 @@ Widget _buildCard({
             ),
           ),
           
-          // View count - moved to bottom
+          // View count and share button - moved to bottom
           Padding(
             padding: EdgeInsets.only(right: 8.p, left: 8.p, bottom: 8.h),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Icon(
-                  Icons.remove_red_eye_outlined,
-                  size: 18.f,
-                  color: AppColors.grey,
+                // View count
+                Row(
+                  children: [
+                    Icon(
+                      Icons.remove_red_eye_outlined,
+                      size: 18.f,
+                      color: AppColors.grey,
+                    ),
+                    SizedBox(width: 4.w),
+                    Text(
+                      viewCont,
+                      style: TextStyle(
+                        fontSize: 14.f,
+                        fontFamily: FontFamily.tajawal,
+                        color: AppColors.grey,
+                      ),
+                    ),
+                  ],
                 ),
-                SizedBox(width: 4.w),
-                Text(
-                  viewCont,
-                  style: TextStyle(
-                    fontSize: 14.f,
-                    fontFamily: FontFamily.tajawal,
-                    color: AppColors.grey,
+                // Share button
+                if (articleId != null)
+                  IconButton(
+                    icon: Icon(
+                      Icons.share,
+                      size: 20.f,
+                      color: AppColors.primary,
+                    ),
+                    onPressed: () {
+                      ShareUtils.showShareOptions(
+                        context: context,
+                        type: ContentType.article,
+                        id: articleId,
+                        title: title,
+                        additionalText: lesson,
+                      );
+                    },
+                    padding: EdgeInsets.zero,
+                    constraints: const BoxConstraints(),
                   ),
-                ),
               ],
             ),
           ),

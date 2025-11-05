@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:seraj_aldean_flutter_app/core/responsive/screen_util_res.dart';
 
 import '../../../../config/appconfig/app_colors.dart';
+import '../../../../core/utils/share_utils.dart';
 import '../../../../gen/fonts.gen.dart';
 import '../bloc/books_bloc.dart';
 import '../bloc/books_event.dart';
@@ -236,11 +237,12 @@ class _BookInfoBottomSheetState extends State<BookInfoBottomSheet> {
 
         SizedBox(height: 10.h),
 
-        // Visitor count
-        if (book.bookVisitor != null)
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+        // Visitor count and share button
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            // Visitor count
+            if (book.bookVisitor != null) ...[
               Icon(Icons.remove_red_eye_outlined, size: 20.f, color: AppColors.grey),
               SizedBox(width: 5.w),
               Text(
@@ -252,7 +254,52 @@ class _BookInfoBottomSheetState extends State<BookInfoBottomSheet> {
                 ),
               ),
             ],
-          ),
+            
+            // Share button
+            if (book.bookId != null) ...[
+              SizedBox(width: 20.w),
+              InkWell(
+                onTap: () {
+                  ShareUtils.showShareOptions(
+                    context: context,
+                    type: ContentType.book,
+                    id: book.bookId!,
+                    title: book.bookTitle ?? 'كتاب',
+                    additionalText: book.bookSummary,
+                  );
+                },
+                borderRadius: BorderRadius.circular(20.r),
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
+                  decoration: BoxDecoration(
+                    color: AppColors.primary.withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(20.r),
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(
+                        Icons.share,
+                        size: 18.f,
+                        color: AppColors.primary,
+                      ),
+                      SizedBox(width: 5.w),
+                      Text(
+                        'مشاركة',
+                        style: TextStyle(
+                          fontSize: 14.f,
+                          fontFamily: FontFamily.tajawal,
+                          color: AppColors.primary,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ],
+        ),
       ],
     );
   }

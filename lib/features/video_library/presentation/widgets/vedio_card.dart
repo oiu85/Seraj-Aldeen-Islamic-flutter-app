@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:seraj_aldean_flutter_app/core/responsive/screen_util_res.dart';
 
 import '../../../../config/appconfig/app_colors.dart';
+import '../../../../core/utils/share_utils.dart';
 import '../../../../gen/assets.gen.dart';
 import '../../../../gen/fonts.gen.dart';
 
@@ -10,16 +11,9 @@ class VideoCard extends StatelessWidget {
   final String? visitorCount;
   final String? date;
   final VoidCallback? onTap;
-  final VoidCallback? onPlayPause;
-  final VoidCallback? onDownload;
-  final bool isPlaying;
-  final bool isLoading;
-  final bool isDownloading;
-  final bool hasError;
-  final String? duration;
-  final String? position;
   final double? width;
   final double? height;
+  final int? videoId; // Added for share functionality
 
   const VideoCard({
     super.key,
@@ -27,16 +21,9 @@ class VideoCard extends StatelessWidget {
     this.visitorCount,
     this.date,
     this.onTap,
-    this.onPlayPause,
-    this.onDownload,
-    this.isPlaying = false,
-    this.isLoading = false,
-    this.isDownloading = false,
-    this.hasError = false,
-    this.duration,
-    this.position,
     this.width,
     this.height,
+    this.videoId,
   });
 
   @override
@@ -105,7 +92,7 @@ class VideoCard extends StatelessWidget {
                         size: 16.f,
                         color: AppColors.primary,
                       ),
-                      SizedBox(width: 6.w),
+                      SizedBox(width: 4.w),
                       Expanded(
                         child: Text(
                           _formatDate(date),
@@ -117,6 +104,25 @@ class VideoCard extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
+                      // Share button
+                      if (videoId != null)
+                        IconButton(
+                          icon: Icon(
+                            Icons.share,
+                            size: 18.f,
+                            color: AppColors.primary,
+                          ),
+                          onPressed: () {
+                            ShareUtils.showShareOptions(
+                              context: context,
+                              type: ContentType.video,
+                              id: videoId!,
+                              title: title,
+                            );
+                          },
+                          padding: EdgeInsets.zero,
+                          constraints: const BoxConstraints(),
+                        ),
                     ],
                   ),
                 ),
@@ -153,159 +159,8 @@ class VideoCard extends StatelessWidget {
     );
   }
 
-  Widget _buildAudioPlayer() {
-    return Container(
-      width: double.infinity,
-      height: 36.h,
-      decoration: _buildPlayerDecoration(),
-      child: Row(
-        children: [
-          _buildPlayButton(),
-          _buildDurationText(),
-          _buildDownloadButton(),
-        ],
-      ),
-    );
-  }
-
-  BoxDecoration _buildPlayerDecoration() {
-    return BoxDecoration(
-      color: AppColors.grey.withAlpha(20),
-      borderRadius: BorderRadius.circular(18.r),
-      boxShadow: [
-        BoxShadow(
-          color: AppColors.black.withValues(alpha: 0.1),
-          blurRadius: 4.r,
-          offset: Offset(0, 2.h),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildPlayButton() {
-    return InkWell(
-      onTap: (isLoading || isDownloading) ? null : onPlayPause,
-      child: Container(
-        width: 28.w,
-        height: 28.w,
-        margin: EdgeInsets.all(4.w),
-        decoration: _buildPlayButtonDecoration(),
-        child: _buildPlayButtonContent(),
-      ),
-    );
-  }
-
-  BoxDecoration _buildPlayButtonDecoration() {
-    return BoxDecoration(
-      color: AppColors.primary,
-      shape: BoxShape.circle,
-      boxShadow: [
-        BoxShadow(
-          color: AppColors.primary,
-          blurRadius: 6.r,
-          offset: Offset(0, 2.h),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildPlayButtonContent() {
-    return Stack(
-      alignment: Alignment.center,
-      children: [
-        if (isDownloading || isLoading) _buildLoadingIndicator(),
-        if (!isDownloading && !isLoading) _buildPlayIcon(),
-      ],
-    );
-  }
-
-  Widget _buildLoadingIndicator() {
-    return SizedBox(
-      width: 12.w,
-      height: 12.w,
-      child: CircularProgressIndicator(
-        strokeWidth: 2.w,
-        valueColor: AlwaysStoppedAnimation<Color>(AppColors.white),
-      ),
-    );
-  }
-
-  Widget _buildPlayIcon() {
-    return Icon(
-      hasError ? Icons.refresh : (isPlaying ? Icons.pause : Icons.play_arrow),
-      size: 14.w,
-      color: AppColors.white,
-    );
-  }
-
-  Widget _buildDurationText() {
-    return Expanded(
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 8.w),
-        child: Text(
-          _getDurationText(),
-          style: _getDurationTextStyle(),
-        ),
-      ),
-    );
-  }
-
-  String _getDurationText() {
-    if (isDownloading) return 'جاري التحميل...';
-    if (hasError) return 'خطأ';
-    if (duration != null && position != null) return '$position/$duration';
-    return '0:00/0:00';
-  }
-
-  TextStyle _getDurationTextStyle() {
-    Color textColor = const Color(0xFF333333);
-    if (isDownloading) textColor = AppColors.primary;
-    if (hasError) textColor = Colors.red;
-
-    return TextStyle(
-      fontFamily: FontFamily.tajawal,
-      fontSize: 12.f,
-      color: textColor,
-      fontWeight: FontWeight.w500,
-    );
-  }
-
-  Widget _buildDownloadButton() {
-    return GestureDetector(
-      onTap: isDownloading ? null : onDownload,
-      child: Container(
-        width: 28.w,
-        height: 28.w,
-        margin: EdgeInsets.all(4.w),
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            if (!isDownloading) _buildDownloadIcon(),
-            if (isDownloading) _buildDownloadLoadingIndicator(),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildDownloadIcon() {
-    return Icon(
-      Icons.download,
-      size: 16.w,
-      color: const Color(0xFF333333),
-    );
-  }
-
-  Widget _buildDownloadLoadingIndicator() {
-    return SizedBox(
-      width: 12.w,
-      height: 12.w,
-      child: CircularProgressIndicator(
-        strokeWidth: 2.w,
-        valueColor: AlwaysStoppedAnimation<Color>(AppColors.primary),
-      ),
-    );
-  }
+  // Video download and audio player functionality removed - not used in video cards
+  // All related helper methods removed for cleaner code
 
   String _formatDate(String? date) {
     if (date == null || date.isEmpty) return 'غير محدد';

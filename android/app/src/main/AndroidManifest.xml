@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"/>
     
     <application
-        android:label="الشيخ عبد الله سراج الدين رحمه الله"
+        android:label="الشيخ عبد الله سراج الدين"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
         android:requestLegacyExternalStorage="true">

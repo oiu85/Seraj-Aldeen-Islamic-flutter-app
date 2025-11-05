@@ -3,6 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:seraj_aldean_flutter_app/core/responsive/screen_util_res.dart';
 
 import '../../../../config/appconfig/app_colors.dart';
+import '../../../../core/utils/share_utils.dart';
 import '../../../../gen/fonts.gen.dart';
 
 Widget bookCardBuild({
@@ -16,6 +17,7 @@ Widget bookCardBuild({
   bool isLoading = false,
   bool isSoundBook = false,
   VoidCallback? onTap,
+  int? bookId, // Added for share functionality
 }) {
   return SizedBox(
     height: height,
@@ -58,26 +60,49 @@ Widget bookCardBuild({
           SizedBox(height: 8.h),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 4.w),
-            child: Center(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    viewCont,
-                    style: TextStyle(
-                      fontSize: 16.f,
-                      fontFamily: FontFamily.tajawal,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                // Share button
+                if (bookId != null)
+                  IconButton(
+                    icon: Icon(
+                      Icons.share,
+                      size: 20.f,
+                      color: AppColors.primary,
+                    ),
+                    onPressed: () {
+                      ShareUtils.showShareOptions(
+                        context: context,
+                        type: ContentType.book,
+                        id: bookId,
+                        title: title,
+                        additionalText: book,
+                      );
+                    },
+                    padding: EdgeInsets.zero,
+                    constraints: const BoxConstraints(),
+                  ),
+                // View count
+                Row(
+                  children: [
+                    Icon(
+                      Icons.remove_red_eye_outlined,
+                      size: 20.f,
                       color: AppColors.grey,
                     ),
-                  ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: Icon(Icons.remove_red_eye_outlined),
-                    iconSize: 22.f,
-                    color: AppColors.grey,
-                  ),
-                ],
-              ),
+                    SizedBox(width: 4.w),
+                    Text(
+                      viewCont,
+                      style: TextStyle(
+                        fontSize: 16.f,
+                        fontFamily: FontFamily.tajawal,
+                        color: AppColors.grey,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ),
           Expanded(

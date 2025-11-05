@@ -208,6 +208,7 @@ class _BooksPageState extends State<BooksPage> {
             height: 10.h,
             book: book.title ?? '',
             bookPicUrl: book.bookPicUrl,
+            bookId: book.id,
             onTap: () {
               showModalBottomSheet(
                 context: context,

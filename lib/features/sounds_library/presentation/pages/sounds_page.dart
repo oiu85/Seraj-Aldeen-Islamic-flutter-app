@@ -367,6 +367,7 @@ class _SoundsPageContentState extends State<_SoundsPageContent> {
                         width: double.infinity,
                         height: double.infinity,
                         bookPicUrl :Assets.images.bookColored.path,
+                        bookId: book.id,
                         isSoundBook: true,
                         isLoading: false,
                         onTap: () {

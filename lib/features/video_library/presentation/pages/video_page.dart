@@ -153,6 +153,7 @@ class _VideoPageState extends State<VideoPage> with SingleTickerProviderStateMix
                                 title: video.title ?? '',
                                 visitorCount: video.visitor_count,
                                 date: video.date,
+                                videoId: video.id,
                                 onTap: () {
                                   if (video.id != null) {
                                     Get.toNamed(
