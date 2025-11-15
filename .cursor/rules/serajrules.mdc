@@ -1,7 +1,7 @@
 ---
 alwaysApply: true
 we follow the Design Principles of Flutter in our case is DDD
-which is Domain Driven Design 
+which is Domain Driven Design A
 in each feature we have the following layers
 1. Domain Layer -> repositories types (abstract classes)
 2. Data Layer - > models(using freezed), repositories implementation , di for injection (using get_it)  , services if needed , 

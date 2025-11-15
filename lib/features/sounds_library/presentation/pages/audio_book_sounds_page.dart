@@ -160,7 +160,6 @@ class _AudioBookSoundsPageState extends State<AudioBookSoundsPage> {
                         ),
                       ),
                     SizedBox(height: 12.h),
-
                     // Grid of sound cards
                     Expanded(
                       child: NotificationListener<ScrollNotification>(
@@ -196,7 +195,6 @@ class _AudioBookSoundsPageState extends State<AudioBookSoundsPage> {
                                 ),
                               );
                             }
-
                             final sound = state.categoryContent[index];
                             return SoundCard(
                               title: sound.title ?? '',

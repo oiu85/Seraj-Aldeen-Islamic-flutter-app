@@ -153,7 +153,7 @@ class SettingsPage extends StatelessWidget {
             ),
           ),
           
-          // Badge or Logo placeholder
+          //* Badge or Logo placeholder
           Container(
             padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
             decoration: BoxDecoration(
