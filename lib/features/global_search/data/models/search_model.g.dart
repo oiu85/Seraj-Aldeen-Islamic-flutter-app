@@ -23,10 +23,10 @@ Map<String, dynamic> _$SearchResponseToJson(_SearchResponse instance) =>
     };
 
 _SearchData _$SearchDataFromJson(Map<String, dynamic> json) => _SearchData(
-      keyword: json['keyword'] as String?,
-      search_type: json['search_type'] as String?,
-      sort_by: json['sort_by'] as String?,
-      filters: json['filters'] as String?,
+      keyword: _dynamicToString(json['keyword']),
+      search_type: _dynamicToString(json['search_type']),
+      sort_by: _dynamicToString(json['sort_by']),
+      filters: _dynamicToString(json['filters']),
       total_results: _stringToInt(json['total_results']),
       results: json['results'] == null
           ? null
@@ -82,7 +82,7 @@ _SearchCategory _$SearchCategoryFromJson(Map<String, dynamic> json) =>
           ?.map((e) => SearchResultItem.fromJson(e as Map<String, dynamic>))
           .toList(),
       count: _stringToInt(json['count']),
-      label: json['label'] as String?,
+      label: _dynamicToString(json['label']),
     );
 
 Map<String, dynamic> _$SearchCategoryToJson(_SearchCategory instance) =>
@@ -95,24 +95,24 @@ Map<String, dynamic> _$SearchCategoryToJson(_SearchCategory instance) =>
 _SearchResultItem _$SearchResultItemFromJson(Map<String, dynamic> json) =>
     _SearchResultItem(
       id: _stringToInt(json['id']),
-      title: json['title'] as String?,
-      summary: json['summary'] as String?,
-      description: json['description'] as String?,
-      content: json['content'] as String?,
-      picture: json['picture'] as String?,
-      visitor_count: json['visitor_count'] as String?,
+      title: _dynamicToString(json['title']),
+      summary: _dynamicToString(json['summary']),
+      description: _dynamicToString(json['description']),
+      content: _dynamicToString(json['content']),
+      picture: _dynamicToString(json['picture']),
+      visitor_count: _dynamicToString(json['visitor_count']),
       is_new: _stringToBool(json['is_new']),
-      priority: json['priority'] as String?,
-      date: json['date'] as String?,
+      priority: _dynamicToString(json['priority']),
+      date: _dynamicToString(json['date']),
       category: json['category'] == null
           ? null
           : SearchItemCategory.fromJson(
               json['category'] as Map<String, dynamic>),
-      type: json['type'] as String?,
-      type_label: json['type_label'] as String?,
+      type: _dynamicToString(json['type']),
+      type_label: _dynamicToString(json['type_label']),
       relevance_score: _stringToInt(json['relevance_score']),
-      sound_file_url: json['sound_file_url'] as String?,
-      file: json['file'] as String?,
+      sound_file_url: _dynamicToString(json['sound_file_url']),
+      file: _dynamicToString(json['file']),
     );
 
 Map<String, dynamic> _$SearchResultItemToJson(_SearchResultItem instance) =>
@@ -138,20 +138,20 @@ Map<String, dynamic> _$SearchResultItemToJson(_SearchResultItem instance) =>
 _SearchItemCategory _$SearchItemCategoryFromJson(Map<String, dynamic> json) =>
     _SearchItemCategory(
       cat_id: _stringToInt(json['cat_id']),
-      cat_father_id: json['cat_father_id'] as String?,
-      cat_menus: json['cat_menus'] as String?,
-      cat_title: json['cat_title'] as String?,
-      cat_note: json['cat_note'] as String?,
-      cat_pic: json['cat_pic'] as String?,
-      cat_sup: json['cat_sup'] as String?,
-      cat_date: json['cat_date'] as String?,
+      cat_father_id: _dynamicToString(json['cat_father_id']),
+      cat_menus: _dynamicToString(json['cat_menus']),
+      cat_title: _dynamicToString(json['cat_title']),
+      cat_note: _dynamicToString(json['cat_note']),
+      cat_pic: _dynamicToString(json['cat_pic']),
+      cat_sup: _dynamicToString(json['cat_sup']),
+      cat_date: _dynamicToString(json['cat_date']),
       cat_pic_active: _stringToBool(json['cat_pic_active']),
-      cat_lan: json['cat_lan'] as String?,
-      cat_pos: json['cat_pos'] as String?,
+      cat_lan: _dynamicToString(json['cat_lan']),
+      cat_pos: _dynamicToString(json['cat_pos']),
       cat_active: _stringToBool(json['cat_active']),
       cat_show_menu: _stringToBool(json['cat_show_menu']),
       cat_show_main: _stringToBool(json['cat_show_main']),
-      cat_agent: json['cat_agent'] as String?,
+      cat_agent: _dynamicToString(json['cat_agent']),
     );
 
 Map<String, dynamic> _$SearchItemCategoryToJson(_SearchItemCategory instance) =>

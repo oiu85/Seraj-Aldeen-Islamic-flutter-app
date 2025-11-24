@@ -23,7 +23,7 @@ Map<String, dynamic> _$GalleryResponseToJson(_GalleryResponse instance) =>
     };
 
 _GalleryData _$GalleryDataFromJson(Map<String, dynamic> json) => _GalleryData(
-      type: json['type'] as String?,
+      type: _dynamicToString(json['type']),
       categories: (json['categories'] as List<dynamic>?)
           ?.map((e) => GalleryCategory.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -43,16 +43,16 @@ Map<String, dynamic> _$GalleryDataToJson(_GalleryData instance) =>
 _GalleryCategory _$GalleryCategoryFromJson(Map<String, dynamic> json) =>
     _GalleryCategory(
       id: _stringToInt(json['id']),
-      title: json['title'] as String?,
-      note: json['note'] as String?,
-      position: json['position'] as String?,
-      language: json['language'] as String?,
-      date: json['date'] as String?,
-      menu_id: json['menu_id'] as String?,
+      title: _dynamicToString(json['title']),
+      note: _dynamicToString(json['note']),
+      position: _dynamicToString(json['position']),
+      language: _dynamicToString(json['language']),
+      date: _dynamicToString(json['date']),
+      menu_id: _dynamicToString(json['menu_id']),
       show_in_menu: _stringToBool(json['show_in_menu']),
       show_in_main: _stringToBool(json['show_in_main']),
       content_count: _stringToInt(json['content_count']),
-      type: json['type'] as String?,
+      type: _dynamicToString(json['type']),
       data: (json['data'] as List<dynamic>?)
           ?.map((e) => GalleryItem.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -76,16 +76,17 @@ Map<String, dynamic> _$GalleryCategoryToJson(_GalleryCategory instance) =>
 
 _GalleryItem _$GalleryItemFromJson(Map<String, dynamic> json) => _GalleryItem(
       id: _stringToInt(json['id']),
-      title: json['title'] as String?,
-      summary: json['summary'] as String?,
-      date: json['date'] as String?,
-      visitor_count: json['visitor_count'] as String?,
+      title: _dynamicToString(json['title']),
+      summary: _dynamicToString(json['summary']),
+      date: _dynamicToString(json['date']),
+      visitor_count: _dynamicToString(json['visitor_count']),
       is_new: _stringToBool(json['is_new']),
-      priority: json['priority'],
-      picture: json['picture'] as String?,
+      priority: _dynamicToString(json['priority']),
+      picture: _dynamicToString(json['picture']),
       photo_gallery_pic_thumbnail_url:
-          json['photo_gallery_pic_thumbnail_url'] as String?,
-      photo_gallery_pic_full_url: json['photo_gallery_pic_full_url'] as String?,
+          _dynamicToString(json['photo_gallery_pic_thumbnail_url']),
+      photo_gallery_pic_full_url:
+          _dynamicToString(json['photo_gallery_pic_full_url']),
     );
 
 Map<String, dynamic> _$GalleryItemToJson(_GalleryItem instance) =>
@@ -172,11 +173,11 @@ Map<String, dynamic> _$CategoryContentDataToJson(
 _CategoryInfo _$CategoryInfoFromJson(Map<String, dynamic> json) =>
     _CategoryInfo(
       id: _stringToInt(json['id']),
-      title: json['title'] as String?,
-      note: json['note'] as String?,
-      type: json['type'] as String?,
-      position: json['position'] as String?,
-      language: json['language'] as String?,
+      title: _dynamicToString(json['title']),
+      note: _dynamicToString(json['note']),
+      type: _dynamicToString(json['type']),
+      position: _dynamicToString(json['position']),
+      language: _dynamicToString(json['language']),
     );
 
 Map<String, dynamic> _$CategoryInfoToJson(_CategoryInfo instance) =>

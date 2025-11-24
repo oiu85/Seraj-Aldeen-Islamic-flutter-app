@@ -380,11 +380,15 @@ class __$SearchResponseCopyWithImpl<$Res>
 
 /// @nodoc
 mixin _$SearchData {
+  @JsonKey(fromJson: _dynamicToString)
   String? get keyword;
+  @JsonKey(name: 'search_type', fromJson: _dynamicToString)
   String? get search_type;
+  @JsonKey(name: 'sort_by', fromJson: _dynamicToString)
   String? get sort_by;
+  @JsonKey(fromJson: _dynamicToString)
   String? get filters;
-  @JsonKey(fromJson: _stringToInt)
+  @JsonKey(name: 'total_results', fromJson: _stringToInt)
   int? get total_results;
   SearchResults? get results;
 
@@ -431,11 +435,13 @@ abstract mixin class $SearchDataCopyWith<$Res> {
       _$SearchDataCopyWithImpl;
   @useResult
   $Res call(
-      {String? keyword,
+      {@JsonKey(fromJson: _dynamicToString) String? keyword,
+      @JsonKey(name: 'search_type', fromJson: _dynamicToString)
       String? search_type,
-      String? sort_by,
-      String? filters,
-      @JsonKey(fromJson: _stringToInt) int? total_results,
+      @JsonKey(name: 'sort_by', fromJson: _dynamicToString) String? sort_by,
+      @JsonKey(fromJson: _dynamicToString) String? filters,
+      @JsonKey(name: 'total_results', fromJson: _stringToInt)
+      int? total_results,
       SearchResults? results});
 
   $SearchResultsCopyWith<$Res>? get results;
@@ -597,11 +603,14 @@ extension SearchDataPatterns on SearchData {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
-            String? keyword,
+            @JsonKey(fromJson: _dynamicToString) String? keyword,
+            @JsonKey(name: 'search_type', fromJson: _dynamicToString)
             String? search_type,
+            @JsonKey(name: 'sort_by', fromJson: _dynamicToString)
             String? sort_by,
-            String? filters,
-            @JsonKey(fromJson: _stringToInt) int? total_results,
+            @JsonKey(fromJson: _dynamicToString) String? filters,
+            @JsonKey(name: 'total_results', fromJson: _stringToInt)
+            int? total_results,
             SearchResults? results)?
         $default, {
     required TResult orElse(),
@@ -632,11 +641,14 @@ extension SearchDataPatterns on SearchData {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(
-            String? keyword,
+            @JsonKey(fromJson: _dynamicToString) String? keyword,
+            @JsonKey(name: 'search_type', fromJson: _dynamicToString)
             String? search_type,
+            @JsonKey(name: 'sort_by', fromJson: _dynamicToString)
             String? sort_by,
-            String? filters,
-            @JsonKey(fromJson: _stringToInt) int? total_results,
+            @JsonKey(fromJson: _dynamicToString) String? filters,
+            @JsonKey(name: 'total_results', fromJson: _stringToInt)
+            int? total_results,
             SearchResults? results)
         $default,
   ) {
@@ -665,11 +677,14 @@ extension SearchDataPatterns on SearchData {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
-            String? keyword,
+            @JsonKey(fromJson: _dynamicToString) String? keyword,
+            @JsonKey(name: 'search_type', fromJson: _dynamicToString)
             String? search_type,
+            @JsonKey(name: 'sort_by', fromJson: _dynamicToString)
             String? sort_by,
-            String? filters,
-            @JsonKey(fromJson: _stringToInt) int? total_results,
+            @JsonKey(fromJson: _dynamicToString) String? filters,
+            @JsonKey(name: 'total_results', fromJson: _stringToInt)
+            int? total_results,
             SearchResults? results)?
         $default,
   ) {
@@ -688,25 +703,31 @@ extension SearchDataPatterns on SearchData {
 @JsonSerializable()
 class _SearchData implements SearchData {
   const _SearchData(
-      {this.keyword,
+      {@JsonKey(fromJson: _dynamicToString) this.keyword,
+      @JsonKey(name: 'search_type', fromJson: _dynamicToString)
       this.search_type,
-      this.sort_by,
-      this.filters,
-      @JsonKey(fromJson: _stringToInt) this.total_results,
+      @JsonKey(name: 'sort_by', fromJson: _dynamicToString) this.sort_by,
+      @JsonKey(fromJson: _dynamicToString) this.filters,
+      @JsonKey(name: 'total_results', fromJson: _stringToInt)
+      this.total_results,
       this.results});
   factory _SearchData.fromJson(Map<String, dynamic> json) =>
       _$SearchDataFromJson(json);
 
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? keyword;
   @override
+  @JsonKey(name: 'search_type', fromJson: _dynamicToString)
   final String? search_type;
   @override
+  @JsonKey(name: 'sort_by', fromJson: _dynamicToString)
   final String? sort_by;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? filters;
   @override
-  @JsonKey(fromJson: _stringToInt)
+  @JsonKey(name: 'total_results', fromJson: _stringToInt)
   final int? total_results;
   @override
   final SearchResults? results;
@@ -761,11 +782,13 @@ abstract mixin class _$SearchDataCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? keyword,
+      {@JsonKey(fromJson: _dynamicToString) String? keyword,
+      @JsonKey(name: 'search_type', fromJson: _dynamicToString)
       String? search_type,
-      String? sort_by,
-      String? filters,
-      @JsonKey(fromJson: _stringToInt) int? total_results,
+      @JsonKey(name: 'sort_by', fromJson: _dynamicToString) String? sort_by,
+      @JsonKey(fromJson: _dynamicToString) String? filters,
+      @JsonKey(name: 'total_results', fromJson: _stringToInt)
+      int? total_results,
       SearchResults? results});
 
   @override
@@ -1451,6 +1474,7 @@ mixin _$SearchCategory {
   List<SearchResultItem>? get data;
   @JsonKey(fromJson: _stringToInt)
   int? get count;
+  @JsonKey(fromJson: _dynamicToString)
   String? get label;
 
   /// Create a copy of SearchCategory
@@ -1494,7 +1518,7 @@ abstract mixin class $SearchCategoryCopyWith<$Res> {
   $Res call(
       {List<SearchResultItem>? data,
       @JsonKey(fromJson: _stringToInt) int? count,
-      String? label});
+      @JsonKey(fromJson: _dynamicToString) String? label});
 }
 
 /// @nodoc
@@ -1624,8 +1648,10 @@ extension SearchCategoryPatterns on SearchCategory {
 
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(List<SearchResultItem>? data,
-            @JsonKey(fromJson: _stringToInt) int? count, String? label)?
+    TResult Function(
+            List<SearchResultItem>? data,
+            @JsonKey(fromJson: _stringToInt) int? count,
+            @JsonKey(fromJson: _dynamicToString) String? label)?
         $default, {
     required TResult orElse(),
   }) {
@@ -1653,8 +1679,10 @@ extension SearchCategoryPatterns on SearchCategory {
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(List<SearchResultItem>? data,
-            @JsonKey(fromJson: _stringToInt) int? count, String? label)
+    TResult Function(
+            List<SearchResultItem>? data,
+            @JsonKey(fromJson: _stringToInt) int? count,
+            @JsonKey(fromJson: _dynamicToString) String? label)
         $default,
   ) {
     final _that = this;
@@ -1680,8 +1708,10 @@ extension SearchCategoryPatterns on SearchCategory {
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(List<SearchResultItem>? data,
-            @JsonKey(fromJson: _stringToInt) int? count, String? label)?
+    TResult? Function(
+            List<SearchResultItem>? data,
+            @JsonKey(fromJson: _stringToInt) int? count,
+            @JsonKey(fromJson: _dynamicToString) String? label)?
         $default,
   ) {
     final _that = this;
@@ -1700,7 +1730,7 @@ class _SearchCategory implements SearchCategory {
   const _SearchCategory(
       {final List<SearchResultItem>? data,
       @JsonKey(fromJson: _stringToInt) this.count,
-      this.label})
+      @JsonKey(fromJson: _dynamicToString) this.label})
       : _data = data;
   factory _SearchCategory.fromJson(Map<String, dynamic> json) =>
       _$SearchCategoryFromJson(json);
@@ -1719,6 +1749,7 @@ class _SearchCategory implements SearchCategory {
   @JsonKey(fromJson: _stringToInt)
   final int? count;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? label;
 
   /// Create a copy of SearchCategory
@@ -1768,7 +1799,7 @@ abstract mixin class _$SearchCategoryCopyWith<$Res>
   $Res call(
       {List<SearchResultItem>? data,
       @JsonKey(fromJson: _stringToInt) int? count,
-      String? label});
+      @JsonKey(fromJson: _dynamicToString) String? label});
 }
 
 /// @nodoc
@@ -1809,22 +1840,34 @@ class __$SearchCategoryCopyWithImpl<$Res>
 mixin _$SearchResultItem {
   @JsonKey(fromJson: _stringToInt)
   int? get id;
+  @JsonKey(fromJson: _dynamicToString)
   String? get title;
+  @JsonKey(fromJson: _dynamicToString)
   String? get summary;
+  @JsonKey(fromJson: _dynamicToString)
   String? get description;
+  @JsonKey(fromJson: _dynamicToString)
   String? get content;
+  @JsonKey(fromJson: _dynamicToString)
   String? get picture;
+  @JsonKey(name: 'visitor_count', fromJson: _dynamicToString)
   String? get visitor_count;
   @JsonKey(fromJson: _stringToBool)
   bool? get is_new;
+  @JsonKey(fromJson: _dynamicToString)
   String? get priority;
+  @JsonKey(fromJson: _dynamicToString)
   String? get date;
   SearchItemCategory? get category;
+  @JsonKey(fromJson: _dynamicToString)
   String? get type;
+  @JsonKey(name: 'type_label', fromJson: _dynamicToString)
   String? get type_label;
-  @JsonKey(fromJson: _stringToInt)
+  @JsonKey(name: 'relevance_score', fromJson: _stringToInt)
   int? get relevance_score; // Sound-specific field
+  @JsonKey(name: 'sound_file_url', fromJson: _dynamicToString)
   String? get sound_file_url; // Book-specific field
+  @JsonKey(fromJson: _dynamicToString)
   String? get file;
 
   /// Create a copy of SearchResultItem
@@ -1903,21 +1946,25 @@ abstract mixin class $SearchResultItemCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(fromJson: _stringToInt) int? id,
-      String? title,
-      String? summary,
-      String? description,
-      String? content,
-      String? picture,
+      @JsonKey(fromJson: _dynamicToString) String? title,
+      @JsonKey(fromJson: _dynamicToString) String? summary,
+      @JsonKey(fromJson: _dynamicToString) String? description,
+      @JsonKey(fromJson: _dynamicToString) String? content,
+      @JsonKey(fromJson: _dynamicToString) String? picture,
+      @JsonKey(name: 'visitor_count', fromJson: _dynamicToString)
       String? visitor_count,
       @JsonKey(fromJson: _stringToBool) bool? is_new,
-      String? priority,
-      String? date,
+      @JsonKey(fromJson: _dynamicToString) String? priority,
+      @JsonKey(fromJson: _dynamicToString) String? date,
       SearchItemCategory? category,
-      String? type,
+      @JsonKey(fromJson: _dynamicToString) String? type,
+      @JsonKey(name: 'type_label', fromJson: _dynamicToString)
       String? type_label,
-      @JsonKey(fromJson: _stringToInt) int? relevance_score,
+      @JsonKey(name: 'relevance_score', fromJson: _stringToInt)
+      int? relevance_score,
+      @JsonKey(name: 'sound_file_url', fromJson: _dynamicToString)
       String? sound_file_url,
-      String? file});
+      @JsonKey(fromJson: _dynamicToString) String? file});
 
   $SearchItemCategoryCopyWith<$Res>? get category;
 }
@@ -2130,21 +2177,25 @@ extension SearchResultItemPatterns on SearchResultItem {
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
             @JsonKey(fromJson: _stringToInt) int? id,
-            String? title,
-            String? summary,
-            String? description,
-            String? content,
-            String? picture,
+            @JsonKey(fromJson: _dynamicToString) String? title,
+            @JsonKey(fromJson: _dynamicToString) String? summary,
+            @JsonKey(fromJson: _dynamicToString) String? description,
+            @JsonKey(fromJson: _dynamicToString) String? content,
+            @JsonKey(fromJson: _dynamicToString) String? picture,
+            @JsonKey(name: 'visitor_count', fromJson: _dynamicToString)
             String? visitor_count,
             @JsonKey(fromJson: _stringToBool) bool? is_new,
-            String? priority,
-            String? date,
+            @JsonKey(fromJson: _dynamicToString) String? priority,
+            @JsonKey(fromJson: _dynamicToString) String? date,
             SearchItemCategory? category,
-            String? type,
+            @JsonKey(fromJson: _dynamicToString) String? type,
+            @JsonKey(name: 'type_label', fromJson: _dynamicToString)
             String? type_label,
-            @JsonKey(fromJson: _stringToInt) int? relevance_score,
+            @JsonKey(name: 'relevance_score', fromJson: _stringToInt)
+            int? relevance_score,
+            @JsonKey(name: 'sound_file_url', fromJson: _dynamicToString)
             String? sound_file_url,
-            String? file)?
+            @JsonKey(fromJson: _dynamicToString) String? file)?
         $default, {
     required TResult orElse(),
   }) {
@@ -2190,21 +2241,25 @@ extension SearchResultItemPatterns on SearchResultItem {
   TResult when<TResult extends Object?>(
     TResult Function(
             @JsonKey(fromJson: _stringToInt) int? id,
-            String? title,
-            String? summary,
-            String? description,
-            String? content,
-            String? picture,
+            @JsonKey(fromJson: _dynamicToString) String? title,
+            @JsonKey(fromJson: _dynamicToString) String? summary,
+            @JsonKey(fromJson: _dynamicToString) String? description,
+            @JsonKey(fromJson: _dynamicToString) String? content,
+            @JsonKey(fromJson: _dynamicToString) String? picture,
+            @JsonKey(name: 'visitor_count', fromJson: _dynamicToString)
             String? visitor_count,
             @JsonKey(fromJson: _stringToBool) bool? is_new,
-            String? priority,
-            String? date,
+            @JsonKey(fromJson: _dynamicToString) String? priority,
+            @JsonKey(fromJson: _dynamicToString) String? date,
             SearchItemCategory? category,
-            String? type,
+            @JsonKey(fromJson: _dynamicToString) String? type,
+            @JsonKey(name: 'type_label', fromJson: _dynamicToString)
             String? type_label,
-            @JsonKey(fromJson: _stringToInt) int? relevance_score,
+            @JsonKey(name: 'relevance_score', fromJson: _stringToInt)
+            int? relevance_score,
+            @JsonKey(name: 'sound_file_url', fromJson: _dynamicToString)
             String? sound_file_url,
-            String? file)
+            @JsonKey(fromJson: _dynamicToString) String? file)
         $default,
   ) {
     final _that = this;
@@ -2248,21 +2303,25 @@ extension SearchResultItemPatterns on SearchResultItem {
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
             @JsonKey(fromJson: _stringToInt) int? id,
-            String? title,
-            String? summary,
-            String? description,
-            String? content,
-            String? picture,
+            @JsonKey(fromJson: _dynamicToString) String? title,
+            @JsonKey(fromJson: _dynamicToString) String? summary,
+            @JsonKey(fromJson: _dynamicToString) String? description,
+            @JsonKey(fromJson: _dynamicToString) String? content,
+            @JsonKey(fromJson: _dynamicToString) String? picture,
+            @JsonKey(name: 'visitor_count', fromJson: _dynamicToString)
             String? visitor_count,
             @JsonKey(fromJson: _stringToBool) bool? is_new,
-            String? priority,
-            String? date,
+            @JsonKey(fromJson: _dynamicToString) String? priority,
+            @JsonKey(fromJson: _dynamicToString) String? date,
             SearchItemCategory? category,
-            String? type,
+            @JsonKey(fromJson: _dynamicToString) String? type,
+            @JsonKey(name: 'type_label', fromJson: _dynamicToString)
             String? type_label,
-            @JsonKey(fromJson: _stringToInt) int? relevance_score,
+            @JsonKey(name: 'relevance_score', fromJson: _stringToInt)
+            int? relevance_score,
+            @JsonKey(name: 'sound_file_url', fromJson: _dynamicToString)
             String? sound_file_url,
-            String? file)?
+            @JsonKey(fromJson: _dynamicToString) String? file)?
         $default,
   ) {
     final _that = this;
@@ -2296,21 +2355,24 @@ extension SearchResultItemPatterns on SearchResultItem {
 class _SearchResultItem implements SearchResultItem {
   const _SearchResultItem(
       {@JsonKey(fromJson: _stringToInt) this.id,
-      this.title,
-      this.summary,
-      this.description,
-      this.content,
-      this.picture,
+      @JsonKey(fromJson: _dynamicToString) this.title,
+      @JsonKey(fromJson: _dynamicToString) this.summary,
+      @JsonKey(fromJson: _dynamicToString) this.description,
+      @JsonKey(fromJson: _dynamicToString) this.content,
+      @JsonKey(fromJson: _dynamicToString) this.picture,
+      @JsonKey(name: 'visitor_count', fromJson: _dynamicToString)
       this.visitor_count,
       @JsonKey(fromJson: _stringToBool) this.is_new,
-      this.priority,
-      this.date,
+      @JsonKey(fromJson: _dynamicToString) this.priority,
+      @JsonKey(fromJson: _dynamicToString) this.date,
       this.category,
-      this.type,
-      this.type_label,
-      @JsonKey(fromJson: _stringToInt) this.relevance_score,
+      @JsonKey(fromJson: _dynamicToString) this.type,
+      @JsonKey(name: 'type_label', fromJson: _dynamicToString) this.type_label,
+      @JsonKey(name: 'relevance_score', fromJson: _stringToInt)
+      this.relevance_score,
+      @JsonKey(name: 'sound_file_url', fromJson: _dynamicToString)
       this.sound_file_url,
-      this.file});
+      @JsonKey(fromJson: _dynamicToString) this.file});
   factory _SearchResultItem.fromJson(Map<String, dynamic> json) =>
       _$SearchResultItemFromJson(json);
 
@@ -2318,38 +2380,50 @@ class _SearchResultItem implements SearchResultItem {
   @JsonKey(fromJson: _stringToInt)
   final int? id;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? title;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? summary;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? description;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? content;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? picture;
   @override
+  @JsonKey(name: 'visitor_count', fromJson: _dynamicToString)
   final String? visitor_count;
   @override
   @JsonKey(fromJson: _stringToBool)
   final bool? is_new;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? priority;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? date;
   @override
   final SearchItemCategory? category;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? type;
   @override
+  @JsonKey(name: 'type_label', fromJson: _dynamicToString)
   final String? type_label;
   @override
-  @JsonKey(fromJson: _stringToInt)
+  @JsonKey(name: 'relevance_score', fromJson: _stringToInt)
   final int? relevance_score;
 // Sound-specific field
   @override
+  @JsonKey(name: 'sound_file_url', fromJson: _dynamicToString)
   final String? sound_file_url;
 // Book-specific field
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? file;
 
   /// Create a copy of SearchResultItem
@@ -2434,21 +2508,25 @@ abstract mixin class _$SearchResultItemCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(fromJson: _stringToInt) int? id,
-      String? title,
-      String? summary,
-      String? description,
-      String? content,
-      String? picture,
+      @JsonKey(fromJson: _dynamicToString) String? title,
+      @JsonKey(fromJson: _dynamicToString) String? summary,
+      @JsonKey(fromJson: _dynamicToString) String? description,
+      @JsonKey(fromJson: _dynamicToString) String? content,
+      @JsonKey(fromJson: _dynamicToString) String? picture,
+      @JsonKey(name: 'visitor_count', fromJson: _dynamicToString)
       String? visitor_count,
       @JsonKey(fromJson: _stringToBool) bool? is_new,
-      String? priority,
-      String? date,
+      @JsonKey(fromJson: _dynamicToString) String? priority,
+      @JsonKey(fromJson: _dynamicToString) String? date,
       SearchItemCategory? category,
-      String? type,
+      @JsonKey(fromJson: _dynamicToString) String? type,
+      @JsonKey(name: 'type_label', fromJson: _dynamicToString)
       String? type_label,
-      @JsonKey(fromJson: _stringToInt) int? relevance_score,
+      @JsonKey(name: 'relevance_score', fromJson: _stringToInt)
+      int? relevance_score,
+      @JsonKey(name: 'sound_file_url', fromJson: _dynamicToString)
       String? sound_file_url,
-      String? file});
+      @JsonKey(fromJson: _dynamicToString) String? file});
 
   @override
   $SearchItemCategoryCopyWith<$Res>? get category;
@@ -2569,25 +2647,35 @@ class __$SearchResultItemCopyWithImpl<$Res>
 
 /// @nodoc
 mixin _$SearchItemCategory {
-  @JsonKey(fromJson: _stringToInt)
+  @JsonKey(name: 'cat_id', fromJson: _stringToInt)
   int? get cat_id;
+  @JsonKey(name: 'cat_father_id', fromJson: _dynamicToString)
   String? get cat_father_id;
+  @JsonKey(name: 'cat_menus', fromJson: _dynamicToString)
   String? get cat_menus;
+  @JsonKey(name: 'cat_title', fromJson: _dynamicToString)
   String? get cat_title;
+  @JsonKey(name: 'cat_note', fromJson: _dynamicToString)
   String? get cat_note;
+  @JsonKey(name: 'cat_pic', fromJson: _dynamicToString)
   String? get cat_pic;
+  @JsonKey(name: 'cat_sup', fromJson: _dynamicToString)
   String? get cat_sup;
+  @JsonKey(name: 'cat_date', fromJson: _dynamicToString)
   String? get cat_date;
-  @JsonKey(fromJson: _stringToBool)
+  @JsonKey(name: 'cat_pic_active', fromJson: _stringToBool)
   bool? get cat_pic_active;
+  @JsonKey(name: 'cat_lan', fromJson: _dynamicToString)
   String? get cat_lan;
+  @JsonKey(name: 'cat_pos', fromJson: _dynamicToString)
   String? get cat_pos;
-  @JsonKey(fromJson: _stringToBool)
+  @JsonKey(name: 'cat_active', fromJson: _stringToBool)
   bool? get cat_active;
-  @JsonKey(fromJson: _stringToBool)
+  @JsonKey(name: 'cat_show_menu', fromJson: _stringToBool)
   bool? get cat_show_menu;
-  @JsonKey(fromJson: _stringToBool)
+  @JsonKey(name: 'cat_show_main', fromJson: _stringToBool)
   bool? get cat_show_main;
+  @JsonKey(name: 'cat_agent', fromJson: _dynamicToString)
   String? get cat_agent;
 
   /// Create a copy of SearchItemCategory
@@ -2666,20 +2754,25 @@ abstract mixin class $SearchItemCategoryCopyWith<$Res> {
       _$SearchItemCategoryCopyWithImpl;
   @useResult
   $Res call(
-      {@JsonKey(fromJson: _stringToInt) int? cat_id,
+      {@JsonKey(name: 'cat_id', fromJson: _stringToInt) int? cat_id,
+      @JsonKey(name: 'cat_father_id', fromJson: _dynamicToString)
       String? cat_father_id,
-      String? cat_menus,
-      String? cat_title,
-      String? cat_note,
-      String? cat_pic,
-      String? cat_sup,
-      String? cat_date,
-      @JsonKey(fromJson: _stringToBool) bool? cat_pic_active,
-      String? cat_lan,
-      String? cat_pos,
-      @JsonKey(fromJson: _stringToBool) bool? cat_active,
-      @JsonKey(fromJson: _stringToBool) bool? cat_show_menu,
-      @JsonKey(fromJson: _stringToBool) bool? cat_show_main,
+      @JsonKey(name: 'cat_menus', fromJson: _dynamicToString) String? cat_menus,
+      @JsonKey(name: 'cat_title', fromJson: _dynamicToString) String? cat_title,
+      @JsonKey(name: 'cat_note', fromJson: _dynamicToString) String? cat_note,
+      @JsonKey(name: 'cat_pic', fromJson: _dynamicToString) String? cat_pic,
+      @JsonKey(name: 'cat_sup', fromJson: _dynamicToString) String? cat_sup,
+      @JsonKey(name: 'cat_date', fromJson: _dynamicToString) String? cat_date,
+      @JsonKey(name: 'cat_pic_active', fromJson: _stringToBool)
+      bool? cat_pic_active,
+      @JsonKey(name: 'cat_lan', fromJson: _dynamicToString) String? cat_lan,
+      @JsonKey(name: 'cat_pos', fromJson: _dynamicToString) String? cat_pos,
+      @JsonKey(name: 'cat_active', fromJson: _stringToBool) bool? cat_active,
+      @JsonKey(name: 'cat_show_menu', fromJson: _stringToBool)
+      bool? cat_show_menu,
+      @JsonKey(name: 'cat_show_main', fromJson: _stringToBool)
+      bool? cat_show_main,
+      @JsonKey(name: 'cat_agent', fromJson: _dynamicToString)
       String? cat_agent});
 }
 
@@ -2871,20 +2964,34 @@ extension SearchItemCategoryPatterns on SearchItemCategory {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
-            @JsonKey(fromJson: _stringToInt) int? cat_id,
+            @JsonKey(name: 'cat_id', fromJson: _stringToInt) int? cat_id,
+            @JsonKey(name: 'cat_father_id', fromJson: _dynamicToString)
             String? cat_father_id,
+            @JsonKey(name: 'cat_menus', fromJson: _dynamicToString)
             String? cat_menus,
+            @JsonKey(name: 'cat_title', fromJson: _dynamicToString)
             String? cat_title,
+            @JsonKey(name: 'cat_note', fromJson: _dynamicToString)
             String? cat_note,
+            @JsonKey(name: 'cat_pic', fromJson: _dynamicToString)
             String? cat_pic,
+            @JsonKey(name: 'cat_sup', fromJson: _dynamicToString)
             String? cat_sup,
+            @JsonKey(name: 'cat_date', fromJson: _dynamicToString)
             String? cat_date,
-            @JsonKey(fromJson: _stringToBool) bool? cat_pic_active,
+            @JsonKey(name: 'cat_pic_active', fromJson: _stringToBool)
+            bool? cat_pic_active,
+            @JsonKey(name: 'cat_lan', fromJson: _dynamicToString)
             String? cat_lan,
+            @JsonKey(name: 'cat_pos', fromJson: _dynamicToString)
             String? cat_pos,
-            @JsonKey(fromJson: _stringToBool) bool? cat_active,
-            @JsonKey(fromJson: _stringToBool) bool? cat_show_menu,
-            @JsonKey(fromJson: _stringToBool) bool? cat_show_main,
+            @JsonKey(name: 'cat_active', fromJson: _stringToBool)
+            bool? cat_active,
+            @JsonKey(name: 'cat_show_menu', fromJson: _stringToBool)
+            bool? cat_show_menu,
+            @JsonKey(name: 'cat_show_main', fromJson: _stringToBool)
+            bool? cat_show_main,
+            @JsonKey(name: 'cat_agent', fromJson: _dynamicToString)
             String? cat_agent)?
         $default, {
     required TResult orElse(),
@@ -2929,20 +3036,34 @@ extension SearchItemCategoryPatterns on SearchItemCategory {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(
-            @JsonKey(fromJson: _stringToInt) int? cat_id,
+            @JsonKey(name: 'cat_id', fromJson: _stringToInt) int? cat_id,
+            @JsonKey(name: 'cat_father_id', fromJson: _dynamicToString)
             String? cat_father_id,
+            @JsonKey(name: 'cat_menus', fromJson: _dynamicToString)
             String? cat_menus,
+            @JsonKey(name: 'cat_title', fromJson: _dynamicToString)
             String? cat_title,
+            @JsonKey(name: 'cat_note', fromJson: _dynamicToString)
             String? cat_note,
+            @JsonKey(name: 'cat_pic', fromJson: _dynamicToString)
             String? cat_pic,
+            @JsonKey(name: 'cat_sup', fromJson: _dynamicToString)
             String? cat_sup,
+            @JsonKey(name: 'cat_date', fromJson: _dynamicToString)
             String? cat_date,
-            @JsonKey(fromJson: _stringToBool) bool? cat_pic_active,
+            @JsonKey(name: 'cat_pic_active', fromJson: _stringToBool)
+            bool? cat_pic_active,
+            @JsonKey(name: 'cat_lan', fromJson: _dynamicToString)
             String? cat_lan,
+            @JsonKey(name: 'cat_pos', fromJson: _dynamicToString)
             String? cat_pos,
-            @JsonKey(fromJson: _stringToBool) bool? cat_active,
-            @JsonKey(fromJson: _stringToBool) bool? cat_show_menu,
-            @JsonKey(fromJson: _stringToBool) bool? cat_show_main,
+            @JsonKey(name: 'cat_active', fromJson: _stringToBool)
+            bool? cat_active,
+            @JsonKey(name: 'cat_show_menu', fromJson: _stringToBool)
+            bool? cat_show_menu,
+            @JsonKey(name: 'cat_show_main', fromJson: _stringToBool)
+            bool? cat_show_main,
+            @JsonKey(name: 'cat_agent', fromJson: _dynamicToString)
             String? cat_agent)
         $default,
   ) {
@@ -2985,20 +3106,34 @@ extension SearchItemCategoryPatterns on SearchItemCategory {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
-            @JsonKey(fromJson: _stringToInt) int? cat_id,
+            @JsonKey(name: 'cat_id', fromJson: _stringToInt) int? cat_id,
+            @JsonKey(name: 'cat_father_id', fromJson: _dynamicToString)
             String? cat_father_id,
+            @JsonKey(name: 'cat_menus', fromJson: _dynamicToString)
             String? cat_menus,
+            @JsonKey(name: 'cat_title', fromJson: _dynamicToString)
             String? cat_title,
+            @JsonKey(name: 'cat_note', fromJson: _dynamicToString)
             String? cat_note,
+            @JsonKey(name: 'cat_pic', fromJson: _dynamicToString)
             String? cat_pic,
+            @JsonKey(name: 'cat_sup', fromJson: _dynamicToString)
             String? cat_sup,
+            @JsonKey(name: 'cat_date', fromJson: _dynamicToString)
             String? cat_date,
-            @JsonKey(fromJson: _stringToBool) bool? cat_pic_active,
+            @JsonKey(name: 'cat_pic_active', fromJson: _stringToBool)
+            bool? cat_pic_active,
+            @JsonKey(name: 'cat_lan', fromJson: _dynamicToString)
             String? cat_lan,
+            @JsonKey(name: 'cat_pos', fromJson: _dynamicToString)
             String? cat_pos,
-            @JsonKey(fromJson: _stringToBool) bool? cat_active,
-            @JsonKey(fromJson: _stringToBool) bool? cat_show_menu,
-            @JsonKey(fromJson: _stringToBool) bool? cat_show_main,
+            @JsonKey(name: 'cat_active', fromJson: _stringToBool)
+            bool? cat_active,
+            @JsonKey(name: 'cat_show_menu', fromJson: _stringToBool)
+            bool? cat_show_menu,
+            @JsonKey(name: 'cat_show_main', fromJson: _stringToBool)
+            bool? cat_show_main,
+            @JsonKey(name: 'cat_agent', fromJson: _dynamicToString)
             String? cat_agent)?
         $default,
   ) {
@@ -3031,58 +3166,72 @@ extension SearchItemCategoryPatterns on SearchItemCategory {
 @JsonSerializable()
 class _SearchItemCategory implements SearchItemCategory {
   const _SearchItemCategory(
-      {@JsonKey(fromJson: _stringToInt) this.cat_id,
+      {@JsonKey(name: 'cat_id', fromJson: _stringToInt) this.cat_id,
+      @JsonKey(name: 'cat_father_id', fromJson: _dynamicToString)
       this.cat_father_id,
-      this.cat_menus,
-      this.cat_title,
-      this.cat_note,
-      this.cat_pic,
-      this.cat_sup,
-      this.cat_date,
-      @JsonKey(fromJson: _stringToBool) this.cat_pic_active,
-      this.cat_lan,
-      this.cat_pos,
-      @JsonKey(fromJson: _stringToBool) this.cat_active,
-      @JsonKey(fromJson: _stringToBool) this.cat_show_menu,
-      @JsonKey(fromJson: _stringToBool) this.cat_show_main,
-      this.cat_agent});
+      @JsonKey(name: 'cat_menus', fromJson: _dynamicToString) this.cat_menus,
+      @JsonKey(name: 'cat_title', fromJson: _dynamicToString) this.cat_title,
+      @JsonKey(name: 'cat_note', fromJson: _dynamicToString) this.cat_note,
+      @JsonKey(name: 'cat_pic', fromJson: _dynamicToString) this.cat_pic,
+      @JsonKey(name: 'cat_sup', fromJson: _dynamicToString) this.cat_sup,
+      @JsonKey(name: 'cat_date', fromJson: _dynamicToString) this.cat_date,
+      @JsonKey(name: 'cat_pic_active', fromJson: _stringToBool)
+      this.cat_pic_active,
+      @JsonKey(name: 'cat_lan', fromJson: _dynamicToString) this.cat_lan,
+      @JsonKey(name: 'cat_pos', fromJson: _dynamicToString) this.cat_pos,
+      @JsonKey(name: 'cat_active', fromJson: _stringToBool) this.cat_active,
+      @JsonKey(name: 'cat_show_menu', fromJson: _stringToBool)
+      this.cat_show_menu,
+      @JsonKey(name: 'cat_show_main', fromJson: _stringToBool)
+      this.cat_show_main,
+      @JsonKey(name: 'cat_agent', fromJson: _dynamicToString) this.cat_agent});
   factory _SearchItemCategory.fromJson(Map<String, dynamic> json) =>
       _$SearchItemCategoryFromJson(json);
 
   @override
-  @JsonKey(fromJson: _stringToInt)
+  @JsonKey(name: 'cat_id', fromJson: _stringToInt)
   final int? cat_id;
   @override
+  @JsonKey(name: 'cat_father_id', fromJson: _dynamicToString)
   final String? cat_father_id;
   @override
+  @JsonKey(name: 'cat_menus', fromJson: _dynamicToString)
   final String? cat_menus;
   @override
+  @JsonKey(name: 'cat_title', fromJson: _dynamicToString)
   final String? cat_title;
   @override
+  @JsonKey(name: 'cat_note', fromJson: _dynamicToString)
   final String? cat_note;
   @override
+  @JsonKey(name: 'cat_pic', fromJson: _dynamicToString)
   final String? cat_pic;
   @override
+  @JsonKey(name: 'cat_sup', fromJson: _dynamicToString)
   final String? cat_sup;
   @override
+  @JsonKey(name: 'cat_date', fromJson: _dynamicToString)
   final String? cat_date;
   @override
-  @JsonKey(fromJson: _stringToBool)
+  @JsonKey(name: 'cat_pic_active', fromJson: _stringToBool)
   final bool? cat_pic_active;
   @override
+  @JsonKey(name: 'cat_lan', fromJson: _dynamicToString)
   final String? cat_lan;
   @override
+  @JsonKey(name: 'cat_pos', fromJson: _dynamicToString)
   final String? cat_pos;
   @override
-  @JsonKey(fromJson: _stringToBool)
+  @JsonKey(name: 'cat_active', fromJson: _stringToBool)
   final bool? cat_active;
   @override
-  @JsonKey(fromJson: _stringToBool)
+  @JsonKey(name: 'cat_show_menu', fromJson: _stringToBool)
   final bool? cat_show_menu;
   @override
-  @JsonKey(fromJson: _stringToBool)
+  @JsonKey(name: 'cat_show_main', fromJson: _stringToBool)
   final bool? cat_show_main;
   @override
+  @JsonKey(name: 'cat_agent', fromJson: _dynamicToString)
   final String? cat_agent;
 
   /// Create a copy of SearchItemCategory
@@ -3167,20 +3316,25 @@ abstract mixin class _$SearchItemCategoryCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(fromJson: _stringToInt) int? cat_id,
+      {@JsonKey(name: 'cat_id', fromJson: _stringToInt) int? cat_id,
+      @JsonKey(name: 'cat_father_id', fromJson: _dynamicToString)
       String? cat_father_id,
-      String? cat_menus,
-      String? cat_title,
-      String? cat_note,
-      String? cat_pic,
-      String? cat_sup,
-      String? cat_date,
-      @JsonKey(fromJson: _stringToBool) bool? cat_pic_active,
-      String? cat_lan,
-      String? cat_pos,
-      @JsonKey(fromJson: _stringToBool) bool? cat_active,
-      @JsonKey(fromJson: _stringToBool) bool? cat_show_menu,
-      @JsonKey(fromJson: _stringToBool) bool? cat_show_main,
+      @JsonKey(name: 'cat_menus', fromJson: _dynamicToString) String? cat_menus,
+      @JsonKey(name: 'cat_title', fromJson: _dynamicToString) String? cat_title,
+      @JsonKey(name: 'cat_note', fromJson: _dynamicToString) String? cat_note,
+      @JsonKey(name: 'cat_pic', fromJson: _dynamicToString) String? cat_pic,
+      @JsonKey(name: 'cat_sup', fromJson: _dynamicToString) String? cat_sup,
+      @JsonKey(name: 'cat_date', fromJson: _dynamicToString) String? cat_date,
+      @JsonKey(name: 'cat_pic_active', fromJson: _stringToBool)
+      bool? cat_pic_active,
+      @JsonKey(name: 'cat_lan', fromJson: _dynamicToString) String? cat_lan,
+      @JsonKey(name: 'cat_pos', fromJson: _dynamicToString) String? cat_pos,
+      @JsonKey(name: 'cat_active', fromJson: _stringToBool) bool? cat_active,
+      @JsonKey(name: 'cat_show_menu', fromJson: _stringToBool)
+      bool? cat_show_menu,
+      @JsonKey(name: 'cat_show_main', fromJson: _stringToBool)
+      bool? cat_show_main,
+      @JsonKey(name: 'cat_agent', fromJson: _dynamicToString)
       String? cat_agent});
 }
 

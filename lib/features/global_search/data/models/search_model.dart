@@ -19,6 +19,14 @@ int? _stringToInt(dynamic value) {
   return null;
 }
 
+String? _dynamicToString(dynamic value) {
+  if (value == null) return null;
+  if (value is String) return value;
+  if (value is int) return value.toString();
+  if (value is double) return value.toString();
+  return value.toString();
+}
+
 // Main Search Response
 @freezed
 abstract class SearchResponse with _$SearchResponse {
@@ -36,11 +44,11 @@ abstract class SearchResponse with _$SearchResponse {
 @freezed
 abstract class SearchData with _$SearchData {
   const factory SearchData({
-    String? keyword,
-    String? search_type,
-    String? sort_by,
-    String? filters,
-    @JsonKey(fromJson: _stringToInt) int? total_results,
+    @JsonKey(fromJson: _dynamicToString) String? keyword,
+    @JsonKey(name: 'search_type', fromJson: _dynamicToString) String? search_type,
+    @JsonKey(name: 'sort_by', fromJson: _dynamicToString) String? sort_by,
+    @JsonKey(fromJson: _dynamicToString) String? filters,
+    @JsonKey(name: 'total_results', fromJson: _stringToInt) int? total_results,
     SearchResults? results,
   }) = _SearchData;
 
@@ -70,7 +78,7 @@ abstract class SearchCategory with _$SearchCategory {
   const factory SearchCategory({
     List<SearchResultItem>? data,
     @JsonKey(fromJson: _stringToInt) int? count,
-    String? label,
+    @JsonKey(fromJson: _dynamicToString) String? label,
   }) = _SearchCategory;
 
   factory SearchCategory.fromJson(Map<String, dynamic> json) =>
@@ -82,23 +90,23 @@ abstract class SearchCategory with _$SearchCategory {
 abstract class SearchResultItem with _$SearchResultItem {
   const factory SearchResultItem({
     @JsonKey(fromJson: _stringToInt) int? id,
-    String? title,
-    String? summary,
-    String? description,
-    String? content,
-    String? picture,
-    String? visitor_count,
+    @JsonKey(fromJson: _dynamicToString) String? title,
+    @JsonKey(fromJson: _dynamicToString) String? summary,
+    @JsonKey(fromJson: _dynamicToString) String? description,
+    @JsonKey(fromJson: _dynamicToString) String? content,
+    @JsonKey(fromJson: _dynamicToString) String? picture,
+    @JsonKey(name: 'visitor_count', fromJson: _dynamicToString) String? visitor_count,
     @JsonKey(fromJson: _stringToBool) bool? is_new,
-    String? priority,
-    String? date,
+    @JsonKey(fromJson: _dynamicToString) String? priority,
+    @JsonKey(fromJson: _dynamicToString) String? date,
     SearchItemCategory? category,
-    String? type,
-    String? type_label,
-    @JsonKey(fromJson: _stringToInt) int? relevance_score,
+    @JsonKey(fromJson: _dynamicToString) String? type,
+    @JsonKey(name: 'type_label', fromJson: _dynamicToString) String? type_label,
+    @JsonKey(name: 'relevance_score', fromJson: _stringToInt) int? relevance_score,
     // Sound-specific field
-    String? sound_file_url,
+    @JsonKey(name: 'sound_file_url', fromJson: _dynamicToString) String? sound_file_url,
     // Book-specific field
-    String? file,
+    @JsonKey(fromJson: _dynamicToString) String? file,
   }) = _SearchResultItem;
 
   factory SearchResultItem.fromJson(Map<String, dynamic> json) =>
@@ -109,21 +117,21 @@ abstract class SearchResultItem with _$SearchResultItem {
 @freezed
 abstract class SearchItemCategory with _$SearchItemCategory {
   const factory SearchItemCategory({
-    @JsonKey(fromJson: _stringToInt) int? cat_id,
-    String? cat_father_id,
-    String? cat_menus,
-    String? cat_title,
-    String? cat_note,
-    String? cat_pic,
-    String? cat_sup,
-    String? cat_date,
-    @JsonKey(fromJson: _stringToBool) bool? cat_pic_active,
-    String? cat_lan,
-    String? cat_pos,
-    @JsonKey(fromJson: _stringToBool) bool? cat_active,
-    @JsonKey(fromJson: _stringToBool) bool? cat_show_menu,
-    @JsonKey(fromJson: _stringToBool) bool? cat_show_main,
-    String? cat_agent,
+    @JsonKey(name: 'cat_id', fromJson: _stringToInt) int? cat_id,
+    @JsonKey(name: 'cat_father_id', fromJson: _dynamicToString) String? cat_father_id,
+    @JsonKey(name: 'cat_menus', fromJson: _dynamicToString) String? cat_menus,
+    @JsonKey(name: 'cat_title', fromJson: _dynamicToString) String? cat_title,
+    @JsonKey(name: 'cat_note', fromJson: _dynamicToString) String? cat_note,
+    @JsonKey(name: 'cat_pic', fromJson: _dynamicToString) String? cat_pic,
+    @JsonKey(name: 'cat_sup', fromJson: _dynamicToString) String? cat_sup,
+    @JsonKey(name: 'cat_date', fromJson: _dynamicToString) String? cat_date,
+    @JsonKey(name: 'cat_pic_active', fromJson: _stringToBool) bool? cat_pic_active,
+    @JsonKey(name: 'cat_lan', fromJson: _dynamicToString) String? cat_lan,
+    @JsonKey(name: 'cat_pos', fromJson: _dynamicToString) String? cat_pos,
+    @JsonKey(name: 'cat_active', fromJson: _stringToBool) bool? cat_active,
+    @JsonKey(name: 'cat_show_menu', fromJson: _stringToBool) bool? cat_show_menu,
+    @JsonKey(name: 'cat_show_main', fromJson: _stringToBool) bool? cat_show_main,
+    @JsonKey(name: 'cat_agent', fromJson: _dynamicToString) String? cat_agent,
   }) = _SearchItemCategory;
 
   factory SearchItemCategory.fromJson(Map<String, dynamic> json) =>

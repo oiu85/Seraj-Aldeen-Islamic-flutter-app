@@ -381,6 +381,7 @@ class __$GalleryResponseCopyWithImpl<$Res>
 
 /// @nodoc
 mixin _$GalleryData {
+  @JsonKey(fromJson: _dynamicToString)
   String? get type;
   List<GalleryCategory>? get categories;
   GalleryPaginationData? get pagination;
@@ -425,7 +426,7 @@ abstract mixin class $GalleryDataCopyWith<$Res> {
       _$GalleryDataCopyWithImpl;
   @useResult
   $Res call(
-      {String? type,
+      {@JsonKey(fromJson: _dynamicToString) String? type,
       List<GalleryCategory>? categories,
       GalleryPaginationData? pagination});
 
@@ -572,7 +573,9 @@ extension GalleryDataPatterns on GalleryData {
 
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String? type, List<GalleryCategory>? categories,
+    TResult Function(
+            @JsonKey(fromJson: _dynamicToString) String? type,
+            List<GalleryCategory>? categories,
             GalleryPaginationData? pagination)?
         $default, {
     required TResult orElse(),
@@ -601,7 +604,9 @@ extension GalleryDataPatterns on GalleryData {
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String? type, List<GalleryCategory>? categories,
+    TResult Function(
+            @JsonKey(fromJson: _dynamicToString) String? type,
+            List<GalleryCategory>? categories,
             GalleryPaginationData? pagination)
         $default,
   ) {
@@ -628,7 +633,9 @@ extension GalleryDataPatterns on GalleryData {
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(String? type, List<GalleryCategory>? categories,
+    TResult? Function(
+            @JsonKey(fromJson: _dynamicToString) String? type,
+            List<GalleryCategory>? categories,
             GalleryPaginationData? pagination)?
         $default,
   ) {
@@ -646,12 +653,15 @@ extension GalleryDataPatterns on GalleryData {
 @JsonSerializable()
 class _GalleryData implements GalleryData {
   const _GalleryData(
-      {this.type, final List<GalleryCategory>? categories, this.pagination})
+      {@JsonKey(fromJson: _dynamicToString) this.type,
+      final List<GalleryCategory>? categories,
+      this.pagination})
       : _categories = categories;
   factory _GalleryData.fromJson(Map<String, dynamic> json) =>
       _$GalleryDataFromJson(json);
 
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? type;
   final List<GalleryCategory>? _categories;
   @override
@@ -713,7 +723,7 @@ abstract mixin class _$GalleryDataCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? type,
+      {@JsonKey(fromJson: _dynamicToString) String? type,
       List<GalleryCategory>? categories,
       GalleryPaginationData? pagination});
 
@@ -772,11 +782,17 @@ class __$GalleryDataCopyWithImpl<$Res> implements _$GalleryDataCopyWith<$Res> {
 mixin _$GalleryCategory {
   @JsonKey(fromJson: _stringToInt)
   int? get id;
+  @JsonKey(fromJson: _dynamicToString)
   String? get title;
+  @JsonKey(fromJson: _dynamicToString)
   String? get note;
+  @JsonKey(fromJson: _dynamicToString)
   String? get position;
+  @JsonKey(fromJson: _dynamicToString)
   String? get language;
+  @JsonKey(fromJson: _dynamicToString)
   String? get date;
+  @JsonKey(name: 'menu_id', fromJson: _dynamicToString)
   String? get menu_id;
   @JsonKey(fromJson: _stringToBool)
   bool? get show_in_menu;
@@ -784,6 +800,7 @@ mixin _$GalleryCategory {
   bool? get show_in_main;
   @JsonKey(fromJson: _stringToInt)
   int? get content_count;
+  @JsonKey(fromJson: _dynamicToString)
   String? get type;
   List<GalleryItem>? get data;
 
@@ -853,16 +870,16 @@ abstract mixin class $GalleryCategoryCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(fromJson: _stringToInt) int? id,
-      String? title,
-      String? note,
-      String? position,
-      String? language,
-      String? date,
-      String? menu_id,
+      @JsonKey(fromJson: _dynamicToString) String? title,
+      @JsonKey(fromJson: _dynamicToString) String? note,
+      @JsonKey(fromJson: _dynamicToString) String? position,
+      @JsonKey(fromJson: _dynamicToString) String? language,
+      @JsonKey(fromJson: _dynamicToString) String? date,
+      @JsonKey(name: 'menu_id', fromJson: _dynamicToString) String? menu_id,
       @JsonKey(fromJson: _stringToBool) bool? show_in_menu,
       @JsonKey(fromJson: _stringToBool) bool? show_in_main,
       @JsonKey(fromJson: _stringToInt) int? content_count,
-      String? type,
+      @JsonKey(fromJson: _dynamicToString) String? type,
       List<GalleryItem>? data});
 }
 
@@ -1040,16 +1057,17 @@ extension GalleryCategoryPatterns on GalleryCategory {
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
             @JsonKey(fromJson: _stringToInt) int? id,
-            String? title,
-            String? note,
-            String? position,
-            String? language,
-            String? date,
+            @JsonKey(fromJson: _dynamicToString) String? title,
+            @JsonKey(fromJson: _dynamicToString) String? note,
+            @JsonKey(fromJson: _dynamicToString) String? position,
+            @JsonKey(fromJson: _dynamicToString) String? language,
+            @JsonKey(fromJson: _dynamicToString) String? date,
+            @JsonKey(name: 'menu_id', fromJson: _dynamicToString)
             String? menu_id,
             @JsonKey(fromJson: _stringToBool) bool? show_in_menu,
             @JsonKey(fromJson: _stringToBool) bool? show_in_main,
             @JsonKey(fromJson: _stringToInt) int? content_count,
-            String? type,
+            @JsonKey(fromJson: _dynamicToString) String? type,
             List<GalleryItem>? data)?
         $default, {
     required TResult orElse(),
@@ -1092,16 +1110,17 @@ extension GalleryCategoryPatterns on GalleryCategory {
   TResult when<TResult extends Object?>(
     TResult Function(
             @JsonKey(fromJson: _stringToInt) int? id,
-            String? title,
-            String? note,
-            String? position,
-            String? language,
-            String? date,
+            @JsonKey(fromJson: _dynamicToString) String? title,
+            @JsonKey(fromJson: _dynamicToString) String? note,
+            @JsonKey(fromJson: _dynamicToString) String? position,
+            @JsonKey(fromJson: _dynamicToString) String? language,
+            @JsonKey(fromJson: _dynamicToString) String? date,
+            @JsonKey(name: 'menu_id', fromJson: _dynamicToString)
             String? menu_id,
             @JsonKey(fromJson: _stringToBool) bool? show_in_menu,
             @JsonKey(fromJson: _stringToBool) bool? show_in_main,
             @JsonKey(fromJson: _stringToInt) int? content_count,
-            String? type,
+            @JsonKey(fromJson: _dynamicToString) String? type,
             List<GalleryItem>? data)
         $default,
   ) {
@@ -1142,16 +1161,17 @@ extension GalleryCategoryPatterns on GalleryCategory {
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
             @JsonKey(fromJson: _stringToInt) int? id,
-            String? title,
-            String? note,
-            String? position,
-            String? language,
-            String? date,
+            @JsonKey(fromJson: _dynamicToString) String? title,
+            @JsonKey(fromJson: _dynamicToString) String? note,
+            @JsonKey(fromJson: _dynamicToString) String? position,
+            @JsonKey(fromJson: _dynamicToString) String? language,
+            @JsonKey(fromJson: _dynamicToString) String? date,
+            @JsonKey(name: 'menu_id', fromJson: _dynamicToString)
             String? menu_id,
             @JsonKey(fromJson: _stringToBool) bool? show_in_menu,
             @JsonKey(fromJson: _stringToBool) bool? show_in_main,
             @JsonKey(fromJson: _stringToInt) int? content_count,
-            String? type,
+            @JsonKey(fromJson: _dynamicToString) String? type,
             List<GalleryItem>? data)?
         $default,
   ) {
@@ -1182,16 +1202,16 @@ extension GalleryCategoryPatterns on GalleryCategory {
 class _GalleryCategory implements GalleryCategory {
   const _GalleryCategory(
       {@JsonKey(fromJson: _stringToInt) this.id,
-      this.title,
-      this.note,
-      this.position,
-      this.language,
-      this.date,
-      this.menu_id,
+      @JsonKey(fromJson: _dynamicToString) this.title,
+      @JsonKey(fromJson: _dynamicToString) this.note,
+      @JsonKey(fromJson: _dynamicToString) this.position,
+      @JsonKey(fromJson: _dynamicToString) this.language,
+      @JsonKey(fromJson: _dynamicToString) this.date,
+      @JsonKey(name: 'menu_id', fromJson: _dynamicToString) this.menu_id,
       @JsonKey(fromJson: _stringToBool) this.show_in_menu,
       @JsonKey(fromJson: _stringToBool) this.show_in_main,
       @JsonKey(fromJson: _stringToInt) this.content_count,
-      this.type,
+      @JsonKey(fromJson: _dynamicToString) this.type,
       final List<GalleryItem>? data})
       : _data = data;
   factory _GalleryCategory.fromJson(Map<String, dynamic> json) =>
@@ -1201,16 +1221,22 @@ class _GalleryCategory implements GalleryCategory {
   @JsonKey(fromJson: _stringToInt)
   final int? id;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? title;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? note;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? position;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? language;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? date;
   @override
+  @JsonKey(name: 'menu_id', fromJson: _dynamicToString)
   final String? menu_id;
   @override
   @JsonKey(fromJson: _stringToBool)
@@ -1222,6 +1248,7 @@ class _GalleryCategory implements GalleryCategory {
   @JsonKey(fromJson: _stringToInt)
   final int? content_count;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? type;
   final List<GalleryItem>? _data;
   @override
@@ -1305,16 +1332,16 @@ abstract mixin class _$GalleryCategoryCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(fromJson: _stringToInt) int? id,
-      String? title,
-      String? note,
-      String? position,
-      String? language,
-      String? date,
-      String? menu_id,
+      @JsonKey(fromJson: _dynamicToString) String? title,
+      @JsonKey(fromJson: _dynamicToString) String? note,
+      @JsonKey(fromJson: _dynamicToString) String? position,
+      @JsonKey(fromJson: _dynamicToString) String? language,
+      @JsonKey(fromJson: _dynamicToString) String? date,
+      @JsonKey(name: 'menu_id', fromJson: _dynamicToString) String? menu_id,
       @JsonKey(fromJson: _stringToBool) bool? show_in_menu,
       @JsonKey(fromJson: _stringToBool) bool? show_in_main,
       @JsonKey(fromJson: _stringToInt) int? content_count,
-      String? type,
+      @JsonKey(fromJson: _dynamicToString) String? type,
       List<GalleryItem>? data});
 }
 
@@ -1401,15 +1428,23 @@ class __$GalleryCategoryCopyWithImpl<$Res>
 mixin _$GalleryItem {
   @JsonKey(fromJson: _stringToInt)
   int? get id;
+  @JsonKey(fromJson: _dynamicToString)
   String? get title;
+  @JsonKey(fromJson: _dynamicToString)
   String? get summary;
+  @JsonKey(fromJson: _dynamicToString)
   String? get date;
+  @JsonKey(name: 'visitor_count', fromJson: _dynamicToString)
   String? get visitor_count;
   @JsonKey(fromJson: _stringToBool)
   bool? get is_new;
-  dynamic get priority;
+  @JsonKey(fromJson: _dynamicToString)
+  String? get priority;
+  @JsonKey(fromJson: _dynamicToString)
   String? get picture;
+  @JsonKey(name: 'photo_gallery_pic_thumbnail_url', fromJson: _dynamicToString)
   String? get photo_gallery_pic_thumbnail_url;
+  @JsonKey(name: 'photo_gallery_pic_full_url', fromJson: _dynamicToString)
   String? get photo_gallery_pic_full_url;
 
   /// Create a copy of GalleryItem
@@ -1434,7 +1469,8 @@ mixin _$GalleryItem {
             (identical(other.visitor_count, visitor_count) ||
                 other.visitor_count == visitor_count) &&
             (identical(other.is_new, is_new) || other.is_new == is_new) &&
-            const DeepCollectionEquality().equals(other.priority, priority) &&
+            (identical(other.priority, priority) ||
+                other.priority == priority) &&
             (identical(other.picture, picture) || other.picture == picture) &&
             (identical(other.photo_gallery_pic_thumbnail_url,
                     photo_gallery_pic_thumbnail_url) ||
@@ -1456,7 +1492,7 @@ mixin _$GalleryItem {
       date,
       visitor_count,
       is_new,
-      const DeepCollectionEquality().hash(priority),
+      priority,
       picture,
       photo_gallery_pic_thumbnail_url,
       photo_gallery_pic_full_url);
@@ -1475,14 +1511,18 @@ abstract mixin class $GalleryItemCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(fromJson: _stringToInt) int? id,
-      String? title,
-      String? summary,
-      String? date,
+      @JsonKey(fromJson: _dynamicToString) String? title,
+      @JsonKey(fromJson: _dynamicToString) String? summary,
+      @JsonKey(fromJson: _dynamicToString) String? date,
+      @JsonKey(name: 'visitor_count', fromJson: _dynamicToString)
       String? visitor_count,
       @JsonKey(fromJson: _stringToBool) bool? is_new,
-      dynamic priority,
-      String? picture,
+      @JsonKey(fromJson: _dynamicToString) String? priority,
+      @JsonKey(fromJson: _dynamicToString) String? picture,
+      @JsonKey(
+          name: 'photo_gallery_pic_thumbnail_url', fromJson: _dynamicToString)
       String? photo_gallery_pic_thumbnail_url,
+      @JsonKey(name: 'photo_gallery_pic_full_url', fromJson: _dynamicToString)
       String? photo_gallery_pic_full_url});
 }
 
@@ -1537,7 +1577,7 @@ class _$GalleryItemCopyWithImpl<$Res> implements $GalleryItemCopyWith<$Res> {
       priority: freezed == priority
           ? _self.priority
           : priority // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String?,
       picture: freezed == picture
           ? _self.picture
           : picture // ignore: cast_nullable_to_non_nullable
@@ -1650,14 +1690,20 @@ extension GalleryItemPatterns on GalleryItem {
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
             @JsonKey(fromJson: _stringToInt) int? id,
-            String? title,
-            String? summary,
-            String? date,
+            @JsonKey(fromJson: _dynamicToString) String? title,
+            @JsonKey(fromJson: _dynamicToString) String? summary,
+            @JsonKey(fromJson: _dynamicToString) String? date,
+            @JsonKey(name: 'visitor_count', fromJson: _dynamicToString)
             String? visitor_count,
             @JsonKey(fromJson: _stringToBool) bool? is_new,
-            dynamic priority,
-            String? picture,
+            @JsonKey(fromJson: _dynamicToString) String? priority,
+            @JsonKey(fromJson: _dynamicToString) String? picture,
+            @JsonKey(
+                name: 'photo_gallery_pic_thumbnail_url',
+                fromJson: _dynamicToString)
             String? photo_gallery_pic_thumbnail_url,
+            @JsonKey(
+                name: 'photo_gallery_pic_full_url', fromJson: _dynamicToString)
             String? photo_gallery_pic_full_url)?
         $default, {
     required TResult orElse(),
@@ -1698,14 +1744,20 @@ extension GalleryItemPatterns on GalleryItem {
   TResult when<TResult extends Object?>(
     TResult Function(
             @JsonKey(fromJson: _stringToInt) int? id,
-            String? title,
-            String? summary,
-            String? date,
+            @JsonKey(fromJson: _dynamicToString) String? title,
+            @JsonKey(fromJson: _dynamicToString) String? summary,
+            @JsonKey(fromJson: _dynamicToString) String? date,
+            @JsonKey(name: 'visitor_count', fromJson: _dynamicToString)
             String? visitor_count,
             @JsonKey(fromJson: _stringToBool) bool? is_new,
-            dynamic priority,
-            String? picture,
+            @JsonKey(fromJson: _dynamicToString) String? priority,
+            @JsonKey(fromJson: _dynamicToString) String? picture,
+            @JsonKey(
+                name: 'photo_gallery_pic_thumbnail_url',
+                fromJson: _dynamicToString)
             String? photo_gallery_pic_thumbnail_url,
+            @JsonKey(
+                name: 'photo_gallery_pic_full_url', fromJson: _dynamicToString)
             String? photo_gallery_pic_full_url)
         $default,
   ) {
@@ -1744,14 +1796,20 @@ extension GalleryItemPatterns on GalleryItem {
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
             @JsonKey(fromJson: _stringToInt) int? id,
-            String? title,
-            String? summary,
-            String? date,
+            @JsonKey(fromJson: _dynamicToString) String? title,
+            @JsonKey(fromJson: _dynamicToString) String? summary,
+            @JsonKey(fromJson: _dynamicToString) String? date,
+            @JsonKey(name: 'visitor_count', fromJson: _dynamicToString)
             String? visitor_count,
             @JsonKey(fromJson: _stringToBool) bool? is_new,
-            dynamic priority,
-            String? picture,
+            @JsonKey(fromJson: _dynamicToString) String? priority,
+            @JsonKey(fromJson: _dynamicToString) String? picture,
+            @JsonKey(
+                name: 'photo_gallery_pic_thumbnail_url',
+                fromJson: _dynamicToString)
             String? photo_gallery_pic_thumbnail_url,
+            @JsonKey(
+                name: 'photo_gallery_pic_full_url', fromJson: _dynamicToString)
             String? photo_gallery_pic_full_url)?
         $default,
   ) {
@@ -1780,14 +1838,18 @@ extension GalleryItemPatterns on GalleryItem {
 class _GalleryItem implements GalleryItem {
   const _GalleryItem(
       {@JsonKey(fromJson: _stringToInt) this.id,
-      this.title,
-      this.summary,
-      this.date,
+      @JsonKey(fromJson: _dynamicToString) this.title,
+      @JsonKey(fromJson: _dynamicToString) this.summary,
+      @JsonKey(fromJson: _dynamicToString) this.date,
+      @JsonKey(name: 'visitor_count', fromJson: _dynamicToString)
       this.visitor_count,
       @JsonKey(fromJson: _stringToBool) this.is_new,
-      this.priority,
-      this.picture,
+      @JsonKey(fromJson: _dynamicToString) this.priority,
+      @JsonKey(fromJson: _dynamicToString) this.picture,
+      @JsonKey(
+          name: 'photo_gallery_pic_thumbnail_url', fromJson: _dynamicToString)
       this.photo_gallery_pic_thumbnail_url,
+      @JsonKey(name: 'photo_gallery_pic_full_url', fromJson: _dynamicToString)
       this.photo_gallery_pic_full_url});
   factory _GalleryItem.fromJson(Map<String, dynamic> json) =>
       _$GalleryItemFromJson(json);
@@ -1796,23 +1858,31 @@ class _GalleryItem implements GalleryItem {
   @JsonKey(fromJson: _stringToInt)
   final int? id;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? title;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? summary;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? date;
   @override
+  @JsonKey(name: 'visitor_count', fromJson: _dynamicToString)
   final String? visitor_count;
   @override
   @JsonKey(fromJson: _stringToBool)
   final bool? is_new;
   @override
-  final dynamic priority;
+  @JsonKey(fromJson: _dynamicToString)
+  final String? priority;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? picture;
   @override
+  @JsonKey(name: 'photo_gallery_pic_thumbnail_url', fromJson: _dynamicToString)
   final String? photo_gallery_pic_thumbnail_url;
   @override
+  @JsonKey(name: 'photo_gallery_pic_full_url', fromJson: _dynamicToString)
   final String? photo_gallery_pic_full_url;
 
   /// Create a copy of GalleryItem
@@ -1842,7 +1912,8 @@ class _GalleryItem implements GalleryItem {
             (identical(other.visitor_count, visitor_count) ||
                 other.visitor_count == visitor_count) &&
             (identical(other.is_new, is_new) || other.is_new == is_new) &&
-            const DeepCollectionEquality().equals(other.priority, priority) &&
+            (identical(other.priority, priority) ||
+                other.priority == priority) &&
             (identical(other.picture, picture) || other.picture == picture) &&
             (identical(other.photo_gallery_pic_thumbnail_url,
                     photo_gallery_pic_thumbnail_url) ||
@@ -1864,7 +1935,7 @@ class _GalleryItem implements GalleryItem {
       date,
       visitor_count,
       is_new,
-      const DeepCollectionEquality().hash(priority),
+      priority,
       picture,
       photo_gallery_pic_thumbnail_url,
       photo_gallery_pic_full_url);
@@ -1885,14 +1956,18 @@ abstract mixin class _$GalleryItemCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(fromJson: _stringToInt) int? id,
-      String? title,
-      String? summary,
-      String? date,
+      @JsonKey(fromJson: _dynamicToString) String? title,
+      @JsonKey(fromJson: _dynamicToString) String? summary,
+      @JsonKey(fromJson: _dynamicToString) String? date,
+      @JsonKey(name: 'visitor_count', fromJson: _dynamicToString)
       String? visitor_count,
       @JsonKey(fromJson: _stringToBool) bool? is_new,
-      dynamic priority,
-      String? picture,
+      @JsonKey(fromJson: _dynamicToString) String? priority,
+      @JsonKey(fromJson: _dynamicToString) String? picture,
+      @JsonKey(
+          name: 'photo_gallery_pic_thumbnail_url', fromJson: _dynamicToString)
       String? photo_gallery_pic_thumbnail_url,
+      @JsonKey(name: 'photo_gallery_pic_full_url', fromJson: _dynamicToString)
       String? photo_gallery_pic_full_url});
 }
 
@@ -1947,7 +2022,7 @@ class __$GalleryItemCopyWithImpl<$Res> implements _$GalleryItemCopyWith<$Res> {
       priority: freezed == priority
           ? _self.priority
           : priority // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String?,
       picture: freezed == picture
           ? _self.picture
           : picture // ignore: cast_nullable_to_non_nullable
@@ -3321,10 +3396,15 @@ class __$CategoryContentDataCopyWithImpl<$Res>
 mixin _$CategoryInfo {
   @JsonKey(fromJson: _stringToInt)
   int? get id;
+  @JsonKey(fromJson: _dynamicToString)
   String? get title;
+  @JsonKey(fromJson: _dynamicToString)
   String? get note;
+  @JsonKey(fromJson: _dynamicToString)
   String? get type;
+  @JsonKey(fromJson: _dynamicToString)
   String? get position;
+  @JsonKey(fromJson: _dynamicToString)
   String? get language;
 
   /// Create a copy of CategoryInfo
@@ -3372,11 +3452,11 @@ abstract mixin class $CategoryInfoCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(fromJson: _stringToInt) int? id,
-      String? title,
-      String? note,
-      String? type,
-      String? position,
-      String? language});
+      @JsonKey(fromJson: _dynamicToString) String? title,
+      @JsonKey(fromJson: _dynamicToString) String? note,
+      @JsonKey(fromJson: _dynamicToString) String? type,
+      @JsonKey(fromJson: _dynamicToString) String? position,
+      @JsonKey(fromJson: _dynamicToString) String? language});
 }
 
 /// @nodoc
@@ -3520,8 +3600,13 @@ extension CategoryInfoPatterns on CategoryInfo {
 
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(@JsonKey(fromJson: _stringToInt) int? id, String? title,
-            String? note, String? type, String? position, String? language)?
+    TResult Function(
+            @JsonKey(fromJson: _stringToInt) int? id,
+            @JsonKey(fromJson: _dynamicToString) String? title,
+            @JsonKey(fromJson: _dynamicToString) String? note,
+            @JsonKey(fromJson: _dynamicToString) String? type,
+            @JsonKey(fromJson: _dynamicToString) String? position,
+            @JsonKey(fromJson: _dynamicToString) String? language)?
         $default, {
     required TResult orElse(),
   }) {
@@ -3550,8 +3635,13 @@ extension CategoryInfoPatterns on CategoryInfo {
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(@JsonKey(fromJson: _stringToInt) int? id, String? title,
-            String? note, String? type, String? position, String? language)
+    TResult Function(
+            @JsonKey(fromJson: _stringToInt) int? id,
+            @JsonKey(fromJson: _dynamicToString) String? title,
+            @JsonKey(fromJson: _dynamicToString) String? note,
+            @JsonKey(fromJson: _dynamicToString) String? type,
+            @JsonKey(fromJson: _dynamicToString) String? position,
+            @JsonKey(fromJson: _dynamicToString) String? language)
         $default,
   ) {
     final _that = this;
@@ -3578,8 +3668,13 @@ extension CategoryInfoPatterns on CategoryInfo {
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(@JsonKey(fromJson: _stringToInt) int? id, String? title,
-            String? note, String? type, String? position, String? language)?
+    TResult? Function(
+            @JsonKey(fromJson: _stringToInt) int? id,
+            @JsonKey(fromJson: _dynamicToString) String? title,
+            @JsonKey(fromJson: _dynamicToString) String? note,
+            @JsonKey(fromJson: _dynamicToString) String? type,
+            @JsonKey(fromJson: _dynamicToString) String? position,
+            @JsonKey(fromJson: _dynamicToString) String? language)?
         $default,
   ) {
     final _that = this;
@@ -3598,11 +3693,11 @@ extension CategoryInfoPatterns on CategoryInfo {
 class _CategoryInfo implements CategoryInfo {
   const _CategoryInfo(
       {@JsonKey(fromJson: _stringToInt) this.id,
-      this.title,
-      this.note,
-      this.type,
-      this.position,
-      this.language});
+      @JsonKey(fromJson: _dynamicToString) this.title,
+      @JsonKey(fromJson: _dynamicToString) this.note,
+      @JsonKey(fromJson: _dynamicToString) this.type,
+      @JsonKey(fromJson: _dynamicToString) this.position,
+      @JsonKey(fromJson: _dynamicToString) this.language});
   factory _CategoryInfo.fromJson(Map<String, dynamic> json) =>
       _$CategoryInfoFromJson(json);
 
@@ -3610,14 +3705,19 @@ class _CategoryInfo implements CategoryInfo {
   @JsonKey(fromJson: _stringToInt)
   final int? id;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? title;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? note;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? type;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? position;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? language;
 
   /// Create a copy of CategoryInfo
@@ -3671,11 +3771,11 @@ abstract mixin class _$CategoryInfoCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(fromJson: _stringToInt) int? id,
-      String? title,
-      String? note,
-      String? type,
-      String? position,
-      String? language});
+      @JsonKey(fromJson: _dynamicToString) String? title,
+      @JsonKey(fromJson: _dynamicToString) String? note,
+      @JsonKey(fromJson: _dynamicToString) String? type,
+      @JsonKey(fromJson: _dynamicToString) String? position,
+      @JsonKey(fromJson: _dynamicToString) String? language});
 }
 
 /// @nodoc

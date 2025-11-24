@@ -770,11 +770,17 @@ class __$VideoDataCopyWithImpl<$Res> implements _$VideoDataCopyWith<$Res> {
 mixin _$VideoCategory {
   @JsonKey(fromJson: _stringToInt)
   int? get id;
+  @JsonKey(fromJson: _dynamicToString)
   String? get title;
+  @JsonKey(fromJson: _dynamicToString)
   String? get note;
+  @JsonKey(fromJson: _dynamicToString)
   String? get position;
+  @JsonKey(fromJson: _dynamicToString)
   String? get language;
+  @JsonKey(fromJson: _dynamicToString)
   String? get date;
+  @JsonKey(name: 'menu_id', fromJson: _dynamicToString)
   String? get menu_id;
   @JsonKey(fromJson: _stringToBool)
   bool? get show_in_menu;
@@ -782,6 +788,7 @@ mixin _$VideoCategory {
   bool? get show_in_main;
   @JsonKey(fromJson: _stringToInt)
   int? get content_count;
+  @JsonKey(fromJson: _dynamicToString)
   String? get type;
   List<VideoItem>? get data;
 
@@ -851,16 +858,16 @@ abstract mixin class $VideoCategoryCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(fromJson: _stringToInt) int? id,
-      String? title,
-      String? note,
-      String? position,
-      String? language,
-      String? date,
-      String? menu_id,
+      @JsonKey(fromJson: _dynamicToString) String? title,
+      @JsonKey(fromJson: _dynamicToString) String? note,
+      @JsonKey(fromJson: _dynamicToString) String? position,
+      @JsonKey(fromJson: _dynamicToString) String? language,
+      @JsonKey(fromJson: _dynamicToString) String? date,
+      @JsonKey(name: 'menu_id', fromJson: _dynamicToString) String? menu_id,
       @JsonKey(fromJson: _stringToBool) bool? show_in_menu,
       @JsonKey(fromJson: _stringToBool) bool? show_in_main,
       @JsonKey(fromJson: _stringToInt) int? content_count,
-      String? type,
+      @JsonKey(fromJson: _dynamicToString) String? type,
       List<VideoItem>? data});
 }
 
@@ -1038,16 +1045,17 @@ extension VideoCategoryPatterns on VideoCategory {
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
             @JsonKey(fromJson: _stringToInt) int? id,
-            String? title,
-            String? note,
-            String? position,
-            String? language,
-            String? date,
+            @JsonKey(fromJson: _dynamicToString) String? title,
+            @JsonKey(fromJson: _dynamicToString) String? note,
+            @JsonKey(fromJson: _dynamicToString) String? position,
+            @JsonKey(fromJson: _dynamicToString) String? language,
+            @JsonKey(fromJson: _dynamicToString) String? date,
+            @JsonKey(name: 'menu_id', fromJson: _dynamicToString)
             String? menu_id,
             @JsonKey(fromJson: _stringToBool) bool? show_in_menu,
             @JsonKey(fromJson: _stringToBool) bool? show_in_main,
             @JsonKey(fromJson: _stringToInt) int? content_count,
-            String? type,
+            @JsonKey(fromJson: _dynamicToString) String? type,
             List<VideoItem>? data)?
         $default, {
     required TResult orElse(),
@@ -1090,16 +1098,17 @@ extension VideoCategoryPatterns on VideoCategory {
   TResult when<TResult extends Object?>(
     TResult Function(
             @JsonKey(fromJson: _stringToInt) int? id,
-            String? title,
-            String? note,
-            String? position,
-            String? language,
-            String? date,
+            @JsonKey(fromJson: _dynamicToString) String? title,
+            @JsonKey(fromJson: _dynamicToString) String? note,
+            @JsonKey(fromJson: _dynamicToString) String? position,
+            @JsonKey(fromJson: _dynamicToString) String? language,
+            @JsonKey(fromJson: _dynamicToString) String? date,
+            @JsonKey(name: 'menu_id', fromJson: _dynamicToString)
             String? menu_id,
             @JsonKey(fromJson: _stringToBool) bool? show_in_menu,
             @JsonKey(fromJson: _stringToBool) bool? show_in_main,
             @JsonKey(fromJson: _stringToInt) int? content_count,
-            String? type,
+            @JsonKey(fromJson: _dynamicToString) String? type,
             List<VideoItem>? data)
         $default,
   ) {
@@ -1140,16 +1149,17 @@ extension VideoCategoryPatterns on VideoCategory {
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
             @JsonKey(fromJson: _stringToInt) int? id,
-            String? title,
-            String? note,
-            String? position,
-            String? language,
-            String? date,
+            @JsonKey(fromJson: _dynamicToString) String? title,
+            @JsonKey(fromJson: _dynamicToString) String? note,
+            @JsonKey(fromJson: _dynamicToString) String? position,
+            @JsonKey(fromJson: _dynamicToString) String? language,
+            @JsonKey(fromJson: _dynamicToString) String? date,
+            @JsonKey(name: 'menu_id', fromJson: _dynamicToString)
             String? menu_id,
             @JsonKey(fromJson: _stringToBool) bool? show_in_menu,
             @JsonKey(fromJson: _stringToBool) bool? show_in_main,
             @JsonKey(fromJson: _stringToInt) int? content_count,
-            String? type,
+            @JsonKey(fromJson: _dynamicToString) String? type,
             List<VideoItem>? data)?
         $default,
   ) {
@@ -1180,16 +1190,16 @@ extension VideoCategoryPatterns on VideoCategory {
 class _VideoCategory implements VideoCategory {
   const _VideoCategory(
       {@JsonKey(fromJson: _stringToInt) this.id,
-      this.title,
-      this.note,
-      this.position,
-      this.language,
-      this.date,
-      this.menu_id,
+      @JsonKey(fromJson: _dynamicToString) this.title,
+      @JsonKey(fromJson: _dynamicToString) this.note,
+      @JsonKey(fromJson: _dynamicToString) this.position,
+      @JsonKey(fromJson: _dynamicToString) this.language,
+      @JsonKey(fromJson: _dynamicToString) this.date,
+      @JsonKey(name: 'menu_id', fromJson: _dynamicToString) this.menu_id,
       @JsonKey(fromJson: _stringToBool) this.show_in_menu,
       @JsonKey(fromJson: _stringToBool) this.show_in_main,
       @JsonKey(fromJson: _stringToInt) this.content_count,
-      this.type,
+      @JsonKey(fromJson: _dynamicToString) this.type,
       final List<VideoItem>? data})
       : _data = data;
   factory _VideoCategory.fromJson(Map<String, dynamic> json) =>
@@ -1199,16 +1209,22 @@ class _VideoCategory implements VideoCategory {
   @JsonKey(fromJson: _stringToInt)
   final int? id;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? title;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? note;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? position;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? language;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? date;
   @override
+  @JsonKey(name: 'menu_id', fromJson: _dynamicToString)
   final String? menu_id;
   @override
   @JsonKey(fromJson: _stringToBool)
@@ -1220,6 +1236,7 @@ class _VideoCategory implements VideoCategory {
   @JsonKey(fromJson: _stringToInt)
   final int? content_count;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? type;
   final List<VideoItem>? _data;
   @override
@@ -1303,16 +1320,16 @@ abstract mixin class _$VideoCategoryCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(fromJson: _stringToInt) int? id,
-      String? title,
-      String? note,
-      String? position,
-      String? language,
-      String? date,
-      String? menu_id,
+      @JsonKey(fromJson: _dynamicToString) String? title,
+      @JsonKey(fromJson: _dynamicToString) String? note,
+      @JsonKey(fromJson: _dynamicToString) String? position,
+      @JsonKey(fromJson: _dynamicToString) String? language,
+      @JsonKey(fromJson: _dynamicToString) String? date,
+      @JsonKey(name: 'menu_id', fromJson: _dynamicToString) String? menu_id,
       @JsonKey(fromJson: _stringToBool) bool? show_in_menu,
       @JsonKey(fromJson: _stringToBool) bool? show_in_main,
       @JsonKey(fromJson: _stringToInt) int? content_count,
-      String? type,
+      @JsonKey(fromJson: _dynamicToString) String? type,
       List<VideoItem>? data});
 }
 
@@ -1399,14 +1416,21 @@ class __$VideoCategoryCopyWithImpl<$Res>
 mixin _$VideoItem {
   @JsonKey(fromJson: _stringToInt)
   int? get id;
+  @JsonKey(fromJson: _dynamicToString)
   String? get title;
+  @JsonKey(fromJson: _dynamicToString)
   String? get summary;
+  @JsonKey(fromJson: _dynamicToString)
   String? get date;
+  @JsonKey(name: 'visitor_count', fromJson: _dynamicToString)
   String? get visitor_count;
   @JsonKey(fromJson: _stringToBool)
   bool? get is_new;
+  @JsonKey(fromJson: _dynamicToString)
   String? get priority;
+  @JsonKey(name: 'youtube_id', fromJson: _dynamicToString)
   String? get youtube_id;
+  @JsonKey(fromJson: _dynamicToString)
   String? get file;
 
   /// Create a copy of VideoItem
@@ -1456,14 +1480,16 @@ abstract mixin class $VideoItemCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(fromJson: _stringToInt) int? id,
-      String? title,
-      String? summary,
-      String? date,
+      @JsonKey(fromJson: _dynamicToString) String? title,
+      @JsonKey(fromJson: _dynamicToString) String? summary,
+      @JsonKey(fromJson: _dynamicToString) String? date,
+      @JsonKey(name: 'visitor_count', fromJson: _dynamicToString)
       String? visitor_count,
       @JsonKey(fromJson: _stringToBool) bool? is_new,
-      String? priority,
+      @JsonKey(fromJson: _dynamicToString) String? priority,
+      @JsonKey(name: 'youtube_id', fromJson: _dynamicToString)
       String? youtube_id,
-      String? file});
+      @JsonKey(fromJson: _dynamicToString) String? file});
 }
 
 /// @nodoc
@@ -1624,14 +1650,16 @@ extension VideoItemPatterns on VideoItem {
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
             @JsonKey(fromJson: _stringToInt) int? id,
-            String? title,
-            String? summary,
-            String? date,
+            @JsonKey(fromJson: _dynamicToString) String? title,
+            @JsonKey(fromJson: _dynamicToString) String? summary,
+            @JsonKey(fromJson: _dynamicToString) String? date,
+            @JsonKey(name: 'visitor_count', fromJson: _dynamicToString)
             String? visitor_count,
             @JsonKey(fromJson: _stringToBool) bool? is_new,
-            String? priority,
+            @JsonKey(fromJson: _dynamicToString) String? priority,
+            @JsonKey(name: 'youtube_id', fromJson: _dynamicToString)
             String? youtube_id,
-            String? file)?
+            @JsonKey(fromJson: _dynamicToString) String? file)?
         $default, {
     required TResult orElse(),
   }) {
@@ -1670,14 +1698,16 @@ extension VideoItemPatterns on VideoItem {
   TResult when<TResult extends Object?>(
     TResult Function(
             @JsonKey(fromJson: _stringToInt) int? id,
-            String? title,
-            String? summary,
-            String? date,
+            @JsonKey(fromJson: _dynamicToString) String? title,
+            @JsonKey(fromJson: _dynamicToString) String? summary,
+            @JsonKey(fromJson: _dynamicToString) String? date,
+            @JsonKey(name: 'visitor_count', fromJson: _dynamicToString)
             String? visitor_count,
             @JsonKey(fromJson: _stringToBool) bool? is_new,
-            String? priority,
+            @JsonKey(fromJson: _dynamicToString) String? priority,
+            @JsonKey(name: 'youtube_id', fromJson: _dynamicToString)
             String? youtube_id,
-            String? file)
+            @JsonKey(fromJson: _dynamicToString) String? file)
         $default,
   ) {
     final _that = this;
@@ -1714,14 +1744,16 @@ extension VideoItemPatterns on VideoItem {
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
             @JsonKey(fromJson: _stringToInt) int? id,
-            String? title,
-            String? summary,
-            String? date,
+            @JsonKey(fromJson: _dynamicToString) String? title,
+            @JsonKey(fromJson: _dynamicToString) String? summary,
+            @JsonKey(fromJson: _dynamicToString) String? date,
+            @JsonKey(name: 'visitor_count', fromJson: _dynamicToString)
             String? visitor_count,
             @JsonKey(fromJson: _stringToBool) bool? is_new,
-            String? priority,
+            @JsonKey(fromJson: _dynamicToString) String? priority,
+            @JsonKey(name: 'youtube_id', fromJson: _dynamicToString)
             String? youtube_id,
-            String? file)?
+            @JsonKey(fromJson: _dynamicToString) String? file)?
         $default,
   ) {
     final _that = this;
@@ -1748,14 +1780,15 @@ extension VideoItemPatterns on VideoItem {
 class _VideoItem implements VideoItem {
   const _VideoItem(
       {@JsonKey(fromJson: _stringToInt) this.id,
-      this.title,
-      this.summary,
-      this.date,
+      @JsonKey(fromJson: _dynamicToString) this.title,
+      @JsonKey(fromJson: _dynamicToString) this.summary,
+      @JsonKey(fromJson: _dynamicToString) this.date,
+      @JsonKey(name: 'visitor_count', fromJson: _dynamicToString)
       this.visitor_count,
       @JsonKey(fromJson: _stringToBool) this.is_new,
-      this.priority,
-      this.youtube_id,
-      this.file});
+      @JsonKey(fromJson: _dynamicToString) this.priority,
+      @JsonKey(name: 'youtube_id', fromJson: _dynamicToString) this.youtube_id,
+      @JsonKey(fromJson: _dynamicToString) this.file});
   factory _VideoItem.fromJson(Map<String, dynamic> json) =>
       _$VideoItemFromJson(json);
 
@@ -1763,21 +1796,28 @@ class _VideoItem implements VideoItem {
   @JsonKey(fromJson: _stringToInt)
   final int? id;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? title;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? summary;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? date;
   @override
+  @JsonKey(name: 'visitor_count', fromJson: _dynamicToString)
   final String? visitor_count;
   @override
   @JsonKey(fromJson: _stringToBool)
   final bool? is_new;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? priority;
   @override
+  @JsonKey(name: 'youtube_id', fromJson: _dynamicToString)
   final String? youtube_id;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? file;
 
   /// Create a copy of VideoItem
@@ -1835,14 +1875,16 @@ abstract mixin class _$VideoItemCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(fromJson: _stringToInt) int? id,
-      String? title,
-      String? summary,
-      String? date,
+      @JsonKey(fromJson: _dynamicToString) String? title,
+      @JsonKey(fromJson: _dynamicToString) String? summary,
+      @JsonKey(fromJson: _dynamicToString) String? date,
+      @JsonKey(name: 'visitor_count', fromJson: _dynamicToString)
       String? visitor_count,
       @JsonKey(fromJson: _stringToBool) bool? is_new,
-      String? priority,
+      @JsonKey(fromJson: _dynamicToString) String? priority,
+      @JsonKey(name: 'youtube_id', fromJson: _dynamicToString)
       String? youtube_id,
-      String? file});
+      @JsonKey(fromJson: _dynamicToString) String? file});
 }
 
 /// @nodoc
@@ -3269,10 +3311,15 @@ class __$CategoryVideoContentDataCopyWithImpl<$Res>
 mixin _$VideoCategoryInfo {
   @JsonKey(fromJson: _stringToInt)
   int? get id;
+  @JsonKey(fromJson: _dynamicToString)
   String? get title;
+  @JsonKey(fromJson: _dynamicToString)
   String? get note;
+  @JsonKey(fromJson: _dynamicToString)
   String? get type;
+  @JsonKey(fromJson: _dynamicToString)
   String? get position;
+  @JsonKey(fromJson: _dynamicToString)
   String? get language;
 
   /// Create a copy of VideoCategoryInfo
@@ -3320,11 +3367,11 @@ abstract mixin class $VideoCategoryInfoCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(fromJson: _stringToInt) int? id,
-      String? title,
-      String? note,
-      String? type,
-      String? position,
-      String? language});
+      @JsonKey(fromJson: _dynamicToString) String? title,
+      @JsonKey(fromJson: _dynamicToString) String? note,
+      @JsonKey(fromJson: _dynamicToString) String? type,
+      @JsonKey(fromJson: _dynamicToString) String? position,
+      @JsonKey(fromJson: _dynamicToString) String? language});
 }
 
 /// @nodoc
@@ -3469,8 +3516,13 @@ extension VideoCategoryInfoPatterns on VideoCategoryInfo {
 
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(@JsonKey(fromJson: _stringToInt) int? id, String? title,
-            String? note, String? type, String? position, String? language)?
+    TResult Function(
+            @JsonKey(fromJson: _stringToInt) int? id,
+            @JsonKey(fromJson: _dynamicToString) String? title,
+            @JsonKey(fromJson: _dynamicToString) String? note,
+            @JsonKey(fromJson: _dynamicToString) String? type,
+            @JsonKey(fromJson: _dynamicToString) String? position,
+            @JsonKey(fromJson: _dynamicToString) String? language)?
         $default, {
     required TResult orElse(),
   }) {
@@ -3499,8 +3551,13 @@ extension VideoCategoryInfoPatterns on VideoCategoryInfo {
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(@JsonKey(fromJson: _stringToInt) int? id, String? title,
-            String? note, String? type, String? position, String? language)
+    TResult Function(
+            @JsonKey(fromJson: _stringToInt) int? id,
+            @JsonKey(fromJson: _dynamicToString) String? title,
+            @JsonKey(fromJson: _dynamicToString) String? note,
+            @JsonKey(fromJson: _dynamicToString) String? type,
+            @JsonKey(fromJson: _dynamicToString) String? position,
+            @JsonKey(fromJson: _dynamicToString) String? language)
         $default,
   ) {
     final _that = this;
@@ -3527,8 +3584,13 @@ extension VideoCategoryInfoPatterns on VideoCategoryInfo {
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(@JsonKey(fromJson: _stringToInt) int? id, String? title,
-            String? note, String? type, String? position, String? language)?
+    TResult? Function(
+            @JsonKey(fromJson: _stringToInt) int? id,
+            @JsonKey(fromJson: _dynamicToString) String? title,
+            @JsonKey(fromJson: _dynamicToString) String? note,
+            @JsonKey(fromJson: _dynamicToString) String? type,
+            @JsonKey(fromJson: _dynamicToString) String? position,
+            @JsonKey(fromJson: _dynamicToString) String? language)?
         $default,
   ) {
     final _that = this;
@@ -3547,11 +3609,11 @@ extension VideoCategoryInfoPatterns on VideoCategoryInfo {
 class _VideoCategoryInfo implements VideoCategoryInfo {
   const _VideoCategoryInfo(
       {@JsonKey(fromJson: _stringToInt) this.id,
-      this.title,
-      this.note,
-      this.type,
-      this.position,
-      this.language});
+      @JsonKey(fromJson: _dynamicToString) this.title,
+      @JsonKey(fromJson: _dynamicToString) this.note,
+      @JsonKey(fromJson: _dynamicToString) this.type,
+      @JsonKey(fromJson: _dynamicToString) this.position,
+      @JsonKey(fromJson: _dynamicToString) this.language});
   factory _VideoCategoryInfo.fromJson(Map<String, dynamic> json) =>
       _$VideoCategoryInfoFromJson(json);
 
@@ -3559,14 +3621,19 @@ class _VideoCategoryInfo implements VideoCategoryInfo {
   @JsonKey(fromJson: _stringToInt)
   final int? id;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? title;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? note;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? type;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? position;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? language;
 
   /// Create a copy of VideoCategoryInfo
@@ -3620,11 +3687,11 @@ abstract mixin class _$VideoCategoryInfoCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(fromJson: _stringToInt) int? id,
-      String? title,
-      String? note,
-      String? type,
-      String? position,
-      String? language});
+      @JsonKey(fromJson: _dynamicToString) String? title,
+      @JsonKey(fromJson: _dynamicToString) String? note,
+      @JsonKey(fromJson: _dynamicToString) String? type,
+      @JsonKey(fromJson: _dynamicToString) String? position,
+      @JsonKey(fromJson: _dynamicToString) String? language});
 }
 
 /// @nodoc
@@ -4588,25 +4655,25 @@ class __$VideoDetailResponseCopyWithImpl<$Res>
 mixin _$VideoDetailData {
   @JsonKey(name: 'video_id', fromJson: _stringToInt)
   int? get videoId;
-  @JsonKey(name: 'video_cat_id')
+  @JsonKey(name: 'video_cat_id', fromJson: _dynamicToString)
   String? get videoCatId;
-  @JsonKey(name: 'video_title')
+  @JsonKey(name: 'video_title', fromJson: _dynamicToString)
   String? get videoTitle;
-  @JsonKey(name: 'video_ts')
+  @JsonKey(name: 'video_ts', fromJson: _dynamicToString)
   String? get videoTs;
-  @JsonKey(name: 'video_summary')
+  @JsonKey(name: 'video_summary', fromJson: _dynamicToString)
   String? get videoSummary;
-  @JsonKey(name: 'video_des')
+  @JsonKey(name: 'video_des', fromJson: _dynamicToString)
   String? get videoDes;
-  @JsonKey(name: 'video_pic')
+  @JsonKey(name: 'video_pic', fromJson: _dynamicToString)
   String? get videoPic;
-  @JsonKey(name: 'video_pic_pos')
+  @JsonKey(name: 'video_pic_pos', fromJson: _dynamicToString)
   String? get videoPicPos;
   @JsonKey(name: 'video_visitor', fromJson: _stringToInt)
   int? get videoVisitor;
   @JsonKey(name: 'video_is_new', fromJson: _stringToBool)
   bool? get videoIsNew;
-  @JsonKey(name: 'video_priority')
+  @JsonKey(name: 'video_priority', fromJson: _dynamicToString)
   String? get videoPriority;
   @JsonKey(name: 'video_active_vote', fromJson: _stringToBool)
   bool? get videoActiveVote;
@@ -4614,25 +4681,25 @@ mixin _$VideoDetailData {
   bool? get videoActiveHint;
   @JsonKey(name: 'video_active', fromJson: _stringToBool)
   bool? get videoActive;
-  @JsonKey(name: 'video_date')
+  @JsonKey(name: 'video_date', fromJson: _dynamicToString)
   String? get videoDate;
   @JsonKey(name: 'video_pic_active', fromJson: _stringToBool)
   bool? get videoPicActive;
   @JsonKey(name: 'video_last_video', fromJson: _stringToBool)
   bool? get videoLastVideo;
-  @JsonKey(name: 'video_publisher_id')
+  @JsonKey(name: 'video_publisher_id', fromJson: _dynamicToString)
   String? get videoPublisherId;
-  @JsonKey(name: 'video_source')
+  @JsonKey(name: 'video_source', fromJson: _dynamicToString)
   String? get videoSource;
-  @JsonKey(name: 'video_source_url')
+  @JsonKey(name: 'video_source_url', fromJson: _dynamicToString)
   String? get videoSourceUrl;
-  @JsonKey(name: 'video_youtube_id')
+  @JsonKey(name: 'video_youtube_id', fromJson: _dynamicToString)
   String? get videoYoutubeId;
-  @JsonKey(name: 'video_file')
+  @JsonKey(name: 'video_file', fromJson: _dynamicToString)
   String? get videoFile;
   @JsonKey(name: 'video_user_add_hint_nsup', fromJson: _stringToBool)
   bool? get videoUserAddHintNsup;
-  @JsonKey(name: 'video_file_url')
+  @JsonKey(name: 'video_file_url', fromJson: _dynamicToString)
   String? get videoFileUrl;
   VideoDetailCategory? get category;
 
@@ -4747,34 +4814,46 @@ abstract mixin class $VideoDetailDataCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'video_id', fromJson: _stringToInt) int? videoId,
-      @JsonKey(name: 'video_cat_id') String? videoCatId,
-      @JsonKey(name: 'video_title') String? videoTitle,
-      @JsonKey(name: 'video_ts') String? videoTs,
-      @JsonKey(name: 'video_summary') String? videoSummary,
-      @JsonKey(name: 'video_des') String? videoDes,
-      @JsonKey(name: 'video_pic') String? videoPic,
-      @JsonKey(name: 'video_pic_pos') String? videoPicPos,
+      @JsonKey(name: 'video_cat_id', fromJson: _dynamicToString)
+      String? videoCatId,
+      @JsonKey(name: 'video_title', fromJson: _dynamicToString)
+      String? videoTitle,
+      @JsonKey(name: 'video_ts', fromJson: _dynamicToString) String? videoTs,
+      @JsonKey(name: 'video_summary', fromJson: _dynamicToString)
+      String? videoSummary,
+      @JsonKey(name: 'video_des', fromJson: _dynamicToString) String? videoDes,
+      @JsonKey(name: 'video_pic', fromJson: _dynamicToString) String? videoPic,
+      @JsonKey(name: 'video_pic_pos', fromJson: _dynamicToString)
+      String? videoPicPos,
       @JsonKey(name: 'video_visitor', fromJson: _stringToInt) int? videoVisitor,
       @JsonKey(name: 'video_is_new', fromJson: _stringToBool) bool? videoIsNew,
-      @JsonKey(name: 'video_priority') String? videoPriority,
+      @JsonKey(name: 'video_priority', fromJson: _dynamicToString)
+      String? videoPriority,
       @JsonKey(name: 'video_active_vote', fromJson: _stringToBool)
       bool? videoActiveVote,
       @JsonKey(name: 'video_active_hint', fromJson: _stringToBool)
       bool? videoActiveHint,
       @JsonKey(name: 'video_active', fromJson: _stringToBool) bool? videoActive,
-      @JsonKey(name: 'video_date') String? videoDate,
+      @JsonKey(name: 'video_date', fromJson: _dynamicToString)
+      String? videoDate,
       @JsonKey(name: 'video_pic_active', fromJson: _stringToBool)
       bool? videoPicActive,
       @JsonKey(name: 'video_last_video', fromJson: _stringToBool)
       bool? videoLastVideo,
-      @JsonKey(name: 'video_publisher_id') String? videoPublisherId,
-      @JsonKey(name: 'video_source') String? videoSource,
-      @JsonKey(name: 'video_source_url') String? videoSourceUrl,
-      @JsonKey(name: 'video_youtube_id') String? videoYoutubeId,
-      @JsonKey(name: 'video_file') String? videoFile,
+      @JsonKey(name: 'video_publisher_id', fromJson: _dynamicToString)
+      String? videoPublisherId,
+      @JsonKey(name: 'video_source', fromJson: _dynamicToString)
+      String? videoSource,
+      @JsonKey(name: 'video_source_url', fromJson: _dynamicToString)
+      String? videoSourceUrl,
+      @JsonKey(name: 'video_youtube_id', fromJson: _dynamicToString)
+      String? videoYoutubeId,
+      @JsonKey(name: 'video_file', fromJson: _dynamicToString)
+      String? videoFile,
       @JsonKey(name: 'video_user_add_hint_nsup', fromJson: _stringToBool)
       bool? videoUserAddHintNsup,
-      @JsonKey(name: 'video_file_url') String? videoFileUrl,
+      @JsonKey(name: 'video_file_url', fromJson: _dynamicToString)
+      String? videoFileUrl,
       VideoDetailCategory? category});
 
   $VideoDetailCategoryCopyWith<$Res>? get category;
@@ -5033,37 +5112,52 @@ extension VideoDetailDataPatterns on VideoDetailData {
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
             @JsonKey(name: 'video_id', fromJson: _stringToInt) int? videoId,
-            @JsonKey(name: 'video_cat_id') String? videoCatId,
-            @JsonKey(name: 'video_title') String? videoTitle,
-            @JsonKey(name: 'video_ts') String? videoTs,
-            @JsonKey(name: 'video_summary') String? videoSummary,
-            @JsonKey(name: 'video_des') String? videoDes,
-            @JsonKey(name: 'video_pic') String? videoPic,
-            @JsonKey(name: 'video_pic_pos') String? videoPicPos,
+            @JsonKey(name: 'video_cat_id', fromJson: _dynamicToString)
+            String? videoCatId,
+            @JsonKey(name: 'video_title', fromJson: _dynamicToString)
+            String? videoTitle,
+            @JsonKey(name: 'video_ts', fromJson: _dynamicToString)
+            String? videoTs,
+            @JsonKey(name: 'video_summary', fromJson: _dynamicToString)
+            String? videoSummary,
+            @JsonKey(name: 'video_des', fromJson: _dynamicToString)
+            String? videoDes,
+            @JsonKey(name: 'video_pic', fromJson: _dynamicToString)
+            String? videoPic,
+            @JsonKey(name: 'video_pic_pos', fromJson: _dynamicToString)
+            String? videoPicPos,
             @JsonKey(name: 'video_visitor', fromJson: _stringToInt)
             int? videoVisitor,
             @JsonKey(name: 'video_is_new', fromJson: _stringToBool)
             bool? videoIsNew,
-            @JsonKey(name: 'video_priority') String? videoPriority,
+            @JsonKey(name: 'video_priority', fromJson: _dynamicToString)
+            String? videoPriority,
             @JsonKey(name: 'video_active_vote', fromJson: _stringToBool)
             bool? videoActiveVote,
             @JsonKey(name: 'video_active_hint', fromJson: _stringToBool)
             bool? videoActiveHint,
             @JsonKey(name: 'video_active', fromJson: _stringToBool)
             bool? videoActive,
-            @JsonKey(name: 'video_date') String? videoDate,
+            @JsonKey(name: 'video_date', fromJson: _dynamicToString)
+            String? videoDate,
             @JsonKey(name: 'video_pic_active', fromJson: _stringToBool)
             bool? videoPicActive,
             @JsonKey(name: 'video_last_video', fromJson: _stringToBool)
             bool? videoLastVideo,
-            @JsonKey(name: 'video_publisher_id') String? videoPublisherId,
-            @JsonKey(name: 'video_source') String? videoSource,
-            @JsonKey(name: 'video_source_url') String? videoSourceUrl,
-            @JsonKey(name: 'video_youtube_id') String? videoYoutubeId,
-            @JsonKey(name: 'video_file') String? videoFile,
+            @JsonKey(name: 'video_publisher_id', fromJson: _dynamicToString)
+            String? videoPublisherId,
+            @JsonKey(name: 'video_source', fromJson: _dynamicToString)
+            String? videoSource,
+            @JsonKey(name: 'video_source_url', fromJson: _dynamicToString)
+            String? videoSourceUrl,
+            @JsonKey(name: 'video_youtube_id', fromJson: _dynamicToString)
+            String? videoYoutubeId,
+            @JsonKey(name: 'video_file', fromJson: _dynamicToString)
+            String? videoFile,
             @JsonKey(name: 'video_user_add_hint_nsup', fromJson: _stringToBool)
             bool? videoUserAddHintNsup,
-            @JsonKey(name: 'video_file_url') String? videoFileUrl,
+            @JsonKey(name: 'video_file_url', fromJson: _dynamicToString)
+            String? videoFileUrl,
             VideoDetailCategory? category)?
         $default, {
     required TResult orElse(),
@@ -5119,37 +5213,52 @@ extension VideoDetailDataPatterns on VideoDetailData {
   TResult when<TResult extends Object?>(
     TResult Function(
             @JsonKey(name: 'video_id', fromJson: _stringToInt) int? videoId,
-            @JsonKey(name: 'video_cat_id') String? videoCatId,
-            @JsonKey(name: 'video_title') String? videoTitle,
-            @JsonKey(name: 'video_ts') String? videoTs,
-            @JsonKey(name: 'video_summary') String? videoSummary,
-            @JsonKey(name: 'video_des') String? videoDes,
-            @JsonKey(name: 'video_pic') String? videoPic,
-            @JsonKey(name: 'video_pic_pos') String? videoPicPos,
+            @JsonKey(name: 'video_cat_id', fromJson: _dynamicToString)
+            String? videoCatId,
+            @JsonKey(name: 'video_title', fromJson: _dynamicToString)
+            String? videoTitle,
+            @JsonKey(name: 'video_ts', fromJson: _dynamicToString)
+            String? videoTs,
+            @JsonKey(name: 'video_summary', fromJson: _dynamicToString)
+            String? videoSummary,
+            @JsonKey(name: 'video_des', fromJson: _dynamicToString)
+            String? videoDes,
+            @JsonKey(name: 'video_pic', fromJson: _dynamicToString)
+            String? videoPic,
+            @JsonKey(name: 'video_pic_pos', fromJson: _dynamicToString)
+            String? videoPicPos,
             @JsonKey(name: 'video_visitor', fromJson: _stringToInt)
             int? videoVisitor,
             @JsonKey(name: 'video_is_new', fromJson: _stringToBool)
             bool? videoIsNew,
-            @JsonKey(name: 'video_priority') String? videoPriority,
+            @JsonKey(name: 'video_priority', fromJson: _dynamicToString)
+            String? videoPriority,
             @JsonKey(name: 'video_active_vote', fromJson: _stringToBool)
             bool? videoActiveVote,
             @JsonKey(name: 'video_active_hint', fromJson: _stringToBool)
             bool? videoActiveHint,
             @JsonKey(name: 'video_active', fromJson: _stringToBool)
             bool? videoActive,
-            @JsonKey(name: 'video_date') String? videoDate,
+            @JsonKey(name: 'video_date', fromJson: _dynamicToString)
+            String? videoDate,
             @JsonKey(name: 'video_pic_active', fromJson: _stringToBool)
             bool? videoPicActive,
             @JsonKey(name: 'video_last_video', fromJson: _stringToBool)
             bool? videoLastVideo,
-            @JsonKey(name: 'video_publisher_id') String? videoPublisherId,
-            @JsonKey(name: 'video_source') String? videoSource,
-            @JsonKey(name: 'video_source_url') String? videoSourceUrl,
-            @JsonKey(name: 'video_youtube_id') String? videoYoutubeId,
-            @JsonKey(name: 'video_file') String? videoFile,
+            @JsonKey(name: 'video_publisher_id', fromJson: _dynamicToString)
+            String? videoPublisherId,
+            @JsonKey(name: 'video_source', fromJson: _dynamicToString)
+            String? videoSource,
+            @JsonKey(name: 'video_source_url', fromJson: _dynamicToString)
+            String? videoSourceUrl,
+            @JsonKey(name: 'video_youtube_id', fromJson: _dynamicToString)
+            String? videoYoutubeId,
+            @JsonKey(name: 'video_file', fromJson: _dynamicToString)
+            String? videoFile,
             @JsonKey(name: 'video_user_add_hint_nsup', fromJson: _stringToBool)
             bool? videoUserAddHintNsup,
-            @JsonKey(name: 'video_file_url') String? videoFileUrl,
+            @JsonKey(name: 'video_file_url', fromJson: _dynamicToString)
+            String? videoFileUrl,
             VideoDetailCategory? category)
         $default,
   ) {
@@ -5203,37 +5312,52 @@ extension VideoDetailDataPatterns on VideoDetailData {
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
             @JsonKey(name: 'video_id', fromJson: _stringToInt) int? videoId,
-            @JsonKey(name: 'video_cat_id') String? videoCatId,
-            @JsonKey(name: 'video_title') String? videoTitle,
-            @JsonKey(name: 'video_ts') String? videoTs,
-            @JsonKey(name: 'video_summary') String? videoSummary,
-            @JsonKey(name: 'video_des') String? videoDes,
-            @JsonKey(name: 'video_pic') String? videoPic,
-            @JsonKey(name: 'video_pic_pos') String? videoPicPos,
+            @JsonKey(name: 'video_cat_id', fromJson: _dynamicToString)
+            String? videoCatId,
+            @JsonKey(name: 'video_title', fromJson: _dynamicToString)
+            String? videoTitle,
+            @JsonKey(name: 'video_ts', fromJson: _dynamicToString)
+            String? videoTs,
+            @JsonKey(name: 'video_summary', fromJson: _dynamicToString)
+            String? videoSummary,
+            @JsonKey(name: 'video_des', fromJson: _dynamicToString)
+            String? videoDes,
+            @JsonKey(name: 'video_pic', fromJson: _dynamicToString)
+            String? videoPic,
+            @JsonKey(name: 'video_pic_pos', fromJson: _dynamicToString)
+            String? videoPicPos,
             @JsonKey(name: 'video_visitor', fromJson: _stringToInt)
             int? videoVisitor,
             @JsonKey(name: 'video_is_new', fromJson: _stringToBool)
             bool? videoIsNew,
-            @JsonKey(name: 'video_priority') String? videoPriority,
+            @JsonKey(name: 'video_priority', fromJson: _dynamicToString)
+            String? videoPriority,
             @JsonKey(name: 'video_active_vote', fromJson: _stringToBool)
             bool? videoActiveVote,
             @JsonKey(name: 'video_active_hint', fromJson: _stringToBool)
             bool? videoActiveHint,
             @JsonKey(name: 'video_active', fromJson: _stringToBool)
             bool? videoActive,
-            @JsonKey(name: 'video_date') String? videoDate,
+            @JsonKey(name: 'video_date', fromJson: _dynamicToString)
+            String? videoDate,
             @JsonKey(name: 'video_pic_active', fromJson: _stringToBool)
             bool? videoPicActive,
             @JsonKey(name: 'video_last_video', fromJson: _stringToBool)
             bool? videoLastVideo,
-            @JsonKey(name: 'video_publisher_id') String? videoPublisherId,
-            @JsonKey(name: 'video_source') String? videoSource,
-            @JsonKey(name: 'video_source_url') String? videoSourceUrl,
-            @JsonKey(name: 'video_youtube_id') String? videoYoutubeId,
-            @JsonKey(name: 'video_file') String? videoFile,
+            @JsonKey(name: 'video_publisher_id', fromJson: _dynamicToString)
+            String? videoPublisherId,
+            @JsonKey(name: 'video_source', fromJson: _dynamicToString)
+            String? videoSource,
+            @JsonKey(name: 'video_source_url', fromJson: _dynamicToString)
+            String? videoSourceUrl,
+            @JsonKey(name: 'video_youtube_id', fromJson: _dynamicToString)
+            String? videoYoutubeId,
+            @JsonKey(name: 'video_file', fromJson: _dynamicToString)
+            String? videoFile,
             @JsonKey(name: 'video_user_add_hint_nsup', fromJson: _stringToBool)
             bool? videoUserAddHintNsup,
-            @JsonKey(name: 'video_file_url') String? videoFileUrl,
+            @JsonKey(name: 'video_file_url', fromJson: _dynamicToString)
+            String? videoFileUrl,
             VideoDetailCategory? category)?
         $default,
   ) {
@@ -5277,34 +5401,43 @@ extension VideoDetailDataPatterns on VideoDetailData {
 class _VideoDetailData implements VideoDetailData {
   const _VideoDetailData(
       {@JsonKey(name: 'video_id', fromJson: _stringToInt) this.videoId,
-      @JsonKey(name: 'video_cat_id') this.videoCatId,
-      @JsonKey(name: 'video_title') this.videoTitle,
-      @JsonKey(name: 'video_ts') this.videoTs,
-      @JsonKey(name: 'video_summary') this.videoSummary,
-      @JsonKey(name: 'video_des') this.videoDes,
-      @JsonKey(name: 'video_pic') this.videoPic,
-      @JsonKey(name: 'video_pic_pos') this.videoPicPos,
+      @JsonKey(name: 'video_cat_id', fromJson: _dynamicToString)
+      this.videoCatId,
+      @JsonKey(name: 'video_title', fromJson: _dynamicToString) this.videoTitle,
+      @JsonKey(name: 'video_ts', fromJson: _dynamicToString) this.videoTs,
+      @JsonKey(name: 'video_summary', fromJson: _dynamicToString)
+      this.videoSummary,
+      @JsonKey(name: 'video_des', fromJson: _dynamicToString) this.videoDes,
+      @JsonKey(name: 'video_pic', fromJson: _dynamicToString) this.videoPic,
+      @JsonKey(name: 'video_pic_pos', fromJson: _dynamicToString)
+      this.videoPicPos,
       @JsonKey(name: 'video_visitor', fromJson: _stringToInt) this.videoVisitor,
       @JsonKey(name: 'video_is_new', fromJson: _stringToBool) this.videoIsNew,
-      @JsonKey(name: 'video_priority') this.videoPriority,
+      @JsonKey(name: 'video_priority', fromJson: _dynamicToString)
+      this.videoPriority,
       @JsonKey(name: 'video_active_vote', fromJson: _stringToBool)
       this.videoActiveVote,
       @JsonKey(name: 'video_active_hint', fromJson: _stringToBool)
       this.videoActiveHint,
       @JsonKey(name: 'video_active', fromJson: _stringToBool) this.videoActive,
-      @JsonKey(name: 'video_date') this.videoDate,
+      @JsonKey(name: 'video_date', fromJson: _dynamicToString) this.videoDate,
       @JsonKey(name: 'video_pic_active', fromJson: _stringToBool)
       this.videoPicActive,
       @JsonKey(name: 'video_last_video', fromJson: _stringToBool)
       this.videoLastVideo,
-      @JsonKey(name: 'video_publisher_id') this.videoPublisherId,
-      @JsonKey(name: 'video_source') this.videoSource,
-      @JsonKey(name: 'video_source_url') this.videoSourceUrl,
-      @JsonKey(name: 'video_youtube_id') this.videoYoutubeId,
-      @JsonKey(name: 'video_file') this.videoFile,
+      @JsonKey(name: 'video_publisher_id', fromJson: _dynamicToString)
+      this.videoPublisherId,
+      @JsonKey(name: 'video_source', fromJson: _dynamicToString)
+      this.videoSource,
+      @JsonKey(name: 'video_source_url', fromJson: _dynamicToString)
+      this.videoSourceUrl,
+      @JsonKey(name: 'video_youtube_id', fromJson: _dynamicToString)
+      this.videoYoutubeId,
+      @JsonKey(name: 'video_file', fromJson: _dynamicToString) this.videoFile,
       @JsonKey(name: 'video_user_add_hint_nsup', fromJson: _stringToBool)
       this.videoUserAddHintNsup,
-      @JsonKey(name: 'video_file_url') this.videoFileUrl,
+      @JsonKey(name: 'video_file_url', fromJson: _dynamicToString)
+      this.videoFileUrl,
       this.category});
   factory _VideoDetailData.fromJson(Map<String, dynamic> json) =>
       _$VideoDetailDataFromJson(json);
@@ -5313,25 +5446,25 @@ class _VideoDetailData implements VideoDetailData {
   @JsonKey(name: 'video_id', fromJson: _stringToInt)
   final int? videoId;
   @override
-  @JsonKey(name: 'video_cat_id')
+  @JsonKey(name: 'video_cat_id', fromJson: _dynamicToString)
   final String? videoCatId;
   @override
-  @JsonKey(name: 'video_title')
+  @JsonKey(name: 'video_title', fromJson: _dynamicToString)
   final String? videoTitle;
   @override
-  @JsonKey(name: 'video_ts')
+  @JsonKey(name: 'video_ts', fromJson: _dynamicToString)
   final String? videoTs;
   @override
-  @JsonKey(name: 'video_summary')
+  @JsonKey(name: 'video_summary', fromJson: _dynamicToString)
   final String? videoSummary;
   @override
-  @JsonKey(name: 'video_des')
+  @JsonKey(name: 'video_des', fromJson: _dynamicToString)
   final String? videoDes;
   @override
-  @JsonKey(name: 'video_pic')
+  @JsonKey(name: 'video_pic', fromJson: _dynamicToString)
   final String? videoPic;
   @override
-  @JsonKey(name: 'video_pic_pos')
+  @JsonKey(name: 'video_pic_pos', fromJson: _dynamicToString)
   final String? videoPicPos;
   @override
   @JsonKey(name: 'video_visitor', fromJson: _stringToInt)
@@ -5340,7 +5473,7 @@ class _VideoDetailData implements VideoDetailData {
   @JsonKey(name: 'video_is_new', fromJson: _stringToBool)
   final bool? videoIsNew;
   @override
-  @JsonKey(name: 'video_priority')
+  @JsonKey(name: 'video_priority', fromJson: _dynamicToString)
   final String? videoPriority;
   @override
   @JsonKey(name: 'video_active_vote', fromJson: _stringToBool)
@@ -5352,7 +5485,7 @@ class _VideoDetailData implements VideoDetailData {
   @JsonKey(name: 'video_active', fromJson: _stringToBool)
   final bool? videoActive;
   @override
-  @JsonKey(name: 'video_date')
+  @JsonKey(name: 'video_date', fromJson: _dynamicToString)
   final String? videoDate;
   @override
   @JsonKey(name: 'video_pic_active', fromJson: _stringToBool)
@@ -5361,25 +5494,25 @@ class _VideoDetailData implements VideoDetailData {
   @JsonKey(name: 'video_last_video', fromJson: _stringToBool)
   final bool? videoLastVideo;
   @override
-  @JsonKey(name: 'video_publisher_id')
+  @JsonKey(name: 'video_publisher_id', fromJson: _dynamicToString)
   final String? videoPublisherId;
   @override
-  @JsonKey(name: 'video_source')
+  @JsonKey(name: 'video_source', fromJson: _dynamicToString)
   final String? videoSource;
   @override
-  @JsonKey(name: 'video_source_url')
+  @JsonKey(name: 'video_source_url', fromJson: _dynamicToString)
   final String? videoSourceUrl;
   @override
-  @JsonKey(name: 'video_youtube_id')
+  @JsonKey(name: 'video_youtube_id', fromJson: _dynamicToString)
   final String? videoYoutubeId;
   @override
-  @JsonKey(name: 'video_file')
+  @JsonKey(name: 'video_file', fromJson: _dynamicToString)
   final String? videoFile;
   @override
   @JsonKey(name: 'video_user_add_hint_nsup', fromJson: _stringToBool)
   final bool? videoUserAddHintNsup;
   @override
-  @JsonKey(name: 'video_file_url')
+  @JsonKey(name: 'video_file_url', fromJson: _dynamicToString)
   final String? videoFileUrl;
   @override
   final VideoDetailCategory? category;
@@ -5501,34 +5634,46 @@ abstract mixin class _$VideoDetailDataCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'video_id', fromJson: _stringToInt) int? videoId,
-      @JsonKey(name: 'video_cat_id') String? videoCatId,
-      @JsonKey(name: 'video_title') String? videoTitle,
-      @JsonKey(name: 'video_ts') String? videoTs,
-      @JsonKey(name: 'video_summary') String? videoSummary,
-      @JsonKey(name: 'video_des') String? videoDes,
-      @JsonKey(name: 'video_pic') String? videoPic,
-      @JsonKey(name: 'video_pic_pos') String? videoPicPos,
+      @JsonKey(name: 'video_cat_id', fromJson: _dynamicToString)
+      String? videoCatId,
+      @JsonKey(name: 'video_title', fromJson: _dynamicToString)
+      String? videoTitle,
+      @JsonKey(name: 'video_ts', fromJson: _dynamicToString) String? videoTs,
+      @JsonKey(name: 'video_summary', fromJson: _dynamicToString)
+      String? videoSummary,
+      @JsonKey(name: 'video_des', fromJson: _dynamicToString) String? videoDes,
+      @JsonKey(name: 'video_pic', fromJson: _dynamicToString) String? videoPic,
+      @JsonKey(name: 'video_pic_pos', fromJson: _dynamicToString)
+      String? videoPicPos,
       @JsonKey(name: 'video_visitor', fromJson: _stringToInt) int? videoVisitor,
       @JsonKey(name: 'video_is_new', fromJson: _stringToBool) bool? videoIsNew,
-      @JsonKey(name: 'video_priority') String? videoPriority,
+      @JsonKey(name: 'video_priority', fromJson: _dynamicToString)
+      String? videoPriority,
       @JsonKey(name: 'video_active_vote', fromJson: _stringToBool)
       bool? videoActiveVote,
       @JsonKey(name: 'video_active_hint', fromJson: _stringToBool)
       bool? videoActiveHint,
       @JsonKey(name: 'video_active', fromJson: _stringToBool) bool? videoActive,
-      @JsonKey(name: 'video_date') String? videoDate,
+      @JsonKey(name: 'video_date', fromJson: _dynamicToString)
+      String? videoDate,
       @JsonKey(name: 'video_pic_active', fromJson: _stringToBool)
       bool? videoPicActive,
       @JsonKey(name: 'video_last_video', fromJson: _stringToBool)
       bool? videoLastVideo,
-      @JsonKey(name: 'video_publisher_id') String? videoPublisherId,
-      @JsonKey(name: 'video_source') String? videoSource,
-      @JsonKey(name: 'video_source_url') String? videoSourceUrl,
-      @JsonKey(name: 'video_youtube_id') String? videoYoutubeId,
-      @JsonKey(name: 'video_file') String? videoFile,
+      @JsonKey(name: 'video_publisher_id', fromJson: _dynamicToString)
+      String? videoPublisherId,
+      @JsonKey(name: 'video_source', fromJson: _dynamicToString)
+      String? videoSource,
+      @JsonKey(name: 'video_source_url', fromJson: _dynamicToString)
+      String? videoSourceUrl,
+      @JsonKey(name: 'video_youtube_id', fromJson: _dynamicToString)
+      String? videoYoutubeId,
+      @JsonKey(name: 'video_file', fromJson: _dynamicToString)
+      String? videoFile,
       @JsonKey(name: 'video_user_add_hint_nsup', fromJson: _stringToBool)
       bool? videoUserAddHintNsup,
-      @JsonKey(name: 'video_file_url') String? videoFileUrl,
+      @JsonKey(name: 'video_file_url', fromJson: _dynamicToString)
+      String? videoFileUrl,
       VideoDetailCategory? category});
 
   @override
@@ -5697,25 +5842,25 @@ class __$VideoDetailDataCopyWithImpl<$Res>
 mixin _$VideoDetailCategory {
   @JsonKey(name: 'cat_id', fromJson: _stringToInt)
   int? get catId;
-  @JsonKey(name: 'cat_father_id')
+  @JsonKey(name: 'cat_father_id', fromJson: _dynamicToString)
   String? get catFatherId;
-  @JsonKey(name: 'cat_menus')
+  @JsonKey(name: 'cat_menus', fromJson: _dynamicToString)
   String? get catMenus;
-  @JsonKey(name: 'cat_title')
+  @JsonKey(name: 'cat_title', fromJson: _dynamicToString)
   String? get catTitle;
-  @JsonKey(name: 'cat_note')
+  @JsonKey(name: 'cat_note', fromJson: _dynamicToString)
   String? get catNote;
-  @JsonKey(name: 'cat_pic')
+  @JsonKey(name: 'cat_pic', fromJson: _dynamicToString)
   String? get catPic;
-  @JsonKey(name: 'cat_sup')
+  @JsonKey(name: 'cat_sup', fromJson: _dynamicToString)
   String? get catSup;
-  @JsonKey(name: 'cat_date')
+  @JsonKey(name: 'cat_date', fromJson: _dynamicToString)
   String? get catDate;
   @JsonKey(name: 'cat_pic_active', fromJson: _stringToBool)
   bool? get catPicActive;
-  @JsonKey(name: 'cat_lan')
+  @JsonKey(name: 'cat_lan', fromJson: _dynamicToString)
   String? get catLan;
-  @JsonKey(name: 'cat_pos')
+  @JsonKey(name: 'cat_pos', fromJson: _dynamicToString)
   String? get catPos;
   @JsonKey(name: 'cat_active', fromJson: _stringToBool)
   bool? get catActive;
@@ -5723,7 +5868,7 @@ mixin _$VideoDetailCategory {
   bool? get catShowMenu;
   @JsonKey(name: 'cat_show_main', fromJson: _stringToBool)
   bool? get catShowMain;
-  @JsonKey(name: 'cat_agent')
+  @JsonKey(name: 'cat_agent', fromJson: _dynamicToString)
   String? get catAgent;
 
   /// Create a copy of VideoDetailCategory
@@ -5801,23 +5946,25 @@ abstract mixin class $VideoDetailCategoryCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'cat_id', fromJson: _stringToInt) int? catId,
-      @JsonKey(name: 'cat_father_id') String? catFatherId,
-      @JsonKey(name: 'cat_menus') String? catMenus,
-      @JsonKey(name: 'cat_title') String? catTitle,
-      @JsonKey(name: 'cat_note') String? catNote,
-      @JsonKey(name: 'cat_pic') String? catPic,
-      @JsonKey(name: 'cat_sup') String? catSup,
-      @JsonKey(name: 'cat_date') String? catDate,
+      @JsonKey(name: 'cat_father_id', fromJson: _dynamicToString)
+      String? catFatherId,
+      @JsonKey(name: 'cat_menus', fromJson: _dynamicToString) String? catMenus,
+      @JsonKey(name: 'cat_title', fromJson: _dynamicToString) String? catTitle,
+      @JsonKey(name: 'cat_note', fromJson: _dynamicToString) String? catNote,
+      @JsonKey(name: 'cat_pic', fromJson: _dynamicToString) String? catPic,
+      @JsonKey(name: 'cat_sup', fromJson: _dynamicToString) String? catSup,
+      @JsonKey(name: 'cat_date', fromJson: _dynamicToString) String? catDate,
       @JsonKey(name: 'cat_pic_active', fromJson: _stringToBool)
       bool? catPicActive,
-      @JsonKey(name: 'cat_lan') String? catLan,
-      @JsonKey(name: 'cat_pos') String? catPos,
+      @JsonKey(name: 'cat_lan', fromJson: _dynamicToString) String? catLan,
+      @JsonKey(name: 'cat_pos', fromJson: _dynamicToString) String? catPos,
       @JsonKey(name: 'cat_active', fromJson: _stringToBool) bool? catActive,
       @JsonKey(name: 'cat_show_menu', fromJson: _stringToBool)
       bool? catShowMenu,
       @JsonKey(name: 'cat_show_main', fromJson: _stringToBool)
       bool? catShowMain,
-      @JsonKey(name: 'cat_agent') String? catAgent});
+      @JsonKey(name: 'cat_agent', fromJson: _dynamicToString)
+      String? catAgent});
 }
 
 /// @nodoc
@@ -6009,24 +6156,34 @@ extension VideoDetailCategoryPatterns on VideoDetailCategory {
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
             @JsonKey(name: 'cat_id', fromJson: _stringToInt) int? catId,
-            @JsonKey(name: 'cat_father_id') String? catFatherId,
-            @JsonKey(name: 'cat_menus') String? catMenus,
-            @JsonKey(name: 'cat_title') String? catTitle,
-            @JsonKey(name: 'cat_note') String? catNote,
-            @JsonKey(name: 'cat_pic') String? catPic,
-            @JsonKey(name: 'cat_sup') String? catSup,
-            @JsonKey(name: 'cat_date') String? catDate,
+            @JsonKey(name: 'cat_father_id', fromJson: _dynamicToString)
+            String? catFatherId,
+            @JsonKey(name: 'cat_menus', fromJson: _dynamicToString)
+            String? catMenus,
+            @JsonKey(name: 'cat_title', fromJson: _dynamicToString)
+            String? catTitle,
+            @JsonKey(name: 'cat_note', fromJson: _dynamicToString)
+            String? catNote,
+            @JsonKey(name: 'cat_pic', fromJson: _dynamicToString)
+            String? catPic,
+            @JsonKey(name: 'cat_sup', fromJson: _dynamicToString)
+            String? catSup,
+            @JsonKey(name: 'cat_date', fromJson: _dynamicToString)
+            String? catDate,
             @JsonKey(name: 'cat_pic_active', fromJson: _stringToBool)
             bool? catPicActive,
-            @JsonKey(name: 'cat_lan') String? catLan,
-            @JsonKey(name: 'cat_pos') String? catPos,
+            @JsonKey(name: 'cat_lan', fromJson: _dynamicToString)
+            String? catLan,
+            @JsonKey(name: 'cat_pos', fromJson: _dynamicToString)
+            String? catPos,
             @JsonKey(name: 'cat_active', fromJson: _stringToBool)
             bool? catActive,
             @JsonKey(name: 'cat_show_menu', fromJson: _stringToBool)
             bool? catShowMenu,
             @JsonKey(name: 'cat_show_main', fromJson: _stringToBool)
             bool? catShowMain,
-            @JsonKey(name: 'cat_agent') String? catAgent)?
+            @JsonKey(name: 'cat_agent', fromJson: _dynamicToString)
+            String? catAgent)?
         $default, {
     required TResult orElse(),
   }) {
@@ -6071,24 +6228,34 @@ extension VideoDetailCategoryPatterns on VideoDetailCategory {
   TResult when<TResult extends Object?>(
     TResult Function(
             @JsonKey(name: 'cat_id', fromJson: _stringToInt) int? catId,
-            @JsonKey(name: 'cat_father_id') String? catFatherId,
-            @JsonKey(name: 'cat_menus') String? catMenus,
-            @JsonKey(name: 'cat_title') String? catTitle,
-            @JsonKey(name: 'cat_note') String? catNote,
-            @JsonKey(name: 'cat_pic') String? catPic,
-            @JsonKey(name: 'cat_sup') String? catSup,
-            @JsonKey(name: 'cat_date') String? catDate,
+            @JsonKey(name: 'cat_father_id', fromJson: _dynamicToString)
+            String? catFatherId,
+            @JsonKey(name: 'cat_menus', fromJson: _dynamicToString)
+            String? catMenus,
+            @JsonKey(name: 'cat_title', fromJson: _dynamicToString)
+            String? catTitle,
+            @JsonKey(name: 'cat_note', fromJson: _dynamicToString)
+            String? catNote,
+            @JsonKey(name: 'cat_pic', fromJson: _dynamicToString)
+            String? catPic,
+            @JsonKey(name: 'cat_sup', fromJson: _dynamicToString)
+            String? catSup,
+            @JsonKey(name: 'cat_date', fromJson: _dynamicToString)
+            String? catDate,
             @JsonKey(name: 'cat_pic_active', fromJson: _stringToBool)
             bool? catPicActive,
-            @JsonKey(name: 'cat_lan') String? catLan,
-            @JsonKey(name: 'cat_pos') String? catPos,
+            @JsonKey(name: 'cat_lan', fromJson: _dynamicToString)
+            String? catLan,
+            @JsonKey(name: 'cat_pos', fromJson: _dynamicToString)
+            String? catPos,
             @JsonKey(name: 'cat_active', fromJson: _stringToBool)
             bool? catActive,
             @JsonKey(name: 'cat_show_menu', fromJson: _stringToBool)
             bool? catShowMenu,
             @JsonKey(name: 'cat_show_main', fromJson: _stringToBool)
             bool? catShowMain,
-            @JsonKey(name: 'cat_agent') String? catAgent)
+            @JsonKey(name: 'cat_agent', fromJson: _dynamicToString)
+            String? catAgent)
         $default,
   ) {
     final _that = this;
@@ -6131,24 +6298,34 @@ extension VideoDetailCategoryPatterns on VideoDetailCategory {
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
             @JsonKey(name: 'cat_id', fromJson: _stringToInt) int? catId,
-            @JsonKey(name: 'cat_father_id') String? catFatherId,
-            @JsonKey(name: 'cat_menus') String? catMenus,
-            @JsonKey(name: 'cat_title') String? catTitle,
-            @JsonKey(name: 'cat_note') String? catNote,
-            @JsonKey(name: 'cat_pic') String? catPic,
-            @JsonKey(name: 'cat_sup') String? catSup,
-            @JsonKey(name: 'cat_date') String? catDate,
+            @JsonKey(name: 'cat_father_id', fromJson: _dynamicToString)
+            String? catFatherId,
+            @JsonKey(name: 'cat_menus', fromJson: _dynamicToString)
+            String? catMenus,
+            @JsonKey(name: 'cat_title', fromJson: _dynamicToString)
+            String? catTitle,
+            @JsonKey(name: 'cat_note', fromJson: _dynamicToString)
+            String? catNote,
+            @JsonKey(name: 'cat_pic', fromJson: _dynamicToString)
+            String? catPic,
+            @JsonKey(name: 'cat_sup', fromJson: _dynamicToString)
+            String? catSup,
+            @JsonKey(name: 'cat_date', fromJson: _dynamicToString)
+            String? catDate,
             @JsonKey(name: 'cat_pic_active', fromJson: _stringToBool)
             bool? catPicActive,
-            @JsonKey(name: 'cat_lan') String? catLan,
-            @JsonKey(name: 'cat_pos') String? catPos,
+            @JsonKey(name: 'cat_lan', fromJson: _dynamicToString)
+            String? catLan,
+            @JsonKey(name: 'cat_pos', fromJson: _dynamicToString)
+            String? catPos,
             @JsonKey(name: 'cat_active', fromJson: _stringToBool)
             bool? catActive,
             @JsonKey(name: 'cat_show_menu', fromJson: _stringToBool)
             bool? catShowMenu,
             @JsonKey(name: 'cat_show_main', fromJson: _stringToBool)
             bool? catShowMain,
-            @JsonKey(name: 'cat_agent') String? catAgent)?
+            @JsonKey(name: 'cat_agent', fromJson: _dynamicToString)
+            String? catAgent)?
         $default,
   ) {
     final _that = this;
@@ -6181,21 +6358,22 @@ extension VideoDetailCategoryPatterns on VideoDetailCategory {
 class _VideoDetailCategory implements VideoDetailCategory {
   const _VideoDetailCategory(
       {@JsonKey(name: 'cat_id', fromJson: _stringToInt) this.catId,
-      @JsonKey(name: 'cat_father_id') this.catFatherId,
-      @JsonKey(name: 'cat_menus') this.catMenus,
-      @JsonKey(name: 'cat_title') this.catTitle,
-      @JsonKey(name: 'cat_note') this.catNote,
-      @JsonKey(name: 'cat_pic') this.catPic,
-      @JsonKey(name: 'cat_sup') this.catSup,
-      @JsonKey(name: 'cat_date') this.catDate,
+      @JsonKey(name: 'cat_father_id', fromJson: _dynamicToString)
+      this.catFatherId,
+      @JsonKey(name: 'cat_menus', fromJson: _dynamicToString) this.catMenus,
+      @JsonKey(name: 'cat_title', fromJson: _dynamicToString) this.catTitle,
+      @JsonKey(name: 'cat_note', fromJson: _dynamicToString) this.catNote,
+      @JsonKey(name: 'cat_pic', fromJson: _dynamicToString) this.catPic,
+      @JsonKey(name: 'cat_sup', fromJson: _dynamicToString) this.catSup,
+      @JsonKey(name: 'cat_date', fromJson: _dynamicToString) this.catDate,
       @JsonKey(name: 'cat_pic_active', fromJson: _stringToBool)
       this.catPicActive,
-      @JsonKey(name: 'cat_lan') this.catLan,
-      @JsonKey(name: 'cat_pos') this.catPos,
+      @JsonKey(name: 'cat_lan', fromJson: _dynamicToString) this.catLan,
+      @JsonKey(name: 'cat_pos', fromJson: _dynamicToString) this.catPos,
       @JsonKey(name: 'cat_active', fromJson: _stringToBool) this.catActive,
       @JsonKey(name: 'cat_show_menu', fromJson: _stringToBool) this.catShowMenu,
       @JsonKey(name: 'cat_show_main', fromJson: _stringToBool) this.catShowMain,
-      @JsonKey(name: 'cat_agent') this.catAgent});
+      @JsonKey(name: 'cat_agent', fromJson: _dynamicToString) this.catAgent});
   factory _VideoDetailCategory.fromJson(Map<String, dynamic> json) =>
       _$VideoDetailCategoryFromJson(json);
 
@@ -6203,34 +6381,34 @@ class _VideoDetailCategory implements VideoDetailCategory {
   @JsonKey(name: 'cat_id', fromJson: _stringToInt)
   final int? catId;
   @override
-  @JsonKey(name: 'cat_father_id')
+  @JsonKey(name: 'cat_father_id', fromJson: _dynamicToString)
   final String? catFatherId;
   @override
-  @JsonKey(name: 'cat_menus')
+  @JsonKey(name: 'cat_menus', fromJson: _dynamicToString)
   final String? catMenus;
   @override
-  @JsonKey(name: 'cat_title')
+  @JsonKey(name: 'cat_title', fromJson: _dynamicToString)
   final String? catTitle;
   @override
-  @JsonKey(name: 'cat_note')
+  @JsonKey(name: 'cat_note', fromJson: _dynamicToString)
   final String? catNote;
   @override
-  @JsonKey(name: 'cat_pic')
+  @JsonKey(name: 'cat_pic', fromJson: _dynamicToString)
   final String? catPic;
   @override
-  @JsonKey(name: 'cat_sup')
+  @JsonKey(name: 'cat_sup', fromJson: _dynamicToString)
   final String? catSup;
   @override
-  @JsonKey(name: 'cat_date')
+  @JsonKey(name: 'cat_date', fromJson: _dynamicToString)
   final String? catDate;
   @override
   @JsonKey(name: 'cat_pic_active', fromJson: _stringToBool)
   final bool? catPicActive;
   @override
-  @JsonKey(name: 'cat_lan')
+  @JsonKey(name: 'cat_lan', fromJson: _dynamicToString)
   final String? catLan;
   @override
-  @JsonKey(name: 'cat_pos')
+  @JsonKey(name: 'cat_pos', fromJson: _dynamicToString)
   final String? catPos;
   @override
   @JsonKey(name: 'cat_active', fromJson: _stringToBool)
@@ -6242,7 +6420,7 @@ class _VideoDetailCategory implements VideoDetailCategory {
   @JsonKey(name: 'cat_show_main', fromJson: _stringToBool)
   final bool? catShowMain;
   @override
-  @JsonKey(name: 'cat_agent')
+  @JsonKey(name: 'cat_agent', fromJson: _dynamicToString)
   final String? catAgent;
 
   /// Create a copy of VideoDetailCategory
@@ -6327,23 +6505,25 @@ abstract mixin class _$VideoDetailCategoryCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'cat_id', fromJson: _stringToInt) int? catId,
-      @JsonKey(name: 'cat_father_id') String? catFatherId,
-      @JsonKey(name: 'cat_menus') String? catMenus,
-      @JsonKey(name: 'cat_title') String? catTitle,
-      @JsonKey(name: 'cat_note') String? catNote,
-      @JsonKey(name: 'cat_pic') String? catPic,
-      @JsonKey(name: 'cat_sup') String? catSup,
-      @JsonKey(name: 'cat_date') String? catDate,
+      @JsonKey(name: 'cat_father_id', fromJson: _dynamicToString)
+      String? catFatherId,
+      @JsonKey(name: 'cat_menus', fromJson: _dynamicToString) String? catMenus,
+      @JsonKey(name: 'cat_title', fromJson: _dynamicToString) String? catTitle,
+      @JsonKey(name: 'cat_note', fromJson: _dynamicToString) String? catNote,
+      @JsonKey(name: 'cat_pic', fromJson: _dynamicToString) String? catPic,
+      @JsonKey(name: 'cat_sup', fromJson: _dynamicToString) String? catSup,
+      @JsonKey(name: 'cat_date', fromJson: _dynamicToString) String? catDate,
       @JsonKey(name: 'cat_pic_active', fromJson: _stringToBool)
       bool? catPicActive,
-      @JsonKey(name: 'cat_lan') String? catLan,
-      @JsonKey(name: 'cat_pos') String? catPos,
+      @JsonKey(name: 'cat_lan', fromJson: _dynamicToString) String? catLan,
+      @JsonKey(name: 'cat_pos', fromJson: _dynamicToString) String? catPos,
       @JsonKey(name: 'cat_active', fromJson: _stringToBool) bool? catActive,
       @JsonKey(name: 'cat_show_menu', fromJson: _stringToBool)
       bool? catShowMenu,
       @JsonKey(name: 'cat_show_main', fromJson: _stringToBool)
       bool? catShowMain,
-      @JsonKey(name: 'cat_agent') String? catAgent});
+      @JsonKey(name: 'cat_agent', fromJson: _dynamicToString)
+      String? catAgent});
 }
 
 /// @nodoc

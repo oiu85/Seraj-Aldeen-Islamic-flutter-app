@@ -380,6 +380,7 @@ class __$SoundResponseCopyWithImpl<$Res>
 
 /// @nodoc
 mixin _$SoundData {
+  @JsonKey(fromJson: _dynamicToString)
   String? get type;
   List<SoundCategory>? get categories;
   SoundPaginationData? get pagination;
@@ -429,7 +430,7 @@ abstract mixin class $SoundDataCopyWith<$Res> {
       _$SoundDataCopyWithImpl;
   @useResult
   $Res call(
-      {String? type,
+      {@JsonKey(fromJson: _dynamicToString) String? type,
       List<SoundCategory>? categories,
       SoundPaginationData? pagination,
       List<PageInfo>? pages});
@@ -582,8 +583,11 @@ extension SoundDataPatterns on SoundData {
 
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String? type, List<SoundCategory>? categories,
-            SoundPaginationData? pagination, List<PageInfo>? pages)?
+    TResult Function(
+            @JsonKey(fromJson: _dynamicToString) String? type,
+            List<SoundCategory>? categories,
+            SoundPaginationData? pagination,
+            List<PageInfo>? pages)?
         $default, {
     required TResult orElse(),
   }) {
@@ -612,8 +616,11 @@ extension SoundDataPatterns on SoundData {
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String? type, List<SoundCategory>? categories,
-            SoundPaginationData? pagination, List<PageInfo>? pages)
+    TResult Function(
+            @JsonKey(fromJson: _dynamicToString) String? type,
+            List<SoundCategory>? categories,
+            SoundPaginationData? pagination,
+            List<PageInfo>? pages)
         $default,
   ) {
     final _that = this;
@@ -640,8 +647,11 @@ extension SoundDataPatterns on SoundData {
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(String? type, List<SoundCategory>? categories,
-            SoundPaginationData? pagination, List<PageInfo>? pages)?
+    TResult? Function(
+            @JsonKey(fromJson: _dynamicToString) String? type,
+            List<SoundCategory>? categories,
+            SoundPaginationData? pagination,
+            List<PageInfo>? pages)?
         $default,
   ) {
     final _that = this;
@@ -659,7 +669,7 @@ extension SoundDataPatterns on SoundData {
 @JsonSerializable()
 class _SoundData implements SoundData {
   const _SoundData(
-      {this.type,
+      {@JsonKey(fromJson: _dynamicToString) this.type,
       final List<SoundCategory>? categories,
       this.pagination,
       final List<PageInfo>? pages})
@@ -669,6 +679,7 @@ class _SoundData implements SoundData {
       _$SoundDataFromJson(json);
 
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? type;
   final List<SoundCategory>? _categories;
   @override
@@ -744,7 +755,7 @@ abstract mixin class _$SoundDataCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? type,
+      {@JsonKey(fromJson: _dynamicToString) String? type,
       List<SoundCategory>? categories,
       SoundPaginationData? pagination,
       List<PageInfo>? pages});
@@ -809,11 +820,17 @@ class __$SoundDataCopyWithImpl<$Res> implements _$SoundDataCopyWith<$Res> {
 mixin _$SoundCategory {
   @JsonKey(fromJson: _stringToInt)
   int? get id;
+  @JsonKey(fromJson: _dynamicToString)
   String? get title;
+  @JsonKey(fromJson: _dynamicToString)
   String? get note;
+  @JsonKey(fromJson: _dynamicToString)
   String? get position;
+  @JsonKey(fromJson: _dynamicToString)
   String? get language;
+  @JsonKey(fromJson: _dynamicToString)
   String? get date;
+  @JsonKey(name: 'menu_id', fromJson: _dynamicToString)
   String? get menu_id;
   @JsonKey(fromJson: _stringToBool)
   bool? get show_in_menu;
@@ -821,6 +838,7 @@ mixin _$SoundCategory {
   bool? get show_in_main;
   @JsonKey(fromJson: _stringToInt)
   int? get content_count;
+  @JsonKey(fromJson: _dynamicToString)
   String? get type;
   List<SoundItem>? get data;
 
@@ -890,16 +908,16 @@ abstract mixin class $SoundCategoryCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(fromJson: _stringToInt) int? id,
-      String? title,
-      String? note,
-      String? position,
-      String? language,
-      String? date,
-      String? menu_id,
+      @JsonKey(fromJson: _dynamicToString) String? title,
+      @JsonKey(fromJson: _dynamicToString) String? note,
+      @JsonKey(fromJson: _dynamicToString) String? position,
+      @JsonKey(fromJson: _dynamicToString) String? language,
+      @JsonKey(fromJson: _dynamicToString) String? date,
+      @JsonKey(name: 'menu_id', fromJson: _dynamicToString) String? menu_id,
       @JsonKey(fromJson: _stringToBool) bool? show_in_menu,
       @JsonKey(fromJson: _stringToBool) bool? show_in_main,
       @JsonKey(fromJson: _stringToInt) int? content_count,
-      String? type,
+      @JsonKey(fromJson: _dynamicToString) String? type,
       List<SoundItem>? data});
 }
 
@@ -1077,16 +1095,17 @@ extension SoundCategoryPatterns on SoundCategory {
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
             @JsonKey(fromJson: _stringToInt) int? id,
-            String? title,
-            String? note,
-            String? position,
-            String? language,
-            String? date,
+            @JsonKey(fromJson: _dynamicToString) String? title,
+            @JsonKey(fromJson: _dynamicToString) String? note,
+            @JsonKey(fromJson: _dynamicToString) String? position,
+            @JsonKey(fromJson: _dynamicToString) String? language,
+            @JsonKey(fromJson: _dynamicToString) String? date,
+            @JsonKey(name: 'menu_id', fromJson: _dynamicToString)
             String? menu_id,
             @JsonKey(fromJson: _stringToBool) bool? show_in_menu,
             @JsonKey(fromJson: _stringToBool) bool? show_in_main,
             @JsonKey(fromJson: _stringToInt) int? content_count,
-            String? type,
+            @JsonKey(fromJson: _dynamicToString) String? type,
             List<SoundItem>? data)?
         $default, {
     required TResult orElse(),
@@ -1129,16 +1148,17 @@ extension SoundCategoryPatterns on SoundCategory {
   TResult when<TResult extends Object?>(
     TResult Function(
             @JsonKey(fromJson: _stringToInt) int? id,
-            String? title,
-            String? note,
-            String? position,
-            String? language,
-            String? date,
+            @JsonKey(fromJson: _dynamicToString) String? title,
+            @JsonKey(fromJson: _dynamicToString) String? note,
+            @JsonKey(fromJson: _dynamicToString) String? position,
+            @JsonKey(fromJson: _dynamicToString) String? language,
+            @JsonKey(fromJson: _dynamicToString) String? date,
+            @JsonKey(name: 'menu_id', fromJson: _dynamicToString)
             String? menu_id,
             @JsonKey(fromJson: _stringToBool) bool? show_in_menu,
             @JsonKey(fromJson: _stringToBool) bool? show_in_main,
             @JsonKey(fromJson: _stringToInt) int? content_count,
-            String? type,
+            @JsonKey(fromJson: _dynamicToString) String? type,
             List<SoundItem>? data)
         $default,
   ) {
@@ -1179,16 +1199,17 @@ extension SoundCategoryPatterns on SoundCategory {
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
             @JsonKey(fromJson: _stringToInt) int? id,
-            String? title,
-            String? note,
-            String? position,
-            String? language,
-            String? date,
+            @JsonKey(fromJson: _dynamicToString) String? title,
+            @JsonKey(fromJson: _dynamicToString) String? note,
+            @JsonKey(fromJson: _dynamicToString) String? position,
+            @JsonKey(fromJson: _dynamicToString) String? language,
+            @JsonKey(fromJson: _dynamicToString) String? date,
+            @JsonKey(name: 'menu_id', fromJson: _dynamicToString)
             String? menu_id,
             @JsonKey(fromJson: _stringToBool) bool? show_in_menu,
             @JsonKey(fromJson: _stringToBool) bool? show_in_main,
             @JsonKey(fromJson: _stringToInt) int? content_count,
-            String? type,
+            @JsonKey(fromJson: _dynamicToString) String? type,
             List<SoundItem>? data)?
         $default,
   ) {
@@ -1219,16 +1240,16 @@ extension SoundCategoryPatterns on SoundCategory {
 class _SoundCategory implements SoundCategory {
   const _SoundCategory(
       {@JsonKey(fromJson: _stringToInt) this.id,
-      this.title,
-      this.note,
-      this.position,
-      this.language,
-      this.date,
-      this.menu_id,
+      @JsonKey(fromJson: _dynamicToString) this.title,
+      @JsonKey(fromJson: _dynamicToString) this.note,
+      @JsonKey(fromJson: _dynamicToString) this.position,
+      @JsonKey(fromJson: _dynamicToString) this.language,
+      @JsonKey(fromJson: _dynamicToString) this.date,
+      @JsonKey(name: 'menu_id', fromJson: _dynamicToString) this.menu_id,
       @JsonKey(fromJson: _stringToBool) this.show_in_menu,
       @JsonKey(fromJson: _stringToBool) this.show_in_main,
       @JsonKey(fromJson: _stringToInt) this.content_count,
-      this.type,
+      @JsonKey(fromJson: _dynamicToString) this.type,
       final List<SoundItem>? data})
       : _data = data;
   factory _SoundCategory.fromJson(Map<String, dynamic> json) =>
@@ -1238,16 +1259,22 @@ class _SoundCategory implements SoundCategory {
   @JsonKey(fromJson: _stringToInt)
   final int? id;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? title;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? note;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? position;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? language;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? date;
   @override
+  @JsonKey(name: 'menu_id', fromJson: _dynamicToString)
   final String? menu_id;
   @override
   @JsonKey(fromJson: _stringToBool)
@@ -1259,6 +1286,7 @@ class _SoundCategory implements SoundCategory {
   @JsonKey(fromJson: _stringToInt)
   final int? content_count;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? type;
   final List<SoundItem>? _data;
   @override
@@ -1342,16 +1370,16 @@ abstract mixin class _$SoundCategoryCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(fromJson: _stringToInt) int? id,
-      String? title,
-      String? note,
-      String? position,
-      String? language,
-      String? date,
-      String? menu_id,
+      @JsonKey(fromJson: _dynamicToString) String? title,
+      @JsonKey(fromJson: _dynamicToString) String? note,
+      @JsonKey(fromJson: _dynamicToString) String? position,
+      @JsonKey(fromJson: _dynamicToString) String? language,
+      @JsonKey(fromJson: _dynamicToString) String? date,
+      @JsonKey(name: 'menu_id', fromJson: _dynamicToString) String? menu_id,
       @JsonKey(fromJson: _stringToBool) bool? show_in_menu,
       @JsonKey(fromJson: _stringToBool) bool? show_in_main,
       @JsonKey(fromJson: _stringToInt) int? content_count,
-      String? type,
+      @JsonKey(fromJson: _dynamicToString) String? type,
       List<SoundItem>? data});
 }
 
@@ -1438,19 +1466,31 @@ class __$SoundCategoryCopyWithImpl<$Res>
 mixin _$SoundItem {
   @JsonKey(fromJson: _stringToInt)
   int? get id;
+  @JsonKey(fromJson: _dynamicToString)
   String? get title;
+  @JsonKey(fromJson: _dynamicToString)
   String? get summary;
+  @JsonKey(fromJson: _dynamicToString)
   String? get date;
+  @JsonKey(name: 'visitor_count', fromJson: _dynamicToString)
   String? get visitor_count;
   @JsonKey(fromJson: _stringToBool)
   bool? get is_new;
+  @JsonKey(fromJson: _dynamicToString)
   String? get priority;
+  @JsonKey(fromJson: _dynamicToString)
   String? get file;
+  @JsonKey(name: 'sound_file_url', fromJson: _dynamicToString)
   String? get sound_file_url; // Additional fields for detailed display
+  @JsonKey(fromJson: _dynamicToString)
   String? get soundPic;
+  @JsonKey(fromJson: _dynamicToString)
   String? get soundSource;
+  @JsonKey(fromJson: _dynamicToString)
   String? get soundSourceUrl;
+  @JsonKey(fromJson: _dynamicToString)
   String? get soundYoutubeId;
+  @JsonKey(fromJson: _dynamicToString)
   String? get publisherId;
 
   /// Create a copy of SoundItem
@@ -1524,19 +1564,21 @@ abstract mixin class $SoundItemCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(fromJson: _stringToInt) int? id,
-      String? title,
-      String? summary,
-      String? date,
+      @JsonKey(fromJson: _dynamicToString) String? title,
+      @JsonKey(fromJson: _dynamicToString) String? summary,
+      @JsonKey(fromJson: _dynamicToString) String? date,
+      @JsonKey(name: 'visitor_count', fromJson: _dynamicToString)
       String? visitor_count,
       @JsonKey(fromJson: _stringToBool) bool? is_new,
-      String? priority,
-      String? file,
+      @JsonKey(fromJson: _dynamicToString) String? priority,
+      @JsonKey(fromJson: _dynamicToString) String? file,
+      @JsonKey(name: 'sound_file_url', fromJson: _dynamicToString)
       String? sound_file_url,
-      String? soundPic,
-      String? soundSource,
-      String? soundSourceUrl,
-      String? soundYoutubeId,
-      String? publisherId});
+      @JsonKey(fromJson: _dynamicToString) String? soundPic,
+      @JsonKey(fromJson: _dynamicToString) String? soundSource,
+      @JsonKey(fromJson: _dynamicToString) String? soundSourceUrl,
+      @JsonKey(fromJson: _dynamicToString) String? soundYoutubeId,
+      @JsonKey(fromJson: _dynamicToString) String? publisherId});
 }
 
 /// @nodoc
@@ -1722,19 +1764,21 @@ extension SoundItemPatterns on SoundItem {
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
             @JsonKey(fromJson: _stringToInt) int? id,
-            String? title,
-            String? summary,
-            String? date,
+            @JsonKey(fromJson: _dynamicToString) String? title,
+            @JsonKey(fromJson: _dynamicToString) String? summary,
+            @JsonKey(fromJson: _dynamicToString) String? date,
+            @JsonKey(name: 'visitor_count', fromJson: _dynamicToString)
             String? visitor_count,
             @JsonKey(fromJson: _stringToBool) bool? is_new,
-            String? priority,
-            String? file,
+            @JsonKey(fromJson: _dynamicToString) String? priority,
+            @JsonKey(fromJson: _dynamicToString) String? file,
+            @JsonKey(name: 'sound_file_url', fromJson: _dynamicToString)
             String? sound_file_url,
-            String? soundPic,
-            String? soundSource,
-            String? soundSourceUrl,
-            String? soundYoutubeId,
-            String? publisherId)?
+            @JsonKey(fromJson: _dynamicToString) String? soundPic,
+            @JsonKey(fromJson: _dynamicToString) String? soundSource,
+            @JsonKey(fromJson: _dynamicToString) String? soundSourceUrl,
+            @JsonKey(fromJson: _dynamicToString) String? soundYoutubeId,
+            @JsonKey(fromJson: _dynamicToString) String? publisherId)?
         $default, {
     required TResult orElse(),
   }) {
@@ -1778,19 +1822,21 @@ extension SoundItemPatterns on SoundItem {
   TResult when<TResult extends Object?>(
     TResult Function(
             @JsonKey(fromJson: _stringToInt) int? id,
-            String? title,
-            String? summary,
-            String? date,
+            @JsonKey(fromJson: _dynamicToString) String? title,
+            @JsonKey(fromJson: _dynamicToString) String? summary,
+            @JsonKey(fromJson: _dynamicToString) String? date,
+            @JsonKey(name: 'visitor_count', fromJson: _dynamicToString)
             String? visitor_count,
             @JsonKey(fromJson: _stringToBool) bool? is_new,
-            String? priority,
-            String? file,
+            @JsonKey(fromJson: _dynamicToString) String? priority,
+            @JsonKey(fromJson: _dynamicToString) String? file,
+            @JsonKey(name: 'sound_file_url', fromJson: _dynamicToString)
             String? sound_file_url,
-            String? soundPic,
-            String? soundSource,
-            String? soundSourceUrl,
-            String? soundYoutubeId,
-            String? publisherId)
+            @JsonKey(fromJson: _dynamicToString) String? soundPic,
+            @JsonKey(fromJson: _dynamicToString) String? soundSource,
+            @JsonKey(fromJson: _dynamicToString) String? soundSourceUrl,
+            @JsonKey(fromJson: _dynamicToString) String? soundYoutubeId,
+            @JsonKey(fromJson: _dynamicToString) String? publisherId)
         $default,
   ) {
     final _that = this;
@@ -1832,19 +1878,21 @@ extension SoundItemPatterns on SoundItem {
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
             @JsonKey(fromJson: _stringToInt) int? id,
-            String? title,
-            String? summary,
-            String? date,
+            @JsonKey(fromJson: _dynamicToString) String? title,
+            @JsonKey(fromJson: _dynamicToString) String? summary,
+            @JsonKey(fromJson: _dynamicToString) String? date,
+            @JsonKey(name: 'visitor_count', fromJson: _dynamicToString)
             String? visitor_count,
             @JsonKey(fromJson: _stringToBool) bool? is_new,
-            String? priority,
-            String? file,
+            @JsonKey(fromJson: _dynamicToString) String? priority,
+            @JsonKey(fromJson: _dynamicToString) String? file,
+            @JsonKey(name: 'sound_file_url', fromJson: _dynamicToString)
             String? sound_file_url,
-            String? soundPic,
-            String? soundSource,
-            String? soundSourceUrl,
-            String? soundYoutubeId,
-            String? publisherId)?
+            @JsonKey(fromJson: _dynamicToString) String? soundPic,
+            @JsonKey(fromJson: _dynamicToString) String? soundSource,
+            @JsonKey(fromJson: _dynamicToString) String? soundSourceUrl,
+            @JsonKey(fromJson: _dynamicToString) String? soundYoutubeId,
+            @JsonKey(fromJson: _dynamicToString) String? publisherId)?
         $default,
   ) {
     final _that = this;
@@ -1876,19 +1924,21 @@ extension SoundItemPatterns on SoundItem {
 class _SoundItem implements SoundItem {
   const _SoundItem(
       {@JsonKey(fromJson: _stringToInt) this.id,
-      this.title,
-      this.summary,
-      this.date,
+      @JsonKey(fromJson: _dynamicToString) this.title,
+      @JsonKey(fromJson: _dynamicToString) this.summary,
+      @JsonKey(fromJson: _dynamicToString) this.date,
+      @JsonKey(name: 'visitor_count', fromJson: _dynamicToString)
       this.visitor_count,
       @JsonKey(fromJson: _stringToBool) this.is_new,
-      this.priority,
-      this.file,
+      @JsonKey(fromJson: _dynamicToString) this.priority,
+      @JsonKey(fromJson: _dynamicToString) this.file,
+      @JsonKey(name: 'sound_file_url', fromJson: _dynamicToString)
       this.sound_file_url,
-      this.soundPic,
-      this.soundSource,
-      this.soundSourceUrl,
-      this.soundYoutubeId,
-      this.publisherId});
+      @JsonKey(fromJson: _dynamicToString) this.soundPic,
+      @JsonKey(fromJson: _dynamicToString) this.soundSource,
+      @JsonKey(fromJson: _dynamicToString) this.soundSourceUrl,
+      @JsonKey(fromJson: _dynamicToString) this.soundYoutubeId,
+      @JsonKey(fromJson: _dynamicToString) this.publisherId});
   factory _SoundItem.fromJson(Map<String, dynamic> json) =>
       _$SoundItemFromJson(json);
 
@@ -1896,32 +1946,44 @@ class _SoundItem implements SoundItem {
   @JsonKey(fromJson: _stringToInt)
   final int? id;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? title;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? summary;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? date;
   @override
+  @JsonKey(name: 'visitor_count', fromJson: _dynamicToString)
   final String? visitor_count;
   @override
   @JsonKey(fromJson: _stringToBool)
   final bool? is_new;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? priority;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? file;
   @override
+  @JsonKey(name: 'sound_file_url', fromJson: _dynamicToString)
   final String? sound_file_url;
 // Additional fields for detailed display
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? soundPic;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? soundSource;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? soundSourceUrl;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? soundYoutubeId;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? publisherId;
 
   /// Create a copy of SoundItem
@@ -2003,19 +2065,21 @@ abstract mixin class _$SoundItemCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(fromJson: _stringToInt) int? id,
-      String? title,
-      String? summary,
-      String? date,
+      @JsonKey(fromJson: _dynamicToString) String? title,
+      @JsonKey(fromJson: _dynamicToString) String? summary,
+      @JsonKey(fromJson: _dynamicToString) String? date,
+      @JsonKey(name: 'visitor_count', fromJson: _dynamicToString)
       String? visitor_count,
       @JsonKey(fromJson: _stringToBool) bool? is_new,
-      String? priority,
-      String? file,
+      @JsonKey(fromJson: _dynamicToString) String? priority,
+      @JsonKey(fromJson: _dynamicToString) String? file,
+      @JsonKey(name: 'sound_file_url', fromJson: _dynamicToString)
       String? sound_file_url,
-      String? soundPic,
-      String? soundSource,
-      String? soundSourceUrl,
-      String? soundYoutubeId,
-      String? publisherId});
+      @JsonKey(fromJson: _dynamicToString) String? soundPic,
+      @JsonKey(fromJson: _dynamicToString) String? soundSource,
+      @JsonKey(fromJson: _dynamicToString) String? soundSourceUrl,
+      @JsonKey(fromJson: _dynamicToString) String? soundYoutubeId,
+      @JsonKey(fromJson: _dynamicToString) String? publisherId});
 }
 
 /// @nodoc
@@ -2669,13 +2733,21 @@ class __$SoundPaginationDataCopyWithImpl<$Res>
 mixin _$PageInfo {
   @JsonKey(fromJson: _stringToInt)
   int? get id;
+  @JsonKey(fromJson: _dynamicToString)
   String? get title;
+  @JsonKey(fromJson: _dynamicToString)
   String? get content;
+  @JsonKey(fromJson: _dynamicToString)
   String? get language;
+  @JsonKey(name: 'visitor_count', fromJson: _dynamicToString)
   String? get visitor_count;
+  @JsonKey(fromJson: _dynamicToString)
   String? get priority;
+  @JsonKey(fromJson: _dynamicToString)
   String? get date;
+  @JsonKey(name: 'menu_id', fromJson: _dynamicToString)
   String? get menu_id;
+  @JsonKey(fromJson: _dynamicToString)
   String? get type;
 
   /// Create a copy of PageInfo
@@ -2725,14 +2797,15 @@ abstract mixin class $PageInfoCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(fromJson: _stringToInt) int? id,
-      String? title,
-      String? content,
-      String? language,
+      @JsonKey(fromJson: _dynamicToString) String? title,
+      @JsonKey(fromJson: _dynamicToString) String? content,
+      @JsonKey(fromJson: _dynamicToString) String? language,
+      @JsonKey(name: 'visitor_count', fromJson: _dynamicToString)
       String? visitor_count,
-      String? priority,
-      String? date,
-      String? menu_id,
-      String? type});
+      @JsonKey(fromJson: _dynamicToString) String? priority,
+      @JsonKey(fromJson: _dynamicToString) String? date,
+      @JsonKey(name: 'menu_id', fromJson: _dynamicToString) String? menu_id,
+      @JsonKey(fromJson: _dynamicToString) String? type});
 }
 
 /// @nodoc
@@ -2893,14 +2966,16 @@ extension PageInfoPatterns on PageInfo {
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
             @JsonKey(fromJson: _stringToInt) int? id,
-            String? title,
-            String? content,
-            String? language,
+            @JsonKey(fromJson: _dynamicToString) String? title,
+            @JsonKey(fromJson: _dynamicToString) String? content,
+            @JsonKey(fromJson: _dynamicToString) String? language,
+            @JsonKey(name: 'visitor_count', fromJson: _dynamicToString)
             String? visitor_count,
-            String? priority,
-            String? date,
+            @JsonKey(fromJson: _dynamicToString) String? priority,
+            @JsonKey(fromJson: _dynamicToString) String? date,
+            @JsonKey(name: 'menu_id', fromJson: _dynamicToString)
             String? menu_id,
-            String? type)?
+            @JsonKey(fromJson: _dynamicToString) String? type)?
         $default, {
     required TResult orElse(),
   }) {
@@ -2939,14 +3014,16 @@ extension PageInfoPatterns on PageInfo {
   TResult when<TResult extends Object?>(
     TResult Function(
             @JsonKey(fromJson: _stringToInt) int? id,
-            String? title,
-            String? content,
-            String? language,
+            @JsonKey(fromJson: _dynamicToString) String? title,
+            @JsonKey(fromJson: _dynamicToString) String? content,
+            @JsonKey(fromJson: _dynamicToString) String? language,
+            @JsonKey(name: 'visitor_count', fromJson: _dynamicToString)
             String? visitor_count,
-            String? priority,
-            String? date,
+            @JsonKey(fromJson: _dynamicToString) String? priority,
+            @JsonKey(fromJson: _dynamicToString) String? date,
+            @JsonKey(name: 'menu_id', fromJson: _dynamicToString)
             String? menu_id,
-            String? type)
+            @JsonKey(fromJson: _dynamicToString) String? type)
         $default,
   ) {
     final _that = this;
@@ -2983,14 +3060,16 @@ extension PageInfoPatterns on PageInfo {
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
             @JsonKey(fromJson: _stringToInt) int? id,
-            String? title,
-            String? content,
-            String? language,
+            @JsonKey(fromJson: _dynamicToString) String? title,
+            @JsonKey(fromJson: _dynamicToString) String? content,
+            @JsonKey(fromJson: _dynamicToString) String? language,
+            @JsonKey(name: 'visitor_count', fromJson: _dynamicToString)
             String? visitor_count,
-            String? priority,
-            String? date,
+            @JsonKey(fromJson: _dynamicToString) String? priority,
+            @JsonKey(fromJson: _dynamicToString) String? date,
+            @JsonKey(name: 'menu_id', fromJson: _dynamicToString)
             String? menu_id,
-            String? type)?
+            @JsonKey(fromJson: _dynamicToString) String? type)?
         $default,
   ) {
     final _that = this;
@@ -3017,14 +3096,15 @@ extension PageInfoPatterns on PageInfo {
 class _PageInfo implements PageInfo {
   const _PageInfo(
       {@JsonKey(fromJson: _stringToInt) this.id,
-      this.title,
-      this.content,
-      this.language,
+      @JsonKey(fromJson: _dynamicToString) this.title,
+      @JsonKey(fromJson: _dynamicToString) this.content,
+      @JsonKey(fromJson: _dynamicToString) this.language,
+      @JsonKey(name: 'visitor_count', fromJson: _dynamicToString)
       this.visitor_count,
-      this.priority,
-      this.date,
-      this.menu_id,
-      this.type});
+      @JsonKey(fromJson: _dynamicToString) this.priority,
+      @JsonKey(fromJson: _dynamicToString) this.date,
+      @JsonKey(name: 'menu_id', fromJson: _dynamicToString) this.menu_id,
+      @JsonKey(fromJson: _dynamicToString) this.type});
   factory _PageInfo.fromJson(Map<String, dynamic> json) =>
       _$PageInfoFromJson(json);
 
@@ -3032,20 +3112,28 @@ class _PageInfo implements PageInfo {
   @JsonKey(fromJson: _stringToInt)
   final int? id;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? title;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? content;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? language;
   @override
+  @JsonKey(name: 'visitor_count', fromJson: _dynamicToString)
   final String? visitor_count;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? priority;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? date;
   @override
+  @JsonKey(name: 'menu_id', fromJson: _dynamicToString)
   final String? menu_id;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? type;
 
   /// Create a copy of PageInfo
@@ -3102,14 +3190,15 @@ abstract mixin class _$PageInfoCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(fromJson: _stringToInt) int? id,
-      String? title,
-      String? content,
-      String? language,
+      @JsonKey(fromJson: _dynamicToString) String? title,
+      @JsonKey(fromJson: _dynamicToString) String? content,
+      @JsonKey(fromJson: _dynamicToString) String? language,
+      @JsonKey(name: 'visitor_count', fromJson: _dynamicToString)
       String? visitor_count,
-      String? priority,
-      String? date,
-      String? menu_id,
-      String? type});
+      @JsonKey(fromJson: _dynamicToString) String? priority,
+      @JsonKey(fromJson: _dynamicToString) String? date,
+      @JsonKey(name: 'menu_id', fromJson: _dynamicToString) String? menu_id,
+      @JsonKey(fromJson: _dynamicToString) String? type});
 }
 
 /// @nodoc
@@ -3972,10 +4061,15 @@ class __$CategoryContentDataCopyWithImpl<$Res>
 mixin _$CategoryInfo {
   @JsonKey(fromJson: _stringToInt)
   int? get id;
+  @JsonKey(fromJson: _dynamicToString)
   String? get title;
+  @JsonKey(fromJson: _dynamicToString)
   String? get note;
+  @JsonKey(fromJson: _dynamicToString)
   String? get type;
+  @JsonKey(fromJson: _dynamicToString)
   String? get position;
+  @JsonKey(fromJson: _dynamicToString)
   String? get language;
 
   /// Create a copy of CategoryInfo
@@ -4023,11 +4117,11 @@ abstract mixin class $CategoryInfoCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(fromJson: _stringToInt) int? id,
-      String? title,
-      String? note,
-      String? type,
-      String? position,
-      String? language});
+      @JsonKey(fromJson: _dynamicToString) String? title,
+      @JsonKey(fromJson: _dynamicToString) String? note,
+      @JsonKey(fromJson: _dynamicToString) String? type,
+      @JsonKey(fromJson: _dynamicToString) String? position,
+      @JsonKey(fromJson: _dynamicToString) String? language});
 }
 
 /// @nodoc
@@ -4171,8 +4265,13 @@ extension CategoryInfoPatterns on CategoryInfo {
 
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(@JsonKey(fromJson: _stringToInt) int? id, String? title,
-            String? note, String? type, String? position, String? language)?
+    TResult Function(
+            @JsonKey(fromJson: _stringToInt) int? id,
+            @JsonKey(fromJson: _dynamicToString) String? title,
+            @JsonKey(fromJson: _dynamicToString) String? note,
+            @JsonKey(fromJson: _dynamicToString) String? type,
+            @JsonKey(fromJson: _dynamicToString) String? position,
+            @JsonKey(fromJson: _dynamicToString) String? language)?
         $default, {
     required TResult orElse(),
   }) {
@@ -4201,8 +4300,13 @@ extension CategoryInfoPatterns on CategoryInfo {
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(@JsonKey(fromJson: _stringToInt) int? id, String? title,
-            String? note, String? type, String? position, String? language)
+    TResult Function(
+            @JsonKey(fromJson: _stringToInt) int? id,
+            @JsonKey(fromJson: _dynamicToString) String? title,
+            @JsonKey(fromJson: _dynamicToString) String? note,
+            @JsonKey(fromJson: _dynamicToString) String? type,
+            @JsonKey(fromJson: _dynamicToString) String? position,
+            @JsonKey(fromJson: _dynamicToString) String? language)
         $default,
   ) {
     final _that = this;
@@ -4229,8 +4333,13 @@ extension CategoryInfoPatterns on CategoryInfo {
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(@JsonKey(fromJson: _stringToInt) int? id, String? title,
-            String? note, String? type, String? position, String? language)?
+    TResult? Function(
+            @JsonKey(fromJson: _stringToInt) int? id,
+            @JsonKey(fromJson: _dynamicToString) String? title,
+            @JsonKey(fromJson: _dynamicToString) String? note,
+            @JsonKey(fromJson: _dynamicToString) String? type,
+            @JsonKey(fromJson: _dynamicToString) String? position,
+            @JsonKey(fromJson: _dynamicToString) String? language)?
         $default,
   ) {
     final _that = this;
@@ -4249,11 +4358,11 @@ extension CategoryInfoPatterns on CategoryInfo {
 class _CategoryInfo implements CategoryInfo {
   const _CategoryInfo(
       {@JsonKey(fromJson: _stringToInt) this.id,
-      this.title,
-      this.note,
-      this.type,
-      this.position,
-      this.language});
+      @JsonKey(fromJson: _dynamicToString) this.title,
+      @JsonKey(fromJson: _dynamicToString) this.note,
+      @JsonKey(fromJson: _dynamicToString) this.type,
+      @JsonKey(fromJson: _dynamicToString) this.position,
+      @JsonKey(fromJson: _dynamicToString) this.language});
   factory _CategoryInfo.fromJson(Map<String, dynamic> json) =>
       _$CategoryInfoFromJson(json);
 
@@ -4261,14 +4370,19 @@ class _CategoryInfo implements CategoryInfo {
   @JsonKey(fromJson: _stringToInt)
   final int? id;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? title;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? note;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? type;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? position;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? language;
 
   /// Create a copy of CategoryInfo
@@ -4322,11 +4436,11 @@ abstract mixin class _$CategoryInfoCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(fromJson: _stringToInt) int? id,
-      String? title,
-      String? note,
-      String? type,
-      String? position,
-      String? language});
+      @JsonKey(fromJson: _dynamicToString) String? title,
+      @JsonKey(fromJson: _dynamicToString) String? note,
+      @JsonKey(fromJson: _dynamicToString) String? type,
+      @JsonKey(fromJson: _dynamicToString) String? position,
+      @JsonKey(fromJson: _dynamicToString) String? language});
 }
 
 /// @nodoc
@@ -6615,24 +6729,25 @@ class __$SoundDetailResponseCopyWithImpl<$Res>
 mixin _$SoundDetailData {
   @JsonKey(name: 'sound_id', fromJson: _stringToInt)
   int? get soundId;
-  @JsonKey(name: 'sound_cat_id')
+  @JsonKey(name: 'sound_cat_id', fromJson: _dynamicToString)
   String? get soundCatId;
-  @JsonKey(name: 'sound_title')
+  @JsonKey(name: 'sound_title', fromJson: _dynamicToString)
   String? get soundTitle;
+  @JsonKey(fromJson: _dynamicToString)
   String? get soundTs;
-  @JsonKey(name: 'sound_summary')
+  @JsonKey(name: 'sound_summary', fromJson: _dynamicToString)
   String? get soundSummary;
-  @JsonKey(name: 'sound_des')
+  @JsonKey(name: 'sound_des', fromJson: _dynamicToString)
   String? get soundDes;
-  @JsonKey(name: 'sound_pic')
+  @JsonKey(name: 'sound_pic', fromJson: _dynamicToString)
   String? get soundPic;
-  @JsonKey(name: 'sound_pic_pos')
+  @JsonKey(name: 'sound_pic_pos', fromJson: _dynamicToString)
   String? get soundPicPos;
   @JsonKey(name: 'sound_visitor', fromJson: _stringToInt)
   int? get soundVisitor;
   @JsonKey(name: 'sound_is_new', fromJson: _stringToBool)
   bool? get soundIsNew;
-  @JsonKey(name: 'sound_priority')
+  @JsonKey(name: 'sound_priority', fromJson: _dynamicToString)
   String? get soundPriority;
   @JsonKey(name: 'sound_active_vote', fromJson: _stringToBool)
   bool? get soundActiveVote;
@@ -6640,25 +6755,25 @@ mixin _$SoundDetailData {
   bool? get soundActiveHint;
   @JsonKey(name: 'sound_active', fromJson: _stringToBool)
   bool? get soundActive;
-  @JsonKey(name: 'sound_date')
+  @JsonKey(name: 'sound_date', fromJson: _dynamicToString)
   String? get soundDate;
   @JsonKey(name: 'sound_pic_active', fromJson: _stringToBool)
   bool? get soundPicActive;
   @JsonKey(name: 'sound_last_sound', fromJson: _stringToBool)
   bool? get soundLastSound;
-  @JsonKey(name: 'sound_publisher_id')
+  @JsonKey(name: 'sound_publisher_id', fromJson: _dynamicToString)
   String? get soundPublisherId;
-  @JsonKey(name: 'sound_source')
+  @JsonKey(name: 'sound_source', fromJson: _dynamicToString)
   String? get soundSource;
-  @JsonKey(name: 'sound_source_url')
+  @JsonKey(name: 'sound_source_url', fromJson: _dynamicToString)
   String? get soundSourceUrl;
-  @JsonKey(name: 'sound_youtube_id')
+  @JsonKey(name: 'sound_youtube_id', fromJson: _dynamicToString)
   String? get soundYoutubeId;
-  @JsonKey(name: 'sound_file')
+  @JsonKey(name: 'sound_file', fromJson: _dynamicToString)
   String? get soundFile;
   @JsonKey(name: 'sound_user_add_hint_nsup', fromJson: _stringToBool)
   bool? get soundUserAddHintNsup;
-  @JsonKey(name: 'sound_file_url')
+  @JsonKey(name: 'sound_file_url', fromJson: _dynamicToString)
   String? get soundFileUrl;
   SoundDetailCategory? get category;
   List<dynamic>? get captions;
@@ -6779,34 +6894,46 @@ abstract mixin class $SoundDetailDataCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'sound_id', fromJson: _stringToInt) int? soundId,
-      @JsonKey(name: 'sound_cat_id') String? soundCatId,
-      @JsonKey(name: 'sound_title') String? soundTitle,
-      String? soundTs,
-      @JsonKey(name: 'sound_summary') String? soundSummary,
-      @JsonKey(name: 'sound_des') String? soundDes,
-      @JsonKey(name: 'sound_pic') String? soundPic,
-      @JsonKey(name: 'sound_pic_pos') String? soundPicPos,
+      @JsonKey(name: 'sound_cat_id', fromJson: _dynamicToString)
+      String? soundCatId,
+      @JsonKey(name: 'sound_title', fromJson: _dynamicToString)
+      String? soundTitle,
+      @JsonKey(fromJson: _dynamicToString) String? soundTs,
+      @JsonKey(name: 'sound_summary', fromJson: _dynamicToString)
+      String? soundSummary,
+      @JsonKey(name: 'sound_des', fromJson: _dynamicToString) String? soundDes,
+      @JsonKey(name: 'sound_pic', fromJson: _dynamicToString) String? soundPic,
+      @JsonKey(name: 'sound_pic_pos', fromJson: _dynamicToString)
+      String? soundPicPos,
       @JsonKey(name: 'sound_visitor', fromJson: _stringToInt) int? soundVisitor,
       @JsonKey(name: 'sound_is_new', fromJson: _stringToBool) bool? soundIsNew,
-      @JsonKey(name: 'sound_priority') String? soundPriority,
+      @JsonKey(name: 'sound_priority', fromJson: _dynamicToString)
+      String? soundPriority,
       @JsonKey(name: 'sound_active_vote', fromJson: _stringToBool)
       bool? soundActiveVote,
       @JsonKey(name: 'sound_active_hint', fromJson: _stringToBool)
       bool? soundActiveHint,
       @JsonKey(name: 'sound_active', fromJson: _stringToBool) bool? soundActive,
-      @JsonKey(name: 'sound_date') String? soundDate,
+      @JsonKey(name: 'sound_date', fromJson: _dynamicToString)
+      String? soundDate,
       @JsonKey(name: 'sound_pic_active', fromJson: _stringToBool)
       bool? soundPicActive,
       @JsonKey(name: 'sound_last_sound', fromJson: _stringToBool)
       bool? soundLastSound,
-      @JsonKey(name: 'sound_publisher_id') String? soundPublisherId,
-      @JsonKey(name: 'sound_source') String? soundSource,
-      @JsonKey(name: 'sound_source_url') String? soundSourceUrl,
-      @JsonKey(name: 'sound_youtube_id') String? soundYoutubeId,
-      @JsonKey(name: 'sound_file') String? soundFile,
+      @JsonKey(name: 'sound_publisher_id', fromJson: _dynamicToString)
+      String? soundPublisherId,
+      @JsonKey(name: 'sound_source', fromJson: _dynamicToString)
+      String? soundSource,
+      @JsonKey(name: 'sound_source_url', fromJson: _dynamicToString)
+      String? soundSourceUrl,
+      @JsonKey(name: 'sound_youtube_id', fromJson: _dynamicToString)
+      String? soundYoutubeId,
+      @JsonKey(name: 'sound_file', fromJson: _dynamicToString)
+      String? soundFile,
       @JsonKey(name: 'sound_user_add_hint_nsup', fromJson: _stringToBool)
       bool? soundUserAddHintNsup,
-      @JsonKey(name: 'sound_file_url') String? soundFileUrl,
+      @JsonKey(name: 'sound_file_url', fromJson: _dynamicToString)
+      String? soundFileUrl,
       SoundDetailCategory? category,
       List<dynamic>? captions,
       List<dynamic>? votes});
@@ -7077,37 +7204,51 @@ extension SoundDetailDataPatterns on SoundDetailData {
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
             @JsonKey(name: 'sound_id', fromJson: _stringToInt) int? soundId,
-            @JsonKey(name: 'sound_cat_id') String? soundCatId,
-            @JsonKey(name: 'sound_title') String? soundTitle,
-            String? soundTs,
-            @JsonKey(name: 'sound_summary') String? soundSummary,
-            @JsonKey(name: 'sound_des') String? soundDes,
-            @JsonKey(name: 'sound_pic') String? soundPic,
-            @JsonKey(name: 'sound_pic_pos') String? soundPicPos,
+            @JsonKey(name: 'sound_cat_id', fromJson: _dynamicToString)
+            String? soundCatId,
+            @JsonKey(name: 'sound_title', fromJson: _dynamicToString)
+            String? soundTitle,
+            @JsonKey(fromJson: _dynamicToString) String? soundTs,
+            @JsonKey(name: 'sound_summary', fromJson: _dynamicToString)
+            String? soundSummary,
+            @JsonKey(name: 'sound_des', fromJson: _dynamicToString)
+            String? soundDes,
+            @JsonKey(name: 'sound_pic', fromJson: _dynamicToString)
+            String? soundPic,
+            @JsonKey(name: 'sound_pic_pos', fromJson: _dynamicToString)
+            String? soundPicPos,
             @JsonKey(name: 'sound_visitor', fromJson: _stringToInt)
             int? soundVisitor,
             @JsonKey(name: 'sound_is_new', fromJson: _stringToBool)
             bool? soundIsNew,
-            @JsonKey(name: 'sound_priority') String? soundPriority,
+            @JsonKey(name: 'sound_priority', fromJson: _dynamicToString)
+            String? soundPriority,
             @JsonKey(name: 'sound_active_vote', fromJson: _stringToBool)
             bool? soundActiveVote,
             @JsonKey(name: 'sound_active_hint', fromJson: _stringToBool)
             bool? soundActiveHint,
             @JsonKey(name: 'sound_active', fromJson: _stringToBool)
             bool? soundActive,
-            @JsonKey(name: 'sound_date') String? soundDate,
+            @JsonKey(name: 'sound_date', fromJson: _dynamicToString)
+            String? soundDate,
             @JsonKey(name: 'sound_pic_active', fromJson: _stringToBool)
             bool? soundPicActive,
             @JsonKey(name: 'sound_last_sound', fromJson: _stringToBool)
             bool? soundLastSound,
-            @JsonKey(name: 'sound_publisher_id') String? soundPublisherId,
-            @JsonKey(name: 'sound_source') String? soundSource,
-            @JsonKey(name: 'sound_source_url') String? soundSourceUrl,
-            @JsonKey(name: 'sound_youtube_id') String? soundYoutubeId,
-            @JsonKey(name: 'sound_file') String? soundFile,
+            @JsonKey(name: 'sound_publisher_id', fromJson: _dynamicToString)
+            String? soundPublisherId,
+            @JsonKey(name: 'sound_source', fromJson: _dynamicToString)
+            String? soundSource,
+            @JsonKey(name: 'sound_source_url', fromJson: _dynamicToString)
+            String? soundSourceUrl,
+            @JsonKey(name: 'sound_youtube_id', fromJson: _dynamicToString)
+            String? soundYoutubeId,
+            @JsonKey(name: 'sound_file', fromJson: _dynamicToString)
+            String? soundFile,
             @JsonKey(name: 'sound_user_add_hint_nsup', fromJson: _stringToBool)
             bool? soundUserAddHintNsup,
-            @JsonKey(name: 'sound_file_url') String? soundFileUrl,
+            @JsonKey(name: 'sound_file_url', fromJson: _dynamicToString)
+            String? soundFileUrl,
             SoundDetailCategory? category,
             List<dynamic>? captions,
             List<dynamic>? votes)?
@@ -7167,37 +7308,51 @@ extension SoundDetailDataPatterns on SoundDetailData {
   TResult when<TResult extends Object?>(
     TResult Function(
             @JsonKey(name: 'sound_id', fromJson: _stringToInt) int? soundId,
-            @JsonKey(name: 'sound_cat_id') String? soundCatId,
-            @JsonKey(name: 'sound_title') String? soundTitle,
-            String? soundTs,
-            @JsonKey(name: 'sound_summary') String? soundSummary,
-            @JsonKey(name: 'sound_des') String? soundDes,
-            @JsonKey(name: 'sound_pic') String? soundPic,
-            @JsonKey(name: 'sound_pic_pos') String? soundPicPos,
+            @JsonKey(name: 'sound_cat_id', fromJson: _dynamicToString)
+            String? soundCatId,
+            @JsonKey(name: 'sound_title', fromJson: _dynamicToString)
+            String? soundTitle,
+            @JsonKey(fromJson: _dynamicToString) String? soundTs,
+            @JsonKey(name: 'sound_summary', fromJson: _dynamicToString)
+            String? soundSummary,
+            @JsonKey(name: 'sound_des', fromJson: _dynamicToString)
+            String? soundDes,
+            @JsonKey(name: 'sound_pic', fromJson: _dynamicToString)
+            String? soundPic,
+            @JsonKey(name: 'sound_pic_pos', fromJson: _dynamicToString)
+            String? soundPicPos,
             @JsonKey(name: 'sound_visitor', fromJson: _stringToInt)
             int? soundVisitor,
             @JsonKey(name: 'sound_is_new', fromJson: _stringToBool)
             bool? soundIsNew,
-            @JsonKey(name: 'sound_priority') String? soundPriority,
+            @JsonKey(name: 'sound_priority', fromJson: _dynamicToString)
+            String? soundPriority,
             @JsonKey(name: 'sound_active_vote', fromJson: _stringToBool)
             bool? soundActiveVote,
             @JsonKey(name: 'sound_active_hint', fromJson: _stringToBool)
             bool? soundActiveHint,
             @JsonKey(name: 'sound_active', fromJson: _stringToBool)
             bool? soundActive,
-            @JsonKey(name: 'sound_date') String? soundDate,
+            @JsonKey(name: 'sound_date', fromJson: _dynamicToString)
+            String? soundDate,
             @JsonKey(name: 'sound_pic_active', fromJson: _stringToBool)
             bool? soundPicActive,
             @JsonKey(name: 'sound_last_sound', fromJson: _stringToBool)
             bool? soundLastSound,
-            @JsonKey(name: 'sound_publisher_id') String? soundPublisherId,
-            @JsonKey(name: 'sound_source') String? soundSource,
-            @JsonKey(name: 'sound_source_url') String? soundSourceUrl,
-            @JsonKey(name: 'sound_youtube_id') String? soundYoutubeId,
-            @JsonKey(name: 'sound_file') String? soundFile,
+            @JsonKey(name: 'sound_publisher_id', fromJson: _dynamicToString)
+            String? soundPublisherId,
+            @JsonKey(name: 'sound_source', fromJson: _dynamicToString)
+            String? soundSource,
+            @JsonKey(name: 'sound_source_url', fromJson: _dynamicToString)
+            String? soundSourceUrl,
+            @JsonKey(name: 'sound_youtube_id', fromJson: _dynamicToString)
+            String? soundYoutubeId,
+            @JsonKey(name: 'sound_file', fromJson: _dynamicToString)
+            String? soundFile,
             @JsonKey(name: 'sound_user_add_hint_nsup', fromJson: _stringToBool)
             bool? soundUserAddHintNsup,
-            @JsonKey(name: 'sound_file_url') String? soundFileUrl,
+            @JsonKey(name: 'sound_file_url', fromJson: _dynamicToString)
+            String? soundFileUrl,
             SoundDetailCategory? category,
             List<dynamic>? captions,
             List<dynamic>? votes)
@@ -7255,37 +7410,51 @@ extension SoundDetailDataPatterns on SoundDetailData {
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
             @JsonKey(name: 'sound_id', fromJson: _stringToInt) int? soundId,
-            @JsonKey(name: 'sound_cat_id') String? soundCatId,
-            @JsonKey(name: 'sound_title') String? soundTitle,
-            String? soundTs,
-            @JsonKey(name: 'sound_summary') String? soundSummary,
-            @JsonKey(name: 'sound_des') String? soundDes,
-            @JsonKey(name: 'sound_pic') String? soundPic,
-            @JsonKey(name: 'sound_pic_pos') String? soundPicPos,
+            @JsonKey(name: 'sound_cat_id', fromJson: _dynamicToString)
+            String? soundCatId,
+            @JsonKey(name: 'sound_title', fromJson: _dynamicToString)
+            String? soundTitle,
+            @JsonKey(fromJson: _dynamicToString) String? soundTs,
+            @JsonKey(name: 'sound_summary', fromJson: _dynamicToString)
+            String? soundSummary,
+            @JsonKey(name: 'sound_des', fromJson: _dynamicToString)
+            String? soundDes,
+            @JsonKey(name: 'sound_pic', fromJson: _dynamicToString)
+            String? soundPic,
+            @JsonKey(name: 'sound_pic_pos', fromJson: _dynamicToString)
+            String? soundPicPos,
             @JsonKey(name: 'sound_visitor', fromJson: _stringToInt)
             int? soundVisitor,
             @JsonKey(name: 'sound_is_new', fromJson: _stringToBool)
             bool? soundIsNew,
-            @JsonKey(name: 'sound_priority') String? soundPriority,
+            @JsonKey(name: 'sound_priority', fromJson: _dynamicToString)
+            String? soundPriority,
             @JsonKey(name: 'sound_active_vote', fromJson: _stringToBool)
             bool? soundActiveVote,
             @JsonKey(name: 'sound_active_hint', fromJson: _stringToBool)
             bool? soundActiveHint,
             @JsonKey(name: 'sound_active', fromJson: _stringToBool)
             bool? soundActive,
-            @JsonKey(name: 'sound_date') String? soundDate,
+            @JsonKey(name: 'sound_date', fromJson: _dynamicToString)
+            String? soundDate,
             @JsonKey(name: 'sound_pic_active', fromJson: _stringToBool)
             bool? soundPicActive,
             @JsonKey(name: 'sound_last_sound', fromJson: _stringToBool)
             bool? soundLastSound,
-            @JsonKey(name: 'sound_publisher_id') String? soundPublisherId,
-            @JsonKey(name: 'sound_source') String? soundSource,
-            @JsonKey(name: 'sound_source_url') String? soundSourceUrl,
-            @JsonKey(name: 'sound_youtube_id') String? soundYoutubeId,
-            @JsonKey(name: 'sound_file') String? soundFile,
+            @JsonKey(name: 'sound_publisher_id', fromJson: _dynamicToString)
+            String? soundPublisherId,
+            @JsonKey(name: 'sound_source', fromJson: _dynamicToString)
+            String? soundSource,
+            @JsonKey(name: 'sound_source_url', fromJson: _dynamicToString)
+            String? soundSourceUrl,
+            @JsonKey(name: 'sound_youtube_id', fromJson: _dynamicToString)
+            String? soundYoutubeId,
+            @JsonKey(name: 'sound_file', fromJson: _dynamicToString)
+            String? soundFile,
             @JsonKey(name: 'sound_user_add_hint_nsup', fromJson: _stringToBool)
             bool? soundUserAddHintNsup,
-            @JsonKey(name: 'sound_file_url') String? soundFileUrl,
+            @JsonKey(name: 'sound_file_url', fromJson: _dynamicToString)
+            String? soundFileUrl,
             SoundDetailCategory? category,
             List<dynamic>? captions,
             List<dynamic>? votes)?
@@ -7333,34 +7502,43 @@ extension SoundDetailDataPatterns on SoundDetailData {
 class _SoundDetailData implements SoundDetailData {
   const _SoundDetailData(
       {@JsonKey(name: 'sound_id', fromJson: _stringToInt) this.soundId,
-      @JsonKey(name: 'sound_cat_id') this.soundCatId,
-      @JsonKey(name: 'sound_title') this.soundTitle,
-      this.soundTs,
-      @JsonKey(name: 'sound_summary') this.soundSummary,
-      @JsonKey(name: 'sound_des') this.soundDes,
-      @JsonKey(name: 'sound_pic') this.soundPic,
-      @JsonKey(name: 'sound_pic_pos') this.soundPicPos,
+      @JsonKey(name: 'sound_cat_id', fromJson: _dynamicToString)
+      this.soundCatId,
+      @JsonKey(name: 'sound_title', fromJson: _dynamicToString) this.soundTitle,
+      @JsonKey(fromJson: _dynamicToString) this.soundTs,
+      @JsonKey(name: 'sound_summary', fromJson: _dynamicToString)
+      this.soundSummary,
+      @JsonKey(name: 'sound_des', fromJson: _dynamicToString) this.soundDes,
+      @JsonKey(name: 'sound_pic', fromJson: _dynamicToString) this.soundPic,
+      @JsonKey(name: 'sound_pic_pos', fromJson: _dynamicToString)
+      this.soundPicPos,
       @JsonKey(name: 'sound_visitor', fromJson: _stringToInt) this.soundVisitor,
       @JsonKey(name: 'sound_is_new', fromJson: _stringToBool) this.soundIsNew,
-      @JsonKey(name: 'sound_priority') this.soundPriority,
+      @JsonKey(name: 'sound_priority', fromJson: _dynamicToString)
+      this.soundPriority,
       @JsonKey(name: 'sound_active_vote', fromJson: _stringToBool)
       this.soundActiveVote,
       @JsonKey(name: 'sound_active_hint', fromJson: _stringToBool)
       this.soundActiveHint,
       @JsonKey(name: 'sound_active', fromJson: _stringToBool) this.soundActive,
-      @JsonKey(name: 'sound_date') this.soundDate,
+      @JsonKey(name: 'sound_date', fromJson: _dynamicToString) this.soundDate,
       @JsonKey(name: 'sound_pic_active', fromJson: _stringToBool)
       this.soundPicActive,
       @JsonKey(name: 'sound_last_sound', fromJson: _stringToBool)
       this.soundLastSound,
-      @JsonKey(name: 'sound_publisher_id') this.soundPublisherId,
-      @JsonKey(name: 'sound_source') this.soundSource,
-      @JsonKey(name: 'sound_source_url') this.soundSourceUrl,
-      @JsonKey(name: 'sound_youtube_id') this.soundYoutubeId,
-      @JsonKey(name: 'sound_file') this.soundFile,
+      @JsonKey(name: 'sound_publisher_id', fromJson: _dynamicToString)
+      this.soundPublisherId,
+      @JsonKey(name: 'sound_source', fromJson: _dynamicToString)
+      this.soundSource,
+      @JsonKey(name: 'sound_source_url', fromJson: _dynamicToString)
+      this.soundSourceUrl,
+      @JsonKey(name: 'sound_youtube_id', fromJson: _dynamicToString)
+      this.soundYoutubeId,
+      @JsonKey(name: 'sound_file', fromJson: _dynamicToString) this.soundFile,
       @JsonKey(name: 'sound_user_add_hint_nsup', fromJson: _stringToBool)
       this.soundUserAddHintNsup,
-      @JsonKey(name: 'sound_file_url') this.soundFileUrl,
+      @JsonKey(name: 'sound_file_url', fromJson: _dynamicToString)
+      this.soundFileUrl,
       this.category,
       final List<dynamic>? captions,
       final List<dynamic>? votes})
@@ -7373,24 +7551,25 @@ class _SoundDetailData implements SoundDetailData {
   @JsonKey(name: 'sound_id', fromJson: _stringToInt)
   final int? soundId;
   @override
-  @JsonKey(name: 'sound_cat_id')
+  @JsonKey(name: 'sound_cat_id', fromJson: _dynamicToString)
   final String? soundCatId;
   @override
-  @JsonKey(name: 'sound_title')
+  @JsonKey(name: 'sound_title', fromJson: _dynamicToString)
   final String? soundTitle;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? soundTs;
   @override
-  @JsonKey(name: 'sound_summary')
+  @JsonKey(name: 'sound_summary', fromJson: _dynamicToString)
   final String? soundSummary;
   @override
-  @JsonKey(name: 'sound_des')
+  @JsonKey(name: 'sound_des', fromJson: _dynamicToString)
   final String? soundDes;
   @override
-  @JsonKey(name: 'sound_pic')
+  @JsonKey(name: 'sound_pic', fromJson: _dynamicToString)
   final String? soundPic;
   @override
-  @JsonKey(name: 'sound_pic_pos')
+  @JsonKey(name: 'sound_pic_pos', fromJson: _dynamicToString)
   final String? soundPicPos;
   @override
   @JsonKey(name: 'sound_visitor', fromJson: _stringToInt)
@@ -7399,7 +7578,7 @@ class _SoundDetailData implements SoundDetailData {
   @JsonKey(name: 'sound_is_new', fromJson: _stringToBool)
   final bool? soundIsNew;
   @override
-  @JsonKey(name: 'sound_priority')
+  @JsonKey(name: 'sound_priority', fromJson: _dynamicToString)
   final String? soundPriority;
   @override
   @JsonKey(name: 'sound_active_vote', fromJson: _stringToBool)
@@ -7411,7 +7590,7 @@ class _SoundDetailData implements SoundDetailData {
   @JsonKey(name: 'sound_active', fromJson: _stringToBool)
   final bool? soundActive;
   @override
-  @JsonKey(name: 'sound_date')
+  @JsonKey(name: 'sound_date', fromJson: _dynamicToString)
   final String? soundDate;
   @override
   @JsonKey(name: 'sound_pic_active', fromJson: _stringToBool)
@@ -7420,25 +7599,25 @@ class _SoundDetailData implements SoundDetailData {
   @JsonKey(name: 'sound_last_sound', fromJson: _stringToBool)
   final bool? soundLastSound;
   @override
-  @JsonKey(name: 'sound_publisher_id')
+  @JsonKey(name: 'sound_publisher_id', fromJson: _dynamicToString)
   final String? soundPublisherId;
   @override
-  @JsonKey(name: 'sound_source')
+  @JsonKey(name: 'sound_source', fromJson: _dynamicToString)
   final String? soundSource;
   @override
-  @JsonKey(name: 'sound_source_url')
+  @JsonKey(name: 'sound_source_url', fromJson: _dynamicToString)
   final String? soundSourceUrl;
   @override
-  @JsonKey(name: 'sound_youtube_id')
+  @JsonKey(name: 'sound_youtube_id', fromJson: _dynamicToString)
   final String? soundYoutubeId;
   @override
-  @JsonKey(name: 'sound_file')
+  @JsonKey(name: 'sound_file', fromJson: _dynamicToString)
   final String? soundFile;
   @override
   @JsonKey(name: 'sound_user_add_hint_nsup', fromJson: _stringToBool)
   final bool? soundUserAddHintNsup;
   @override
-  @JsonKey(name: 'sound_file_url')
+  @JsonKey(name: 'sound_file_url', fromJson: _dynamicToString)
   final String? soundFileUrl;
   @override
   final SoundDetailCategory? category;
@@ -7583,34 +7762,46 @@ abstract mixin class _$SoundDetailDataCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'sound_id', fromJson: _stringToInt) int? soundId,
-      @JsonKey(name: 'sound_cat_id') String? soundCatId,
-      @JsonKey(name: 'sound_title') String? soundTitle,
-      String? soundTs,
-      @JsonKey(name: 'sound_summary') String? soundSummary,
-      @JsonKey(name: 'sound_des') String? soundDes,
-      @JsonKey(name: 'sound_pic') String? soundPic,
-      @JsonKey(name: 'sound_pic_pos') String? soundPicPos,
+      @JsonKey(name: 'sound_cat_id', fromJson: _dynamicToString)
+      String? soundCatId,
+      @JsonKey(name: 'sound_title', fromJson: _dynamicToString)
+      String? soundTitle,
+      @JsonKey(fromJson: _dynamicToString) String? soundTs,
+      @JsonKey(name: 'sound_summary', fromJson: _dynamicToString)
+      String? soundSummary,
+      @JsonKey(name: 'sound_des', fromJson: _dynamicToString) String? soundDes,
+      @JsonKey(name: 'sound_pic', fromJson: _dynamicToString) String? soundPic,
+      @JsonKey(name: 'sound_pic_pos', fromJson: _dynamicToString)
+      String? soundPicPos,
       @JsonKey(name: 'sound_visitor', fromJson: _stringToInt) int? soundVisitor,
       @JsonKey(name: 'sound_is_new', fromJson: _stringToBool) bool? soundIsNew,
-      @JsonKey(name: 'sound_priority') String? soundPriority,
+      @JsonKey(name: 'sound_priority', fromJson: _dynamicToString)
+      String? soundPriority,
       @JsonKey(name: 'sound_active_vote', fromJson: _stringToBool)
       bool? soundActiveVote,
       @JsonKey(name: 'sound_active_hint', fromJson: _stringToBool)
       bool? soundActiveHint,
       @JsonKey(name: 'sound_active', fromJson: _stringToBool) bool? soundActive,
-      @JsonKey(name: 'sound_date') String? soundDate,
+      @JsonKey(name: 'sound_date', fromJson: _dynamicToString)
+      String? soundDate,
       @JsonKey(name: 'sound_pic_active', fromJson: _stringToBool)
       bool? soundPicActive,
       @JsonKey(name: 'sound_last_sound', fromJson: _stringToBool)
       bool? soundLastSound,
-      @JsonKey(name: 'sound_publisher_id') String? soundPublisherId,
-      @JsonKey(name: 'sound_source') String? soundSource,
-      @JsonKey(name: 'sound_source_url') String? soundSourceUrl,
-      @JsonKey(name: 'sound_youtube_id') String? soundYoutubeId,
-      @JsonKey(name: 'sound_file') String? soundFile,
+      @JsonKey(name: 'sound_publisher_id', fromJson: _dynamicToString)
+      String? soundPublisherId,
+      @JsonKey(name: 'sound_source', fromJson: _dynamicToString)
+      String? soundSource,
+      @JsonKey(name: 'sound_source_url', fromJson: _dynamicToString)
+      String? soundSourceUrl,
+      @JsonKey(name: 'sound_youtube_id', fromJson: _dynamicToString)
+      String? soundYoutubeId,
+      @JsonKey(name: 'sound_file', fromJson: _dynamicToString)
+      String? soundFile,
       @JsonKey(name: 'sound_user_add_hint_nsup', fromJson: _stringToBool)
       bool? soundUserAddHintNsup,
-      @JsonKey(name: 'sound_file_url') String? soundFileUrl,
+      @JsonKey(name: 'sound_file_url', fromJson: _dynamicToString)
+      String? soundFileUrl,
       SoundDetailCategory? category,
       List<dynamic>? captions,
       List<dynamic>? votes});
@@ -7791,25 +7982,25 @@ class __$SoundDetailDataCopyWithImpl<$Res>
 mixin _$SoundDetailCategory {
   @JsonKey(name: 'cat_id', fromJson: _stringToInt)
   int? get catId;
-  @JsonKey(name: 'cat_father_id')
+  @JsonKey(name: 'cat_father_id', fromJson: _dynamicToString)
   String? get catFatherId;
-  @JsonKey(name: 'cat_menus')
+  @JsonKey(name: 'cat_menus', fromJson: _dynamicToString)
   String? get catMenus;
-  @JsonKey(name: 'cat_title')
+  @JsonKey(name: 'cat_title', fromJson: _dynamicToString)
   String? get catTitle;
-  @JsonKey(name: 'cat_note')
+  @JsonKey(name: 'cat_note', fromJson: _dynamicToString)
   String? get catNote;
-  @JsonKey(name: 'cat_pic')
+  @JsonKey(name: 'cat_pic', fromJson: _dynamicToString)
   String? get catPic;
-  @JsonKey(name: 'cat_sup')
+  @JsonKey(name: 'cat_sup', fromJson: _dynamicToString)
   String? get catSup;
-  @JsonKey(name: 'cat_date')
+  @JsonKey(name: 'cat_date', fromJson: _dynamicToString)
   String? get catDate;
   @JsonKey(name: 'cat_pic_active', fromJson: _stringToBool)
   bool? get catPicActive;
-  @JsonKey(name: 'cat_lan')
+  @JsonKey(name: 'cat_lan', fromJson: _dynamicToString)
   String? get catLan;
-  @JsonKey(name: 'cat_pos')
+  @JsonKey(name: 'cat_pos', fromJson: _dynamicToString)
   String? get catPos;
   @JsonKey(name: 'cat_active', fromJson: _stringToBool)
   bool? get catActive;
@@ -7817,7 +8008,7 @@ mixin _$SoundDetailCategory {
   bool? get catShowMenu;
   @JsonKey(name: 'cat_show_main', fromJson: _stringToBool)
   bool? get catShowMain;
-  @JsonKey(name: 'cat_agent')
+  @JsonKey(name: 'cat_agent', fromJson: _dynamicToString)
   String? get catAgent;
 
   /// Create a copy of SoundDetailCategory
@@ -7895,23 +8086,25 @@ abstract mixin class $SoundDetailCategoryCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'cat_id', fromJson: _stringToInt) int? catId,
-      @JsonKey(name: 'cat_father_id') String? catFatherId,
-      @JsonKey(name: 'cat_menus') String? catMenus,
-      @JsonKey(name: 'cat_title') String? catTitle,
-      @JsonKey(name: 'cat_note') String? catNote,
-      @JsonKey(name: 'cat_pic') String? catPic,
-      @JsonKey(name: 'cat_sup') String? catSup,
-      @JsonKey(name: 'cat_date') String? catDate,
+      @JsonKey(name: 'cat_father_id', fromJson: _dynamicToString)
+      String? catFatherId,
+      @JsonKey(name: 'cat_menus', fromJson: _dynamicToString) String? catMenus,
+      @JsonKey(name: 'cat_title', fromJson: _dynamicToString) String? catTitle,
+      @JsonKey(name: 'cat_note', fromJson: _dynamicToString) String? catNote,
+      @JsonKey(name: 'cat_pic', fromJson: _dynamicToString) String? catPic,
+      @JsonKey(name: 'cat_sup', fromJson: _dynamicToString) String? catSup,
+      @JsonKey(name: 'cat_date', fromJson: _dynamicToString) String? catDate,
       @JsonKey(name: 'cat_pic_active', fromJson: _stringToBool)
       bool? catPicActive,
-      @JsonKey(name: 'cat_lan') String? catLan,
-      @JsonKey(name: 'cat_pos') String? catPos,
+      @JsonKey(name: 'cat_lan', fromJson: _dynamicToString) String? catLan,
+      @JsonKey(name: 'cat_pos', fromJson: _dynamicToString) String? catPos,
       @JsonKey(name: 'cat_active', fromJson: _stringToBool) bool? catActive,
       @JsonKey(name: 'cat_show_menu', fromJson: _stringToBool)
       bool? catShowMenu,
       @JsonKey(name: 'cat_show_main', fromJson: _stringToBool)
       bool? catShowMain,
-      @JsonKey(name: 'cat_agent') String? catAgent});
+      @JsonKey(name: 'cat_agent', fromJson: _dynamicToString)
+      String? catAgent});
 }
 
 /// @nodoc
@@ -8103,24 +8296,34 @@ extension SoundDetailCategoryPatterns on SoundDetailCategory {
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
             @JsonKey(name: 'cat_id', fromJson: _stringToInt) int? catId,
-            @JsonKey(name: 'cat_father_id') String? catFatherId,
-            @JsonKey(name: 'cat_menus') String? catMenus,
-            @JsonKey(name: 'cat_title') String? catTitle,
-            @JsonKey(name: 'cat_note') String? catNote,
-            @JsonKey(name: 'cat_pic') String? catPic,
-            @JsonKey(name: 'cat_sup') String? catSup,
-            @JsonKey(name: 'cat_date') String? catDate,
+            @JsonKey(name: 'cat_father_id', fromJson: _dynamicToString)
+            String? catFatherId,
+            @JsonKey(name: 'cat_menus', fromJson: _dynamicToString)
+            String? catMenus,
+            @JsonKey(name: 'cat_title', fromJson: _dynamicToString)
+            String? catTitle,
+            @JsonKey(name: 'cat_note', fromJson: _dynamicToString)
+            String? catNote,
+            @JsonKey(name: 'cat_pic', fromJson: _dynamicToString)
+            String? catPic,
+            @JsonKey(name: 'cat_sup', fromJson: _dynamicToString)
+            String? catSup,
+            @JsonKey(name: 'cat_date', fromJson: _dynamicToString)
+            String? catDate,
             @JsonKey(name: 'cat_pic_active', fromJson: _stringToBool)
             bool? catPicActive,
-            @JsonKey(name: 'cat_lan') String? catLan,
-            @JsonKey(name: 'cat_pos') String? catPos,
+            @JsonKey(name: 'cat_lan', fromJson: _dynamicToString)
+            String? catLan,
+            @JsonKey(name: 'cat_pos', fromJson: _dynamicToString)
+            String? catPos,
             @JsonKey(name: 'cat_active', fromJson: _stringToBool)
             bool? catActive,
             @JsonKey(name: 'cat_show_menu', fromJson: _stringToBool)
             bool? catShowMenu,
             @JsonKey(name: 'cat_show_main', fromJson: _stringToBool)
             bool? catShowMain,
-            @JsonKey(name: 'cat_agent') String? catAgent)?
+            @JsonKey(name: 'cat_agent', fromJson: _dynamicToString)
+            String? catAgent)?
         $default, {
     required TResult orElse(),
   }) {
@@ -8165,24 +8368,34 @@ extension SoundDetailCategoryPatterns on SoundDetailCategory {
   TResult when<TResult extends Object?>(
     TResult Function(
             @JsonKey(name: 'cat_id', fromJson: _stringToInt) int? catId,
-            @JsonKey(name: 'cat_father_id') String? catFatherId,
-            @JsonKey(name: 'cat_menus') String? catMenus,
-            @JsonKey(name: 'cat_title') String? catTitle,
-            @JsonKey(name: 'cat_note') String? catNote,
-            @JsonKey(name: 'cat_pic') String? catPic,
-            @JsonKey(name: 'cat_sup') String? catSup,
-            @JsonKey(name: 'cat_date') String? catDate,
+            @JsonKey(name: 'cat_father_id', fromJson: _dynamicToString)
+            String? catFatherId,
+            @JsonKey(name: 'cat_menus', fromJson: _dynamicToString)
+            String? catMenus,
+            @JsonKey(name: 'cat_title', fromJson: _dynamicToString)
+            String? catTitle,
+            @JsonKey(name: 'cat_note', fromJson: _dynamicToString)
+            String? catNote,
+            @JsonKey(name: 'cat_pic', fromJson: _dynamicToString)
+            String? catPic,
+            @JsonKey(name: 'cat_sup', fromJson: _dynamicToString)
+            String? catSup,
+            @JsonKey(name: 'cat_date', fromJson: _dynamicToString)
+            String? catDate,
             @JsonKey(name: 'cat_pic_active', fromJson: _stringToBool)
             bool? catPicActive,
-            @JsonKey(name: 'cat_lan') String? catLan,
-            @JsonKey(name: 'cat_pos') String? catPos,
+            @JsonKey(name: 'cat_lan', fromJson: _dynamicToString)
+            String? catLan,
+            @JsonKey(name: 'cat_pos', fromJson: _dynamicToString)
+            String? catPos,
             @JsonKey(name: 'cat_active', fromJson: _stringToBool)
             bool? catActive,
             @JsonKey(name: 'cat_show_menu', fromJson: _stringToBool)
             bool? catShowMenu,
             @JsonKey(name: 'cat_show_main', fromJson: _stringToBool)
             bool? catShowMain,
-            @JsonKey(name: 'cat_agent') String? catAgent)
+            @JsonKey(name: 'cat_agent', fromJson: _dynamicToString)
+            String? catAgent)
         $default,
   ) {
     final _that = this;
@@ -8225,24 +8438,34 @@ extension SoundDetailCategoryPatterns on SoundDetailCategory {
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
             @JsonKey(name: 'cat_id', fromJson: _stringToInt) int? catId,
-            @JsonKey(name: 'cat_father_id') String? catFatherId,
-            @JsonKey(name: 'cat_menus') String? catMenus,
-            @JsonKey(name: 'cat_title') String? catTitle,
-            @JsonKey(name: 'cat_note') String? catNote,
-            @JsonKey(name: 'cat_pic') String? catPic,
-            @JsonKey(name: 'cat_sup') String? catSup,
-            @JsonKey(name: 'cat_date') String? catDate,
+            @JsonKey(name: 'cat_father_id', fromJson: _dynamicToString)
+            String? catFatherId,
+            @JsonKey(name: 'cat_menus', fromJson: _dynamicToString)
+            String? catMenus,
+            @JsonKey(name: 'cat_title', fromJson: _dynamicToString)
+            String? catTitle,
+            @JsonKey(name: 'cat_note', fromJson: _dynamicToString)
+            String? catNote,
+            @JsonKey(name: 'cat_pic', fromJson: _dynamicToString)
+            String? catPic,
+            @JsonKey(name: 'cat_sup', fromJson: _dynamicToString)
+            String? catSup,
+            @JsonKey(name: 'cat_date', fromJson: _dynamicToString)
+            String? catDate,
             @JsonKey(name: 'cat_pic_active', fromJson: _stringToBool)
             bool? catPicActive,
-            @JsonKey(name: 'cat_lan') String? catLan,
-            @JsonKey(name: 'cat_pos') String? catPos,
+            @JsonKey(name: 'cat_lan', fromJson: _dynamicToString)
+            String? catLan,
+            @JsonKey(name: 'cat_pos', fromJson: _dynamicToString)
+            String? catPos,
             @JsonKey(name: 'cat_active', fromJson: _stringToBool)
             bool? catActive,
             @JsonKey(name: 'cat_show_menu', fromJson: _stringToBool)
             bool? catShowMenu,
             @JsonKey(name: 'cat_show_main', fromJson: _stringToBool)
             bool? catShowMain,
-            @JsonKey(name: 'cat_agent') String? catAgent)?
+            @JsonKey(name: 'cat_agent', fromJson: _dynamicToString)
+            String? catAgent)?
         $default,
   ) {
     final _that = this;
@@ -8275,21 +8498,22 @@ extension SoundDetailCategoryPatterns on SoundDetailCategory {
 class _SoundDetailCategory implements SoundDetailCategory {
   const _SoundDetailCategory(
       {@JsonKey(name: 'cat_id', fromJson: _stringToInt) this.catId,
-      @JsonKey(name: 'cat_father_id') this.catFatherId,
-      @JsonKey(name: 'cat_menus') this.catMenus,
-      @JsonKey(name: 'cat_title') this.catTitle,
-      @JsonKey(name: 'cat_note') this.catNote,
-      @JsonKey(name: 'cat_pic') this.catPic,
-      @JsonKey(name: 'cat_sup') this.catSup,
-      @JsonKey(name: 'cat_date') this.catDate,
+      @JsonKey(name: 'cat_father_id', fromJson: _dynamicToString)
+      this.catFatherId,
+      @JsonKey(name: 'cat_menus', fromJson: _dynamicToString) this.catMenus,
+      @JsonKey(name: 'cat_title', fromJson: _dynamicToString) this.catTitle,
+      @JsonKey(name: 'cat_note', fromJson: _dynamicToString) this.catNote,
+      @JsonKey(name: 'cat_pic', fromJson: _dynamicToString) this.catPic,
+      @JsonKey(name: 'cat_sup', fromJson: _dynamicToString) this.catSup,
+      @JsonKey(name: 'cat_date', fromJson: _dynamicToString) this.catDate,
       @JsonKey(name: 'cat_pic_active', fromJson: _stringToBool)
       this.catPicActive,
-      @JsonKey(name: 'cat_lan') this.catLan,
-      @JsonKey(name: 'cat_pos') this.catPos,
+      @JsonKey(name: 'cat_lan', fromJson: _dynamicToString) this.catLan,
+      @JsonKey(name: 'cat_pos', fromJson: _dynamicToString) this.catPos,
       @JsonKey(name: 'cat_active', fromJson: _stringToBool) this.catActive,
       @JsonKey(name: 'cat_show_menu', fromJson: _stringToBool) this.catShowMenu,
       @JsonKey(name: 'cat_show_main', fromJson: _stringToBool) this.catShowMain,
-      @JsonKey(name: 'cat_agent') this.catAgent});
+      @JsonKey(name: 'cat_agent', fromJson: _dynamicToString) this.catAgent});
   factory _SoundDetailCategory.fromJson(Map<String, dynamic> json) =>
       _$SoundDetailCategoryFromJson(json);
 
@@ -8297,34 +8521,34 @@ class _SoundDetailCategory implements SoundDetailCategory {
   @JsonKey(name: 'cat_id', fromJson: _stringToInt)
   final int? catId;
   @override
-  @JsonKey(name: 'cat_father_id')
+  @JsonKey(name: 'cat_father_id', fromJson: _dynamicToString)
   final String? catFatherId;
   @override
-  @JsonKey(name: 'cat_menus')
+  @JsonKey(name: 'cat_menus', fromJson: _dynamicToString)
   final String? catMenus;
   @override
-  @JsonKey(name: 'cat_title')
+  @JsonKey(name: 'cat_title', fromJson: _dynamicToString)
   final String? catTitle;
   @override
-  @JsonKey(name: 'cat_note')
+  @JsonKey(name: 'cat_note', fromJson: _dynamicToString)
   final String? catNote;
   @override
-  @JsonKey(name: 'cat_pic')
+  @JsonKey(name: 'cat_pic', fromJson: _dynamicToString)
   final String? catPic;
   @override
-  @JsonKey(name: 'cat_sup')
+  @JsonKey(name: 'cat_sup', fromJson: _dynamicToString)
   final String? catSup;
   @override
-  @JsonKey(name: 'cat_date')
+  @JsonKey(name: 'cat_date', fromJson: _dynamicToString)
   final String? catDate;
   @override
   @JsonKey(name: 'cat_pic_active', fromJson: _stringToBool)
   final bool? catPicActive;
   @override
-  @JsonKey(name: 'cat_lan')
+  @JsonKey(name: 'cat_lan', fromJson: _dynamicToString)
   final String? catLan;
   @override
-  @JsonKey(name: 'cat_pos')
+  @JsonKey(name: 'cat_pos', fromJson: _dynamicToString)
   final String? catPos;
   @override
   @JsonKey(name: 'cat_active', fromJson: _stringToBool)
@@ -8336,7 +8560,7 @@ class _SoundDetailCategory implements SoundDetailCategory {
   @JsonKey(name: 'cat_show_main', fromJson: _stringToBool)
   final bool? catShowMain;
   @override
-  @JsonKey(name: 'cat_agent')
+  @JsonKey(name: 'cat_agent', fromJson: _dynamicToString)
   final String? catAgent;
 
   /// Create a copy of SoundDetailCategory
@@ -8421,23 +8645,25 @@ abstract mixin class _$SoundDetailCategoryCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'cat_id', fromJson: _stringToInt) int? catId,
-      @JsonKey(name: 'cat_father_id') String? catFatherId,
-      @JsonKey(name: 'cat_menus') String? catMenus,
-      @JsonKey(name: 'cat_title') String? catTitle,
-      @JsonKey(name: 'cat_note') String? catNote,
-      @JsonKey(name: 'cat_pic') String? catPic,
-      @JsonKey(name: 'cat_sup') String? catSup,
-      @JsonKey(name: 'cat_date') String? catDate,
+      @JsonKey(name: 'cat_father_id', fromJson: _dynamicToString)
+      String? catFatherId,
+      @JsonKey(name: 'cat_menus', fromJson: _dynamicToString) String? catMenus,
+      @JsonKey(name: 'cat_title', fromJson: _dynamicToString) String? catTitle,
+      @JsonKey(name: 'cat_note', fromJson: _dynamicToString) String? catNote,
+      @JsonKey(name: 'cat_pic', fromJson: _dynamicToString) String? catPic,
+      @JsonKey(name: 'cat_sup', fromJson: _dynamicToString) String? catSup,
+      @JsonKey(name: 'cat_date', fromJson: _dynamicToString) String? catDate,
       @JsonKey(name: 'cat_pic_active', fromJson: _stringToBool)
       bool? catPicActive,
-      @JsonKey(name: 'cat_lan') String? catLan,
-      @JsonKey(name: 'cat_pos') String? catPos,
+      @JsonKey(name: 'cat_lan', fromJson: _dynamicToString) String? catLan,
+      @JsonKey(name: 'cat_pos', fromJson: _dynamicToString) String? catPos,
       @JsonKey(name: 'cat_active', fromJson: _stringToBool) bool? catActive,
       @JsonKey(name: 'cat_show_menu', fromJson: _stringToBool)
       bool? catShowMenu,
       @JsonKey(name: 'cat_show_main', fromJson: _stringToBool)
       bool? catShowMain,
-      @JsonKey(name: 'cat_agent') String? catAgent});
+      @JsonKey(name: 'cat_agent', fromJson: _dynamicToString)
+      String? catAgent});
 }
 
 /// @nodoc

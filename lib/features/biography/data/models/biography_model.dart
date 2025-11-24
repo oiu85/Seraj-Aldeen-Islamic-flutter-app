@@ -10,14 +10,30 @@ int? _stringToInt(dynamic value) {
   return null;
 }
 
+bool? _stringToBool(dynamic value) {
+  if (value == null) return null;
+  if (value is bool) return value;
+  if (value is int) return value == 1;
+  if (value is String) return value.toLowerCase() == 'true' || value == '1';
+  return null;
+}
+
+String? _dynamicToString(dynamic value) {
+  if (value == null) return null;
+  if (value is String) return value;
+  if (value is int) return value.toString();
+  if (value is double) return value.toString();
+  return value.toString();
+}
+
 @freezed
 abstract class PageModel with _$PageModel {
   const factory PageModel({
     @JsonKey(name: 'pages_id', fromJson: _stringToInt) int? pagesId,
-    @JsonKey(name: 'pages_title') String? pagesTitle,
-    @JsonKey(name: 'pages_menus') String? pagesMenus,
+    @JsonKey(name: 'pages_title', fromJson: _dynamicToString) String? pagesTitle,
+    @JsonKey(name: 'pages_menus', fromJson: _dynamicToString) String? pagesMenus,
     @JsonKey(name: 'pages_priority', fromJson: _stringToInt) int? pagesPriority,
-    @JsonKey(name: 'pages_date') String? pagesDate,
+    @JsonKey(name: 'pages_date', fromJson: _dynamicToString) String? pagesDate,
   }) = _PageModel;
 
   factory PageModel.fromJson(Map<String, dynamic> json) =>
@@ -74,14 +90,14 @@ abstract class PageDetailResponse with _$PageDetailResponse {
 abstract class PageDetail with _$PageDetail {
   const factory PageDetail({
     @JsonKey(name: 'pages_id', fromJson: _stringToInt) int? pagesId,
-    @JsonKey(name: 'pages_menus') String? pagesMenus,
-    @JsonKey(name: 'pages_title') String? pagesTitle,
-    @JsonKey(name: 'pages_content') String? pagesContent,
-    @JsonKey(name: 'pages_lan') String? pagesLan,
+    @JsonKey(name: 'pages_menus', fromJson: _dynamicToString) String? pagesMenus,
+    @JsonKey(name: 'pages_title', fromJson: _dynamicToString) String? pagesTitle,
+    @JsonKey(name: 'pages_content', fromJson: _dynamicToString) String? pagesContent,
+    @JsonKey(name: 'pages_lan', fromJson: _dynamicToString) String? pagesLan,
     @JsonKey(name: 'pages_visitor', fromJson: _stringToInt) int? pagesVisitor,
-    @JsonKey(name: 'pages_priority') String? pagesPriority,
-    @JsonKey(name: 'pages_date') String? pagesDate,
-    @JsonKey(name: 'pages_active') bool? pagesActive,
+    @JsonKey(name: 'pages_priority', fromJson: _dynamicToString) String? pagesPriority,
+    @JsonKey(name: 'pages_date', fromJson: _dynamicToString) String? pagesDate,
+    @JsonKey(name: 'pages_active', fromJson: _stringToBool) bool? pagesActive,
   }) = _PageDetail;
 
   factory PageDetail.fromJson(Map<String, dynamic> json) =>

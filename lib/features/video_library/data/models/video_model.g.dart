@@ -43,16 +43,16 @@ Map<String, dynamic> _$VideoDataToJson(_VideoData instance) =>
 _VideoCategory _$VideoCategoryFromJson(Map<String, dynamic> json) =>
     _VideoCategory(
       id: _stringToInt(json['id']),
-      title: json['title'] as String?,
-      note: json['note'] as String?,
-      position: json['position'] as String?,
-      language: json['language'] as String?,
-      date: json['date'] as String?,
-      menu_id: json['menu_id'] as String?,
+      title: _dynamicToString(json['title']),
+      note: _dynamicToString(json['note']),
+      position: _dynamicToString(json['position']),
+      language: _dynamicToString(json['language']),
+      date: _dynamicToString(json['date']),
+      menu_id: _dynamicToString(json['menu_id']),
       show_in_menu: _stringToBool(json['show_in_menu']),
       show_in_main: _stringToBool(json['show_in_main']),
       content_count: _stringToInt(json['content_count']),
-      type: json['type'] as String?,
+      type: _dynamicToString(json['type']),
       data: (json['data'] as List<dynamic>?)
           ?.map((e) => VideoItem.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -76,14 +76,14 @@ Map<String, dynamic> _$VideoCategoryToJson(_VideoCategory instance) =>
 
 _VideoItem _$VideoItemFromJson(Map<String, dynamic> json) => _VideoItem(
       id: _stringToInt(json['id']),
-      title: json['title'] as String?,
-      summary: json['summary'] as String?,
-      date: json['date'] as String?,
-      visitor_count: json['visitor_count'] as String?,
+      title: _dynamicToString(json['title']),
+      summary: _dynamicToString(json['summary']),
+      date: _dynamicToString(json['date']),
+      visitor_count: _dynamicToString(json['visitor_count']),
       is_new: _stringToBool(json['is_new']),
-      priority: json['priority'] as String?,
-      youtube_id: json['youtube_id'] as String?,
-      file: json['file'] as String?,
+      priority: _dynamicToString(json['priority']),
+      youtube_id: _dynamicToString(json['youtube_id']),
+      file: _dynamicToString(json['file']),
     );
 
 Map<String, dynamic> _$VideoItemToJson(_VideoItem instance) =>
@@ -170,11 +170,11 @@ Map<String, dynamic> _$CategoryVideoContentDataToJson(
 _VideoCategoryInfo _$VideoCategoryInfoFromJson(Map<String, dynamic> json) =>
     _VideoCategoryInfo(
       id: _stringToInt(json['id']),
-      title: json['title'] as String?,
-      note: json['note'] as String?,
-      type: json['type'] as String?,
-      position: json['position'] as String?,
-      language: json['language'] as String?,
+      title: _dynamicToString(json['title']),
+      note: _dynamicToString(json['note']),
+      type: _dynamicToString(json['type']),
+      position: _dynamicToString(json['position']),
+      language: _dynamicToString(json['language']),
     );
 
 Map<String, dynamic> _$VideoCategoryInfoToJson(_VideoCategoryInfo instance) =>
@@ -233,29 +233,29 @@ Map<String, dynamic> _$VideoDetailResponseToJson(
 _VideoDetailData _$VideoDetailDataFromJson(Map<String, dynamic> json) =>
     _VideoDetailData(
       videoId: _stringToInt(json['video_id']),
-      videoCatId: json['video_cat_id'] as String?,
-      videoTitle: json['video_title'] as String?,
-      videoTs: json['video_ts'] as String?,
-      videoSummary: json['video_summary'] as String?,
-      videoDes: json['video_des'] as String?,
-      videoPic: json['video_pic'] as String?,
-      videoPicPos: json['video_pic_pos'] as String?,
+      videoCatId: _dynamicToString(json['video_cat_id']),
+      videoTitle: _dynamicToString(json['video_title']),
+      videoTs: _dynamicToString(json['video_ts']),
+      videoSummary: _dynamicToString(json['video_summary']),
+      videoDes: _dynamicToString(json['video_des']),
+      videoPic: _dynamicToString(json['video_pic']),
+      videoPicPos: _dynamicToString(json['video_pic_pos']),
       videoVisitor: _stringToInt(json['video_visitor']),
       videoIsNew: _stringToBool(json['video_is_new']),
-      videoPriority: json['video_priority'] as String?,
+      videoPriority: _dynamicToString(json['video_priority']),
       videoActiveVote: _stringToBool(json['video_active_vote']),
       videoActiveHint: _stringToBool(json['video_active_hint']),
       videoActive: _stringToBool(json['video_active']),
-      videoDate: json['video_date'] as String?,
+      videoDate: _dynamicToString(json['video_date']),
       videoPicActive: _stringToBool(json['video_pic_active']),
       videoLastVideo: _stringToBool(json['video_last_video']),
-      videoPublisherId: json['video_publisher_id'] as String?,
-      videoSource: json['video_source'] as String?,
-      videoSourceUrl: json['video_source_url'] as String?,
-      videoYoutubeId: json['video_youtube_id'] as String?,
-      videoFile: json['video_file'] as String?,
+      videoPublisherId: _dynamicToString(json['video_publisher_id']),
+      videoSource: _dynamicToString(json['video_source']),
+      videoSourceUrl: _dynamicToString(json['video_source_url']),
+      videoYoutubeId: _dynamicToString(json['video_youtube_id']),
+      videoFile: _dynamicToString(json['video_file']),
       videoUserAddHintNsup: _stringToBool(json['video_user_add_hint_nsup']),
-      videoFileUrl: json['video_file_url'] as String?,
+      videoFileUrl: _dynamicToString(json['video_file_url']),
       category: json['category'] == null
           ? null
           : VideoDetailCategory.fromJson(
@@ -294,20 +294,20 @@ Map<String, dynamic> _$VideoDetailDataToJson(_VideoDetailData instance) =>
 _VideoDetailCategory _$VideoDetailCategoryFromJson(Map<String, dynamic> json) =>
     _VideoDetailCategory(
       catId: _stringToInt(json['cat_id']),
-      catFatherId: json['cat_father_id'] as String?,
-      catMenus: json['cat_menus'] as String?,
-      catTitle: json['cat_title'] as String?,
-      catNote: json['cat_note'] as String?,
-      catPic: json['cat_pic'] as String?,
-      catSup: json['cat_sup'] as String?,
-      catDate: json['cat_date'] as String?,
+      catFatherId: _dynamicToString(json['cat_father_id']),
+      catMenus: _dynamicToString(json['cat_menus']),
+      catTitle: _dynamicToString(json['cat_title']),
+      catNote: _dynamicToString(json['cat_note']),
+      catPic: _dynamicToString(json['cat_pic']),
+      catSup: _dynamicToString(json['cat_sup']),
+      catDate: _dynamicToString(json['cat_date']),
       catPicActive: _stringToBool(json['cat_pic_active']),
-      catLan: json['cat_lan'] as String?,
-      catPos: json['cat_pos'] as String?,
+      catLan: _dynamicToString(json['cat_lan']),
+      catPos: _dynamicToString(json['cat_pos']),
       catActive: _stringToBool(json['cat_active']),
       catShowMenu: _stringToBool(json['cat_show_menu']),
       catShowMain: _stringToBool(json['cat_show_main']),
-      catAgent: json['cat_agent'] as String?,
+      catAgent: _dynamicToString(json['cat_agent']),
     );
 
 Map<String, dynamic> _$VideoDetailCategoryToJson(

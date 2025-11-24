@@ -16,13 +16,13 @@ T _$identity<T>(T value) => value;
 mixin _$PageModel {
   @JsonKey(name: 'pages_id', fromJson: _stringToInt)
   int? get pagesId;
-  @JsonKey(name: 'pages_title')
+  @JsonKey(name: 'pages_title', fromJson: _dynamicToString)
   String? get pagesTitle;
-  @JsonKey(name: 'pages_menus')
+  @JsonKey(name: 'pages_menus', fromJson: _dynamicToString)
   String? get pagesMenus;
   @JsonKey(name: 'pages_priority', fromJson: _stringToInt)
   int? get pagesPriority;
-  @JsonKey(name: 'pages_date')
+  @JsonKey(name: 'pages_date', fromJson: _dynamicToString)
   String? get pagesDate;
 
   /// Create a copy of PageModel
@@ -69,11 +69,14 @@ abstract mixin class $PageModelCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'pages_id', fromJson: _stringToInt) int? pagesId,
-      @JsonKey(name: 'pages_title') String? pagesTitle,
-      @JsonKey(name: 'pages_menus') String? pagesMenus,
+      @JsonKey(name: 'pages_title', fromJson: _dynamicToString)
+      String? pagesTitle,
+      @JsonKey(name: 'pages_menus', fromJson: _dynamicToString)
+      String? pagesMenus,
       @JsonKey(name: 'pages_priority', fromJson: _stringToInt)
       int? pagesPriority,
-      @JsonKey(name: 'pages_date') String? pagesDate});
+      @JsonKey(name: 'pages_date', fromJson: _dynamicToString)
+      String? pagesDate});
 }
 
 /// @nodoc
@@ -214,11 +217,14 @@ extension PageModelPatterns on PageModel {
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
             @JsonKey(name: 'pages_id', fromJson: _stringToInt) int? pagesId,
-            @JsonKey(name: 'pages_title') String? pagesTitle,
-            @JsonKey(name: 'pages_menus') String? pagesMenus,
+            @JsonKey(name: 'pages_title', fromJson: _dynamicToString)
+            String? pagesTitle,
+            @JsonKey(name: 'pages_menus', fromJson: _dynamicToString)
+            String? pagesMenus,
             @JsonKey(name: 'pages_priority', fromJson: _stringToInt)
             int? pagesPriority,
-            @JsonKey(name: 'pages_date') String? pagesDate)?
+            @JsonKey(name: 'pages_date', fromJson: _dynamicToString)
+            String? pagesDate)?
         $default, {
     required TResult orElse(),
   }) {
@@ -249,11 +255,14 @@ extension PageModelPatterns on PageModel {
   TResult when<TResult extends Object?>(
     TResult Function(
             @JsonKey(name: 'pages_id', fromJson: _stringToInt) int? pagesId,
-            @JsonKey(name: 'pages_title') String? pagesTitle,
-            @JsonKey(name: 'pages_menus') String? pagesMenus,
+            @JsonKey(name: 'pages_title', fromJson: _dynamicToString)
+            String? pagesTitle,
+            @JsonKey(name: 'pages_menus', fromJson: _dynamicToString)
+            String? pagesMenus,
             @JsonKey(name: 'pages_priority', fromJson: _stringToInt)
             int? pagesPriority,
-            @JsonKey(name: 'pages_date') String? pagesDate)
+            @JsonKey(name: 'pages_date', fromJson: _dynamicToString)
+            String? pagesDate)
         $default,
   ) {
     final _that = this;
@@ -282,11 +291,14 @@ extension PageModelPatterns on PageModel {
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
             @JsonKey(name: 'pages_id', fromJson: _stringToInt) int? pagesId,
-            @JsonKey(name: 'pages_title') String? pagesTitle,
-            @JsonKey(name: 'pages_menus') String? pagesMenus,
+            @JsonKey(name: 'pages_title', fromJson: _dynamicToString)
+            String? pagesTitle,
+            @JsonKey(name: 'pages_menus', fromJson: _dynamicToString)
+            String? pagesMenus,
             @JsonKey(name: 'pages_priority', fromJson: _stringToInt)
             int? pagesPriority,
-            @JsonKey(name: 'pages_date') String? pagesDate)?
+            @JsonKey(name: 'pages_date', fromJson: _dynamicToString)
+            String? pagesDate)?
         $default,
   ) {
     final _that = this;
@@ -305,11 +317,11 @@ extension PageModelPatterns on PageModel {
 class _PageModel implements PageModel {
   const _PageModel(
       {@JsonKey(name: 'pages_id', fromJson: _stringToInt) this.pagesId,
-      @JsonKey(name: 'pages_title') this.pagesTitle,
-      @JsonKey(name: 'pages_menus') this.pagesMenus,
+      @JsonKey(name: 'pages_title', fromJson: _dynamicToString) this.pagesTitle,
+      @JsonKey(name: 'pages_menus', fromJson: _dynamicToString) this.pagesMenus,
       @JsonKey(name: 'pages_priority', fromJson: _stringToInt)
       this.pagesPriority,
-      @JsonKey(name: 'pages_date') this.pagesDate});
+      @JsonKey(name: 'pages_date', fromJson: _dynamicToString) this.pagesDate});
   factory _PageModel.fromJson(Map<String, dynamic> json) =>
       _$PageModelFromJson(json);
 
@@ -317,16 +329,16 @@ class _PageModel implements PageModel {
   @JsonKey(name: 'pages_id', fromJson: _stringToInt)
   final int? pagesId;
   @override
-  @JsonKey(name: 'pages_title')
+  @JsonKey(name: 'pages_title', fromJson: _dynamicToString)
   final String? pagesTitle;
   @override
-  @JsonKey(name: 'pages_menus')
+  @JsonKey(name: 'pages_menus', fromJson: _dynamicToString)
   final String? pagesMenus;
   @override
   @JsonKey(name: 'pages_priority', fromJson: _stringToInt)
   final int? pagesPriority;
   @override
-  @JsonKey(name: 'pages_date')
+  @JsonKey(name: 'pages_date', fromJson: _dynamicToString)
   final String? pagesDate;
 
   /// Create a copy of PageModel
@@ -381,11 +393,14 @@ abstract mixin class _$PageModelCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'pages_id', fromJson: _stringToInt) int? pagesId,
-      @JsonKey(name: 'pages_title') String? pagesTitle,
-      @JsonKey(name: 'pages_menus') String? pagesMenus,
+      @JsonKey(name: 'pages_title', fromJson: _dynamicToString)
+      String? pagesTitle,
+      @JsonKey(name: 'pages_menus', fromJson: _dynamicToString)
+      String? pagesMenus,
       @JsonKey(name: 'pages_priority', fromJson: _stringToInt)
       int? pagesPriority,
-      @JsonKey(name: 'pages_date') String? pagesDate});
+      @JsonKey(name: 'pages_date', fromJson: _dynamicToString)
+      String? pagesDate});
 }
 
 /// @nodoc
@@ -1806,21 +1821,21 @@ class __$PageDetailResponseCopyWithImpl<$Res>
 mixin _$PageDetail {
   @JsonKey(name: 'pages_id', fromJson: _stringToInt)
   int? get pagesId;
-  @JsonKey(name: 'pages_menus')
+  @JsonKey(name: 'pages_menus', fromJson: _dynamicToString)
   String? get pagesMenus;
-  @JsonKey(name: 'pages_title')
+  @JsonKey(name: 'pages_title', fromJson: _dynamicToString)
   String? get pagesTitle;
-  @JsonKey(name: 'pages_content')
+  @JsonKey(name: 'pages_content', fromJson: _dynamicToString)
   String? get pagesContent;
-  @JsonKey(name: 'pages_lan')
+  @JsonKey(name: 'pages_lan', fromJson: _dynamicToString)
   String? get pagesLan;
   @JsonKey(name: 'pages_visitor', fromJson: _stringToInt)
   int? get pagesVisitor;
-  @JsonKey(name: 'pages_priority')
+  @JsonKey(name: 'pages_priority', fromJson: _dynamicToString)
   String? get pagesPriority;
-  @JsonKey(name: 'pages_date')
+  @JsonKey(name: 'pages_date', fromJson: _dynamicToString)
   String? get pagesDate;
-  @JsonKey(name: 'pages_active')
+  @JsonKey(name: 'pages_active', fromJson: _stringToBool)
   bool? get pagesActive;
 
   /// Create a copy of PageDetail
@@ -1885,14 +1900,20 @@ abstract mixin class $PageDetailCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'pages_id', fromJson: _stringToInt) int? pagesId,
-      @JsonKey(name: 'pages_menus') String? pagesMenus,
-      @JsonKey(name: 'pages_title') String? pagesTitle,
-      @JsonKey(name: 'pages_content') String? pagesContent,
-      @JsonKey(name: 'pages_lan') String? pagesLan,
+      @JsonKey(name: 'pages_menus', fromJson: _dynamicToString)
+      String? pagesMenus,
+      @JsonKey(name: 'pages_title', fromJson: _dynamicToString)
+      String? pagesTitle,
+      @JsonKey(name: 'pages_content', fromJson: _dynamicToString)
+      String? pagesContent,
+      @JsonKey(name: 'pages_lan', fromJson: _dynamicToString) String? pagesLan,
       @JsonKey(name: 'pages_visitor', fromJson: _stringToInt) int? pagesVisitor,
-      @JsonKey(name: 'pages_priority') String? pagesPriority,
-      @JsonKey(name: 'pages_date') String? pagesDate,
-      @JsonKey(name: 'pages_active') bool? pagesActive});
+      @JsonKey(name: 'pages_priority', fromJson: _dynamicToString)
+      String? pagesPriority,
+      @JsonKey(name: 'pages_date', fromJson: _dynamicToString)
+      String? pagesDate,
+      @JsonKey(name: 'pages_active', fromJson: _stringToBool)
+      bool? pagesActive});
 }
 
 /// @nodoc
@@ -2053,15 +2074,22 @@ extension PageDetailPatterns on PageDetail {
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
             @JsonKey(name: 'pages_id', fromJson: _stringToInt) int? pagesId,
-            @JsonKey(name: 'pages_menus') String? pagesMenus,
-            @JsonKey(name: 'pages_title') String? pagesTitle,
-            @JsonKey(name: 'pages_content') String? pagesContent,
-            @JsonKey(name: 'pages_lan') String? pagesLan,
+            @JsonKey(name: 'pages_menus', fromJson: _dynamicToString)
+            String? pagesMenus,
+            @JsonKey(name: 'pages_title', fromJson: _dynamicToString)
+            String? pagesTitle,
+            @JsonKey(name: 'pages_content', fromJson: _dynamicToString)
+            String? pagesContent,
+            @JsonKey(name: 'pages_lan', fromJson: _dynamicToString)
+            String? pagesLan,
             @JsonKey(name: 'pages_visitor', fromJson: _stringToInt)
             int? pagesVisitor,
-            @JsonKey(name: 'pages_priority') String? pagesPriority,
-            @JsonKey(name: 'pages_date') String? pagesDate,
-            @JsonKey(name: 'pages_active') bool? pagesActive)?
+            @JsonKey(name: 'pages_priority', fromJson: _dynamicToString)
+            String? pagesPriority,
+            @JsonKey(name: 'pages_date', fromJson: _dynamicToString)
+            String? pagesDate,
+            @JsonKey(name: 'pages_active', fromJson: _stringToBool)
+            bool? pagesActive)?
         $default, {
     required TResult orElse(),
   }) {
@@ -2100,15 +2128,22 @@ extension PageDetailPatterns on PageDetail {
   TResult when<TResult extends Object?>(
     TResult Function(
             @JsonKey(name: 'pages_id', fromJson: _stringToInt) int? pagesId,
-            @JsonKey(name: 'pages_menus') String? pagesMenus,
-            @JsonKey(name: 'pages_title') String? pagesTitle,
-            @JsonKey(name: 'pages_content') String? pagesContent,
-            @JsonKey(name: 'pages_lan') String? pagesLan,
+            @JsonKey(name: 'pages_menus', fromJson: _dynamicToString)
+            String? pagesMenus,
+            @JsonKey(name: 'pages_title', fromJson: _dynamicToString)
+            String? pagesTitle,
+            @JsonKey(name: 'pages_content', fromJson: _dynamicToString)
+            String? pagesContent,
+            @JsonKey(name: 'pages_lan', fromJson: _dynamicToString)
+            String? pagesLan,
             @JsonKey(name: 'pages_visitor', fromJson: _stringToInt)
             int? pagesVisitor,
-            @JsonKey(name: 'pages_priority') String? pagesPriority,
-            @JsonKey(name: 'pages_date') String? pagesDate,
-            @JsonKey(name: 'pages_active') bool? pagesActive)
+            @JsonKey(name: 'pages_priority', fromJson: _dynamicToString)
+            String? pagesPriority,
+            @JsonKey(name: 'pages_date', fromJson: _dynamicToString)
+            String? pagesDate,
+            @JsonKey(name: 'pages_active', fromJson: _stringToBool)
+            bool? pagesActive)
         $default,
   ) {
     final _that = this;
@@ -2145,15 +2180,22 @@ extension PageDetailPatterns on PageDetail {
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
             @JsonKey(name: 'pages_id', fromJson: _stringToInt) int? pagesId,
-            @JsonKey(name: 'pages_menus') String? pagesMenus,
-            @JsonKey(name: 'pages_title') String? pagesTitle,
-            @JsonKey(name: 'pages_content') String? pagesContent,
-            @JsonKey(name: 'pages_lan') String? pagesLan,
+            @JsonKey(name: 'pages_menus', fromJson: _dynamicToString)
+            String? pagesMenus,
+            @JsonKey(name: 'pages_title', fromJson: _dynamicToString)
+            String? pagesTitle,
+            @JsonKey(name: 'pages_content', fromJson: _dynamicToString)
+            String? pagesContent,
+            @JsonKey(name: 'pages_lan', fromJson: _dynamicToString)
+            String? pagesLan,
             @JsonKey(name: 'pages_visitor', fromJson: _stringToInt)
             int? pagesVisitor,
-            @JsonKey(name: 'pages_priority') String? pagesPriority,
-            @JsonKey(name: 'pages_date') String? pagesDate,
-            @JsonKey(name: 'pages_active') bool? pagesActive)?
+            @JsonKey(name: 'pages_priority', fromJson: _dynamicToString)
+            String? pagesPriority,
+            @JsonKey(name: 'pages_date', fromJson: _dynamicToString)
+            String? pagesDate,
+            @JsonKey(name: 'pages_active', fromJson: _stringToBool)
+            bool? pagesActive)?
         $default,
   ) {
     final _that = this;
@@ -2180,14 +2222,17 @@ extension PageDetailPatterns on PageDetail {
 class _PageDetail implements PageDetail {
   const _PageDetail(
       {@JsonKey(name: 'pages_id', fromJson: _stringToInt) this.pagesId,
-      @JsonKey(name: 'pages_menus') this.pagesMenus,
-      @JsonKey(name: 'pages_title') this.pagesTitle,
-      @JsonKey(name: 'pages_content') this.pagesContent,
-      @JsonKey(name: 'pages_lan') this.pagesLan,
+      @JsonKey(name: 'pages_menus', fromJson: _dynamicToString) this.pagesMenus,
+      @JsonKey(name: 'pages_title', fromJson: _dynamicToString) this.pagesTitle,
+      @JsonKey(name: 'pages_content', fromJson: _dynamicToString)
+      this.pagesContent,
+      @JsonKey(name: 'pages_lan', fromJson: _dynamicToString) this.pagesLan,
       @JsonKey(name: 'pages_visitor', fromJson: _stringToInt) this.pagesVisitor,
-      @JsonKey(name: 'pages_priority') this.pagesPriority,
-      @JsonKey(name: 'pages_date') this.pagesDate,
-      @JsonKey(name: 'pages_active') this.pagesActive});
+      @JsonKey(name: 'pages_priority', fromJson: _dynamicToString)
+      this.pagesPriority,
+      @JsonKey(name: 'pages_date', fromJson: _dynamicToString) this.pagesDate,
+      @JsonKey(name: 'pages_active', fromJson: _stringToBool)
+      this.pagesActive});
   factory _PageDetail.fromJson(Map<String, dynamic> json) =>
       _$PageDetailFromJson(json);
 
@@ -2195,28 +2240,28 @@ class _PageDetail implements PageDetail {
   @JsonKey(name: 'pages_id', fromJson: _stringToInt)
   final int? pagesId;
   @override
-  @JsonKey(name: 'pages_menus')
+  @JsonKey(name: 'pages_menus', fromJson: _dynamicToString)
   final String? pagesMenus;
   @override
-  @JsonKey(name: 'pages_title')
+  @JsonKey(name: 'pages_title', fromJson: _dynamicToString)
   final String? pagesTitle;
   @override
-  @JsonKey(name: 'pages_content')
+  @JsonKey(name: 'pages_content', fromJson: _dynamicToString)
   final String? pagesContent;
   @override
-  @JsonKey(name: 'pages_lan')
+  @JsonKey(name: 'pages_lan', fromJson: _dynamicToString)
   final String? pagesLan;
   @override
   @JsonKey(name: 'pages_visitor', fromJson: _stringToInt)
   final int? pagesVisitor;
   @override
-  @JsonKey(name: 'pages_priority')
+  @JsonKey(name: 'pages_priority', fromJson: _dynamicToString)
   final String? pagesPriority;
   @override
-  @JsonKey(name: 'pages_date')
+  @JsonKey(name: 'pages_date', fromJson: _dynamicToString)
   final String? pagesDate;
   @override
-  @JsonKey(name: 'pages_active')
+  @JsonKey(name: 'pages_active', fromJson: _stringToBool)
   final bool? pagesActive;
 
   /// Create a copy of PageDetail
@@ -2288,14 +2333,20 @@ abstract mixin class _$PageDetailCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'pages_id', fromJson: _stringToInt) int? pagesId,
-      @JsonKey(name: 'pages_menus') String? pagesMenus,
-      @JsonKey(name: 'pages_title') String? pagesTitle,
-      @JsonKey(name: 'pages_content') String? pagesContent,
-      @JsonKey(name: 'pages_lan') String? pagesLan,
+      @JsonKey(name: 'pages_menus', fromJson: _dynamicToString)
+      String? pagesMenus,
+      @JsonKey(name: 'pages_title', fromJson: _dynamicToString)
+      String? pagesTitle,
+      @JsonKey(name: 'pages_content', fromJson: _dynamicToString)
+      String? pagesContent,
+      @JsonKey(name: 'pages_lan', fromJson: _dynamicToString) String? pagesLan,
       @JsonKey(name: 'pages_visitor', fromJson: _stringToInt) int? pagesVisitor,
-      @JsonKey(name: 'pages_priority') String? pagesPriority,
-      @JsonKey(name: 'pages_date') String? pagesDate,
-      @JsonKey(name: 'pages_active') bool? pagesActive});
+      @JsonKey(name: 'pages_priority', fromJson: _dynamicToString)
+      String? pagesPriority,
+      @JsonKey(name: 'pages_date', fromJson: _dynamicToString)
+      String? pagesDate,
+      @JsonKey(name: 'pages_active', fromJson: _stringToBool)
+      bool? pagesActive});
 }
 
 /// @nodoc

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:seraj_aldean_flutter_app/config/appconfig/app_colors.dart';
 import 'package:seraj_aldean_flutter_app/core/responsive/screen_util_res.dart';
 import 'package:seraj_aldean_flutter_app/gen/fonts.gen.dart';
@@ -13,9 +14,31 @@ class DownloadPathWidget extends StatefulWidget {
 }
 
 class _DownloadPathWidgetState extends State<DownloadPathWidget> {
-  // Default Android download path (Read-Only)
-  final String _downloadPath = '/storage/emulated/0/Download';
+  String _downloadPath = 'جاري التحميل...';
   bool _isExpanded = false;
+  bool _isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadDownloadPath();
+  }
+
+  Future<void> _loadDownloadPath() async {
+    try {
+      final appDir = await getApplicationDocumentsDirectory();
+      final downloadPath = '${appDir.path}/Downloads';
+      setState(() {
+        _downloadPath = downloadPath;
+        _isLoading = false;
+      });
+    } catch (e) {
+      setState(() {
+        _downloadPath = 'غير متاح';
+        _isLoading = false;
+      });
+    }
+  }
 
   void _copyPathToClipboard() {
     Clipboard.setData(ClipboardData(text: _downloadPath));
@@ -97,18 +120,29 @@ class _DownloadPathWidgetState extends State<DownloadPathWidget> {
                         ),
                       ),
                       SizedBox(height: 4.h),
-                      Text(
-                        _isExpanded 
-                            ? _downloadPath
-                            : '${_downloadPath.substring(0, _downloadPath.length > 25 ? 25 : _downloadPath.length)}...',
-                        style: TextStyle(
-                          fontSize: 12.f,
-                          fontFamily: FontFamily.tajawal,
-                          color: AppColors.textSecondary,
-                        ),
-                        maxLines: _isExpanded ? null : 1,
-                        overflow: _isExpanded ? null : TextOverflow.ellipsis,
-                      ),
+                      _isLoading
+                          ? Text(
+                              'جاري التحميل...',
+                              style: TextStyle(
+                                fontSize: 12.f,
+                                fontFamily: FontFamily.tajawal,
+                                color: AppColors.textSecondary,
+                              ),
+                            )
+                          : Text(
+                              _isExpanded 
+                                  ? _downloadPath
+                                  : (_downloadPath.length > 25 
+                                      ? '${_downloadPath.substring(0, 25)}...'
+                                      : _downloadPath),
+                              style: TextStyle(
+                                fontSize: 12.f,
+                                fontFamily: FontFamily.tajawal,
+                                color: AppColors.textSecondary,
+                              ),
+                              maxLines: _isExpanded ? null : 1,
+                              overflow: _isExpanded ? null : TextOverflow.ellipsis,
+                            ),
                     ],
                   ),
                 ),

@@ -2,7 +2,6 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:permission_handler/permission_handler.dart';
 import '../../../../core/models/page_state/bloc_status.dart';
 import '../../../../core/utils/logger/app_logger.dart';
 import '../../domain/repositories/book_repository.dart';
@@ -207,61 +206,14 @@ class BooksBloc extends Bloc<BooksEvent, BooksState> {
         downloadMessage: null,
       ));
 
-      // Request permissions for Android 13+
-      if (Platform.isAndroid) {
-        // For Android 13+, we need to handle permissions differently
-        if (await Permission.manageExternalStorage.request().isGranted) {
-          // Permission granted
-        } else {
-          // Try with regular storage permission
-          final status = await Permission.storage.request();
-          if (!status.isGranted) {
-            emit(state.copyWith(
-              isDownloading: false,
-              downloadingFormat: null,
-              downloadMessage: 'يجب منح إذن التخزين لتحميل الكتاب',
-            ));
-            return;
-          }
-        }
-      } else {
-        // For iOS or other platforms, request storage permission
-        final status = await Permission.storage.request();
-        if (!status.isGranted) {
-          emit(state.copyWith(
-            isDownloading: false,
-            downloadingFormat: null,
-            downloadMessage: 'يجب منح إذن التخزين لتحميل الكتاب',
-          ));
-          return;
-        }
-      }
-
-      // Get download directory - use Downloads folder or app documents
-      Directory? directory;
-      if (Platform.isAndroid) {
-        try {
-          // Try to use the Downloads folder first
-          directory = Directory('/storage/emulated/0/Download');
-          if (!await directory.exists()) {
-            // Create the directory if it doesn't exist
-            await directory.create(recursive: true);
-          }
-        } catch (e) {
-          // If Downloads folder fails, try external storage directory
-          try {
-            directory = await getExternalStorageDirectory();
-          } catch (e) {
-            // If external storage fails, use app documents
-            directory = await getApplicationDocumentsDirectory();
-          }
-        }
-      } else {
-        directory = await getApplicationDocumentsDirectory();
-      }
-
-      if (directory == null) {
-        throw Exception('Could not find download directory');
+      // Use internal storage (app's private directory) - no permissions needed
+      // This works on all Android versions without requiring any storage permissions
+      final appDir = await getApplicationDocumentsDirectory();
+      
+      // Create a Downloads subdirectory within app's internal storage
+      final directory = Directory('${appDir.path}/Downloads');
+      if (!await directory.exists()) {
+        await directory.create(recursive: true);
       }
 
       // Create file name using book title
@@ -313,7 +265,7 @@ class BooksBloc extends Bloc<BooksEvent, BooksState> {
         isDownloading: false,
         downloadProgress: 0.0,
         downloadingFormat: null,
-        downloadMessage: 'تم تحميل الكتاب بنجاح في مجلد التنزيلات',
+        downloadMessage: 'تم تحميل الكتاب بنجاح',
       ));
 
       // Auto-clear success message after 3 seconds

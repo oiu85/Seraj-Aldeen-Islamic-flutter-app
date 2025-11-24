@@ -23,7 +23,7 @@ Map<String, dynamic> _$ArticleResponseToJson(_ArticleResponse instance) =>
     };
 
 _ArticleData _$ArticleDataFromJson(Map<String, dynamic> json) => _ArticleData(
-      type: json['type'] as String?,
+      type: _dynamicToString(json['type']),
       categories: (json['categories'] as List<dynamic>?)
           ?.map((e) => ArticleCategory.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -42,16 +42,16 @@ Map<String, dynamic> _$ArticleDataToJson(_ArticleData instance) =>
 _ArticleCategory _$ArticleCategoryFromJson(Map<String, dynamic> json) =>
     _ArticleCategory(
       id: _stringToInt(json['id']),
-      title: json['title'] as String?,
-      note: json['note'] as String?,
-      position: json['position'] as String?,
-      language: json['language'] as String?,
-      date: json['date'] as String?,
-      menu_id: json['menu_id'] as String?,
+      title: _dynamicToString(json['title']),
+      note: _dynamicToString(json['note']),
+      position: _dynamicToString(json['position']),
+      language: _dynamicToString(json['language']),
+      date: _dynamicToString(json['date']),
+      menu_id: _dynamicToString(json['menu_id']),
       show_in_menu: _stringToBool(json['show_in_menu']),
       show_in_main: _stringToBool(json['show_in_main']),
       content_count: _stringToInt(json['content_count']),
-      type: json['type'] as String?,
+      type: _dynamicToString(json['type']),
       data: (json['data'] as List<dynamic>?)
           ?.map((e) => ArticleItem.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -75,15 +75,15 @@ Map<String, dynamic> _$ArticleCategoryToJson(_ArticleCategory instance) =>
 
 _ArticleItem _$ArticleItemFromJson(Map<String, dynamic> json) => _ArticleItem(
       id: _stringToInt(json['id']),
-      title: json['title'] as String?,
-      summary: json['summary'] as String?,
-      date: json['date'] as String?,
-      visitor_count: json['visitor_count'] as String?,
+      title: _dynamicToString(json['title']),
+      summary: _dynamicToString(json['summary']),
+      date: _dynamicToString(json['date']),
+      visitor_count: _dynamicToString(json['visitor_count']),
       is_new: _stringToBool(json['is_new']),
-      priority: json['priority'] as String?,
-      content: json['content'] as String?,
-      picture: json['picture'] as String?,
-      publisher_id: json['publisher_id'] as String?,
+      priority: _dynamicToString(json['priority']),
+      content: _dynamicToString(json['content']),
+      picture: _dynamicToString(json['picture']),
+      publisher_id: _dynamicToString(json['publisher_id']),
     );
 
 Map<String, dynamic> _$ArticleItemToJson(_ArticleItem instance) =>
@@ -167,11 +167,11 @@ Map<String, dynamic> _$CategoryContentDataToJson(
 _CategoryInfo _$CategoryInfoFromJson(Map<String, dynamic> json) =>
     _CategoryInfo(
       id: _stringToInt(json['id']),
-      title: json['title'] as String?,
-      note: json['note'] as String?,
-      type: json['type'] as String?,
-      position: json['position'] as String?,
-      language: json['language'] as String?,
+      title: _dynamicToString(json['title']),
+      note: _dynamicToString(json['note']),
+      type: _dynamicToString(json['type']),
+      position: _dynamicToString(json['position']),
+      language: _dynamicToString(json['language']),
     );
 
 Map<String, dynamic> _$CategoryInfoToJson(_CategoryInfo instance) =>
@@ -229,27 +229,27 @@ Map<String, dynamic> _$ArticleDetailResponseToJson(
 _ArticleDetail _$ArticleDetailFromJson(Map<String, dynamic> json) =>
     _ArticleDetail(
       articleId: _stringToInt(json['article_id']),
-      articleCatId: json['article_cat_id'] as String?,
-      articleTitle: json['article_title'] as String?,
-      articleTs: json['article_ts'] as String?,
-      articleSummary: json['article_summary'] as String?,
-      articleDes: json['article_des'] as String?,
-      articlePic: json['article_pic'] as String?,
-      articlePicPos: json['article_pic_pos'] as String?,
+      articleCatId: _dynamicToString(json['article_cat_id']),
+      articleTitle: _dynamicToString(json['article_title']),
+      articleTs: _dynamicToString(json['article_ts']),
+      articleSummary: _dynamicToString(json['article_summary']),
+      articleDes: _dynamicToString(json['article_des']),
+      articlePic: _dynamicToString(json['article_pic']),
+      articlePicPos: _dynamicToString(json['article_pic_pos']),
       articleVisitor: _stringToInt(json['article_visitor']),
       articleIsNew: _stringToBool(json['article_is_new']),
-      articlePriority: json['article_priority'] as String?,
+      articlePriority: _dynamicToString(json['article_priority']),
       articleActiveVote: _stringToBool(json['article_active_vote']),
       articleActiveHint: _stringToBool(json['article_active_hint']),
       articleActive: _stringToBool(json['article_active']),
-      articleDate: json['article_date'] as String?,
+      articleDate: _dynamicToString(json['article_date']),
       articlePicActive: _stringToBool(json['article_pic_active']),
       articleLastArticle: _stringToBool(json['article_last_article']),
-      articlePublisherId: json['article_publisher_id'] as String?,
-      articleSource: json['article_source'] as String?,
-      articleSourceUrl: json['article_source_url'] as String?,
-      articleYoutubeId: json['article_youtube_id'] as String?,
-      articleFile: json['article_file'] as String?,
+      articlePublisherId: _dynamicToString(json['article_publisher_id']),
+      articleSource: _dynamicToString(json['article_source']),
+      articleSourceUrl: _dynamicToString(json['article_source_url']),
+      articleYoutubeId: _dynamicToString(json['article_youtube_id']),
+      articleFile: _dynamicToString(json['article_file']),
       articleUserAddHintNsup: _stringToBool(json['article_user_add_hint_nsup']),
       category: json['category'] == null
           ? null
@@ -293,20 +293,20 @@ _ArticleDetailCategory _$ArticleDetailCategoryFromJson(
         Map<String, dynamic> json) =>
     _ArticleDetailCategory(
       catId: _stringToInt(json['cat_id']),
-      catFatherId: json['cat_father_id'] as String?,
-      catMenus: json['cat_menus'] as String?,
-      catTitle: json['cat_title'] as String?,
-      catNote: json['cat_note'] as String?,
-      catPic: json['cat_pic'] as String?,
-      catSup: json['cat_sup'] as String?,
-      catDate: json['cat_date'] as String?,
+      catFatherId: _dynamicToString(json['cat_father_id']),
+      catMenus: _dynamicToString(json['cat_menus']),
+      catTitle: _dynamicToString(json['cat_title']),
+      catNote: _dynamicToString(json['cat_note']),
+      catPic: _dynamicToString(json['cat_pic']),
+      catSup: _dynamicToString(json['cat_sup']),
+      catDate: _dynamicToString(json['cat_date']),
       catPicActive: _stringToBool(json['cat_pic_active']),
-      catLan: json['cat_lan'] as String?,
-      catPos: json['cat_pos'] as String?,
+      catLan: _dynamicToString(json['cat_lan']),
+      catPos: _dynamicToString(json['cat_pos']),
       catActive: _stringToBool(json['cat_active']),
       catShowMenu: _stringToBool(json['cat_show_menu']),
       catShowMain: _stringToBool(json['cat_show_main']),
-      catAgent: json['cat_agent'] as String?,
+      catAgent: _dynamicToString(json['cat_agent']),
     );
 
 Map<String, dynamic> _$ArticleDetailCategoryToJson(

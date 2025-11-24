@@ -19,6 +19,14 @@ int? _stringToInt(dynamic value) {
   return null;
 }
 
+String? _dynamicToString(dynamic value) {
+  if (value == null) return null;
+  if (value is String) return value;
+  if (value is int) return value.toString();
+  if (value is double) return value.toString();
+  return value.toString();
+}
+
 @freezed
 abstract class GalleryResponse with _$GalleryResponse {
   const factory GalleryResponse({
@@ -34,7 +42,7 @@ abstract class GalleryResponse with _$GalleryResponse {
 @freezed
 abstract class GalleryData with _$GalleryData {
   const factory GalleryData({
-    String? type,
+    @JsonKey(fromJson: _dynamicToString) String? type,
     List<GalleryCategory>? categories,
     GalleryPaginationData? pagination,
   }) = _GalleryData;
@@ -47,16 +55,16 @@ abstract class GalleryData with _$GalleryData {
 abstract class GalleryCategory with _$GalleryCategory {
   const factory GalleryCategory({
     @JsonKey(fromJson: _stringToInt) int? id,
-    String? title,
-    String? note,
-    String? position,
-    String? language,
-    String? date,
-    String? menu_id,
+    @JsonKey(fromJson: _dynamicToString) String? title,
+    @JsonKey(fromJson: _dynamicToString) String? note,
+    @JsonKey(fromJson: _dynamicToString) String? position,
+    @JsonKey(fromJson: _dynamicToString) String? language,
+    @JsonKey(fromJson: _dynamicToString) String? date,
+    @JsonKey(name: 'menu_id', fromJson: _dynamicToString) String? menu_id,
     @JsonKey(fromJson: _stringToBool) bool? show_in_menu,
     @JsonKey(fromJson: _stringToBool) bool? show_in_main,
     @JsonKey(fromJson: _stringToInt) int? content_count,
-    String? type,
+    @JsonKey(fromJson: _dynamicToString) String? type,
     List<GalleryItem>? data,
   }) = _GalleryCategory;
 
@@ -68,15 +76,15 @@ abstract class GalleryCategory with _$GalleryCategory {
 abstract class GalleryItem with _$GalleryItem {
   const factory GalleryItem({
     @JsonKey(fromJson: _stringToInt) int? id,
-    String? title,
-    String? summary,
-    String? date,
-    String? visitor_count,
+    @JsonKey(fromJson: _dynamicToString) String? title,
+    @JsonKey(fromJson: _dynamicToString) String? summary,
+    @JsonKey(fromJson: _dynamicToString) String? date,
+    @JsonKey(name: 'visitor_count', fromJson: _dynamicToString) String? visitor_count,
     @JsonKey(fromJson: _stringToBool) bool? is_new,
-    dynamic priority,
-    String? picture,
-    String? photo_gallery_pic_thumbnail_url,
-    String? photo_gallery_pic_full_url,
+    @JsonKey(fromJson: _dynamicToString) String? priority,
+    @JsonKey(fromJson: _dynamicToString) String? picture,
+    @JsonKey(name: 'photo_gallery_pic_thumbnail_url', fromJson: _dynamicToString) String? photo_gallery_pic_thumbnail_url,
+    @JsonKey(name: 'photo_gallery_pic_full_url', fromJson: _dynamicToString) String? photo_gallery_pic_full_url,
   }) = _GalleryItem;
 
   factory GalleryItem.fromJson(Map<String, dynamic> json) =>
@@ -129,11 +137,11 @@ abstract class CategoryContentData with _$CategoryContentData {
 abstract class CategoryInfo with _$CategoryInfo {
   const factory CategoryInfo({
     @JsonKey(fromJson: _stringToInt) int? id,
-    String? title,
-    String? note,
-    String? type,
-    String? position,
-    String? language,
+    @JsonKey(fromJson: _dynamicToString) String? title,
+    @JsonKey(fromJson: _dynamicToString) String? note,
+    @JsonKey(fromJson: _dynamicToString) String? type,
+    @JsonKey(fromJson: _dynamicToString) String? position,
+    @JsonKey(fromJson: _dynamicToString) String? language,
   }) = _CategoryInfo;
 
   factory CategoryInfo.fromJson(Map<String, dynamic> json) =>

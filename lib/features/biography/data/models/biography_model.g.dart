@@ -8,10 +8,10 @@ part of 'biography_model.dart';
 
 _PageModel _$PageModelFromJson(Map<String, dynamic> json) => _PageModel(
       pagesId: _stringToInt(json['pages_id']),
-      pagesTitle: json['pages_title'] as String?,
-      pagesMenus: json['pages_menus'] as String?,
+      pagesTitle: _dynamicToString(json['pages_title']),
+      pagesMenus: _dynamicToString(json['pages_menus']),
       pagesPriority: _stringToInt(json['pages_priority']),
-      pagesDate: json['pages_date'] as String?,
+      pagesDate: _dynamicToString(json['pages_date']),
     );
 
 Map<String, dynamic> _$PageModelToJson(_PageModel instance) =>
@@ -91,14 +91,14 @@ Map<String, dynamic> _$PageDetailResponseToJson(_PageDetailResponse instance) =>
 
 _PageDetail _$PageDetailFromJson(Map<String, dynamic> json) => _PageDetail(
       pagesId: _stringToInt(json['pages_id']),
-      pagesMenus: json['pages_menus'] as String?,
-      pagesTitle: json['pages_title'] as String?,
-      pagesContent: json['pages_content'] as String?,
-      pagesLan: json['pages_lan'] as String?,
+      pagesMenus: _dynamicToString(json['pages_menus']),
+      pagesTitle: _dynamicToString(json['pages_title']),
+      pagesContent: _dynamicToString(json['pages_content']),
+      pagesLan: _dynamicToString(json['pages_lan']),
       pagesVisitor: _stringToInt(json['pages_visitor']),
-      pagesPriority: json['pages_priority'] as String?,
-      pagesDate: json['pages_date'] as String?,
-      pagesActive: json['pages_active'] as bool?,
+      pagesPriority: _dynamicToString(json['pages_priority']),
+      pagesDate: _dynamicToString(json['pages_date']),
+      pagesActive: _stringToBool(json['pages_active']),
     );
 
 Map<String, dynamic> _$PageDetailToJson(_PageDetail instance) =>

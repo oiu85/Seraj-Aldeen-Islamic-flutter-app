@@ -8,12 +8,12 @@ part of 'menu_model.dart';
 
 _MenuModel _$MenuModelFromJson(Map<String, dynamic> json) => _MenuModel(
       menusId: _stringToInt(json['menus_id']),
-      menusName: json['menus_name'] as String?,
-      menusUrl: json['menus_url'] as String?,
-      menusPos: json['menus_pos'] as String?,
+      menusName: _dynamicToString(json['menus_name']),
+      menusUrl: _dynamicToString(json['menus_url']),
+      menusPos: _dynamicToString(json['menus_pos']),
       menusPriority: _stringToInt(json['menus_priority']),
-      menusLan: json['menus_lan'] as String?,
-      menusDate: json['menus_date'] as String?,
+      menusLan: _dynamicToString(json['menus_lan']),
+      menusDate: _dynamicToString(json['menus_date']),
       menusActiveHeader: _stringToBool(json['menus_active_header']),
       menusActive: _stringToBool(json['menus_active']),
     );

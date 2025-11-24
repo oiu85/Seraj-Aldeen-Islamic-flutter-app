@@ -19,6 +19,14 @@ int? _stringToInt(dynamic value) {
   return null;
 }
 
+String? _dynamicToString(dynamic value) {
+  if (value == null) return null;
+  if (value is String) return value;
+  if (value is int) return value.toString();
+  if (value is double) return value.toString();
+  return value.toString();
+}
+
 @freezed
 abstract class SoundResponse with _$SoundResponse {
   const factory SoundResponse({
@@ -34,7 +42,7 @@ abstract class SoundResponse with _$SoundResponse {
 @freezed
 abstract class SoundData with _$SoundData {
   const factory SoundData({
-    String? type,
+    @JsonKey(fromJson: _dynamicToString) String? type,
     List<SoundCategory>? categories,
     SoundPaginationData? pagination,
     List<PageInfo>? pages,
@@ -48,16 +56,16 @@ abstract class SoundData with _$SoundData {
 abstract class SoundCategory with _$SoundCategory {
   const factory SoundCategory({
     @JsonKey(fromJson: _stringToInt) int? id,
-    String? title,
-    String? note,
-    String? position,
-    String? language,
-    String? date,
-    String? menu_id,
+    @JsonKey(fromJson: _dynamicToString) String? title,
+    @JsonKey(fromJson: _dynamicToString) String? note,
+    @JsonKey(fromJson: _dynamicToString) String? position,
+    @JsonKey(fromJson: _dynamicToString) String? language,
+    @JsonKey(fromJson: _dynamicToString) String? date,
+    @JsonKey(name: 'menu_id', fromJson: _dynamicToString) String? menu_id,
     @JsonKey(fromJson: _stringToBool) bool? show_in_menu,
     @JsonKey(fromJson: _stringToBool) bool? show_in_main,
     @JsonKey(fromJson: _stringToInt) int? content_count,
-    String? type,
+    @JsonKey(fromJson: _dynamicToString) String? type,
     List<SoundItem>? data,
   }) = _SoundCategory;
 
@@ -69,20 +77,20 @@ abstract class SoundCategory with _$SoundCategory {
 abstract class SoundItem with _$SoundItem {
   const factory SoundItem({
     @JsonKey(fromJson: _stringToInt) int? id,
-    String? title,
-    String? summary,
-    String? date,
-    String? visitor_count,
+    @JsonKey(fromJson: _dynamicToString) String? title,
+    @JsonKey(fromJson: _dynamicToString) String? summary,
+    @JsonKey(fromJson: _dynamicToString) String? date,
+    @JsonKey(name: 'visitor_count', fromJson: _dynamicToString) String? visitor_count,
     @JsonKey(fromJson: _stringToBool) bool? is_new,
-    String? priority,
-    String? file,
-    String? sound_file_url,
+    @JsonKey(fromJson: _dynamicToString) String? priority,
+    @JsonKey(fromJson: _dynamicToString) String? file,
+    @JsonKey(name: 'sound_file_url', fromJson: _dynamicToString) String? sound_file_url,
     // Additional fields for detailed display
-    String? soundPic,
-    String? soundSource,
-    String? soundSourceUrl,
-    String? soundYoutubeId,
-    String? publisherId,
+    @JsonKey(fromJson: _dynamicToString) String? soundPic,
+    @JsonKey(fromJson: _dynamicToString) String? soundSource,
+    @JsonKey(fromJson: _dynamicToString) String? soundSourceUrl,
+    @JsonKey(fromJson: _dynamicToString) String? soundYoutubeId,
+    @JsonKey(fromJson: _dynamicToString) String? publisherId,
   }) = _SoundItem;
 
   factory SoundItem.fromJson(Map<String, dynamic> json) =>
@@ -110,14 +118,14 @@ abstract class SoundPaginationData with _$SoundPaginationData {
 abstract class PageInfo with _$PageInfo {
   const factory PageInfo({
     @JsonKey(fromJson: _stringToInt) int? id,
-    String? title,
-    String? content,
-    String? language,
-    String? visitor_count,
-    String? priority,
-    String? date,
-    String? menu_id,
-    String? type,
+    @JsonKey(fromJson: _dynamicToString) String? title,
+    @JsonKey(fromJson: _dynamicToString) String? content,
+    @JsonKey(fromJson: _dynamicToString) String? language,
+    @JsonKey(name: 'visitor_count', fromJson: _dynamicToString) String? visitor_count,
+    @JsonKey(fromJson: _dynamicToString) String? priority,
+    @JsonKey(fromJson: _dynamicToString) String? date,
+    @JsonKey(name: 'menu_id', fromJson: _dynamicToString) String? menu_id,
+    @JsonKey(fromJson: _dynamicToString) String? type,
   }) = _PageInfo;
 
   factory PageInfo.fromJson(Map<String, dynamic> json) =>
@@ -152,11 +160,11 @@ abstract class CategoryContentData with _$CategoryContentData {
 abstract class CategoryInfo with _$CategoryInfo {
   const factory CategoryInfo({
     @JsonKey(fromJson: _stringToInt) int? id,
-    String? title,
-    String? note,
-    String? type,
-    String? position,
-    String? language,
+    @JsonKey(fromJson: _dynamicToString) String? title,
+    @JsonKey(fromJson: _dynamicToString) String? note,
+    @JsonKey(fromJson: _dynamicToString) String? type,
+    @JsonKey(fromJson: _dynamicToString) String? position,
+    @JsonKey(fromJson: _dynamicToString) String? language,
   }) = _CategoryInfo;
 
   factory CategoryInfo.fromJson(Map<String, dynamic> json) =>
@@ -240,29 +248,29 @@ abstract class SoundDetailResponse with _$SoundDetailResponse {
 abstract class SoundDetailData with _$SoundDetailData {
   const factory SoundDetailData({
     @JsonKey(name: 'sound_id', fromJson: _stringToInt) int? soundId,
-    @JsonKey(name: 'sound_cat_id') String? soundCatId,
-    @JsonKey(name: 'sound_title') String? soundTitle,
-    String? soundTs,
-    @JsonKey(name: 'sound_summary') String? soundSummary,
-    @JsonKey(name: 'sound_des') String? soundDes,
-    @JsonKey(name: 'sound_pic') String? soundPic,
-    @JsonKey(name: 'sound_pic_pos') String? soundPicPos,
+    @JsonKey(name: 'sound_cat_id', fromJson: _dynamicToString) String? soundCatId,
+    @JsonKey(name: 'sound_title', fromJson: _dynamicToString) String? soundTitle,
+    @JsonKey(fromJson: _dynamicToString) String? soundTs,
+    @JsonKey(name: 'sound_summary', fromJson: _dynamicToString) String? soundSummary,
+    @JsonKey(name: 'sound_des', fromJson: _dynamicToString) String? soundDes,
+    @JsonKey(name: 'sound_pic', fromJson: _dynamicToString) String? soundPic,
+    @JsonKey(name: 'sound_pic_pos', fromJson: _dynamicToString) String? soundPicPos,
     @JsonKey(name: 'sound_visitor', fromJson: _stringToInt) int? soundVisitor,
     @JsonKey(name: 'sound_is_new', fromJson: _stringToBool) bool? soundIsNew,
-    @JsonKey(name: 'sound_priority') String? soundPriority,
+    @JsonKey(name: 'sound_priority', fromJson: _dynamicToString) String? soundPriority,
     @JsonKey(name: 'sound_active_vote', fromJson: _stringToBool) bool? soundActiveVote,
     @JsonKey(name: 'sound_active_hint', fromJson: _stringToBool) bool? soundActiveHint,
     @JsonKey(name: 'sound_active', fromJson: _stringToBool) bool? soundActive,
-    @JsonKey(name: 'sound_date') String? soundDate,
+    @JsonKey(name: 'sound_date', fromJson: _dynamicToString) String? soundDate,
     @JsonKey(name: 'sound_pic_active', fromJson: _stringToBool) bool? soundPicActive,
     @JsonKey(name: 'sound_last_sound', fromJson: _stringToBool) bool? soundLastSound,
-    @JsonKey(name: 'sound_publisher_id') String? soundPublisherId,
-    @JsonKey(name: 'sound_source') String? soundSource,
-    @JsonKey(name: 'sound_source_url') String? soundSourceUrl,
-    @JsonKey(name: 'sound_youtube_id') String? soundYoutubeId,
-    @JsonKey(name: 'sound_file') String? soundFile,
+    @JsonKey(name: 'sound_publisher_id', fromJson: _dynamicToString) String? soundPublisherId,
+    @JsonKey(name: 'sound_source', fromJson: _dynamicToString) String? soundSource,
+    @JsonKey(name: 'sound_source_url', fromJson: _dynamicToString) String? soundSourceUrl,
+    @JsonKey(name: 'sound_youtube_id', fromJson: _dynamicToString) String? soundYoutubeId,
+    @JsonKey(name: 'sound_file', fromJson: _dynamicToString) String? soundFile,
     @JsonKey(name: 'sound_user_add_hint_nsup', fromJson: _stringToBool) bool? soundUserAddHintNsup,
-    @JsonKey(name: 'sound_file_url') String? soundFileUrl,
+    @JsonKey(name: 'sound_file_url', fromJson: _dynamicToString) String? soundFileUrl,
     SoundDetailCategory? category,
     List<dynamic>? captions,
     List<dynamic>? votes,
@@ -276,20 +284,20 @@ abstract class SoundDetailData with _$SoundDetailData {
 abstract class SoundDetailCategory with _$SoundDetailCategory {
   const factory SoundDetailCategory({
     @JsonKey(name: 'cat_id', fromJson: _stringToInt) int? catId,
-    @JsonKey(name: 'cat_father_id') String? catFatherId,
-    @JsonKey(name: 'cat_menus') String? catMenus,
-    @JsonKey(name: 'cat_title') String? catTitle,
-    @JsonKey(name: 'cat_note') String? catNote,
-    @JsonKey(name: 'cat_pic') String? catPic,
-    @JsonKey(name: 'cat_sup') String? catSup,
-    @JsonKey(name: 'cat_date') String? catDate,
+    @JsonKey(name: 'cat_father_id', fromJson: _dynamicToString) String? catFatherId,
+    @JsonKey(name: 'cat_menus', fromJson: _dynamicToString) String? catMenus,
+    @JsonKey(name: 'cat_title', fromJson: _dynamicToString) String? catTitle,
+    @JsonKey(name: 'cat_note', fromJson: _dynamicToString) String? catNote,
+    @JsonKey(name: 'cat_pic', fromJson: _dynamicToString) String? catPic,
+    @JsonKey(name: 'cat_sup', fromJson: _dynamicToString) String? catSup,
+    @JsonKey(name: 'cat_date', fromJson: _dynamicToString) String? catDate,
     @JsonKey(name: 'cat_pic_active', fromJson: _stringToBool) bool? catPicActive,
-    @JsonKey(name: 'cat_lan') String? catLan,
-    @JsonKey(name: 'cat_pos') String? catPos,
+    @JsonKey(name: 'cat_lan', fromJson: _dynamicToString) String? catLan,
+    @JsonKey(name: 'cat_pos', fromJson: _dynamicToString) String? catPos,
     @JsonKey(name: 'cat_active', fromJson: _stringToBool) bool? catActive,
     @JsonKey(name: 'cat_show_menu', fromJson: _stringToBool) bool? catShowMenu,
     @JsonKey(name: 'cat_show_main', fromJson: _stringToBool) bool? catShowMain,
-    @JsonKey(name: 'cat_agent') String? catAgent,
+    @JsonKey(name: 'cat_agent', fromJson: _dynamicToString) String? catAgent,
   }) = _SoundDetailCategory;
 
   factory SoundDetailCategory.fromJson(Map<String, dynamic> json) =>

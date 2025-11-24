@@ -19,6 +19,14 @@ int? _stringToInt(dynamic value) {
   return null;
 }
 
+String? _dynamicToString(dynamic value) {
+  if (value == null) return null;
+  if (value is String) return value;
+  if (value is int) return value.toString();
+  if (value is double) return value.toString();
+  return value.toString();
+}
+
 @freezed
 abstract class BookResponse with _$BookResponse {
   const factory BookResponse({
@@ -48,16 +56,16 @@ abstract class BookData with _$BookData {
 abstract class BookCategory with _$BookCategory {
   const factory BookCategory({
     @JsonKey(fromJson: _stringToInt) int? id,
-    String? title,
-    String? note,
-    String? position,
-    String? language,
-    String? date,
-    String? menu_id,
+    @JsonKey(fromJson: _dynamicToString) String? title,
+    @JsonKey(fromJson: _dynamicToString) String? note,
+    @JsonKey(fromJson: _dynamicToString) String? position,
+    @JsonKey(fromJson: _dynamicToString) String? language,
+    @JsonKey(fromJson: _dynamicToString) String? date,
+    @JsonKey(name: 'menu_id', fromJson: _dynamicToString) String? menu_id,
     @JsonKey(fromJson: _stringToBool) bool? show_in_menu,
     @JsonKey(fromJson: _stringToBool) bool? show_in_main,
     @JsonKey(fromJson: _stringToInt) int? content_count,
-    String? type,
+    @JsonKey(fromJson: _dynamicToString) String? type,
     List<BookItem>? data,
   }) = _BookCategory;
 
@@ -69,19 +77,19 @@ abstract class BookCategory with _$BookCategory {
 abstract class BookItem with _$BookItem {
   const factory BookItem({
     @JsonKey(fromJson: _stringToInt) int? id,
-    String? title,
-    String? summary,
-    String? date,
-    String? visitor_count,
+    @JsonKey(fromJson: _dynamicToString) String? title,
+    @JsonKey(fromJson: _dynamicToString) String? summary,
+    @JsonKey(fromJson: _dynamicToString) String? date,
+    @JsonKey(name: 'visitor_count', fromJson: _dynamicToString) String? visitor_count,
     @JsonKey(fromJson: _stringToBool) bool? is_new,
-    String? priority,
-    String? file,
-    String? format,
-    String? publisher_id,
-    @JsonKey(name: 'book_file_url') String? bookFileUrl,
-    @JsonKey(name: 'book_file_epub_url') String? bookFileEpubUrl,
-    @JsonKey(name: 'book_file_kfx_url') String? bookFileKfxUrl,
-    @JsonKey(name: 'book_pic_url') String? bookPicUrl,
+    @JsonKey(fromJson: _dynamicToString) String? priority,
+    @JsonKey(fromJson: _dynamicToString) String? file,
+    @JsonKey(fromJson: _dynamicToString) String? format,
+    @JsonKey(name: 'publisher_id', fromJson: _dynamicToString) String? publisher_id,
+    @JsonKey(name: 'book_file_url', fromJson: _dynamicToString) String? bookFileUrl,
+    @JsonKey(name: 'book_file_epub_url', fromJson: _dynamicToString) String? bookFileEpubUrl,
+    @JsonKey(name: 'book_file_kfx_url', fromJson: _dynamicToString) String? bookFileKfxUrl,
+    @JsonKey(name: 'book_pic_url', fromJson: _dynamicToString) String? bookPicUrl,
   }) = _BookItem;
 
   factory BookItem.fromJson(Map<String, dynamic> json) =>
@@ -109,14 +117,14 @@ abstract class BookPaginationData with _$BookPaginationData {
 abstract class BookPageInfo with _$BookPageInfo {
   const factory BookPageInfo({
     @JsonKey(fromJson: _stringToInt) int? id,
-    String? title,
-    String? content,
-    String? language,
-    String? visitor_count,
-    String? priority,
-    String? date,
-    String? menu_id,
-    String? type,
+    @JsonKey(fromJson: _dynamicToString) String? title,
+    @JsonKey(fromJson: _dynamicToString) String? content,
+    @JsonKey(fromJson: _dynamicToString) String? language,
+    @JsonKey(name: 'visitor_count', fromJson: _dynamicToString) String? visitor_count,
+    @JsonKey(fromJson: _dynamicToString) String? priority,
+    @JsonKey(fromJson: _dynamicToString) String? date,
+    @JsonKey(name: 'menu_id', fromJson: _dynamicToString) String? menu_id,
+    @JsonKey(fromJson: _dynamicToString) String? type,
   }) = _BookPageInfo;
 
   factory BookPageInfo.fromJson(Map<String, dynamic> json) =>
@@ -140,34 +148,34 @@ abstract class BookDetailResponse with _$BookDetailResponse {
 abstract class BookDetailData with _$BookDetailData {
   const factory BookDetailData({
     @JsonKey(name: 'book_id', fromJson: _stringToInt) int? bookId,
-    @JsonKey(name: 'book_cat_id') String? bookCatId,
-    @JsonKey(name: 'book_title') String? bookTitle,
-    @JsonKey(name: 'book_ts') String? bookTs,
-    @JsonKey(name: 'book_summary') String? bookSummary,
-    @JsonKey(name: 'book_des') String? bookDes,
-    @JsonKey(name: 'book_pic') String? bookPic,
-    @JsonKey(name: 'book_pic_pos') String? bookPicPos,
+    @JsonKey(name: 'book_cat_id', fromJson: _dynamicToString) String? bookCatId,
+    @JsonKey(name: 'book_title', fromJson: _dynamicToString) String? bookTitle,
+    @JsonKey(name: 'book_ts', fromJson: _dynamicToString) String? bookTs,
+    @JsonKey(name: 'book_summary', fromJson: _dynamicToString) String? bookSummary,
+    @JsonKey(name: 'book_des', fromJson: _dynamicToString) String? bookDes,
+    @JsonKey(name: 'book_pic', fromJson: _dynamicToString) String? bookPic,
+    @JsonKey(name: 'book_pic_pos', fromJson: _dynamicToString) String? bookPicPos,
     @JsonKey(name: 'book_visitor', fromJson: _stringToInt) int? bookVisitor,
     @JsonKey(name: 'book_is_new', fromJson: _stringToBool) bool? bookIsNew,
-    @JsonKey(name: 'book_priority') String? bookPriority,
+    @JsonKey(name: 'book_priority', fromJson: _dynamicToString) String? bookPriority,
     @JsonKey(name: 'book_active_vote', fromJson: _stringToBool) bool? bookActiveVote,
     @JsonKey(name: 'book_active_hint', fromJson: _stringToBool) bool? bookActiveHint,
     @JsonKey(name: 'book_active', fromJson: _stringToBool) bool? bookActive,
-    @JsonKey(name: 'book_date') String? bookDate,
+    @JsonKey(name: 'book_date', fromJson: _dynamicToString) String? bookDate,
     @JsonKey(name: 'book_pic_active', fromJson: _stringToBool) bool? bookPicActive,
     @JsonKey(name: 'book_last_book', fromJson: _stringToBool) bool? bookLastBook,
-    @JsonKey(name: 'book_publisher_id') String? bookPublisherId,
-    @JsonKey(name: 'book_source') String? bookSource,
-    @JsonKey(name: 'book_source_url') String? bookSourceUrl,
-    @JsonKey(name: 'book_youtube_id') String? bookYoutubeId,
-    @JsonKey(name: 'book_file') String? bookFile,
-    @JsonKey(name: 'book_file_ePub') String? bookFileEPub,
-    @JsonKey(name: 'book_file_kfx') String? bookFileKfx,
+    @JsonKey(name: 'book_publisher_id', fromJson: _dynamicToString) String? bookPublisherId,
+    @JsonKey(name: 'book_source', fromJson: _dynamicToString) String? bookSource,
+    @JsonKey(name: 'book_source_url', fromJson: _dynamicToString) String? bookSourceUrl,
+    @JsonKey(name: 'book_youtube_id', fromJson: _dynamicToString) String? bookYoutubeId,
+    @JsonKey(name: 'book_file', fromJson: _dynamicToString) String? bookFile,
+    @JsonKey(name: 'book_file_ePub', fromJson: _dynamicToString) String? bookFileEPub,
+    @JsonKey(name: 'book_file_kfx', fromJson: _dynamicToString) String? bookFileKfx,
     @JsonKey(name: 'book_user_add_hint_nsup', fromJson: _stringToBool) bool? bookUserAddHintNsup,
-    @JsonKey(name: 'book_file_url') String? bookFileUrl,
-    @JsonKey(name: 'book_file_epub_url') String? bookFileEpubUrl,
-    @JsonKey(name: 'book_file_kfx_url') String? bookFileKfxUrl,
-    @JsonKey(name: 'book_pic_url') String? bookPicUrl,
+    @JsonKey(name: 'book_file_url', fromJson: _dynamicToString) String? bookFileUrl,
+    @JsonKey(name: 'book_file_epub_url', fromJson: _dynamicToString) String? bookFileEpubUrl,
+    @JsonKey(name: 'book_file_kfx_url', fromJson: _dynamicToString) String? bookFileKfxUrl,
+    @JsonKey(name: 'book_pic_url', fromJson: _dynamicToString) String? bookPicUrl,
     BookDetailCategory? category,
   }) = _BookDetailData;
 
@@ -179,20 +187,20 @@ abstract class BookDetailData with _$BookDetailData {
 abstract class BookDetailCategory with _$BookDetailCategory {
   const factory BookDetailCategory({
     @JsonKey(name: 'cat_id', fromJson: _stringToInt) int? catId,
-    @JsonKey(name: 'cat_father_id') String? catFatherId,
-    @JsonKey(name: 'cat_menus') String? catMenus,
-    @JsonKey(name: 'cat_title') String? catTitle,
-    @JsonKey(name: 'cat_note') String? catNote,
-    @JsonKey(name: 'cat_pic') String? catPic,
-    @JsonKey(name: 'cat_sup') String? catSup,
-    @JsonKey(name: 'cat_date') String? catDate,
+    @JsonKey(name: 'cat_father_id', fromJson: _dynamicToString) String? catFatherId,
+    @JsonKey(name: 'cat_menus', fromJson: _dynamicToString) String? catMenus,
+    @JsonKey(name: 'cat_title', fromJson: _dynamicToString) String? catTitle,
+    @JsonKey(name: 'cat_note', fromJson: _dynamicToString) String? catNote,
+    @JsonKey(name: 'cat_pic', fromJson: _dynamicToString) String? catPic,
+    @JsonKey(name: 'cat_sup', fromJson: _dynamicToString) String? catSup,
+    @JsonKey(name: 'cat_date', fromJson: _dynamicToString) String? catDate,
     @JsonKey(name: 'cat_pic_active', fromJson: _stringToBool) bool? catPicActive,
-    @JsonKey(name: 'cat_lan') String? catLan,
-    @JsonKey(name: 'cat_pos') String? catPos,
+    @JsonKey(name: 'cat_lan', fromJson: _dynamicToString) String? catLan,
+    @JsonKey(name: 'cat_pos', fromJson: _dynamicToString) String? catPos,
     @JsonKey(name: 'cat_active', fromJson: _stringToBool) bool? catActive,
     @JsonKey(name: 'cat_show_menu', fromJson: _stringToBool) bool? catShowMenu,
     @JsonKey(name: 'cat_show_main', fromJson: _stringToBool) bool? catShowMain,
-    @JsonKey(name: 'cat_agent') String? catAgent,
+    @JsonKey(name: 'cat_agent', fromJson: _dynamicToString) String? catAgent,
   }) = _BookDetailCategory;
 
   factory BookDetailCategory.fromJson(Map<String, dynamic> json) =>
@@ -228,11 +236,11 @@ abstract class CategoryBooksData with _$CategoryBooksData {
 abstract class CategoryInfo with _$CategoryInfo {
   const factory CategoryInfo({
     @JsonKey(fromJson: _stringToInt) int? id,
-    String? title,
-    String? note,
-    String? type,
-    String? position,
-    String? language,
+    @JsonKey(fromJson: _dynamicToString) String? title,
+    @JsonKey(fromJson: _dynamicToString) String? note,
+    @JsonKey(fromJson: _dynamicToString) String? type,
+    @JsonKey(fromJson: _dynamicToString) String? position,
+    @JsonKey(fromJson: _dynamicToString) String? language,
   }) = _CategoryInfo;
 
   factory CategoryInfo.fromJson(Map<String, dynamic> json) =>
@@ -243,19 +251,19 @@ abstract class CategoryInfo with _$CategoryInfo {
 abstract class CategoryBookItem with _$CategoryBookItem {
   const factory CategoryBookItem({
     @JsonKey(fromJson: _stringToInt) int? id,
-    String? title,
-    String? summary,
-    String? date,
-    String? visitor_count,
+    @JsonKey(fromJson: _dynamicToString) String? title,
+    @JsonKey(fromJson: _dynamicToString) String? summary,
+    @JsonKey(fromJson: _dynamicToString) String? date,
+    @JsonKey(name: 'visitor_count', fromJson: _dynamicToString) String? visitor_count,
     @JsonKey(fromJson: _stringToBool) bool? is_new,
-    String? priority,
-    String? file,
-    String? format,
-    String? publisher_id,
-    @JsonKey(name: 'book_file_url') String? bookFileUrl,
-    @JsonKey(name: 'book_file_epub_url') String? bookFileEpubUrl,
-    @JsonKey(name: 'book_file_kfx_url') String? bookFileKfxUrl,
-    @JsonKey(name: 'book_pic_url') String? bookPicUrl,
+    @JsonKey(fromJson: _dynamicToString) String? priority,
+    @JsonKey(fromJson: _dynamicToString) String? file,
+    @JsonKey(fromJson: _dynamicToString) String? format,
+    @JsonKey(name: 'publisher_id', fromJson: _dynamicToString) String? publisher_id,
+    @JsonKey(name: 'book_file_url', fromJson: _dynamicToString) String? bookFileUrl,
+    @JsonKey(name: 'book_file_epub_url', fromJson: _dynamicToString) String? bookFileEpubUrl,
+    @JsonKey(name: 'book_file_kfx_url', fromJson: _dynamicToString) String? bookFileKfxUrl,
+    @JsonKey(name: 'book_pic_url', fromJson: _dynamicToString) String? bookPicUrl,
   }) = _CategoryBookItem;
 
   factory CategoryBookItem.fromJson(Map<String, dynamic> json) =>

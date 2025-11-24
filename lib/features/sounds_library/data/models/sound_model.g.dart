@@ -23,7 +23,7 @@ Map<String, dynamic> _$SoundResponseToJson(_SoundResponse instance) =>
     };
 
 _SoundData _$SoundDataFromJson(Map<String, dynamic> json) => _SoundData(
-      type: json['type'] as String?,
+      type: _dynamicToString(json['type']),
       categories: (json['categories'] as List<dynamic>?)
           ?.map((e) => SoundCategory.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -47,16 +47,16 @@ Map<String, dynamic> _$SoundDataToJson(_SoundData instance) =>
 _SoundCategory _$SoundCategoryFromJson(Map<String, dynamic> json) =>
     _SoundCategory(
       id: _stringToInt(json['id']),
-      title: json['title'] as String?,
-      note: json['note'] as String?,
-      position: json['position'] as String?,
-      language: json['language'] as String?,
-      date: json['date'] as String?,
-      menu_id: json['menu_id'] as String?,
+      title: _dynamicToString(json['title']),
+      note: _dynamicToString(json['note']),
+      position: _dynamicToString(json['position']),
+      language: _dynamicToString(json['language']),
+      date: _dynamicToString(json['date']),
+      menu_id: _dynamicToString(json['menu_id']),
       show_in_menu: _stringToBool(json['show_in_menu']),
       show_in_main: _stringToBool(json['show_in_main']),
       content_count: _stringToInt(json['content_count']),
-      type: json['type'] as String?,
+      type: _dynamicToString(json['type']),
       data: (json['data'] as List<dynamic>?)
           ?.map((e) => SoundItem.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -80,19 +80,19 @@ Map<String, dynamic> _$SoundCategoryToJson(_SoundCategory instance) =>
 
 _SoundItem _$SoundItemFromJson(Map<String, dynamic> json) => _SoundItem(
       id: _stringToInt(json['id']),
-      title: json['title'] as String?,
-      summary: json['summary'] as String?,
-      date: json['date'] as String?,
-      visitor_count: json['visitor_count'] as String?,
+      title: _dynamicToString(json['title']),
+      summary: _dynamicToString(json['summary']),
+      date: _dynamicToString(json['date']),
+      visitor_count: _dynamicToString(json['visitor_count']),
       is_new: _stringToBool(json['is_new']),
-      priority: json['priority'] as String?,
-      file: json['file'] as String?,
-      sound_file_url: json['sound_file_url'] as String?,
-      soundPic: json['soundPic'] as String?,
-      soundSource: json['soundSource'] as String?,
-      soundSourceUrl: json['soundSourceUrl'] as String?,
-      soundYoutubeId: json['soundYoutubeId'] as String?,
-      publisherId: json['publisherId'] as String?,
+      priority: _dynamicToString(json['priority']),
+      file: _dynamicToString(json['file']),
+      sound_file_url: _dynamicToString(json['sound_file_url']),
+      soundPic: _dynamicToString(json['soundPic']),
+      soundSource: _dynamicToString(json['soundSource']),
+      soundSourceUrl: _dynamicToString(json['soundSourceUrl']),
+      soundYoutubeId: _dynamicToString(json['soundYoutubeId']),
+      publisherId: _dynamicToString(json['publisherId']),
     );
 
 Map<String, dynamic> _$SoundItemToJson(_SoundItem instance) =>
@@ -140,14 +140,14 @@ Map<String, dynamic> _$SoundPaginationDataToJson(
 
 _PageInfo _$PageInfoFromJson(Map<String, dynamic> json) => _PageInfo(
       id: _stringToInt(json['id']),
-      title: json['title'] as String?,
-      content: json['content'] as String?,
-      language: json['language'] as String?,
-      visitor_count: json['visitor_count'] as String?,
-      priority: json['priority'] as String?,
-      date: json['date'] as String?,
-      menu_id: json['menu_id'] as String?,
-      type: json['type'] as String?,
+      title: _dynamicToString(json['title']),
+      content: _dynamicToString(json['content']),
+      language: _dynamicToString(json['language']),
+      visitor_count: _dynamicToString(json['visitor_count']),
+      priority: _dynamicToString(json['priority']),
+      date: _dynamicToString(json['date']),
+      menu_id: _dynamicToString(json['menu_id']),
+      type: _dynamicToString(json['type']),
     );
 
 Map<String, dynamic> _$PageInfoToJson(_PageInfo instance) => <String, dynamic>{
@@ -205,11 +205,11 @@ Map<String, dynamic> _$CategoryContentDataToJson(
 _CategoryInfo _$CategoryInfoFromJson(Map<String, dynamic> json) =>
     _CategoryInfo(
       id: _stringToInt(json['id']),
-      title: json['title'] as String?,
-      note: json['note'] as String?,
-      type: json['type'] as String?,
-      position: json['position'] as String?,
-      language: json['language'] as String?,
+      title: _dynamicToString(json['title']),
+      note: _dynamicToString(json['note']),
+      type: _dynamicToString(json['type']),
+      position: _dynamicToString(json['position']),
+      language: _dynamicToString(json['language']),
     );
 
 Map<String, dynamic> _$CategoryInfoToJson(_CategoryInfo instance) =>
@@ -334,29 +334,29 @@ Map<String, dynamic> _$SoundDetailResponseToJson(
 _SoundDetailData _$SoundDetailDataFromJson(Map<String, dynamic> json) =>
     _SoundDetailData(
       soundId: _stringToInt(json['sound_id']),
-      soundCatId: json['sound_cat_id'] as String?,
-      soundTitle: json['sound_title'] as String?,
-      soundTs: json['soundTs'] as String?,
-      soundSummary: json['sound_summary'] as String?,
-      soundDes: json['sound_des'] as String?,
-      soundPic: json['sound_pic'] as String?,
-      soundPicPos: json['sound_pic_pos'] as String?,
+      soundCatId: _dynamicToString(json['sound_cat_id']),
+      soundTitle: _dynamicToString(json['sound_title']),
+      soundTs: _dynamicToString(json['soundTs']),
+      soundSummary: _dynamicToString(json['sound_summary']),
+      soundDes: _dynamicToString(json['sound_des']),
+      soundPic: _dynamicToString(json['sound_pic']),
+      soundPicPos: _dynamicToString(json['sound_pic_pos']),
       soundVisitor: _stringToInt(json['sound_visitor']),
       soundIsNew: _stringToBool(json['sound_is_new']),
-      soundPriority: json['sound_priority'] as String?,
+      soundPriority: _dynamicToString(json['sound_priority']),
       soundActiveVote: _stringToBool(json['sound_active_vote']),
       soundActiveHint: _stringToBool(json['sound_active_hint']),
       soundActive: _stringToBool(json['sound_active']),
-      soundDate: json['sound_date'] as String?,
+      soundDate: _dynamicToString(json['sound_date']),
       soundPicActive: _stringToBool(json['sound_pic_active']),
       soundLastSound: _stringToBool(json['sound_last_sound']),
-      soundPublisherId: json['sound_publisher_id'] as String?,
-      soundSource: json['sound_source'] as String?,
-      soundSourceUrl: json['sound_source_url'] as String?,
-      soundYoutubeId: json['sound_youtube_id'] as String?,
-      soundFile: json['sound_file'] as String?,
+      soundPublisherId: _dynamicToString(json['sound_publisher_id']),
+      soundSource: _dynamicToString(json['sound_source']),
+      soundSourceUrl: _dynamicToString(json['sound_source_url']),
+      soundYoutubeId: _dynamicToString(json['sound_youtube_id']),
+      soundFile: _dynamicToString(json['sound_file']),
       soundUserAddHintNsup: _stringToBool(json['sound_user_add_hint_nsup']),
-      soundFileUrl: json['sound_file_url'] as String?,
+      soundFileUrl: _dynamicToString(json['sound_file_url']),
       category: json['category'] == null
           ? null
           : SoundDetailCategory.fromJson(
@@ -399,20 +399,20 @@ Map<String, dynamic> _$SoundDetailDataToJson(_SoundDetailData instance) =>
 _SoundDetailCategory _$SoundDetailCategoryFromJson(Map<String, dynamic> json) =>
     _SoundDetailCategory(
       catId: _stringToInt(json['cat_id']),
-      catFatherId: json['cat_father_id'] as String?,
-      catMenus: json['cat_menus'] as String?,
-      catTitle: json['cat_title'] as String?,
-      catNote: json['cat_note'] as String?,
-      catPic: json['cat_pic'] as String?,
-      catSup: json['cat_sup'] as String?,
-      catDate: json['cat_date'] as String?,
+      catFatherId: _dynamicToString(json['cat_father_id']),
+      catMenus: _dynamicToString(json['cat_menus']),
+      catTitle: _dynamicToString(json['cat_title']),
+      catNote: _dynamicToString(json['cat_note']),
+      catPic: _dynamicToString(json['cat_pic']),
+      catSup: _dynamicToString(json['cat_sup']),
+      catDate: _dynamicToString(json['cat_date']),
       catPicActive: _stringToBool(json['cat_pic_active']),
-      catLan: json['cat_lan'] as String?,
-      catPos: json['cat_pos'] as String?,
+      catLan: _dynamicToString(json['cat_lan']),
+      catPos: _dynamicToString(json['cat_pos']),
       catActive: _stringToBool(json['cat_active']),
       catShowMenu: _stringToBool(json['cat_show_menu']),
       catShowMain: _stringToBool(json['cat_show_main']),
-      catAgent: json['cat_agent'] as String?,
+      catAgent: _dynamicToString(json['cat_agent']),
     );
 
 Map<String, dynamic> _$SoundDetailCategoryToJson(

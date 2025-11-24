@@ -16,17 +16,17 @@ T _$identity<T>(T value) => value;
 mixin _$MenuModel {
   @JsonKey(name: 'menus_id', fromJson: _stringToInt)
   int? get menusId;
-  @JsonKey(name: 'menus_name')
+  @JsonKey(name: 'menus_name', fromJson: _dynamicToString)
   String? get menusName;
-  @JsonKey(name: 'menus_url')
+  @JsonKey(name: 'menus_url', fromJson: _dynamicToString)
   String? get menusUrl;
-  @JsonKey(name: 'menus_pos')
+  @JsonKey(name: 'menus_pos', fromJson: _dynamicToString)
   String? get menusPos;
   @JsonKey(name: 'menus_priority', fromJson: _stringToInt)
   int? get menusPriority;
-  @JsonKey(name: 'menus_lan')
+  @JsonKey(name: 'menus_lan', fromJson: _dynamicToString)
   String? get menusLan;
-  @JsonKey(name: 'menus_date')
+  @JsonKey(name: 'menus_date', fromJson: _dynamicToString)
   String? get menusDate;
   @JsonKey(name: 'menus_active_header', fromJson: _stringToBool)
   bool? get menusActiveHeader;
@@ -94,13 +94,15 @@ abstract mixin class $MenuModelCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'menus_id', fromJson: _stringToInt) int? menusId,
-      @JsonKey(name: 'menus_name') String? menusName,
-      @JsonKey(name: 'menus_url') String? menusUrl,
-      @JsonKey(name: 'menus_pos') String? menusPos,
+      @JsonKey(name: 'menus_name', fromJson: _dynamicToString)
+      String? menusName,
+      @JsonKey(name: 'menus_url', fromJson: _dynamicToString) String? menusUrl,
+      @JsonKey(name: 'menus_pos', fromJson: _dynamicToString) String? menusPos,
       @JsonKey(name: 'menus_priority', fromJson: _stringToInt)
       int? menusPriority,
-      @JsonKey(name: 'menus_lan') String? menusLan,
-      @JsonKey(name: 'menus_date') String? menusDate,
+      @JsonKey(name: 'menus_lan', fromJson: _dynamicToString) String? menusLan,
+      @JsonKey(name: 'menus_date', fromJson: _dynamicToString)
+      String? menusDate,
       @JsonKey(name: 'menus_active_header', fromJson: _stringToBool)
       bool? menusActiveHeader,
       @JsonKey(name: 'menus_active', fromJson: _stringToBool)
@@ -265,13 +267,18 @@ extension MenuModelPatterns on MenuModel {
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
             @JsonKey(name: 'menus_id', fromJson: _stringToInt) int? menusId,
-            @JsonKey(name: 'menus_name') String? menusName,
-            @JsonKey(name: 'menus_url') String? menusUrl,
-            @JsonKey(name: 'menus_pos') String? menusPos,
+            @JsonKey(name: 'menus_name', fromJson: _dynamicToString)
+            String? menusName,
+            @JsonKey(name: 'menus_url', fromJson: _dynamicToString)
+            String? menusUrl,
+            @JsonKey(name: 'menus_pos', fromJson: _dynamicToString)
+            String? menusPos,
             @JsonKey(name: 'menus_priority', fromJson: _stringToInt)
             int? menusPriority,
-            @JsonKey(name: 'menus_lan') String? menusLan,
-            @JsonKey(name: 'menus_date') String? menusDate,
+            @JsonKey(name: 'menus_lan', fromJson: _dynamicToString)
+            String? menusLan,
+            @JsonKey(name: 'menus_date', fromJson: _dynamicToString)
+            String? menusDate,
             @JsonKey(name: 'menus_active_header', fromJson: _stringToBool)
             bool? menusActiveHeader,
             @JsonKey(name: 'menus_active', fromJson: _stringToBool)
@@ -314,13 +321,18 @@ extension MenuModelPatterns on MenuModel {
   TResult when<TResult extends Object?>(
     TResult Function(
             @JsonKey(name: 'menus_id', fromJson: _stringToInt) int? menusId,
-            @JsonKey(name: 'menus_name') String? menusName,
-            @JsonKey(name: 'menus_url') String? menusUrl,
-            @JsonKey(name: 'menus_pos') String? menusPos,
+            @JsonKey(name: 'menus_name', fromJson: _dynamicToString)
+            String? menusName,
+            @JsonKey(name: 'menus_url', fromJson: _dynamicToString)
+            String? menusUrl,
+            @JsonKey(name: 'menus_pos', fromJson: _dynamicToString)
+            String? menusPos,
             @JsonKey(name: 'menus_priority', fromJson: _stringToInt)
             int? menusPriority,
-            @JsonKey(name: 'menus_lan') String? menusLan,
-            @JsonKey(name: 'menus_date') String? menusDate,
+            @JsonKey(name: 'menus_lan', fromJson: _dynamicToString)
+            String? menusLan,
+            @JsonKey(name: 'menus_date', fromJson: _dynamicToString)
+            String? menusDate,
             @JsonKey(name: 'menus_active_header', fromJson: _stringToBool)
             bool? menusActiveHeader,
             @JsonKey(name: 'menus_active', fromJson: _stringToBool)
@@ -361,13 +373,18 @@ extension MenuModelPatterns on MenuModel {
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
             @JsonKey(name: 'menus_id', fromJson: _stringToInt) int? menusId,
-            @JsonKey(name: 'menus_name') String? menusName,
-            @JsonKey(name: 'menus_url') String? menusUrl,
-            @JsonKey(name: 'menus_pos') String? menusPos,
+            @JsonKey(name: 'menus_name', fromJson: _dynamicToString)
+            String? menusName,
+            @JsonKey(name: 'menus_url', fromJson: _dynamicToString)
+            String? menusUrl,
+            @JsonKey(name: 'menus_pos', fromJson: _dynamicToString)
+            String? menusPos,
             @JsonKey(name: 'menus_priority', fromJson: _stringToInt)
             int? menusPriority,
-            @JsonKey(name: 'menus_lan') String? menusLan,
-            @JsonKey(name: 'menus_date') String? menusDate,
+            @JsonKey(name: 'menus_lan', fromJson: _dynamicToString)
+            String? menusLan,
+            @JsonKey(name: 'menus_date', fromJson: _dynamicToString)
+            String? menusDate,
             @JsonKey(name: 'menus_active_header', fromJson: _stringToBool)
             bool? menusActiveHeader,
             @JsonKey(name: 'menus_active', fromJson: _stringToBool)
@@ -398,13 +415,13 @@ extension MenuModelPatterns on MenuModel {
 class _MenuModel implements MenuModel {
   const _MenuModel(
       {@JsonKey(name: 'menus_id', fromJson: _stringToInt) this.menusId,
-      @JsonKey(name: 'menus_name') this.menusName,
-      @JsonKey(name: 'menus_url') this.menusUrl,
-      @JsonKey(name: 'menus_pos') this.menusPos,
+      @JsonKey(name: 'menus_name', fromJson: _dynamicToString) this.menusName,
+      @JsonKey(name: 'menus_url', fromJson: _dynamicToString) this.menusUrl,
+      @JsonKey(name: 'menus_pos', fromJson: _dynamicToString) this.menusPos,
       @JsonKey(name: 'menus_priority', fromJson: _stringToInt)
       this.menusPriority,
-      @JsonKey(name: 'menus_lan') this.menusLan,
-      @JsonKey(name: 'menus_date') this.menusDate,
+      @JsonKey(name: 'menus_lan', fromJson: _dynamicToString) this.menusLan,
+      @JsonKey(name: 'menus_date', fromJson: _dynamicToString) this.menusDate,
       @JsonKey(name: 'menus_active_header', fromJson: _stringToBool)
       this.menusActiveHeader,
       @JsonKey(name: 'menus_active', fromJson: _stringToBool)
@@ -416,22 +433,22 @@ class _MenuModel implements MenuModel {
   @JsonKey(name: 'menus_id', fromJson: _stringToInt)
   final int? menusId;
   @override
-  @JsonKey(name: 'menus_name')
+  @JsonKey(name: 'menus_name', fromJson: _dynamicToString)
   final String? menusName;
   @override
-  @JsonKey(name: 'menus_url')
+  @JsonKey(name: 'menus_url', fromJson: _dynamicToString)
   final String? menusUrl;
   @override
-  @JsonKey(name: 'menus_pos')
+  @JsonKey(name: 'menus_pos', fromJson: _dynamicToString)
   final String? menusPos;
   @override
   @JsonKey(name: 'menus_priority', fromJson: _stringToInt)
   final int? menusPriority;
   @override
-  @JsonKey(name: 'menus_lan')
+  @JsonKey(name: 'menus_lan', fromJson: _dynamicToString)
   final String? menusLan;
   @override
-  @JsonKey(name: 'menus_date')
+  @JsonKey(name: 'menus_date', fromJson: _dynamicToString)
   final String? menusDate;
   @override
   @JsonKey(name: 'menus_active_header', fromJson: _stringToBool)
@@ -509,13 +526,15 @@ abstract mixin class _$MenuModelCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'menus_id', fromJson: _stringToInt) int? menusId,
-      @JsonKey(name: 'menus_name') String? menusName,
-      @JsonKey(name: 'menus_url') String? menusUrl,
-      @JsonKey(name: 'menus_pos') String? menusPos,
+      @JsonKey(name: 'menus_name', fromJson: _dynamicToString)
+      String? menusName,
+      @JsonKey(name: 'menus_url', fromJson: _dynamicToString) String? menusUrl,
+      @JsonKey(name: 'menus_pos', fromJson: _dynamicToString) String? menusPos,
       @JsonKey(name: 'menus_priority', fromJson: _stringToInt)
       int? menusPriority,
-      @JsonKey(name: 'menus_lan') String? menusLan,
-      @JsonKey(name: 'menus_date') String? menusDate,
+      @JsonKey(name: 'menus_lan', fromJson: _dynamicToString) String? menusLan,
+      @JsonKey(name: 'menus_date', fromJson: _dynamicToString)
+      String? menusDate,
       @JsonKey(name: 'menus_active_header', fromJson: _stringToBool)
       bool? menusActiveHeader,
       @JsonKey(name: 'menus_active', fromJson: _stringToBool)

@@ -19,6 +19,14 @@ int? _stringToInt(dynamic value) {
   return null;
 }
 
+String? _dynamicToString(dynamic value) {
+  if (value == null) return null;
+  if (value is String) return value;
+  if (value is int) return value.toString();
+  if (value is double) return value.toString();
+  return value.toString();
+}
+
 @freezed
 abstract class ArticleResponse with _$ArticleResponse {
   const factory ArticleResponse({
@@ -34,7 +42,7 @@ abstract class ArticleResponse with _$ArticleResponse {
 @freezed
 abstract class ArticleData with _$ArticleData {
   const factory ArticleData({
-    String? type,
+    @JsonKey(fromJson: _dynamicToString) String? type,
     List<ArticleCategory>? categories,
     PaginationData? pagination,
   }) = _ArticleData;
@@ -47,16 +55,16 @@ abstract class ArticleData with _$ArticleData {
 abstract class ArticleCategory with _$ArticleCategory {
   const factory ArticleCategory({
     @JsonKey(fromJson: _stringToInt) int? id,
-    String? title,
-    String? note,
-    String? position,
-    String? language,
-    String? date,
-    String? menu_id,
+    @JsonKey(fromJson: _dynamicToString) String? title,
+    @JsonKey(fromJson: _dynamicToString) String? note,
+    @JsonKey(fromJson: _dynamicToString) String? position,
+    @JsonKey(fromJson: _dynamicToString) String? language,
+    @JsonKey(fromJson: _dynamicToString) String? date,
+    @JsonKey(name: 'menu_id', fromJson: _dynamicToString) String? menu_id,
     @JsonKey(fromJson: _stringToBool) bool? show_in_menu,
     @JsonKey(fromJson: _stringToBool) bool? show_in_main,
     @JsonKey(fromJson: _stringToInt) int? content_count,
-    String? type,
+    @JsonKey(fromJson: _dynamicToString) String? type,
     List<ArticleItem>? data,
   }) = _ArticleCategory;
 
@@ -68,15 +76,15 @@ abstract class ArticleCategory with _$ArticleCategory {
 abstract class ArticleItem with _$ArticleItem {
   const factory ArticleItem({
     @JsonKey(fromJson: _stringToInt) int? id,
-    String? title,
-    String? summary,
-    String? date,
-    String? visitor_count,
+    @JsonKey(fromJson: _dynamicToString) String? title,
+    @JsonKey(fromJson: _dynamicToString) String? summary,
+    @JsonKey(fromJson: _dynamicToString) String? date,
+    @JsonKey(name: 'visitor_count', fromJson: _dynamicToString) String? visitor_count,
     @JsonKey(fromJson: _stringToBool) bool? is_new,
-    String? priority,
-    String? content,
-    String? picture,
-    String? publisher_id,
+    @JsonKey(fromJson: _dynamicToString) String? priority,
+    @JsonKey(fromJson: _dynamicToString) String? content,
+    @JsonKey(fromJson: _dynamicToString) String? picture,
+    @JsonKey(name: 'publisher_id', fromJson: _dynamicToString) String? publisher_id,
   }) = _ArticleItem;
 
   factory ArticleItem.fromJson(Map<String, dynamic> json) =>
@@ -128,11 +136,11 @@ abstract class CategoryContentData with _$CategoryContentData {
 abstract class CategoryInfo with _$CategoryInfo {
   const factory CategoryInfo({
     @JsonKey(fromJson: _stringToInt) int? id,
-    String? title,
-    String? note,
-    String? type,
-    String? position,
-    String? language,
+    @JsonKey(fromJson: _dynamicToString) String? title,
+    @JsonKey(fromJson: _dynamicToString) String? note,
+    @JsonKey(fromJson: _dynamicToString) String? type,
+    @JsonKey(fromJson: _dynamicToString) String? position,
+    @JsonKey(fromJson: _dynamicToString) String? language,
   }) = _CategoryInfo;
 
   factory CategoryInfo.fromJson(Map<String, dynamic> json) =>
@@ -173,27 +181,27 @@ abstract class ArticleDetailResponse with _$ArticleDetailResponse {
 abstract class ArticleDetail with _$ArticleDetail {
   const factory ArticleDetail({
     @JsonKey(name: 'article_id', fromJson: _stringToInt) int? articleId,
-    @JsonKey(name: 'article_cat_id') String? articleCatId,
-    @JsonKey(name: 'article_title') String? articleTitle,
-    @JsonKey(name: 'article_ts') String? articleTs,
-    @JsonKey(name: 'article_summary') String? articleSummary,
-    @JsonKey(name: 'article_des') String? articleDes,
-    @JsonKey(name: 'article_pic') String? articlePic,
-    @JsonKey(name: 'article_pic_pos') String? articlePicPos,
+    @JsonKey(name: 'article_cat_id', fromJson: _dynamicToString) String? articleCatId,
+    @JsonKey(name: 'article_title', fromJson: _dynamicToString) String? articleTitle,
+    @JsonKey(name: 'article_ts', fromJson: _dynamicToString) String? articleTs,
+    @JsonKey(name: 'article_summary', fromJson: _dynamicToString) String? articleSummary,
+    @JsonKey(name: 'article_des', fromJson: _dynamicToString) String? articleDes,
+    @JsonKey(name: 'article_pic', fromJson: _dynamicToString) String? articlePic,
+    @JsonKey(name: 'article_pic_pos', fromJson: _dynamicToString) String? articlePicPos,
     @JsonKey(name: 'article_visitor', fromJson: _stringToInt) int? articleVisitor,
     @JsonKey(name: 'article_is_new', fromJson: _stringToBool) bool? articleIsNew,
-    @JsonKey(name: 'article_priority') String? articlePriority,
+    @JsonKey(name: 'article_priority', fromJson: _dynamicToString) String? articlePriority,
     @JsonKey(name: 'article_active_vote', fromJson: _stringToBool) bool? articleActiveVote,
     @JsonKey(name: 'article_active_hint', fromJson: _stringToBool) bool? articleActiveHint,
     @JsonKey(name: 'article_active', fromJson: _stringToBool) bool? articleActive,
-    @JsonKey(name: 'article_date') String? articleDate,
+    @JsonKey(name: 'article_date', fromJson: _dynamicToString) String? articleDate,
     @JsonKey(name: 'article_pic_active', fromJson: _stringToBool) bool? articlePicActive,
     @JsonKey(name: 'article_last_article', fromJson: _stringToBool) bool? articleLastArticle,
-    @JsonKey(name: 'article_publisher_id') String? articlePublisherId,
-    @JsonKey(name: 'article_source') String? articleSource,
-    @JsonKey(name: 'article_source_url') String? articleSourceUrl,
-    @JsonKey(name: 'article_youtube_id') String? articleYoutubeId,
-    @JsonKey(name: 'article_file') String? articleFile,
+    @JsonKey(name: 'article_publisher_id', fromJson: _dynamicToString) String? articlePublisherId,
+    @JsonKey(name: 'article_source', fromJson: _dynamicToString) String? articleSource,
+    @JsonKey(name: 'article_source_url', fromJson: _dynamicToString) String? articleSourceUrl,
+    @JsonKey(name: 'article_youtube_id', fromJson: _dynamicToString) String? articleYoutubeId,
+    @JsonKey(name: 'article_file', fromJson: _dynamicToString) String? articleFile,
     @JsonKey(name: 'article_user_add_hint_nsup', fromJson: _stringToBool) bool? articleUserAddHintNsup,
     ArticleDetailCategory? category,
     List<dynamic>? captions,
@@ -208,20 +216,20 @@ abstract class ArticleDetail with _$ArticleDetail {
 abstract class ArticleDetailCategory with _$ArticleDetailCategory {
   const factory ArticleDetailCategory({
     @JsonKey(name: 'cat_id', fromJson: _stringToInt) int? catId,
-    @JsonKey(name: 'cat_father_id') String? catFatherId,
-    @JsonKey(name: 'cat_menus') String? catMenus,
-    @JsonKey(name: 'cat_title') String? catTitle,
-    @JsonKey(name: 'cat_note') String? catNote,
-    @JsonKey(name: 'cat_pic') String? catPic,
-    @JsonKey(name: 'cat_sup') String? catSup,
-    @JsonKey(name: 'cat_date') String? catDate,
+    @JsonKey(name: 'cat_father_id', fromJson: _dynamicToString) String? catFatherId,
+    @JsonKey(name: 'cat_menus', fromJson: _dynamicToString) String? catMenus,
+    @JsonKey(name: 'cat_title', fromJson: _dynamicToString) String? catTitle,
+    @JsonKey(name: 'cat_note', fromJson: _dynamicToString) String? catNote,
+    @JsonKey(name: 'cat_pic', fromJson: _dynamicToString) String? catPic,
+    @JsonKey(name: 'cat_sup', fromJson: _dynamicToString) String? catSup,
+    @JsonKey(name: 'cat_date', fromJson: _dynamicToString) String? catDate,
     @JsonKey(name: 'cat_pic_active', fromJson: _stringToBool) bool? catPicActive,
-    @JsonKey(name: 'cat_lan') String? catLan,
-    @JsonKey(name: 'cat_pos') String? catPos,
+    @JsonKey(name: 'cat_lan', fromJson: _dynamicToString) String? catLan,
+    @JsonKey(name: 'cat_pos', fromJson: _dynamicToString) String? catPos,
     @JsonKey(name: 'cat_active', fromJson: _stringToBool) bool? catActive,
     @JsonKey(name: 'cat_show_menu', fromJson: _stringToBool) bool? catShowMenu,
     @JsonKey(name: 'cat_show_main', fromJson: _stringToBool) bool? catShowMain,
-    @JsonKey(name: 'cat_agent') String? catAgent,
+    @JsonKey(name: 'cat_agent', fromJson: _dynamicToString) String? catAgent,
   }) = _ArticleDetailCategory;
 
   factory ArticleDetailCategory.fromJson(Map<String, dynamic> json) =>

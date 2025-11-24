@@ -806,11 +806,17 @@ class __$BookDataCopyWithImpl<$Res> implements _$BookDataCopyWith<$Res> {
 mixin _$BookCategory {
   @JsonKey(fromJson: _stringToInt)
   int? get id;
+  @JsonKey(fromJson: _dynamicToString)
   String? get title;
+  @JsonKey(fromJson: _dynamicToString)
   String? get note;
+  @JsonKey(fromJson: _dynamicToString)
   String? get position;
+  @JsonKey(fromJson: _dynamicToString)
   String? get language;
+  @JsonKey(fromJson: _dynamicToString)
   String? get date;
+  @JsonKey(name: 'menu_id', fromJson: _dynamicToString)
   String? get menu_id;
   @JsonKey(fromJson: _stringToBool)
   bool? get show_in_menu;
@@ -818,6 +824,7 @@ mixin _$BookCategory {
   bool? get show_in_main;
   @JsonKey(fromJson: _stringToInt)
   int? get content_count;
+  @JsonKey(fromJson: _dynamicToString)
   String? get type;
   List<BookItem>? get data;
 
@@ -887,16 +894,16 @@ abstract mixin class $BookCategoryCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(fromJson: _stringToInt) int? id,
-      String? title,
-      String? note,
-      String? position,
-      String? language,
-      String? date,
-      String? menu_id,
+      @JsonKey(fromJson: _dynamicToString) String? title,
+      @JsonKey(fromJson: _dynamicToString) String? note,
+      @JsonKey(fromJson: _dynamicToString) String? position,
+      @JsonKey(fromJson: _dynamicToString) String? language,
+      @JsonKey(fromJson: _dynamicToString) String? date,
+      @JsonKey(name: 'menu_id', fromJson: _dynamicToString) String? menu_id,
       @JsonKey(fromJson: _stringToBool) bool? show_in_menu,
       @JsonKey(fromJson: _stringToBool) bool? show_in_main,
       @JsonKey(fromJson: _stringToInt) int? content_count,
-      String? type,
+      @JsonKey(fromJson: _dynamicToString) String? type,
       List<BookItem>? data});
 }
 
@@ -1073,16 +1080,17 @@ extension BookCategoryPatterns on BookCategory {
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
             @JsonKey(fromJson: _stringToInt) int? id,
-            String? title,
-            String? note,
-            String? position,
-            String? language,
-            String? date,
+            @JsonKey(fromJson: _dynamicToString) String? title,
+            @JsonKey(fromJson: _dynamicToString) String? note,
+            @JsonKey(fromJson: _dynamicToString) String? position,
+            @JsonKey(fromJson: _dynamicToString) String? language,
+            @JsonKey(fromJson: _dynamicToString) String? date,
+            @JsonKey(name: 'menu_id', fromJson: _dynamicToString)
             String? menu_id,
             @JsonKey(fromJson: _stringToBool) bool? show_in_menu,
             @JsonKey(fromJson: _stringToBool) bool? show_in_main,
             @JsonKey(fromJson: _stringToInt) int? content_count,
-            String? type,
+            @JsonKey(fromJson: _dynamicToString) String? type,
             List<BookItem>? data)?
         $default, {
     required TResult orElse(),
@@ -1125,16 +1133,17 @@ extension BookCategoryPatterns on BookCategory {
   TResult when<TResult extends Object?>(
     TResult Function(
             @JsonKey(fromJson: _stringToInt) int? id,
-            String? title,
-            String? note,
-            String? position,
-            String? language,
-            String? date,
+            @JsonKey(fromJson: _dynamicToString) String? title,
+            @JsonKey(fromJson: _dynamicToString) String? note,
+            @JsonKey(fromJson: _dynamicToString) String? position,
+            @JsonKey(fromJson: _dynamicToString) String? language,
+            @JsonKey(fromJson: _dynamicToString) String? date,
+            @JsonKey(name: 'menu_id', fromJson: _dynamicToString)
             String? menu_id,
             @JsonKey(fromJson: _stringToBool) bool? show_in_menu,
             @JsonKey(fromJson: _stringToBool) bool? show_in_main,
             @JsonKey(fromJson: _stringToInt) int? content_count,
-            String? type,
+            @JsonKey(fromJson: _dynamicToString) String? type,
             List<BookItem>? data)
         $default,
   ) {
@@ -1175,16 +1184,17 @@ extension BookCategoryPatterns on BookCategory {
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
             @JsonKey(fromJson: _stringToInt) int? id,
-            String? title,
-            String? note,
-            String? position,
-            String? language,
-            String? date,
+            @JsonKey(fromJson: _dynamicToString) String? title,
+            @JsonKey(fromJson: _dynamicToString) String? note,
+            @JsonKey(fromJson: _dynamicToString) String? position,
+            @JsonKey(fromJson: _dynamicToString) String? language,
+            @JsonKey(fromJson: _dynamicToString) String? date,
+            @JsonKey(name: 'menu_id', fromJson: _dynamicToString)
             String? menu_id,
             @JsonKey(fromJson: _stringToBool) bool? show_in_menu,
             @JsonKey(fromJson: _stringToBool) bool? show_in_main,
             @JsonKey(fromJson: _stringToInt) int? content_count,
-            String? type,
+            @JsonKey(fromJson: _dynamicToString) String? type,
             List<BookItem>? data)?
         $default,
   ) {
@@ -1215,16 +1225,16 @@ extension BookCategoryPatterns on BookCategory {
 class _BookCategory implements BookCategory {
   const _BookCategory(
       {@JsonKey(fromJson: _stringToInt) this.id,
-      this.title,
-      this.note,
-      this.position,
-      this.language,
-      this.date,
-      this.menu_id,
+      @JsonKey(fromJson: _dynamicToString) this.title,
+      @JsonKey(fromJson: _dynamicToString) this.note,
+      @JsonKey(fromJson: _dynamicToString) this.position,
+      @JsonKey(fromJson: _dynamicToString) this.language,
+      @JsonKey(fromJson: _dynamicToString) this.date,
+      @JsonKey(name: 'menu_id', fromJson: _dynamicToString) this.menu_id,
       @JsonKey(fromJson: _stringToBool) this.show_in_menu,
       @JsonKey(fromJson: _stringToBool) this.show_in_main,
       @JsonKey(fromJson: _stringToInt) this.content_count,
-      this.type,
+      @JsonKey(fromJson: _dynamicToString) this.type,
       final List<BookItem>? data})
       : _data = data;
   factory _BookCategory.fromJson(Map<String, dynamic> json) =>
@@ -1234,16 +1244,22 @@ class _BookCategory implements BookCategory {
   @JsonKey(fromJson: _stringToInt)
   final int? id;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? title;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? note;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? position;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? language;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? date;
   @override
+  @JsonKey(name: 'menu_id', fromJson: _dynamicToString)
   final String? menu_id;
   @override
   @JsonKey(fromJson: _stringToBool)
@@ -1255,6 +1271,7 @@ class _BookCategory implements BookCategory {
   @JsonKey(fromJson: _stringToInt)
   final int? content_count;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? type;
   final List<BookItem>? _data;
   @override
@@ -1338,16 +1355,16 @@ abstract mixin class _$BookCategoryCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(fromJson: _stringToInt) int? id,
-      String? title,
-      String? note,
-      String? position,
-      String? language,
-      String? date,
-      String? menu_id,
+      @JsonKey(fromJson: _dynamicToString) String? title,
+      @JsonKey(fromJson: _dynamicToString) String? note,
+      @JsonKey(fromJson: _dynamicToString) String? position,
+      @JsonKey(fromJson: _dynamicToString) String? language,
+      @JsonKey(fromJson: _dynamicToString) String? date,
+      @JsonKey(name: 'menu_id', fromJson: _dynamicToString) String? menu_id,
       @JsonKey(fromJson: _stringToBool) bool? show_in_menu,
       @JsonKey(fromJson: _stringToBool) bool? show_in_main,
       @JsonKey(fromJson: _stringToInt) int? content_count,
-      String? type,
+      @JsonKey(fromJson: _dynamicToString) String? type,
       List<BookItem>? data});
 }
 
@@ -1434,23 +1451,31 @@ class __$BookCategoryCopyWithImpl<$Res>
 mixin _$BookItem {
   @JsonKey(fromJson: _stringToInt)
   int? get id;
+  @JsonKey(fromJson: _dynamicToString)
   String? get title;
+  @JsonKey(fromJson: _dynamicToString)
   String? get summary;
+  @JsonKey(fromJson: _dynamicToString)
   String? get date;
+  @JsonKey(name: 'visitor_count', fromJson: _dynamicToString)
   String? get visitor_count;
   @JsonKey(fromJson: _stringToBool)
   bool? get is_new;
+  @JsonKey(fromJson: _dynamicToString)
   String? get priority;
+  @JsonKey(fromJson: _dynamicToString)
   String? get file;
+  @JsonKey(fromJson: _dynamicToString)
   String? get format;
+  @JsonKey(name: 'publisher_id', fromJson: _dynamicToString)
   String? get publisher_id;
-  @JsonKey(name: 'book_file_url')
+  @JsonKey(name: 'book_file_url', fromJson: _dynamicToString)
   String? get bookFileUrl;
-  @JsonKey(name: 'book_file_epub_url')
+  @JsonKey(name: 'book_file_epub_url', fromJson: _dynamicToString)
   String? get bookFileEpubUrl;
-  @JsonKey(name: 'book_file_kfx_url')
+  @JsonKey(name: 'book_file_kfx_url', fromJson: _dynamicToString)
   String? get bookFileKfxUrl;
-  @JsonKey(name: 'book_pic_url')
+  @JsonKey(name: 'book_pic_url', fromJson: _dynamicToString)
   String? get bookPicUrl;
 
   /// Create a copy of BookItem
@@ -1523,19 +1548,25 @@ abstract mixin class $BookItemCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(fromJson: _stringToInt) int? id,
-      String? title,
-      String? summary,
-      String? date,
+      @JsonKey(fromJson: _dynamicToString) String? title,
+      @JsonKey(fromJson: _dynamicToString) String? summary,
+      @JsonKey(fromJson: _dynamicToString) String? date,
+      @JsonKey(name: 'visitor_count', fromJson: _dynamicToString)
       String? visitor_count,
       @JsonKey(fromJson: _stringToBool) bool? is_new,
-      String? priority,
-      String? file,
-      String? format,
+      @JsonKey(fromJson: _dynamicToString) String? priority,
+      @JsonKey(fromJson: _dynamicToString) String? file,
+      @JsonKey(fromJson: _dynamicToString) String? format,
+      @JsonKey(name: 'publisher_id', fromJson: _dynamicToString)
       String? publisher_id,
-      @JsonKey(name: 'book_file_url') String? bookFileUrl,
-      @JsonKey(name: 'book_file_epub_url') String? bookFileEpubUrl,
-      @JsonKey(name: 'book_file_kfx_url') String? bookFileKfxUrl,
-      @JsonKey(name: 'book_pic_url') String? bookPicUrl});
+      @JsonKey(name: 'book_file_url', fromJson: _dynamicToString)
+      String? bookFileUrl,
+      @JsonKey(name: 'book_file_epub_url', fromJson: _dynamicToString)
+      String? bookFileEpubUrl,
+      @JsonKey(name: 'book_file_kfx_url', fromJson: _dynamicToString)
+      String? bookFileKfxUrl,
+      @JsonKey(name: 'book_pic_url', fromJson: _dynamicToString)
+      String? bookPicUrl});
 }
 
 /// @nodoc
@@ -1721,19 +1752,25 @@ extension BookItemPatterns on BookItem {
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
             @JsonKey(fromJson: _stringToInt) int? id,
-            String? title,
-            String? summary,
-            String? date,
+            @JsonKey(fromJson: _dynamicToString) String? title,
+            @JsonKey(fromJson: _dynamicToString) String? summary,
+            @JsonKey(fromJson: _dynamicToString) String? date,
+            @JsonKey(name: 'visitor_count', fromJson: _dynamicToString)
             String? visitor_count,
             @JsonKey(fromJson: _stringToBool) bool? is_new,
-            String? priority,
-            String? file,
-            String? format,
+            @JsonKey(fromJson: _dynamicToString) String? priority,
+            @JsonKey(fromJson: _dynamicToString) String? file,
+            @JsonKey(fromJson: _dynamicToString) String? format,
+            @JsonKey(name: 'publisher_id', fromJson: _dynamicToString)
             String? publisher_id,
-            @JsonKey(name: 'book_file_url') String? bookFileUrl,
-            @JsonKey(name: 'book_file_epub_url') String? bookFileEpubUrl,
-            @JsonKey(name: 'book_file_kfx_url') String? bookFileKfxUrl,
-            @JsonKey(name: 'book_pic_url') String? bookPicUrl)?
+            @JsonKey(name: 'book_file_url', fromJson: _dynamicToString)
+            String? bookFileUrl,
+            @JsonKey(name: 'book_file_epub_url', fromJson: _dynamicToString)
+            String? bookFileEpubUrl,
+            @JsonKey(name: 'book_file_kfx_url', fromJson: _dynamicToString)
+            String? bookFileKfxUrl,
+            @JsonKey(name: 'book_pic_url', fromJson: _dynamicToString)
+            String? bookPicUrl)?
         $default, {
     required TResult orElse(),
   }) {
@@ -1777,19 +1814,25 @@ extension BookItemPatterns on BookItem {
   TResult when<TResult extends Object?>(
     TResult Function(
             @JsonKey(fromJson: _stringToInt) int? id,
-            String? title,
-            String? summary,
-            String? date,
+            @JsonKey(fromJson: _dynamicToString) String? title,
+            @JsonKey(fromJson: _dynamicToString) String? summary,
+            @JsonKey(fromJson: _dynamicToString) String? date,
+            @JsonKey(name: 'visitor_count', fromJson: _dynamicToString)
             String? visitor_count,
             @JsonKey(fromJson: _stringToBool) bool? is_new,
-            String? priority,
-            String? file,
-            String? format,
+            @JsonKey(fromJson: _dynamicToString) String? priority,
+            @JsonKey(fromJson: _dynamicToString) String? file,
+            @JsonKey(fromJson: _dynamicToString) String? format,
+            @JsonKey(name: 'publisher_id', fromJson: _dynamicToString)
             String? publisher_id,
-            @JsonKey(name: 'book_file_url') String? bookFileUrl,
-            @JsonKey(name: 'book_file_epub_url') String? bookFileEpubUrl,
-            @JsonKey(name: 'book_file_kfx_url') String? bookFileKfxUrl,
-            @JsonKey(name: 'book_pic_url') String? bookPicUrl)
+            @JsonKey(name: 'book_file_url', fromJson: _dynamicToString)
+            String? bookFileUrl,
+            @JsonKey(name: 'book_file_epub_url', fromJson: _dynamicToString)
+            String? bookFileEpubUrl,
+            @JsonKey(name: 'book_file_kfx_url', fromJson: _dynamicToString)
+            String? bookFileKfxUrl,
+            @JsonKey(name: 'book_pic_url', fromJson: _dynamicToString)
+            String? bookPicUrl)
         $default,
   ) {
     final _that = this;
@@ -1831,19 +1874,25 @@ extension BookItemPatterns on BookItem {
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
             @JsonKey(fromJson: _stringToInt) int? id,
-            String? title,
-            String? summary,
-            String? date,
+            @JsonKey(fromJson: _dynamicToString) String? title,
+            @JsonKey(fromJson: _dynamicToString) String? summary,
+            @JsonKey(fromJson: _dynamicToString) String? date,
+            @JsonKey(name: 'visitor_count', fromJson: _dynamicToString)
             String? visitor_count,
             @JsonKey(fromJson: _stringToBool) bool? is_new,
-            String? priority,
-            String? file,
-            String? format,
+            @JsonKey(fromJson: _dynamicToString) String? priority,
+            @JsonKey(fromJson: _dynamicToString) String? file,
+            @JsonKey(fromJson: _dynamicToString) String? format,
+            @JsonKey(name: 'publisher_id', fromJson: _dynamicToString)
             String? publisher_id,
-            @JsonKey(name: 'book_file_url') String? bookFileUrl,
-            @JsonKey(name: 'book_file_epub_url') String? bookFileEpubUrl,
-            @JsonKey(name: 'book_file_kfx_url') String? bookFileKfxUrl,
-            @JsonKey(name: 'book_pic_url') String? bookPicUrl)?
+            @JsonKey(name: 'book_file_url', fromJson: _dynamicToString)
+            String? bookFileUrl,
+            @JsonKey(name: 'book_file_epub_url', fromJson: _dynamicToString)
+            String? bookFileEpubUrl,
+            @JsonKey(name: 'book_file_kfx_url', fromJson: _dynamicToString)
+            String? bookFileKfxUrl,
+            @JsonKey(name: 'book_pic_url', fromJson: _dynamicToString)
+            String? bookPicUrl)?
         $default,
   ) {
     final _that = this;
@@ -1875,19 +1924,25 @@ extension BookItemPatterns on BookItem {
 class _BookItem implements BookItem {
   const _BookItem(
       {@JsonKey(fromJson: _stringToInt) this.id,
-      this.title,
-      this.summary,
-      this.date,
+      @JsonKey(fromJson: _dynamicToString) this.title,
+      @JsonKey(fromJson: _dynamicToString) this.summary,
+      @JsonKey(fromJson: _dynamicToString) this.date,
+      @JsonKey(name: 'visitor_count', fromJson: _dynamicToString)
       this.visitor_count,
       @JsonKey(fromJson: _stringToBool) this.is_new,
-      this.priority,
-      this.file,
-      this.format,
+      @JsonKey(fromJson: _dynamicToString) this.priority,
+      @JsonKey(fromJson: _dynamicToString) this.file,
+      @JsonKey(fromJson: _dynamicToString) this.format,
+      @JsonKey(name: 'publisher_id', fromJson: _dynamicToString)
       this.publisher_id,
-      @JsonKey(name: 'book_file_url') this.bookFileUrl,
-      @JsonKey(name: 'book_file_epub_url') this.bookFileEpubUrl,
-      @JsonKey(name: 'book_file_kfx_url') this.bookFileKfxUrl,
-      @JsonKey(name: 'book_pic_url') this.bookPicUrl});
+      @JsonKey(name: 'book_file_url', fromJson: _dynamicToString)
+      this.bookFileUrl,
+      @JsonKey(name: 'book_file_epub_url', fromJson: _dynamicToString)
+      this.bookFileEpubUrl,
+      @JsonKey(name: 'book_file_kfx_url', fromJson: _dynamicToString)
+      this.bookFileKfxUrl,
+      @JsonKey(name: 'book_pic_url', fromJson: _dynamicToString)
+      this.bookPicUrl});
   factory _BookItem.fromJson(Map<String, dynamic> json) =>
       _$BookItemFromJson(json);
 
@@ -1895,35 +1950,43 @@ class _BookItem implements BookItem {
   @JsonKey(fromJson: _stringToInt)
   final int? id;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? title;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? summary;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? date;
   @override
+  @JsonKey(name: 'visitor_count', fromJson: _dynamicToString)
   final String? visitor_count;
   @override
   @JsonKey(fromJson: _stringToBool)
   final bool? is_new;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? priority;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? file;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? format;
   @override
+  @JsonKey(name: 'publisher_id', fromJson: _dynamicToString)
   final String? publisher_id;
   @override
-  @JsonKey(name: 'book_file_url')
+  @JsonKey(name: 'book_file_url', fromJson: _dynamicToString)
   final String? bookFileUrl;
   @override
-  @JsonKey(name: 'book_file_epub_url')
+  @JsonKey(name: 'book_file_epub_url', fromJson: _dynamicToString)
   final String? bookFileEpubUrl;
   @override
-  @JsonKey(name: 'book_file_kfx_url')
+  @JsonKey(name: 'book_file_kfx_url', fromJson: _dynamicToString)
   final String? bookFileKfxUrl;
   @override
-  @JsonKey(name: 'book_pic_url')
+  @JsonKey(name: 'book_pic_url', fromJson: _dynamicToString)
   final String? bookPicUrl;
 
   /// Create a copy of BookItem
@@ -2003,19 +2066,25 @@ abstract mixin class _$BookItemCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(fromJson: _stringToInt) int? id,
-      String? title,
-      String? summary,
-      String? date,
+      @JsonKey(fromJson: _dynamicToString) String? title,
+      @JsonKey(fromJson: _dynamicToString) String? summary,
+      @JsonKey(fromJson: _dynamicToString) String? date,
+      @JsonKey(name: 'visitor_count', fromJson: _dynamicToString)
       String? visitor_count,
       @JsonKey(fromJson: _stringToBool) bool? is_new,
-      String? priority,
-      String? file,
-      String? format,
+      @JsonKey(fromJson: _dynamicToString) String? priority,
+      @JsonKey(fromJson: _dynamicToString) String? file,
+      @JsonKey(fromJson: _dynamicToString) String? format,
+      @JsonKey(name: 'publisher_id', fromJson: _dynamicToString)
       String? publisher_id,
-      @JsonKey(name: 'book_file_url') String? bookFileUrl,
-      @JsonKey(name: 'book_file_epub_url') String? bookFileEpubUrl,
-      @JsonKey(name: 'book_file_kfx_url') String? bookFileKfxUrl,
-      @JsonKey(name: 'book_pic_url') String? bookPicUrl});
+      @JsonKey(name: 'book_file_url', fromJson: _dynamicToString)
+      String? bookFileUrl,
+      @JsonKey(name: 'book_file_epub_url', fromJson: _dynamicToString)
+      String? bookFileEpubUrl,
+      @JsonKey(name: 'book_file_kfx_url', fromJson: _dynamicToString)
+      String? bookFileKfxUrl,
+      @JsonKey(name: 'book_pic_url', fromJson: _dynamicToString)
+      String? bookPicUrl});
 }
 
 /// @nodoc
@@ -2668,13 +2737,21 @@ class __$BookPaginationDataCopyWithImpl<$Res>
 mixin _$BookPageInfo {
   @JsonKey(fromJson: _stringToInt)
   int? get id;
+  @JsonKey(fromJson: _dynamicToString)
   String? get title;
+  @JsonKey(fromJson: _dynamicToString)
   String? get content;
+  @JsonKey(fromJson: _dynamicToString)
   String? get language;
+  @JsonKey(name: 'visitor_count', fromJson: _dynamicToString)
   String? get visitor_count;
+  @JsonKey(fromJson: _dynamicToString)
   String? get priority;
+  @JsonKey(fromJson: _dynamicToString)
   String? get date;
+  @JsonKey(name: 'menu_id', fromJson: _dynamicToString)
   String? get menu_id;
+  @JsonKey(fromJson: _dynamicToString)
   String? get type;
 
   /// Create a copy of BookPageInfo
@@ -2726,14 +2803,15 @@ abstract mixin class $BookPageInfoCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(fromJson: _stringToInt) int? id,
-      String? title,
-      String? content,
-      String? language,
+      @JsonKey(fromJson: _dynamicToString) String? title,
+      @JsonKey(fromJson: _dynamicToString) String? content,
+      @JsonKey(fromJson: _dynamicToString) String? language,
+      @JsonKey(name: 'visitor_count', fromJson: _dynamicToString)
       String? visitor_count,
-      String? priority,
-      String? date,
-      String? menu_id,
-      String? type});
+      @JsonKey(fromJson: _dynamicToString) String? priority,
+      @JsonKey(fromJson: _dynamicToString) String? date,
+      @JsonKey(name: 'menu_id', fromJson: _dynamicToString) String? menu_id,
+      @JsonKey(fromJson: _dynamicToString) String? type});
 }
 
 /// @nodoc
@@ -2894,14 +2972,16 @@ extension BookPageInfoPatterns on BookPageInfo {
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
             @JsonKey(fromJson: _stringToInt) int? id,
-            String? title,
-            String? content,
-            String? language,
+            @JsonKey(fromJson: _dynamicToString) String? title,
+            @JsonKey(fromJson: _dynamicToString) String? content,
+            @JsonKey(fromJson: _dynamicToString) String? language,
+            @JsonKey(name: 'visitor_count', fromJson: _dynamicToString)
             String? visitor_count,
-            String? priority,
-            String? date,
+            @JsonKey(fromJson: _dynamicToString) String? priority,
+            @JsonKey(fromJson: _dynamicToString) String? date,
+            @JsonKey(name: 'menu_id', fromJson: _dynamicToString)
             String? menu_id,
-            String? type)?
+            @JsonKey(fromJson: _dynamicToString) String? type)?
         $default, {
     required TResult orElse(),
   }) {
@@ -2940,14 +3020,16 @@ extension BookPageInfoPatterns on BookPageInfo {
   TResult when<TResult extends Object?>(
     TResult Function(
             @JsonKey(fromJson: _stringToInt) int? id,
-            String? title,
-            String? content,
-            String? language,
+            @JsonKey(fromJson: _dynamicToString) String? title,
+            @JsonKey(fromJson: _dynamicToString) String? content,
+            @JsonKey(fromJson: _dynamicToString) String? language,
+            @JsonKey(name: 'visitor_count', fromJson: _dynamicToString)
             String? visitor_count,
-            String? priority,
-            String? date,
+            @JsonKey(fromJson: _dynamicToString) String? priority,
+            @JsonKey(fromJson: _dynamicToString) String? date,
+            @JsonKey(name: 'menu_id', fromJson: _dynamicToString)
             String? menu_id,
-            String? type)
+            @JsonKey(fromJson: _dynamicToString) String? type)
         $default,
   ) {
     final _that = this;
@@ -2984,14 +3066,16 @@ extension BookPageInfoPatterns on BookPageInfo {
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
             @JsonKey(fromJson: _stringToInt) int? id,
-            String? title,
-            String? content,
-            String? language,
+            @JsonKey(fromJson: _dynamicToString) String? title,
+            @JsonKey(fromJson: _dynamicToString) String? content,
+            @JsonKey(fromJson: _dynamicToString) String? language,
+            @JsonKey(name: 'visitor_count', fromJson: _dynamicToString)
             String? visitor_count,
-            String? priority,
-            String? date,
+            @JsonKey(fromJson: _dynamicToString) String? priority,
+            @JsonKey(fromJson: _dynamicToString) String? date,
+            @JsonKey(name: 'menu_id', fromJson: _dynamicToString)
             String? menu_id,
-            String? type)?
+            @JsonKey(fromJson: _dynamicToString) String? type)?
         $default,
   ) {
     final _that = this;
@@ -3018,14 +3102,15 @@ extension BookPageInfoPatterns on BookPageInfo {
 class _BookPageInfo implements BookPageInfo {
   const _BookPageInfo(
       {@JsonKey(fromJson: _stringToInt) this.id,
-      this.title,
-      this.content,
-      this.language,
+      @JsonKey(fromJson: _dynamicToString) this.title,
+      @JsonKey(fromJson: _dynamicToString) this.content,
+      @JsonKey(fromJson: _dynamicToString) this.language,
+      @JsonKey(name: 'visitor_count', fromJson: _dynamicToString)
       this.visitor_count,
-      this.priority,
-      this.date,
-      this.menu_id,
-      this.type});
+      @JsonKey(fromJson: _dynamicToString) this.priority,
+      @JsonKey(fromJson: _dynamicToString) this.date,
+      @JsonKey(name: 'menu_id', fromJson: _dynamicToString) this.menu_id,
+      @JsonKey(fromJson: _dynamicToString) this.type});
   factory _BookPageInfo.fromJson(Map<String, dynamic> json) =>
       _$BookPageInfoFromJson(json);
 
@@ -3033,20 +3118,28 @@ class _BookPageInfo implements BookPageInfo {
   @JsonKey(fromJson: _stringToInt)
   final int? id;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? title;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? content;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? language;
   @override
+  @JsonKey(name: 'visitor_count', fromJson: _dynamicToString)
   final String? visitor_count;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? priority;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? date;
   @override
+  @JsonKey(name: 'menu_id', fromJson: _dynamicToString)
   final String? menu_id;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? type;
 
   /// Create a copy of BookPageInfo
@@ -3104,14 +3197,15 @@ abstract mixin class _$BookPageInfoCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(fromJson: _stringToInt) int? id,
-      String? title,
-      String? content,
-      String? language,
+      @JsonKey(fromJson: _dynamicToString) String? title,
+      @JsonKey(fromJson: _dynamicToString) String? content,
+      @JsonKey(fromJson: _dynamicToString) String? language,
+      @JsonKey(name: 'visitor_count', fromJson: _dynamicToString)
       String? visitor_count,
-      String? priority,
-      String? date,
-      String? menu_id,
-      String? type});
+      @JsonKey(fromJson: _dynamicToString) String? priority,
+      @JsonKey(fromJson: _dynamicToString) String? date,
+      @JsonKey(name: 'menu_id', fromJson: _dynamicToString) String? menu_id,
+      @JsonKey(fromJson: _dynamicToString) String? type});
 }
 
 /// @nodoc
@@ -3549,25 +3643,25 @@ class __$BookDetailResponseCopyWithImpl<$Res>
 mixin _$BookDetailData {
   @JsonKey(name: 'book_id', fromJson: _stringToInt)
   int? get bookId;
-  @JsonKey(name: 'book_cat_id')
+  @JsonKey(name: 'book_cat_id', fromJson: _dynamicToString)
   String? get bookCatId;
-  @JsonKey(name: 'book_title')
+  @JsonKey(name: 'book_title', fromJson: _dynamicToString)
   String? get bookTitle;
-  @JsonKey(name: 'book_ts')
+  @JsonKey(name: 'book_ts', fromJson: _dynamicToString)
   String? get bookTs;
-  @JsonKey(name: 'book_summary')
+  @JsonKey(name: 'book_summary', fromJson: _dynamicToString)
   String? get bookSummary;
-  @JsonKey(name: 'book_des')
+  @JsonKey(name: 'book_des', fromJson: _dynamicToString)
   String? get bookDes;
-  @JsonKey(name: 'book_pic')
+  @JsonKey(name: 'book_pic', fromJson: _dynamicToString)
   String? get bookPic;
-  @JsonKey(name: 'book_pic_pos')
+  @JsonKey(name: 'book_pic_pos', fromJson: _dynamicToString)
   String? get bookPicPos;
   @JsonKey(name: 'book_visitor', fromJson: _stringToInt)
   int? get bookVisitor;
   @JsonKey(name: 'book_is_new', fromJson: _stringToBool)
   bool? get bookIsNew;
-  @JsonKey(name: 'book_priority')
+  @JsonKey(name: 'book_priority', fromJson: _dynamicToString)
   String? get bookPriority;
   @JsonKey(name: 'book_active_vote', fromJson: _stringToBool)
   bool? get bookActiveVote;
@@ -3575,35 +3669,35 @@ mixin _$BookDetailData {
   bool? get bookActiveHint;
   @JsonKey(name: 'book_active', fromJson: _stringToBool)
   bool? get bookActive;
-  @JsonKey(name: 'book_date')
+  @JsonKey(name: 'book_date', fromJson: _dynamicToString)
   String? get bookDate;
   @JsonKey(name: 'book_pic_active', fromJson: _stringToBool)
   bool? get bookPicActive;
   @JsonKey(name: 'book_last_book', fromJson: _stringToBool)
   bool? get bookLastBook;
-  @JsonKey(name: 'book_publisher_id')
+  @JsonKey(name: 'book_publisher_id', fromJson: _dynamicToString)
   String? get bookPublisherId;
-  @JsonKey(name: 'book_source')
+  @JsonKey(name: 'book_source', fromJson: _dynamicToString)
   String? get bookSource;
-  @JsonKey(name: 'book_source_url')
+  @JsonKey(name: 'book_source_url', fromJson: _dynamicToString)
   String? get bookSourceUrl;
-  @JsonKey(name: 'book_youtube_id')
+  @JsonKey(name: 'book_youtube_id', fromJson: _dynamicToString)
   String? get bookYoutubeId;
-  @JsonKey(name: 'book_file')
+  @JsonKey(name: 'book_file', fromJson: _dynamicToString)
   String? get bookFile;
-  @JsonKey(name: 'book_file_ePub')
+  @JsonKey(name: 'book_file_ePub', fromJson: _dynamicToString)
   String? get bookFileEPub;
-  @JsonKey(name: 'book_file_kfx')
+  @JsonKey(name: 'book_file_kfx', fromJson: _dynamicToString)
   String? get bookFileKfx;
   @JsonKey(name: 'book_user_add_hint_nsup', fromJson: _stringToBool)
   bool? get bookUserAddHintNsup;
-  @JsonKey(name: 'book_file_url')
+  @JsonKey(name: 'book_file_url', fromJson: _dynamicToString)
   String? get bookFileUrl;
-  @JsonKey(name: 'book_file_epub_url')
+  @JsonKey(name: 'book_file_epub_url', fromJson: _dynamicToString)
   String? get bookFileEpubUrl;
-  @JsonKey(name: 'book_file_kfx_url')
+  @JsonKey(name: 'book_file_kfx_url', fromJson: _dynamicToString)
   String? get bookFileKfxUrl;
-  @JsonKey(name: 'book_pic_url')
+  @JsonKey(name: 'book_pic_url', fromJson: _dynamicToString)
   String? get bookPicUrl;
   BookDetailCategory? get category;
 
@@ -3731,39 +3825,54 @@ abstract mixin class $BookDetailDataCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'book_id', fromJson: _stringToInt) int? bookId,
-      @JsonKey(name: 'book_cat_id') String? bookCatId,
-      @JsonKey(name: 'book_title') String? bookTitle,
-      @JsonKey(name: 'book_ts') String? bookTs,
-      @JsonKey(name: 'book_summary') String? bookSummary,
-      @JsonKey(name: 'book_des') String? bookDes,
-      @JsonKey(name: 'book_pic') String? bookPic,
-      @JsonKey(name: 'book_pic_pos') String? bookPicPos,
+      @JsonKey(name: 'book_cat_id', fromJson: _dynamicToString)
+      String? bookCatId,
+      @JsonKey(name: 'book_title', fromJson: _dynamicToString)
+      String? bookTitle,
+      @JsonKey(name: 'book_ts', fromJson: _dynamicToString) String? bookTs,
+      @JsonKey(name: 'book_summary', fromJson: _dynamicToString)
+      String? bookSummary,
+      @JsonKey(name: 'book_des', fromJson: _dynamicToString) String? bookDes,
+      @JsonKey(name: 'book_pic', fromJson: _dynamicToString) String? bookPic,
+      @JsonKey(name: 'book_pic_pos', fromJson: _dynamicToString)
+      String? bookPicPos,
       @JsonKey(name: 'book_visitor', fromJson: _stringToInt) int? bookVisitor,
       @JsonKey(name: 'book_is_new', fromJson: _stringToBool) bool? bookIsNew,
-      @JsonKey(name: 'book_priority') String? bookPriority,
+      @JsonKey(name: 'book_priority', fromJson: _dynamicToString)
+      String? bookPriority,
       @JsonKey(name: 'book_active_vote', fromJson: _stringToBool)
       bool? bookActiveVote,
       @JsonKey(name: 'book_active_hint', fromJson: _stringToBool)
       bool? bookActiveHint,
       @JsonKey(name: 'book_active', fromJson: _stringToBool) bool? bookActive,
-      @JsonKey(name: 'book_date') String? bookDate,
+      @JsonKey(name: 'book_date', fromJson: _dynamicToString) String? bookDate,
       @JsonKey(name: 'book_pic_active', fromJson: _stringToBool)
       bool? bookPicActive,
       @JsonKey(name: 'book_last_book', fromJson: _stringToBool)
       bool? bookLastBook,
-      @JsonKey(name: 'book_publisher_id') String? bookPublisherId,
-      @JsonKey(name: 'book_source') String? bookSource,
-      @JsonKey(name: 'book_source_url') String? bookSourceUrl,
-      @JsonKey(name: 'book_youtube_id') String? bookYoutubeId,
-      @JsonKey(name: 'book_file') String? bookFile,
-      @JsonKey(name: 'book_file_ePub') String? bookFileEPub,
-      @JsonKey(name: 'book_file_kfx') String? bookFileKfx,
+      @JsonKey(name: 'book_publisher_id', fromJson: _dynamicToString)
+      String? bookPublisherId,
+      @JsonKey(name: 'book_source', fromJson: _dynamicToString)
+      String? bookSource,
+      @JsonKey(name: 'book_source_url', fromJson: _dynamicToString)
+      String? bookSourceUrl,
+      @JsonKey(name: 'book_youtube_id', fromJson: _dynamicToString)
+      String? bookYoutubeId,
+      @JsonKey(name: 'book_file', fromJson: _dynamicToString) String? bookFile,
+      @JsonKey(name: 'book_file_ePub', fromJson: _dynamicToString)
+      String? bookFileEPub,
+      @JsonKey(name: 'book_file_kfx', fromJson: _dynamicToString)
+      String? bookFileKfx,
       @JsonKey(name: 'book_user_add_hint_nsup', fromJson: _stringToBool)
       bool? bookUserAddHintNsup,
-      @JsonKey(name: 'book_file_url') String? bookFileUrl,
-      @JsonKey(name: 'book_file_epub_url') String? bookFileEpubUrl,
-      @JsonKey(name: 'book_file_kfx_url') String? bookFileKfxUrl,
-      @JsonKey(name: 'book_pic_url') String? bookPicUrl,
+      @JsonKey(name: 'book_file_url', fromJson: _dynamicToString)
+      String? bookFileUrl,
+      @JsonKey(name: 'book_file_epub_url', fromJson: _dynamicToString)
+      String? bookFileEpubUrl,
+      @JsonKey(name: 'book_file_kfx_url', fromJson: _dynamicToString)
+      String? bookFileKfxUrl,
+      @JsonKey(name: 'book_pic_url', fromJson: _dynamicToString)
+      String? bookPicUrl,
       BookDetailCategory? category});
 
   $BookDetailCategoryCopyWith<$Res>? get category;
@@ -4047,42 +4156,62 @@ extension BookDetailDataPatterns on BookDetailData {
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
             @JsonKey(name: 'book_id', fromJson: _stringToInt) int? bookId,
-            @JsonKey(name: 'book_cat_id') String? bookCatId,
-            @JsonKey(name: 'book_title') String? bookTitle,
-            @JsonKey(name: 'book_ts') String? bookTs,
-            @JsonKey(name: 'book_summary') String? bookSummary,
-            @JsonKey(name: 'book_des') String? bookDes,
-            @JsonKey(name: 'book_pic') String? bookPic,
-            @JsonKey(name: 'book_pic_pos') String? bookPicPos,
+            @JsonKey(name: 'book_cat_id', fromJson: _dynamicToString)
+            String? bookCatId,
+            @JsonKey(name: 'book_title', fromJson: _dynamicToString)
+            String? bookTitle,
+            @JsonKey(name: 'book_ts', fromJson: _dynamicToString)
+            String? bookTs,
+            @JsonKey(name: 'book_summary', fromJson: _dynamicToString)
+            String? bookSummary,
+            @JsonKey(name: 'book_des', fromJson: _dynamicToString)
+            String? bookDes,
+            @JsonKey(name: 'book_pic', fromJson: _dynamicToString)
+            String? bookPic,
+            @JsonKey(name: 'book_pic_pos', fromJson: _dynamicToString)
+            String? bookPicPos,
             @JsonKey(name: 'book_visitor', fromJson: _stringToInt)
             int? bookVisitor,
             @JsonKey(name: 'book_is_new', fromJson: _stringToBool)
             bool? bookIsNew,
-            @JsonKey(name: 'book_priority') String? bookPriority,
+            @JsonKey(name: 'book_priority', fromJson: _dynamicToString)
+            String? bookPriority,
             @JsonKey(name: 'book_active_vote', fromJson: _stringToBool)
             bool? bookActiveVote,
             @JsonKey(name: 'book_active_hint', fromJson: _stringToBool)
             bool? bookActiveHint,
             @JsonKey(name: 'book_active', fromJson: _stringToBool)
             bool? bookActive,
-            @JsonKey(name: 'book_date') String? bookDate,
+            @JsonKey(name: 'book_date', fromJson: _dynamicToString)
+            String? bookDate,
             @JsonKey(name: 'book_pic_active', fromJson: _stringToBool)
             bool? bookPicActive,
             @JsonKey(name: 'book_last_book', fromJson: _stringToBool)
             bool? bookLastBook,
-            @JsonKey(name: 'book_publisher_id') String? bookPublisherId,
-            @JsonKey(name: 'book_source') String? bookSource,
-            @JsonKey(name: 'book_source_url') String? bookSourceUrl,
-            @JsonKey(name: 'book_youtube_id') String? bookYoutubeId,
-            @JsonKey(name: 'book_file') String? bookFile,
-            @JsonKey(name: 'book_file_ePub') String? bookFileEPub,
-            @JsonKey(name: 'book_file_kfx') String? bookFileKfx,
+            @JsonKey(name: 'book_publisher_id', fromJson: _dynamicToString)
+            String? bookPublisherId,
+            @JsonKey(name: 'book_source', fromJson: _dynamicToString)
+            String? bookSource,
+            @JsonKey(name: 'book_source_url', fromJson: _dynamicToString)
+            String? bookSourceUrl,
+            @JsonKey(name: 'book_youtube_id', fromJson: _dynamicToString)
+            String? bookYoutubeId,
+            @JsonKey(name: 'book_file', fromJson: _dynamicToString)
+            String? bookFile,
+            @JsonKey(name: 'book_file_ePub', fromJson: _dynamicToString)
+            String? bookFileEPub,
+            @JsonKey(name: 'book_file_kfx', fromJson: _dynamicToString)
+            String? bookFileKfx,
             @JsonKey(name: 'book_user_add_hint_nsup', fromJson: _stringToBool)
             bool? bookUserAddHintNsup,
-            @JsonKey(name: 'book_file_url') String? bookFileUrl,
-            @JsonKey(name: 'book_file_epub_url') String? bookFileEpubUrl,
-            @JsonKey(name: 'book_file_kfx_url') String? bookFileKfxUrl,
-            @JsonKey(name: 'book_pic_url') String? bookPicUrl,
+            @JsonKey(name: 'book_file_url', fromJson: _dynamicToString)
+            String? bookFileUrl,
+            @JsonKey(name: 'book_file_epub_url', fromJson: _dynamicToString)
+            String? bookFileEpubUrl,
+            @JsonKey(name: 'book_file_kfx_url', fromJson: _dynamicToString)
+            String? bookFileKfxUrl,
+            @JsonKey(name: 'book_pic_url', fromJson: _dynamicToString)
+            String? bookPicUrl,
             BookDetailCategory? category)?
         $default, {
     required TResult orElse(),
@@ -4143,42 +4272,62 @@ extension BookDetailDataPatterns on BookDetailData {
   TResult when<TResult extends Object?>(
     TResult Function(
             @JsonKey(name: 'book_id', fromJson: _stringToInt) int? bookId,
-            @JsonKey(name: 'book_cat_id') String? bookCatId,
-            @JsonKey(name: 'book_title') String? bookTitle,
-            @JsonKey(name: 'book_ts') String? bookTs,
-            @JsonKey(name: 'book_summary') String? bookSummary,
-            @JsonKey(name: 'book_des') String? bookDes,
-            @JsonKey(name: 'book_pic') String? bookPic,
-            @JsonKey(name: 'book_pic_pos') String? bookPicPos,
+            @JsonKey(name: 'book_cat_id', fromJson: _dynamicToString)
+            String? bookCatId,
+            @JsonKey(name: 'book_title', fromJson: _dynamicToString)
+            String? bookTitle,
+            @JsonKey(name: 'book_ts', fromJson: _dynamicToString)
+            String? bookTs,
+            @JsonKey(name: 'book_summary', fromJson: _dynamicToString)
+            String? bookSummary,
+            @JsonKey(name: 'book_des', fromJson: _dynamicToString)
+            String? bookDes,
+            @JsonKey(name: 'book_pic', fromJson: _dynamicToString)
+            String? bookPic,
+            @JsonKey(name: 'book_pic_pos', fromJson: _dynamicToString)
+            String? bookPicPos,
             @JsonKey(name: 'book_visitor', fromJson: _stringToInt)
             int? bookVisitor,
             @JsonKey(name: 'book_is_new', fromJson: _stringToBool)
             bool? bookIsNew,
-            @JsonKey(name: 'book_priority') String? bookPriority,
+            @JsonKey(name: 'book_priority', fromJson: _dynamicToString)
+            String? bookPriority,
             @JsonKey(name: 'book_active_vote', fromJson: _stringToBool)
             bool? bookActiveVote,
             @JsonKey(name: 'book_active_hint', fromJson: _stringToBool)
             bool? bookActiveHint,
             @JsonKey(name: 'book_active', fromJson: _stringToBool)
             bool? bookActive,
-            @JsonKey(name: 'book_date') String? bookDate,
+            @JsonKey(name: 'book_date', fromJson: _dynamicToString)
+            String? bookDate,
             @JsonKey(name: 'book_pic_active', fromJson: _stringToBool)
             bool? bookPicActive,
             @JsonKey(name: 'book_last_book', fromJson: _stringToBool)
             bool? bookLastBook,
-            @JsonKey(name: 'book_publisher_id') String? bookPublisherId,
-            @JsonKey(name: 'book_source') String? bookSource,
-            @JsonKey(name: 'book_source_url') String? bookSourceUrl,
-            @JsonKey(name: 'book_youtube_id') String? bookYoutubeId,
-            @JsonKey(name: 'book_file') String? bookFile,
-            @JsonKey(name: 'book_file_ePub') String? bookFileEPub,
-            @JsonKey(name: 'book_file_kfx') String? bookFileKfx,
+            @JsonKey(name: 'book_publisher_id', fromJson: _dynamicToString)
+            String? bookPublisherId,
+            @JsonKey(name: 'book_source', fromJson: _dynamicToString)
+            String? bookSource,
+            @JsonKey(name: 'book_source_url', fromJson: _dynamicToString)
+            String? bookSourceUrl,
+            @JsonKey(name: 'book_youtube_id', fromJson: _dynamicToString)
+            String? bookYoutubeId,
+            @JsonKey(name: 'book_file', fromJson: _dynamicToString)
+            String? bookFile,
+            @JsonKey(name: 'book_file_ePub', fromJson: _dynamicToString)
+            String? bookFileEPub,
+            @JsonKey(name: 'book_file_kfx', fromJson: _dynamicToString)
+            String? bookFileKfx,
             @JsonKey(name: 'book_user_add_hint_nsup', fromJson: _stringToBool)
             bool? bookUserAddHintNsup,
-            @JsonKey(name: 'book_file_url') String? bookFileUrl,
-            @JsonKey(name: 'book_file_epub_url') String? bookFileEpubUrl,
-            @JsonKey(name: 'book_file_kfx_url') String? bookFileKfxUrl,
-            @JsonKey(name: 'book_pic_url') String? bookPicUrl,
+            @JsonKey(name: 'book_file_url', fromJson: _dynamicToString)
+            String? bookFileUrl,
+            @JsonKey(name: 'book_file_epub_url', fromJson: _dynamicToString)
+            String? bookFileEpubUrl,
+            @JsonKey(name: 'book_file_kfx_url', fromJson: _dynamicToString)
+            String? bookFileKfxUrl,
+            @JsonKey(name: 'book_pic_url', fromJson: _dynamicToString)
+            String? bookPicUrl,
             BookDetailCategory? category)
         $default,
   ) {
@@ -4237,42 +4386,62 @@ extension BookDetailDataPatterns on BookDetailData {
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
             @JsonKey(name: 'book_id', fromJson: _stringToInt) int? bookId,
-            @JsonKey(name: 'book_cat_id') String? bookCatId,
-            @JsonKey(name: 'book_title') String? bookTitle,
-            @JsonKey(name: 'book_ts') String? bookTs,
-            @JsonKey(name: 'book_summary') String? bookSummary,
-            @JsonKey(name: 'book_des') String? bookDes,
-            @JsonKey(name: 'book_pic') String? bookPic,
-            @JsonKey(name: 'book_pic_pos') String? bookPicPos,
+            @JsonKey(name: 'book_cat_id', fromJson: _dynamicToString)
+            String? bookCatId,
+            @JsonKey(name: 'book_title', fromJson: _dynamicToString)
+            String? bookTitle,
+            @JsonKey(name: 'book_ts', fromJson: _dynamicToString)
+            String? bookTs,
+            @JsonKey(name: 'book_summary', fromJson: _dynamicToString)
+            String? bookSummary,
+            @JsonKey(name: 'book_des', fromJson: _dynamicToString)
+            String? bookDes,
+            @JsonKey(name: 'book_pic', fromJson: _dynamicToString)
+            String? bookPic,
+            @JsonKey(name: 'book_pic_pos', fromJson: _dynamicToString)
+            String? bookPicPos,
             @JsonKey(name: 'book_visitor', fromJson: _stringToInt)
             int? bookVisitor,
             @JsonKey(name: 'book_is_new', fromJson: _stringToBool)
             bool? bookIsNew,
-            @JsonKey(name: 'book_priority') String? bookPriority,
+            @JsonKey(name: 'book_priority', fromJson: _dynamicToString)
+            String? bookPriority,
             @JsonKey(name: 'book_active_vote', fromJson: _stringToBool)
             bool? bookActiveVote,
             @JsonKey(name: 'book_active_hint', fromJson: _stringToBool)
             bool? bookActiveHint,
             @JsonKey(name: 'book_active', fromJson: _stringToBool)
             bool? bookActive,
-            @JsonKey(name: 'book_date') String? bookDate,
+            @JsonKey(name: 'book_date', fromJson: _dynamicToString)
+            String? bookDate,
             @JsonKey(name: 'book_pic_active', fromJson: _stringToBool)
             bool? bookPicActive,
             @JsonKey(name: 'book_last_book', fromJson: _stringToBool)
             bool? bookLastBook,
-            @JsonKey(name: 'book_publisher_id') String? bookPublisherId,
-            @JsonKey(name: 'book_source') String? bookSource,
-            @JsonKey(name: 'book_source_url') String? bookSourceUrl,
-            @JsonKey(name: 'book_youtube_id') String? bookYoutubeId,
-            @JsonKey(name: 'book_file') String? bookFile,
-            @JsonKey(name: 'book_file_ePub') String? bookFileEPub,
-            @JsonKey(name: 'book_file_kfx') String? bookFileKfx,
+            @JsonKey(name: 'book_publisher_id', fromJson: _dynamicToString)
+            String? bookPublisherId,
+            @JsonKey(name: 'book_source', fromJson: _dynamicToString)
+            String? bookSource,
+            @JsonKey(name: 'book_source_url', fromJson: _dynamicToString)
+            String? bookSourceUrl,
+            @JsonKey(name: 'book_youtube_id', fromJson: _dynamicToString)
+            String? bookYoutubeId,
+            @JsonKey(name: 'book_file', fromJson: _dynamicToString)
+            String? bookFile,
+            @JsonKey(name: 'book_file_ePub', fromJson: _dynamicToString)
+            String? bookFileEPub,
+            @JsonKey(name: 'book_file_kfx', fromJson: _dynamicToString)
+            String? bookFileKfx,
             @JsonKey(name: 'book_user_add_hint_nsup', fromJson: _stringToBool)
             bool? bookUserAddHintNsup,
-            @JsonKey(name: 'book_file_url') String? bookFileUrl,
-            @JsonKey(name: 'book_file_epub_url') String? bookFileEpubUrl,
-            @JsonKey(name: 'book_file_kfx_url') String? bookFileKfxUrl,
-            @JsonKey(name: 'book_pic_url') String? bookPicUrl,
+            @JsonKey(name: 'book_file_url', fromJson: _dynamicToString)
+            String? bookFileUrl,
+            @JsonKey(name: 'book_file_epub_url', fromJson: _dynamicToString)
+            String? bookFileEpubUrl,
+            @JsonKey(name: 'book_file_kfx_url', fromJson: _dynamicToString)
+            String? bookFileKfxUrl,
+            @JsonKey(name: 'book_pic_url', fromJson: _dynamicToString)
+            String? bookPicUrl,
             BookDetailCategory? category)?
         $default,
   ) {
@@ -4321,39 +4490,51 @@ extension BookDetailDataPatterns on BookDetailData {
 class _BookDetailData implements BookDetailData {
   const _BookDetailData(
       {@JsonKey(name: 'book_id', fromJson: _stringToInt) this.bookId,
-      @JsonKey(name: 'book_cat_id') this.bookCatId,
-      @JsonKey(name: 'book_title') this.bookTitle,
-      @JsonKey(name: 'book_ts') this.bookTs,
-      @JsonKey(name: 'book_summary') this.bookSummary,
-      @JsonKey(name: 'book_des') this.bookDes,
-      @JsonKey(name: 'book_pic') this.bookPic,
-      @JsonKey(name: 'book_pic_pos') this.bookPicPos,
+      @JsonKey(name: 'book_cat_id', fromJson: _dynamicToString) this.bookCatId,
+      @JsonKey(name: 'book_title', fromJson: _dynamicToString) this.bookTitle,
+      @JsonKey(name: 'book_ts', fromJson: _dynamicToString) this.bookTs,
+      @JsonKey(name: 'book_summary', fromJson: _dynamicToString)
+      this.bookSummary,
+      @JsonKey(name: 'book_des', fromJson: _dynamicToString) this.bookDes,
+      @JsonKey(name: 'book_pic', fromJson: _dynamicToString) this.bookPic,
+      @JsonKey(name: 'book_pic_pos', fromJson: _dynamicToString)
+      this.bookPicPos,
       @JsonKey(name: 'book_visitor', fromJson: _stringToInt) this.bookVisitor,
       @JsonKey(name: 'book_is_new', fromJson: _stringToBool) this.bookIsNew,
-      @JsonKey(name: 'book_priority') this.bookPriority,
+      @JsonKey(name: 'book_priority', fromJson: _dynamicToString)
+      this.bookPriority,
       @JsonKey(name: 'book_active_vote', fromJson: _stringToBool)
       this.bookActiveVote,
       @JsonKey(name: 'book_active_hint', fromJson: _stringToBool)
       this.bookActiveHint,
       @JsonKey(name: 'book_active', fromJson: _stringToBool) this.bookActive,
-      @JsonKey(name: 'book_date') this.bookDate,
+      @JsonKey(name: 'book_date', fromJson: _dynamicToString) this.bookDate,
       @JsonKey(name: 'book_pic_active', fromJson: _stringToBool)
       this.bookPicActive,
       @JsonKey(name: 'book_last_book', fromJson: _stringToBool)
       this.bookLastBook,
-      @JsonKey(name: 'book_publisher_id') this.bookPublisherId,
-      @JsonKey(name: 'book_source') this.bookSource,
-      @JsonKey(name: 'book_source_url') this.bookSourceUrl,
-      @JsonKey(name: 'book_youtube_id') this.bookYoutubeId,
-      @JsonKey(name: 'book_file') this.bookFile,
-      @JsonKey(name: 'book_file_ePub') this.bookFileEPub,
-      @JsonKey(name: 'book_file_kfx') this.bookFileKfx,
+      @JsonKey(name: 'book_publisher_id', fromJson: _dynamicToString)
+      this.bookPublisherId,
+      @JsonKey(name: 'book_source', fromJson: _dynamicToString) this.bookSource,
+      @JsonKey(name: 'book_source_url', fromJson: _dynamicToString)
+      this.bookSourceUrl,
+      @JsonKey(name: 'book_youtube_id', fromJson: _dynamicToString)
+      this.bookYoutubeId,
+      @JsonKey(name: 'book_file', fromJson: _dynamicToString) this.bookFile,
+      @JsonKey(name: 'book_file_ePub', fromJson: _dynamicToString)
+      this.bookFileEPub,
+      @JsonKey(name: 'book_file_kfx', fromJson: _dynamicToString)
+      this.bookFileKfx,
       @JsonKey(name: 'book_user_add_hint_nsup', fromJson: _stringToBool)
       this.bookUserAddHintNsup,
-      @JsonKey(name: 'book_file_url') this.bookFileUrl,
-      @JsonKey(name: 'book_file_epub_url') this.bookFileEpubUrl,
-      @JsonKey(name: 'book_file_kfx_url') this.bookFileKfxUrl,
-      @JsonKey(name: 'book_pic_url') this.bookPicUrl,
+      @JsonKey(name: 'book_file_url', fromJson: _dynamicToString)
+      this.bookFileUrl,
+      @JsonKey(name: 'book_file_epub_url', fromJson: _dynamicToString)
+      this.bookFileEpubUrl,
+      @JsonKey(name: 'book_file_kfx_url', fromJson: _dynamicToString)
+      this.bookFileKfxUrl,
+      @JsonKey(name: 'book_pic_url', fromJson: _dynamicToString)
+      this.bookPicUrl,
       this.category});
   factory _BookDetailData.fromJson(Map<String, dynamic> json) =>
       _$BookDetailDataFromJson(json);
@@ -4362,25 +4543,25 @@ class _BookDetailData implements BookDetailData {
   @JsonKey(name: 'book_id', fromJson: _stringToInt)
   final int? bookId;
   @override
-  @JsonKey(name: 'book_cat_id')
+  @JsonKey(name: 'book_cat_id', fromJson: _dynamicToString)
   final String? bookCatId;
   @override
-  @JsonKey(name: 'book_title')
+  @JsonKey(name: 'book_title', fromJson: _dynamicToString)
   final String? bookTitle;
   @override
-  @JsonKey(name: 'book_ts')
+  @JsonKey(name: 'book_ts', fromJson: _dynamicToString)
   final String? bookTs;
   @override
-  @JsonKey(name: 'book_summary')
+  @JsonKey(name: 'book_summary', fromJson: _dynamicToString)
   final String? bookSummary;
   @override
-  @JsonKey(name: 'book_des')
+  @JsonKey(name: 'book_des', fromJson: _dynamicToString)
   final String? bookDes;
   @override
-  @JsonKey(name: 'book_pic')
+  @JsonKey(name: 'book_pic', fromJson: _dynamicToString)
   final String? bookPic;
   @override
-  @JsonKey(name: 'book_pic_pos')
+  @JsonKey(name: 'book_pic_pos', fromJson: _dynamicToString)
   final String? bookPicPos;
   @override
   @JsonKey(name: 'book_visitor', fromJson: _stringToInt)
@@ -4389,7 +4570,7 @@ class _BookDetailData implements BookDetailData {
   @JsonKey(name: 'book_is_new', fromJson: _stringToBool)
   final bool? bookIsNew;
   @override
-  @JsonKey(name: 'book_priority')
+  @JsonKey(name: 'book_priority', fromJson: _dynamicToString)
   final String? bookPriority;
   @override
   @JsonKey(name: 'book_active_vote', fromJson: _stringToBool)
@@ -4401,7 +4582,7 @@ class _BookDetailData implements BookDetailData {
   @JsonKey(name: 'book_active', fromJson: _stringToBool)
   final bool? bookActive;
   @override
-  @JsonKey(name: 'book_date')
+  @JsonKey(name: 'book_date', fromJson: _dynamicToString)
   final String? bookDate;
   @override
   @JsonKey(name: 'book_pic_active', fromJson: _stringToBool)
@@ -4410,40 +4591,40 @@ class _BookDetailData implements BookDetailData {
   @JsonKey(name: 'book_last_book', fromJson: _stringToBool)
   final bool? bookLastBook;
   @override
-  @JsonKey(name: 'book_publisher_id')
+  @JsonKey(name: 'book_publisher_id', fromJson: _dynamicToString)
   final String? bookPublisherId;
   @override
-  @JsonKey(name: 'book_source')
+  @JsonKey(name: 'book_source', fromJson: _dynamicToString)
   final String? bookSource;
   @override
-  @JsonKey(name: 'book_source_url')
+  @JsonKey(name: 'book_source_url', fromJson: _dynamicToString)
   final String? bookSourceUrl;
   @override
-  @JsonKey(name: 'book_youtube_id')
+  @JsonKey(name: 'book_youtube_id', fromJson: _dynamicToString)
   final String? bookYoutubeId;
   @override
-  @JsonKey(name: 'book_file')
+  @JsonKey(name: 'book_file', fromJson: _dynamicToString)
   final String? bookFile;
   @override
-  @JsonKey(name: 'book_file_ePub')
+  @JsonKey(name: 'book_file_ePub', fromJson: _dynamicToString)
   final String? bookFileEPub;
   @override
-  @JsonKey(name: 'book_file_kfx')
+  @JsonKey(name: 'book_file_kfx', fromJson: _dynamicToString)
   final String? bookFileKfx;
   @override
   @JsonKey(name: 'book_user_add_hint_nsup', fromJson: _stringToBool)
   final bool? bookUserAddHintNsup;
   @override
-  @JsonKey(name: 'book_file_url')
+  @JsonKey(name: 'book_file_url', fromJson: _dynamicToString)
   final String? bookFileUrl;
   @override
-  @JsonKey(name: 'book_file_epub_url')
+  @JsonKey(name: 'book_file_epub_url', fromJson: _dynamicToString)
   final String? bookFileEpubUrl;
   @override
-  @JsonKey(name: 'book_file_kfx_url')
+  @JsonKey(name: 'book_file_kfx_url', fromJson: _dynamicToString)
   final String? bookFileKfxUrl;
   @override
-  @JsonKey(name: 'book_pic_url')
+  @JsonKey(name: 'book_pic_url', fromJson: _dynamicToString)
   final String? bookPicUrl;
   @override
   final BookDetailCategory? category;
@@ -4578,39 +4759,54 @@ abstract mixin class _$BookDetailDataCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'book_id', fromJson: _stringToInt) int? bookId,
-      @JsonKey(name: 'book_cat_id') String? bookCatId,
-      @JsonKey(name: 'book_title') String? bookTitle,
-      @JsonKey(name: 'book_ts') String? bookTs,
-      @JsonKey(name: 'book_summary') String? bookSummary,
-      @JsonKey(name: 'book_des') String? bookDes,
-      @JsonKey(name: 'book_pic') String? bookPic,
-      @JsonKey(name: 'book_pic_pos') String? bookPicPos,
+      @JsonKey(name: 'book_cat_id', fromJson: _dynamicToString)
+      String? bookCatId,
+      @JsonKey(name: 'book_title', fromJson: _dynamicToString)
+      String? bookTitle,
+      @JsonKey(name: 'book_ts', fromJson: _dynamicToString) String? bookTs,
+      @JsonKey(name: 'book_summary', fromJson: _dynamicToString)
+      String? bookSummary,
+      @JsonKey(name: 'book_des', fromJson: _dynamicToString) String? bookDes,
+      @JsonKey(name: 'book_pic', fromJson: _dynamicToString) String? bookPic,
+      @JsonKey(name: 'book_pic_pos', fromJson: _dynamicToString)
+      String? bookPicPos,
       @JsonKey(name: 'book_visitor', fromJson: _stringToInt) int? bookVisitor,
       @JsonKey(name: 'book_is_new', fromJson: _stringToBool) bool? bookIsNew,
-      @JsonKey(name: 'book_priority') String? bookPriority,
+      @JsonKey(name: 'book_priority', fromJson: _dynamicToString)
+      String? bookPriority,
       @JsonKey(name: 'book_active_vote', fromJson: _stringToBool)
       bool? bookActiveVote,
       @JsonKey(name: 'book_active_hint', fromJson: _stringToBool)
       bool? bookActiveHint,
       @JsonKey(name: 'book_active', fromJson: _stringToBool) bool? bookActive,
-      @JsonKey(name: 'book_date') String? bookDate,
+      @JsonKey(name: 'book_date', fromJson: _dynamicToString) String? bookDate,
       @JsonKey(name: 'book_pic_active', fromJson: _stringToBool)
       bool? bookPicActive,
       @JsonKey(name: 'book_last_book', fromJson: _stringToBool)
       bool? bookLastBook,
-      @JsonKey(name: 'book_publisher_id') String? bookPublisherId,
-      @JsonKey(name: 'book_source') String? bookSource,
-      @JsonKey(name: 'book_source_url') String? bookSourceUrl,
-      @JsonKey(name: 'book_youtube_id') String? bookYoutubeId,
-      @JsonKey(name: 'book_file') String? bookFile,
-      @JsonKey(name: 'book_file_ePub') String? bookFileEPub,
-      @JsonKey(name: 'book_file_kfx') String? bookFileKfx,
+      @JsonKey(name: 'book_publisher_id', fromJson: _dynamicToString)
+      String? bookPublisherId,
+      @JsonKey(name: 'book_source', fromJson: _dynamicToString)
+      String? bookSource,
+      @JsonKey(name: 'book_source_url', fromJson: _dynamicToString)
+      String? bookSourceUrl,
+      @JsonKey(name: 'book_youtube_id', fromJson: _dynamicToString)
+      String? bookYoutubeId,
+      @JsonKey(name: 'book_file', fromJson: _dynamicToString) String? bookFile,
+      @JsonKey(name: 'book_file_ePub', fromJson: _dynamicToString)
+      String? bookFileEPub,
+      @JsonKey(name: 'book_file_kfx', fromJson: _dynamicToString)
+      String? bookFileKfx,
       @JsonKey(name: 'book_user_add_hint_nsup', fromJson: _stringToBool)
       bool? bookUserAddHintNsup,
-      @JsonKey(name: 'book_file_url') String? bookFileUrl,
-      @JsonKey(name: 'book_file_epub_url') String? bookFileEpubUrl,
-      @JsonKey(name: 'book_file_kfx_url') String? bookFileKfxUrl,
-      @JsonKey(name: 'book_pic_url') String? bookPicUrl,
+      @JsonKey(name: 'book_file_url', fromJson: _dynamicToString)
+      String? bookFileUrl,
+      @JsonKey(name: 'book_file_epub_url', fromJson: _dynamicToString)
+      String? bookFileEpubUrl,
+      @JsonKey(name: 'book_file_kfx_url', fromJson: _dynamicToString)
+      String? bookFileKfxUrl,
+      @JsonKey(name: 'book_pic_url', fromJson: _dynamicToString)
+      String? bookPicUrl,
       BookDetailCategory? category});
 
   @override
@@ -4804,25 +5000,25 @@ class __$BookDetailDataCopyWithImpl<$Res>
 mixin _$BookDetailCategory {
   @JsonKey(name: 'cat_id', fromJson: _stringToInt)
   int? get catId;
-  @JsonKey(name: 'cat_father_id')
+  @JsonKey(name: 'cat_father_id', fromJson: _dynamicToString)
   String? get catFatherId;
-  @JsonKey(name: 'cat_menus')
+  @JsonKey(name: 'cat_menus', fromJson: _dynamicToString)
   String? get catMenus;
-  @JsonKey(name: 'cat_title')
+  @JsonKey(name: 'cat_title', fromJson: _dynamicToString)
   String? get catTitle;
-  @JsonKey(name: 'cat_note')
+  @JsonKey(name: 'cat_note', fromJson: _dynamicToString)
   String? get catNote;
-  @JsonKey(name: 'cat_pic')
+  @JsonKey(name: 'cat_pic', fromJson: _dynamicToString)
   String? get catPic;
-  @JsonKey(name: 'cat_sup')
+  @JsonKey(name: 'cat_sup', fromJson: _dynamicToString)
   String? get catSup;
-  @JsonKey(name: 'cat_date')
+  @JsonKey(name: 'cat_date', fromJson: _dynamicToString)
   String? get catDate;
   @JsonKey(name: 'cat_pic_active', fromJson: _stringToBool)
   bool? get catPicActive;
-  @JsonKey(name: 'cat_lan')
+  @JsonKey(name: 'cat_lan', fromJson: _dynamicToString)
   String? get catLan;
-  @JsonKey(name: 'cat_pos')
+  @JsonKey(name: 'cat_pos', fromJson: _dynamicToString)
   String? get catPos;
   @JsonKey(name: 'cat_active', fromJson: _stringToBool)
   bool? get catActive;
@@ -4830,7 +5026,7 @@ mixin _$BookDetailCategory {
   bool? get catShowMenu;
   @JsonKey(name: 'cat_show_main', fromJson: _stringToBool)
   bool? get catShowMain;
-  @JsonKey(name: 'cat_agent')
+  @JsonKey(name: 'cat_agent', fromJson: _dynamicToString)
   String? get catAgent;
 
   /// Create a copy of BookDetailCategory
@@ -4908,23 +5104,25 @@ abstract mixin class $BookDetailCategoryCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'cat_id', fromJson: _stringToInt) int? catId,
-      @JsonKey(name: 'cat_father_id') String? catFatherId,
-      @JsonKey(name: 'cat_menus') String? catMenus,
-      @JsonKey(name: 'cat_title') String? catTitle,
-      @JsonKey(name: 'cat_note') String? catNote,
-      @JsonKey(name: 'cat_pic') String? catPic,
-      @JsonKey(name: 'cat_sup') String? catSup,
-      @JsonKey(name: 'cat_date') String? catDate,
+      @JsonKey(name: 'cat_father_id', fromJson: _dynamicToString)
+      String? catFatherId,
+      @JsonKey(name: 'cat_menus', fromJson: _dynamicToString) String? catMenus,
+      @JsonKey(name: 'cat_title', fromJson: _dynamicToString) String? catTitle,
+      @JsonKey(name: 'cat_note', fromJson: _dynamicToString) String? catNote,
+      @JsonKey(name: 'cat_pic', fromJson: _dynamicToString) String? catPic,
+      @JsonKey(name: 'cat_sup', fromJson: _dynamicToString) String? catSup,
+      @JsonKey(name: 'cat_date', fromJson: _dynamicToString) String? catDate,
       @JsonKey(name: 'cat_pic_active', fromJson: _stringToBool)
       bool? catPicActive,
-      @JsonKey(name: 'cat_lan') String? catLan,
-      @JsonKey(name: 'cat_pos') String? catPos,
+      @JsonKey(name: 'cat_lan', fromJson: _dynamicToString) String? catLan,
+      @JsonKey(name: 'cat_pos', fromJson: _dynamicToString) String? catPos,
       @JsonKey(name: 'cat_active', fromJson: _stringToBool) bool? catActive,
       @JsonKey(name: 'cat_show_menu', fromJson: _stringToBool)
       bool? catShowMenu,
       @JsonKey(name: 'cat_show_main', fromJson: _stringToBool)
       bool? catShowMain,
-      @JsonKey(name: 'cat_agent') String? catAgent});
+      @JsonKey(name: 'cat_agent', fromJson: _dynamicToString)
+      String? catAgent});
 }
 
 /// @nodoc
@@ -5116,24 +5314,34 @@ extension BookDetailCategoryPatterns on BookDetailCategory {
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
             @JsonKey(name: 'cat_id', fromJson: _stringToInt) int? catId,
-            @JsonKey(name: 'cat_father_id') String? catFatherId,
-            @JsonKey(name: 'cat_menus') String? catMenus,
-            @JsonKey(name: 'cat_title') String? catTitle,
-            @JsonKey(name: 'cat_note') String? catNote,
-            @JsonKey(name: 'cat_pic') String? catPic,
-            @JsonKey(name: 'cat_sup') String? catSup,
-            @JsonKey(name: 'cat_date') String? catDate,
+            @JsonKey(name: 'cat_father_id', fromJson: _dynamicToString)
+            String? catFatherId,
+            @JsonKey(name: 'cat_menus', fromJson: _dynamicToString)
+            String? catMenus,
+            @JsonKey(name: 'cat_title', fromJson: _dynamicToString)
+            String? catTitle,
+            @JsonKey(name: 'cat_note', fromJson: _dynamicToString)
+            String? catNote,
+            @JsonKey(name: 'cat_pic', fromJson: _dynamicToString)
+            String? catPic,
+            @JsonKey(name: 'cat_sup', fromJson: _dynamicToString)
+            String? catSup,
+            @JsonKey(name: 'cat_date', fromJson: _dynamicToString)
+            String? catDate,
             @JsonKey(name: 'cat_pic_active', fromJson: _stringToBool)
             bool? catPicActive,
-            @JsonKey(name: 'cat_lan') String? catLan,
-            @JsonKey(name: 'cat_pos') String? catPos,
+            @JsonKey(name: 'cat_lan', fromJson: _dynamicToString)
+            String? catLan,
+            @JsonKey(name: 'cat_pos', fromJson: _dynamicToString)
+            String? catPos,
             @JsonKey(name: 'cat_active', fromJson: _stringToBool)
             bool? catActive,
             @JsonKey(name: 'cat_show_menu', fromJson: _stringToBool)
             bool? catShowMenu,
             @JsonKey(name: 'cat_show_main', fromJson: _stringToBool)
             bool? catShowMain,
-            @JsonKey(name: 'cat_agent') String? catAgent)?
+            @JsonKey(name: 'cat_agent', fromJson: _dynamicToString)
+            String? catAgent)?
         $default, {
     required TResult orElse(),
   }) {
@@ -5178,24 +5386,34 @@ extension BookDetailCategoryPatterns on BookDetailCategory {
   TResult when<TResult extends Object?>(
     TResult Function(
             @JsonKey(name: 'cat_id', fromJson: _stringToInt) int? catId,
-            @JsonKey(name: 'cat_father_id') String? catFatherId,
-            @JsonKey(name: 'cat_menus') String? catMenus,
-            @JsonKey(name: 'cat_title') String? catTitle,
-            @JsonKey(name: 'cat_note') String? catNote,
-            @JsonKey(name: 'cat_pic') String? catPic,
-            @JsonKey(name: 'cat_sup') String? catSup,
-            @JsonKey(name: 'cat_date') String? catDate,
+            @JsonKey(name: 'cat_father_id', fromJson: _dynamicToString)
+            String? catFatherId,
+            @JsonKey(name: 'cat_menus', fromJson: _dynamicToString)
+            String? catMenus,
+            @JsonKey(name: 'cat_title', fromJson: _dynamicToString)
+            String? catTitle,
+            @JsonKey(name: 'cat_note', fromJson: _dynamicToString)
+            String? catNote,
+            @JsonKey(name: 'cat_pic', fromJson: _dynamicToString)
+            String? catPic,
+            @JsonKey(name: 'cat_sup', fromJson: _dynamicToString)
+            String? catSup,
+            @JsonKey(name: 'cat_date', fromJson: _dynamicToString)
+            String? catDate,
             @JsonKey(name: 'cat_pic_active', fromJson: _stringToBool)
             bool? catPicActive,
-            @JsonKey(name: 'cat_lan') String? catLan,
-            @JsonKey(name: 'cat_pos') String? catPos,
+            @JsonKey(name: 'cat_lan', fromJson: _dynamicToString)
+            String? catLan,
+            @JsonKey(name: 'cat_pos', fromJson: _dynamicToString)
+            String? catPos,
             @JsonKey(name: 'cat_active', fromJson: _stringToBool)
             bool? catActive,
             @JsonKey(name: 'cat_show_menu', fromJson: _stringToBool)
             bool? catShowMenu,
             @JsonKey(name: 'cat_show_main', fromJson: _stringToBool)
             bool? catShowMain,
-            @JsonKey(name: 'cat_agent') String? catAgent)
+            @JsonKey(name: 'cat_agent', fromJson: _dynamicToString)
+            String? catAgent)
         $default,
   ) {
     final _that = this;
@@ -5238,24 +5456,34 @@ extension BookDetailCategoryPatterns on BookDetailCategory {
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
             @JsonKey(name: 'cat_id', fromJson: _stringToInt) int? catId,
-            @JsonKey(name: 'cat_father_id') String? catFatherId,
-            @JsonKey(name: 'cat_menus') String? catMenus,
-            @JsonKey(name: 'cat_title') String? catTitle,
-            @JsonKey(name: 'cat_note') String? catNote,
-            @JsonKey(name: 'cat_pic') String? catPic,
-            @JsonKey(name: 'cat_sup') String? catSup,
-            @JsonKey(name: 'cat_date') String? catDate,
+            @JsonKey(name: 'cat_father_id', fromJson: _dynamicToString)
+            String? catFatherId,
+            @JsonKey(name: 'cat_menus', fromJson: _dynamicToString)
+            String? catMenus,
+            @JsonKey(name: 'cat_title', fromJson: _dynamicToString)
+            String? catTitle,
+            @JsonKey(name: 'cat_note', fromJson: _dynamicToString)
+            String? catNote,
+            @JsonKey(name: 'cat_pic', fromJson: _dynamicToString)
+            String? catPic,
+            @JsonKey(name: 'cat_sup', fromJson: _dynamicToString)
+            String? catSup,
+            @JsonKey(name: 'cat_date', fromJson: _dynamicToString)
+            String? catDate,
             @JsonKey(name: 'cat_pic_active', fromJson: _stringToBool)
             bool? catPicActive,
-            @JsonKey(name: 'cat_lan') String? catLan,
-            @JsonKey(name: 'cat_pos') String? catPos,
+            @JsonKey(name: 'cat_lan', fromJson: _dynamicToString)
+            String? catLan,
+            @JsonKey(name: 'cat_pos', fromJson: _dynamicToString)
+            String? catPos,
             @JsonKey(name: 'cat_active', fromJson: _stringToBool)
             bool? catActive,
             @JsonKey(name: 'cat_show_menu', fromJson: _stringToBool)
             bool? catShowMenu,
             @JsonKey(name: 'cat_show_main', fromJson: _stringToBool)
             bool? catShowMain,
-            @JsonKey(name: 'cat_agent') String? catAgent)?
+            @JsonKey(name: 'cat_agent', fromJson: _dynamicToString)
+            String? catAgent)?
         $default,
   ) {
     final _that = this;
@@ -5288,21 +5516,22 @@ extension BookDetailCategoryPatterns on BookDetailCategory {
 class _BookDetailCategory implements BookDetailCategory {
   const _BookDetailCategory(
       {@JsonKey(name: 'cat_id', fromJson: _stringToInt) this.catId,
-      @JsonKey(name: 'cat_father_id') this.catFatherId,
-      @JsonKey(name: 'cat_menus') this.catMenus,
-      @JsonKey(name: 'cat_title') this.catTitle,
-      @JsonKey(name: 'cat_note') this.catNote,
-      @JsonKey(name: 'cat_pic') this.catPic,
-      @JsonKey(name: 'cat_sup') this.catSup,
-      @JsonKey(name: 'cat_date') this.catDate,
+      @JsonKey(name: 'cat_father_id', fromJson: _dynamicToString)
+      this.catFatherId,
+      @JsonKey(name: 'cat_menus', fromJson: _dynamicToString) this.catMenus,
+      @JsonKey(name: 'cat_title', fromJson: _dynamicToString) this.catTitle,
+      @JsonKey(name: 'cat_note', fromJson: _dynamicToString) this.catNote,
+      @JsonKey(name: 'cat_pic', fromJson: _dynamicToString) this.catPic,
+      @JsonKey(name: 'cat_sup', fromJson: _dynamicToString) this.catSup,
+      @JsonKey(name: 'cat_date', fromJson: _dynamicToString) this.catDate,
       @JsonKey(name: 'cat_pic_active', fromJson: _stringToBool)
       this.catPicActive,
-      @JsonKey(name: 'cat_lan') this.catLan,
-      @JsonKey(name: 'cat_pos') this.catPos,
+      @JsonKey(name: 'cat_lan', fromJson: _dynamicToString) this.catLan,
+      @JsonKey(name: 'cat_pos', fromJson: _dynamicToString) this.catPos,
       @JsonKey(name: 'cat_active', fromJson: _stringToBool) this.catActive,
       @JsonKey(name: 'cat_show_menu', fromJson: _stringToBool) this.catShowMenu,
       @JsonKey(name: 'cat_show_main', fromJson: _stringToBool) this.catShowMain,
-      @JsonKey(name: 'cat_agent') this.catAgent});
+      @JsonKey(name: 'cat_agent', fromJson: _dynamicToString) this.catAgent});
   factory _BookDetailCategory.fromJson(Map<String, dynamic> json) =>
       _$BookDetailCategoryFromJson(json);
 
@@ -5310,34 +5539,34 @@ class _BookDetailCategory implements BookDetailCategory {
   @JsonKey(name: 'cat_id', fromJson: _stringToInt)
   final int? catId;
   @override
-  @JsonKey(name: 'cat_father_id')
+  @JsonKey(name: 'cat_father_id', fromJson: _dynamicToString)
   final String? catFatherId;
   @override
-  @JsonKey(name: 'cat_menus')
+  @JsonKey(name: 'cat_menus', fromJson: _dynamicToString)
   final String? catMenus;
   @override
-  @JsonKey(name: 'cat_title')
+  @JsonKey(name: 'cat_title', fromJson: _dynamicToString)
   final String? catTitle;
   @override
-  @JsonKey(name: 'cat_note')
+  @JsonKey(name: 'cat_note', fromJson: _dynamicToString)
   final String? catNote;
   @override
-  @JsonKey(name: 'cat_pic')
+  @JsonKey(name: 'cat_pic', fromJson: _dynamicToString)
   final String? catPic;
   @override
-  @JsonKey(name: 'cat_sup')
+  @JsonKey(name: 'cat_sup', fromJson: _dynamicToString)
   final String? catSup;
   @override
-  @JsonKey(name: 'cat_date')
+  @JsonKey(name: 'cat_date', fromJson: _dynamicToString)
   final String? catDate;
   @override
   @JsonKey(name: 'cat_pic_active', fromJson: _stringToBool)
   final bool? catPicActive;
   @override
-  @JsonKey(name: 'cat_lan')
+  @JsonKey(name: 'cat_lan', fromJson: _dynamicToString)
   final String? catLan;
   @override
-  @JsonKey(name: 'cat_pos')
+  @JsonKey(name: 'cat_pos', fromJson: _dynamicToString)
   final String? catPos;
   @override
   @JsonKey(name: 'cat_active', fromJson: _stringToBool)
@@ -5349,7 +5578,7 @@ class _BookDetailCategory implements BookDetailCategory {
   @JsonKey(name: 'cat_show_main', fromJson: _stringToBool)
   final bool? catShowMain;
   @override
-  @JsonKey(name: 'cat_agent')
+  @JsonKey(name: 'cat_agent', fromJson: _dynamicToString)
   final String? catAgent;
 
   /// Create a copy of BookDetailCategory
@@ -5433,23 +5662,25 @@ abstract mixin class _$BookDetailCategoryCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'cat_id', fromJson: _stringToInt) int? catId,
-      @JsonKey(name: 'cat_father_id') String? catFatherId,
-      @JsonKey(name: 'cat_menus') String? catMenus,
-      @JsonKey(name: 'cat_title') String? catTitle,
-      @JsonKey(name: 'cat_note') String? catNote,
-      @JsonKey(name: 'cat_pic') String? catPic,
-      @JsonKey(name: 'cat_sup') String? catSup,
-      @JsonKey(name: 'cat_date') String? catDate,
+      @JsonKey(name: 'cat_father_id', fromJson: _dynamicToString)
+      String? catFatherId,
+      @JsonKey(name: 'cat_menus', fromJson: _dynamicToString) String? catMenus,
+      @JsonKey(name: 'cat_title', fromJson: _dynamicToString) String? catTitle,
+      @JsonKey(name: 'cat_note', fromJson: _dynamicToString) String? catNote,
+      @JsonKey(name: 'cat_pic', fromJson: _dynamicToString) String? catPic,
+      @JsonKey(name: 'cat_sup', fromJson: _dynamicToString) String? catSup,
+      @JsonKey(name: 'cat_date', fromJson: _dynamicToString) String? catDate,
       @JsonKey(name: 'cat_pic_active', fromJson: _stringToBool)
       bool? catPicActive,
-      @JsonKey(name: 'cat_lan') String? catLan,
-      @JsonKey(name: 'cat_pos') String? catPos,
+      @JsonKey(name: 'cat_lan', fromJson: _dynamicToString) String? catLan,
+      @JsonKey(name: 'cat_pos', fromJson: _dynamicToString) String? catPos,
       @JsonKey(name: 'cat_active', fromJson: _stringToBool) bool? catActive,
       @JsonKey(name: 'cat_show_menu', fromJson: _stringToBool)
       bool? catShowMenu,
       @JsonKey(name: 'cat_show_main', fromJson: _stringToBool)
       bool? catShowMain,
-      @JsonKey(name: 'cat_agent') String? catAgent});
+      @JsonKey(name: 'cat_agent', fromJson: _dynamicToString)
+      String? catAgent});
 }
 
 /// @nodoc
@@ -6341,10 +6572,15 @@ class __$CategoryBooksDataCopyWithImpl<$Res>
 mixin _$CategoryInfo {
   @JsonKey(fromJson: _stringToInt)
   int? get id;
+  @JsonKey(fromJson: _dynamicToString)
   String? get title;
+  @JsonKey(fromJson: _dynamicToString)
   String? get note;
+  @JsonKey(fromJson: _dynamicToString)
   String? get type;
+  @JsonKey(fromJson: _dynamicToString)
   String? get position;
+  @JsonKey(fromJson: _dynamicToString)
   String? get language;
 
   /// Create a copy of CategoryInfo
@@ -6392,11 +6628,11 @@ abstract mixin class $CategoryInfoCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(fromJson: _stringToInt) int? id,
-      String? title,
-      String? note,
-      String? type,
-      String? position,
-      String? language});
+      @JsonKey(fromJson: _dynamicToString) String? title,
+      @JsonKey(fromJson: _dynamicToString) String? note,
+      @JsonKey(fromJson: _dynamicToString) String? type,
+      @JsonKey(fromJson: _dynamicToString) String? position,
+      @JsonKey(fromJson: _dynamicToString) String? language});
 }
 
 /// @nodoc
@@ -6540,8 +6776,13 @@ extension CategoryInfoPatterns on CategoryInfo {
 
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(@JsonKey(fromJson: _stringToInt) int? id, String? title,
-            String? note, String? type, String? position, String? language)?
+    TResult Function(
+            @JsonKey(fromJson: _stringToInt) int? id,
+            @JsonKey(fromJson: _dynamicToString) String? title,
+            @JsonKey(fromJson: _dynamicToString) String? note,
+            @JsonKey(fromJson: _dynamicToString) String? type,
+            @JsonKey(fromJson: _dynamicToString) String? position,
+            @JsonKey(fromJson: _dynamicToString) String? language)?
         $default, {
     required TResult orElse(),
   }) {
@@ -6570,8 +6811,13 @@ extension CategoryInfoPatterns on CategoryInfo {
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(@JsonKey(fromJson: _stringToInt) int? id, String? title,
-            String? note, String? type, String? position, String? language)
+    TResult Function(
+            @JsonKey(fromJson: _stringToInt) int? id,
+            @JsonKey(fromJson: _dynamicToString) String? title,
+            @JsonKey(fromJson: _dynamicToString) String? note,
+            @JsonKey(fromJson: _dynamicToString) String? type,
+            @JsonKey(fromJson: _dynamicToString) String? position,
+            @JsonKey(fromJson: _dynamicToString) String? language)
         $default,
   ) {
     final _that = this;
@@ -6598,8 +6844,13 @@ extension CategoryInfoPatterns on CategoryInfo {
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(@JsonKey(fromJson: _stringToInt) int? id, String? title,
-            String? note, String? type, String? position, String? language)?
+    TResult? Function(
+            @JsonKey(fromJson: _stringToInt) int? id,
+            @JsonKey(fromJson: _dynamicToString) String? title,
+            @JsonKey(fromJson: _dynamicToString) String? note,
+            @JsonKey(fromJson: _dynamicToString) String? type,
+            @JsonKey(fromJson: _dynamicToString) String? position,
+            @JsonKey(fromJson: _dynamicToString) String? language)?
         $default,
   ) {
     final _that = this;
@@ -6618,11 +6869,11 @@ extension CategoryInfoPatterns on CategoryInfo {
 class _CategoryInfo implements CategoryInfo {
   const _CategoryInfo(
       {@JsonKey(fromJson: _stringToInt) this.id,
-      this.title,
-      this.note,
-      this.type,
-      this.position,
-      this.language});
+      @JsonKey(fromJson: _dynamicToString) this.title,
+      @JsonKey(fromJson: _dynamicToString) this.note,
+      @JsonKey(fromJson: _dynamicToString) this.type,
+      @JsonKey(fromJson: _dynamicToString) this.position,
+      @JsonKey(fromJson: _dynamicToString) this.language});
   factory _CategoryInfo.fromJson(Map<String, dynamic> json) =>
       _$CategoryInfoFromJson(json);
 
@@ -6630,14 +6881,19 @@ class _CategoryInfo implements CategoryInfo {
   @JsonKey(fromJson: _stringToInt)
   final int? id;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? title;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? note;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? type;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? position;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? language;
 
   /// Create a copy of CategoryInfo
@@ -6691,11 +6947,11 @@ abstract mixin class _$CategoryInfoCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(fromJson: _stringToInt) int? id,
-      String? title,
-      String? note,
-      String? type,
-      String? position,
-      String? language});
+      @JsonKey(fromJson: _dynamicToString) String? title,
+      @JsonKey(fromJson: _dynamicToString) String? note,
+      @JsonKey(fromJson: _dynamicToString) String? type,
+      @JsonKey(fromJson: _dynamicToString) String? position,
+      @JsonKey(fromJson: _dynamicToString) String? language});
 }
 
 /// @nodoc
@@ -6751,23 +7007,31 @@ class __$CategoryInfoCopyWithImpl<$Res>
 mixin _$CategoryBookItem {
   @JsonKey(fromJson: _stringToInt)
   int? get id;
+  @JsonKey(fromJson: _dynamicToString)
   String? get title;
+  @JsonKey(fromJson: _dynamicToString)
   String? get summary;
+  @JsonKey(fromJson: _dynamicToString)
   String? get date;
+  @JsonKey(name: 'visitor_count', fromJson: _dynamicToString)
   String? get visitor_count;
   @JsonKey(fromJson: _stringToBool)
   bool? get is_new;
+  @JsonKey(fromJson: _dynamicToString)
   String? get priority;
+  @JsonKey(fromJson: _dynamicToString)
   String? get file;
+  @JsonKey(fromJson: _dynamicToString)
   String? get format;
+  @JsonKey(name: 'publisher_id', fromJson: _dynamicToString)
   String? get publisher_id;
-  @JsonKey(name: 'book_file_url')
+  @JsonKey(name: 'book_file_url', fromJson: _dynamicToString)
   String? get bookFileUrl;
-  @JsonKey(name: 'book_file_epub_url')
+  @JsonKey(name: 'book_file_epub_url', fromJson: _dynamicToString)
   String? get bookFileEpubUrl;
-  @JsonKey(name: 'book_file_kfx_url')
+  @JsonKey(name: 'book_file_kfx_url', fromJson: _dynamicToString)
   String? get bookFileKfxUrl;
-  @JsonKey(name: 'book_pic_url')
+  @JsonKey(name: 'book_pic_url', fromJson: _dynamicToString)
   String? get bookPicUrl;
 
   /// Create a copy of CategoryBookItem
@@ -6842,19 +7106,25 @@ abstract mixin class $CategoryBookItemCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(fromJson: _stringToInt) int? id,
-      String? title,
-      String? summary,
-      String? date,
+      @JsonKey(fromJson: _dynamicToString) String? title,
+      @JsonKey(fromJson: _dynamicToString) String? summary,
+      @JsonKey(fromJson: _dynamicToString) String? date,
+      @JsonKey(name: 'visitor_count', fromJson: _dynamicToString)
       String? visitor_count,
       @JsonKey(fromJson: _stringToBool) bool? is_new,
-      String? priority,
-      String? file,
-      String? format,
+      @JsonKey(fromJson: _dynamicToString) String? priority,
+      @JsonKey(fromJson: _dynamicToString) String? file,
+      @JsonKey(fromJson: _dynamicToString) String? format,
+      @JsonKey(name: 'publisher_id', fromJson: _dynamicToString)
       String? publisher_id,
-      @JsonKey(name: 'book_file_url') String? bookFileUrl,
-      @JsonKey(name: 'book_file_epub_url') String? bookFileEpubUrl,
-      @JsonKey(name: 'book_file_kfx_url') String? bookFileKfxUrl,
-      @JsonKey(name: 'book_pic_url') String? bookPicUrl});
+      @JsonKey(name: 'book_file_url', fromJson: _dynamicToString)
+      String? bookFileUrl,
+      @JsonKey(name: 'book_file_epub_url', fromJson: _dynamicToString)
+      String? bookFileEpubUrl,
+      @JsonKey(name: 'book_file_kfx_url', fromJson: _dynamicToString)
+      String? bookFileKfxUrl,
+      @JsonKey(name: 'book_pic_url', fromJson: _dynamicToString)
+      String? bookPicUrl});
 }
 
 /// @nodoc
@@ -7041,19 +7311,25 @@ extension CategoryBookItemPatterns on CategoryBookItem {
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
             @JsonKey(fromJson: _stringToInt) int? id,
-            String? title,
-            String? summary,
-            String? date,
+            @JsonKey(fromJson: _dynamicToString) String? title,
+            @JsonKey(fromJson: _dynamicToString) String? summary,
+            @JsonKey(fromJson: _dynamicToString) String? date,
+            @JsonKey(name: 'visitor_count', fromJson: _dynamicToString)
             String? visitor_count,
             @JsonKey(fromJson: _stringToBool) bool? is_new,
-            String? priority,
-            String? file,
-            String? format,
+            @JsonKey(fromJson: _dynamicToString) String? priority,
+            @JsonKey(fromJson: _dynamicToString) String? file,
+            @JsonKey(fromJson: _dynamicToString) String? format,
+            @JsonKey(name: 'publisher_id', fromJson: _dynamicToString)
             String? publisher_id,
-            @JsonKey(name: 'book_file_url') String? bookFileUrl,
-            @JsonKey(name: 'book_file_epub_url') String? bookFileEpubUrl,
-            @JsonKey(name: 'book_file_kfx_url') String? bookFileKfxUrl,
-            @JsonKey(name: 'book_pic_url') String? bookPicUrl)?
+            @JsonKey(name: 'book_file_url', fromJson: _dynamicToString)
+            String? bookFileUrl,
+            @JsonKey(name: 'book_file_epub_url', fromJson: _dynamicToString)
+            String? bookFileEpubUrl,
+            @JsonKey(name: 'book_file_kfx_url', fromJson: _dynamicToString)
+            String? bookFileKfxUrl,
+            @JsonKey(name: 'book_pic_url', fromJson: _dynamicToString)
+            String? bookPicUrl)?
         $default, {
     required TResult orElse(),
   }) {
@@ -7097,19 +7373,25 @@ extension CategoryBookItemPatterns on CategoryBookItem {
   TResult when<TResult extends Object?>(
     TResult Function(
             @JsonKey(fromJson: _stringToInt) int? id,
-            String? title,
-            String? summary,
-            String? date,
+            @JsonKey(fromJson: _dynamicToString) String? title,
+            @JsonKey(fromJson: _dynamicToString) String? summary,
+            @JsonKey(fromJson: _dynamicToString) String? date,
+            @JsonKey(name: 'visitor_count', fromJson: _dynamicToString)
             String? visitor_count,
             @JsonKey(fromJson: _stringToBool) bool? is_new,
-            String? priority,
-            String? file,
-            String? format,
+            @JsonKey(fromJson: _dynamicToString) String? priority,
+            @JsonKey(fromJson: _dynamicToString) String? file,
+            @JsonKey(fromJson: _dynamicToString) String? format,
+            @JsonKey(name: 'publisher_id', fromJson: _dynamicToString)
             String? publisher_id,
-            @JsonKey(name: 'book_file_url') String? bookFileUrl,
-            @JsonKey(name: 'book_file_epub_url') String? bookFileEpubUrl,
-            @JsonKey(name: 'book_file_kfx_url') String? bookFileKfxUrl,
-            @JsonKey(name: 'book_pic_url') String? bookPicUrl)
+            @JsonKey(name: 'book_file_url', fromJson: _dynamicToString)
+            String? bookFileUrl,
+            @JsonKey(name: 'book_file_epub_url', fromJson: _dynamicToString)
+            String? bookFileEpubUrl,
+            @JsonKey(name: 'book_file_kfx_url', fromJson: _dynamicToString)
+            String? bookFileKfxUrl,
+            @JsonKey(name: 'book_pic_url', fromJson: _dynamicToString)
+            String? bookPicUrl)
         $default,
   ) {
     final _that = this;
@@ -7151,19 +7433,25 @@ extension CategoryBookItemPatterns on CategoryBookItem {
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
             @JsonKey(fromJson: _stringToInt) int? id,
-            String? title,
-            String? summary,
-            String? date,
+            @JsonKey(fromJson: _dynamicToString) String? title,
+            @JsonKey(fromJson: _dynamicToString) String? summary,
+            @JsonKey(fromJson: _dynamicToString) String? date,
+            @JsonKey(name: 'visitor_count', fromJson: _dynamicToString)
             String? visitor_count,
             @JsonKey(fromJson: _stringToBool) bool? is_new,
-            String? priority,
-            String? file,
-            String? format,
+            @JsonKey(fromJson: _dynamicToString) String? priority,
+            @JsonKey(fromJson: _dynamicToString) String? file,
+            @JsonKey(fromJson: _dynamicToString) String? format,
+            @JsonKey(name: 'publisher_id', fromJson: _dynamicToString)
             String? publisher_id,
-            @JsonKey(name: 'book_file_url') String? bookFileUrl,
-            @JsonKey(name: 'book_file_epub_url') String? bookFileEpubUrl,
-            @JsonKey(name: 'book_file_kfx_url') String? bookFileKfxUrl,
-            @JsonKey(name: 'book_pic_url') String? bookPicUrl)?
+            @JsonKey(name: 'book_file_url', fromJson: _dynamicToString)
+            String? bookFileUrl,
+            @JsonKey(name: 'book_file_epub_url', fromJson: _dynamicToString)
+            String? bookFileEpubUrl,
+            @JsonKey(name: 'book_file_kfx_url', fromJson: _dynamicToString)
+            String? bookFileKfxUrl,
+            @JsonKey(name: 'book_pic_url', fromJson: _dynamicToString)
+            String? bookPicUrl)?
         $default,
   ) {
     final _that = this;
@@ -7195,19 +7483,25 @@ extension CategoryBookItemPatterns on CategoryBookItem {
 class _CategoryBookItem implements CategoryBookItem {
   const _CategoryBookItem(
       {@JsonKey(fromJson: _stringToInt) this.id,
-      this.title,
-      this.summary,
-      this.date,
+      @JsonKey(fromJson: _dynamicToString) this.title,
+      @JsonKey(fromJson: _dynamicToString) this.summary,
+      @JsonKey(fromJson: _dynamicToString) this.date,
+      @JsonKey(name: 'visitor_count', fromJson: _dynamicToString)
       this.visitor_count,
       @JsonKey(fromJson: _stringToBool) this.is_new,
-      this.priority,
-      this.file,
-      this.format,
+      @JsonKey(fromJson: _dynamicToString) this.priority,
+      @JsonKey(fromJson: _dynamicToString) this.file,
+      @JsonKey(fromJson: _dynamicToString) this.format,
+      @JsonKey(name: 'publisher_id', fromJson: _dynamicToString)
       this.publisher_id,
-      @JsonKey(name: 'book_file_url') this.bookFileUrl,
-      @JsonKey(name: 'book_file_epub_url') this.bookFileEpubUrl,
-      @JsonKey(name: 'book_file_kfx_url') this.bookFileKfxUrl,
-      @JsonKey(name: 'book_pic_url') this.bookPicUrl});
+      @JsonKey(name: 'book_file_url', fromJson: _dynamicToString)
+      this.bookFileUrl,
+      @JsonKey(name: 'book_file_epub_url', fromJson: _dynamicToString)
+      this.bookFileEpubUrl,
+      @JsonKey(name: 'book_file_kfx_url', fromJson: _dynamicToString)
+      this.bookFileKfxUrl,
+      @JsonKey(name: 'book_pic_url', fromJson: _dynamicToString)
+      this.bookPicUrl});
   factory _CategoryBookItem.fromJson(Map<String, dynamic> json) =>
       _$CategoryBookItemFromJson(json);
 
@@ -7215,35 +7509,43 @@ class _CategoryBookItem implements CategoryBookItem {
   @JsonKey(fromJson: _stringToInt)
   final int? id;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? title;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? summary;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? date;
   @override
+  @JsonKey(name: 'visitor_count', fromJson: _dynamicToString)
   final String? visitor_count;
   @override
   @JsonKey(fromJson: _stringToBool)
   final bool? is_new;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? priority;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? file;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? format;
   @override
+  @JsonKey(name: 'publisher_id', fromJson: _dynamicToString)
   final String? publisher_id;
   @override
-  @JsonKey(name: 'book_file_url')
+  @JsonKey(name: 'book_file_url', fromJson: _dynamicToString)
   final String? bookFileUrl;
   @override
-  @JsonKey(name: 'book_file_epub_url')
+  @JsonKey(name: 'book_file_epub_url', fromJson: _dynamicToString)
   final String? bookFileEpubUrl;
   @override
-  @JsonKey(name: 'book_file_kfx_url')
+  @JsonKey(name: 'book_file_kfx_url', fromJson: _dynamicToString)
   final String? bookFileKfxUrl;
   @override
-  @JsonKey(name: 'book_pic_url')
+  @JsonKey(name: 'book_pic_url', fromJson: _dynamicToString)
   final String? bookPicUrl;
 
   /// Create a copy of CategoryBookItem
@@ -7324,19 +7626,25 @@ abstract mixin class _$CategoryBookItemCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(fromJson: _stringToInt) int? id,
-      String? title,
-      String? summary,
-      String? date,
+      @JsonKey(fromJson: _dynamicToString) String? title,
+      @JsonKey(fromJson: _dynamicToString) String? summary,
+      @JsonKey(fromJson: _dynamicToString) String? date,
+      @JsonKey(name: 'visitor_count', fromJson: _dynamicToString)
       String? visitor_count,
       @JsonKey(fromJson: _stringToBool) bool? is_new,
-      String? priority,
-      String? file,
-      String? format,
+      @JsonKey(fromJson: _dynamicToString) String? priority,
+      @JsonKey(fromJson: _dynamicToString) String? file,
+      @JsonKey(fromJson: _dynamicToString) String? format,
+      @JsonKey(name: 'publisher_id', fromJson: _dynamicToString)
       String? publisher_id,
-      @JsonKey(name: 'book_file_url') String? bookFileUrl,
-      @JsonKey(name: 'book_file_epub_url') String? bookFileEpubUrl,
-      @JsonKey(name: 'book_file_kfx_url') String? bookFileKfxUrl,
-      @JsonKey(name: 'book_pic_url') String? bookPicUrl});
+      @JsonKey(name: 'book_file_url', fromJson: _dynamicToString)
+      String? bookFileUrl,
+      @JsonKey(name: 'book_file_epub_url', fromJson: _dynamicToString)
+      String? bookFileEpubUrl,
+      @JsonKey(name: 'book_file_kfx_url', fromJson: _dynamicToString)
+      String? bookFileKfxUrl,
+      @JsonKey(name: 'book_pic_url', fromJson: _dynamicToString)
+      String? bookPicUrl});
 }
 
 /// @nodoc

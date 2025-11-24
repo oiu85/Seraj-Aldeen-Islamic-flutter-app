@@ -19,12 +19,18 @@ class MenuRepositoryImpl implements MenuRepository {
       final response = await networkClient.get(ApiConfig.menusBottomHeader);
       
       if (response.statusCode == 200) {
-        final menuResponse = MenuResponse.fromJson(response.data);
+        // Validate that response.data is a Map before parsing
+        if (response.data is! Map<String, dynamic>) {
+          AppLogger.error('Invalid response format: expected JSON object, got ${response.data.runtimeType}');
+          return Left(Exception('Invalid response format from server'));
+        }
+        
+        final menuResponse = MenuResponse.fromJson(response.data as Map<String, dynamic>);
         AppLogger.info('Bottom header menus fetched successfully');
         return Right(menuResponse);
       } else {
         AppLogger.error('Failed to fetch menus: ${response.statusCode}');
-        return Left(Exception('Failed to fetch menus'));
+        return Left(Exception('Failed to fetch menus: ${response.statusCode}'));
       }
     } on DioException catch (e) {
       AppLogger.apiError('DioException in getBottomHeaderMenus', e);

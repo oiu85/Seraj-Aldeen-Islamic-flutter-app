@@ -2,13 +2,14 @@ import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:flutter/foundation.dart';
+import '../../config/api_config.dart';
 import '../utils/logger/app_logger.dart';
 
 @singleton
 class NetworkClient {
   final Dio _dio;
-  static const String baseUrl = "https://srajalden.swbai.com/api";
-  static const String homeUrl = "https://srajalden.swbai.com/api";
+  static const String baseUrl = ApiConfig.baseUrl;
+  static const String homeUrl = ApiConfig.baseUrl;
 
   NetworkClient()
     : _dio = Dio(
