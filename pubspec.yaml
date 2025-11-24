@@ -2,7 +2,7 @@
 name: seraj_aldean_flutter_app
 description: "this app for the shaik seraj al dean"
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
-version: 1.0.0+1
+version: 1.0.1+2
 environment:
   sdk: ^3.6.1
 dependencies:
