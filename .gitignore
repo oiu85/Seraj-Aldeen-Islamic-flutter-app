@@ -46,3 +46,7 @@ app.*.map.json
 
 # FVM Version Cache
 .fvm/
+
+# Allow keystore files to be committed
+!android/keystore.jks
+!android/keystore.properties
