@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:seraj_aldean_flutter_app/config/appconfig/app_colors.dart';
 import 'package:seraj_aldean_flutter_app/core/responsive/screen_util_res.dart';
+import 'package:seraj_aldean_flutter_app/core/services/storage_permission_service.dart';
 import 'package:seraj_aldean_flutter_app/gen/fonts.gen.dart';
 
 /// Download Path Widget for Settings Page (Read-Only)
@@ -26,10 +26,9 @@ class _DownloadPathWidgetState extends State<DownloadPathWidget> {
 
   Future<void> _loadDownloadPath() async {
     try {
-      final appDir = await getApplicationDocumentsDirectory();
-      final downloadPath = '${appDir.path}/Downloads';
+      final downloadPath = await StoragePermissionService.getDownloadsDirectory();
       setState(() {
-        _downloadPath = downloadPath;
+        _downloadPath = downloadPath ?? 'غير متاح';
         _isLoading = false;
       });
     } catch (e) {

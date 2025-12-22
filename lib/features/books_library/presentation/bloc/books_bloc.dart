@@ -1,9 +1,10 @@
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:path_provider/path_provider.dart';
+import 'package:open_file/open_file.dart';
 import '../../../../core/models/page_state/bloc_status.dart';
 import '../../../../core/utils/logger/app_logger.dart';
+import '../../../../core/services/storage_permission_service.dart';
 import '../../domain/repositories/book_repository.dart';
 import 'books_event.dart';
 import 'books_state.dart';
@@ -18,6 +19,7 @@ class BooksBloc extends Bloc<BooksEvent, BooksState> {
     on<LoadMoreCategoryBooksEvent>(_onLoadMoreCategoryBooks);
     on<LoadBookDetailEvent>(_onLoadBookDetail);
     on<DownloadBookEvent>(_onDownloadBook);
+    on<ReadBookEvent>(_onReadBook);
     on<ResetBookDetailEvent>(_onResetBookDetail);
   }
 
@@ -206,12 +208,51 @@ class BooksBloc extends Bloc<BooksEvent, BooksState> {
         downloadMessage: null,
       ));
 
-      // Use internal storage (app's private directory) - no permissions needed
-      // This works on all Android versions without requiring any storage permissions
-      final appDir = await getApplicationDocumentsDirectory();
-      
-      // Create a Downloads subdirectory within app's internal storage
-      final directory = Directory('${appDir.path}/Downloads');
+      // Check and request storage permissions
+      final hasPermission = await StoragePermissionService.hasStoragePermission();
+      if (!hasPermission) {
+        AppLogger.info('Storage permission not granted, requesting...');
+        final permissionGranted = await StoragePermissionService.requestAllStoragePermissions();
+        
+        if (!permissionGranted) {
+          // Check if permanently denied
+          final isPermanentlyDenied = await StoragePermissionService.openAppSettingsIfNeeded();
+          
+          emit(state.copyWith(
+            isDownloading: false,
+            downloadProgress: 0.0,
+            downloadingFormat: null,
+            downloadMessage: isPermanentlyDenied
+                ? 'تم رفض الصلاحية بشكل دائم. يرجى فتح الإعدادات ومنح صلاحية الوصول إلى الملفات'
+                : 'يرجى منح صلاحيات الوصول إلى الملفات لتحميل الكتب',
+          ));
+          
+          // Auto-clear error message after 5 seconds
+          await Future.delayed(const Duration(seconds: 5));
+          emit(state.copyWith(downloadMessage: null));
+          return;
+        }
+      }
+
+      // Get the public Downloads directory
+      final downloadsPath = await StoragePermissionService.getDownloadsDirectory();
+      if (downloadsPath == null) {
+        AppLogger.error('Failed to get Downloads directory');
+        emit(state.copyWith(
+          isDownloading: false,
+          downloadProgress: 0.0,
+          downloadingFormat: null,
+          downloadMessage: 'فشل الوصول إلى مجلد التنزيلات',
+        ));
+        
+        // Auto-clear error message after 4 seconds
+        await Future.delayed(const Duration(seconds: 4));
+        emit(state.copyWith(downloadMessage: null));
+        return;
+      }
+
+      // Create Downloads directory if it doesn't exist
+      final directory = Directory(downloadsPath);
       if (!await directory.exists()) {
         await directory.create(recursive: true);
       }
@@ -281,6 +322,270 @@ class BooksBloc extends Bloc<BooksEvent, BooksState> {
       ));
 
       // Auto-clear error message after 4 seconds
+      await Future.delayed(const Duration(seconds: 4));
+      emit(state.copyWith(downloadMessage: null));
+    }
+  }
+
+  /// Get the file path for a book based on title and format
+  Future<String?> _getBookFilePath(String format) async {
+    if (state.bookDetail == null) return null;
+
+    final downloadsPath = await StoragePermissionService.getDownloadsDirectory();
+    if (downloadsPath == null) return null;
+
+    final extension = format.toLowerCase();
+    var bookTitle = state.bookDetail!.bookTitle
+        ?.replaceAll(RegExp(r'[\u064B-\u065F\u0670]'), '')
+        .replaceAll(RegExp(r'[^\u0600-\u06FF\w\s-]'), '')
+        .trim()
+        .replaceAll(RegExp(r'\s+'), '_')
+        ?? 'book';
+
+    final maxFileNameLength = 200;
+    if (bookTitle.length > maxFileNameLength) {
+      bookTitle = bookTitle.substring(0, maxFileNameLength);
+    }
+
+    final fileName = '$bookTitle.$extension';
+    return '$downloadsPath/$fileName';
+  }
+
+  /// Check if a book file exists locally
+  Future<bool> _isBookFileDownloaded(String format) async {
+    final filePath = await _getBookFilePath(format);
+    if (filePath == null) return false;
+
+    final file = File(filePath);
+    return await file.exists();
+  }
+
+  /// Open a book file using open_file (handles FileProvider automatically)
+  Future<bool> _openBookFile(String format) async {
+    try {
+      final filePath = await _getBookFilePath(format);
+      if (filePath == null) {
+        AppLogger.error('Failed to get file path for format: $format');
+        return false;
+      }
+
+      final file = File(filePath);
+      if (!await file.exists()) {
+        AppLogger.error('File does not exist: $filePath');
+        return false;
+      }
+
+      // Use open_file package which handles FileProvider automatically
+      final result = await OpenFile.open(filePath);
+
+      if (result.type == ResultType.done) {
+        AppLogger.info('Successfully opened book file: $filePath');
+        return true;
+      } else if (result.type == ResultType.noAppToOpen) {
+        AppLogger.error('No app found to open file: $filePath');
+        return false;
+      } else if (result.type == ResultType.fileNotFound) {
+        AppLogger.error('File not found: $filePath');
+        return false;
+      } else {
+        AppLogger.error('Failed to open file: ${result.message}');
+        return false;
+      }
+    } catch (e, stackTrace) {
+      AppLogger.error('Error opening book file', e, stackTrace);
+      return false;
+    }
+  }
+
+  /// Get the first available download link format
+  String? _getFirstAvailableFormat() {
+    final book = state.bookDetail;
+    if (book == null) return null;
+
+    if (book.bookFile != null && book.bookFile!.isNotEmpty) {
+      return 'PDF';
+    }
+    if (book.bookFileEPub != null && book.bookFileEPub!.isNotEmpty) {
+      return 'ePub';
+    }
+    if (book.bookFileKfx != null && book.bookFileKfx!.isNotEmpty) {
+      return 'KFX';
+    }
+    return null;
+  }
+
+  /// Get download link URL for a format
+  String? _getDownloadUrlForFormat(String format) {
+    final book = state.bookDetail;
+    if (book == null) return null;
+
+    switch (format.toUpperCase()) {
+      case 'PDF':
+        return book.bookFileUrl;
+      case 'EPUB':
+        return book.bookFileEpubUrl;
+      case 'KFX':
+        return book.bookFileKfxUrl;
+      default:
+        return null;
+    }
+  }
+
+  Future<void> _onReadBook(
+    ReadBookEvent event,
+    Emitter<BooksState> emit,
+  ) async {
+    try {
+      // Determine which format to use
+      String? format = event.preferredFormat;
+      if (format == null) {
+        format = _getFirstAvailableFormat();
+      }
+
+      if (format == null) {
+        emit(state.copyWith(
+          downloadMessage: 'لا توجد نسخة متاحة للقراءة',
+        ));
+        await Future.delayed(const Duration(seconds: 3));
+        emit(state.copyWith(downloadMessage: null));
+        return;
+      }
+
+      // Check if file is already downloaded
+      final isDownloaded = await _isBookFileDownloaded(format);
+      
+      if (isDownloaded) {
+        // File exists, open it directly
+        AppLogger.info('Book file already downloaded, opening...');
+        final opened = await _openBookFile(format);
+        
+        if (!opened) {
+          emit(state.copyWith(
+            downloadMessage: 'فشل فتح الملف. يرجى المحاولة مرة أخرى',
+          ));
+          await Future.delayed(const Duration(seconds: 3));
+          emit(state.copyWith(downloadMessage: null));
+        }
+      } else {
+        // File doesn't exist, download it first
+        AppLogger.info('Book file not downloaded, downloading first...');
+        
+        final downloadUrl = _getDownloadUrlForFormat(format);
+        if (downloadUrl == null || downloadUrl.isEmpty) {
+          emit(state.copyWith(
+            downloadMessage: 'رابط التحميل غير متاح',
+          ));
+          await Future.delayed(const Duration(seconds: 3));
+          emit(state.copyWith(downloadMessage: null));
+          return;
+        }
+
+        // Show downloading message
+        emit(state.copyWith(
+          isDownloading: true,
+          downloadingFormat: format,
+          downloadProgress: 0.0,
+          downloadMessage: 'جاري تحميل الكتاب للقراءة...',
+        ));
+
+        // Check and request storage permissions
+        final hasPermission = await StoragePermissionService.hasStoragePermission();
+        if (!hasPermission) {
+          final permissionGranted = await StoragePermissionService.requestAllStoragePermissions();
+          
+          if (!permissionGranted) {
+            emit(state.copyWith(
+              isDownloading: false,
+              downloadProgress: 0.0,
+              downloadingFormat: null,
+              downloadMessage: 'يرجى منح صلاحيات الوصول إلى الملفات',
+            ));
+            await Future.delayed(const Duration(seconds: 4));
+            emit(state.copyWith(downloadMessage: null));
+            return;
+          }
+        }
+
+        // Get Downloads directory
+        final downloadsPath = await StoragePermissionService.getDownloadsDirectory();
+        if (downloadsPath == null) {
+          emit(state.copyWith(
+            isDownloading: false,
+            downloadProgress: 0.0,
+            downloadingFormat: null,
+            downloadMessage: 'فشل الوصول إلى مجلد التنزيلات',
+          ));
+          await Future.delayed(const Duration(seconds: 4));
+          emit(state.copyWith(downloadMessage: null));
+          return;
+        }
+
+        // Create directory if needed
+        final directory = Directory(downloadsPath);
+        if (!await directory.exists()) {
+          await directory.create(recursive: true);
+        }
+
+        // Create file name
+        final extension = format.toLowerCase();
+        var bookTitle = state.bookDetail?.bookTitle
+            ?.replaceAll(RegExp(r'[\u064B-\u065F\u0670]'), '')
+            .replaceAll(RegExp(r'[^\u0600-\u06FF\w\s-]'), '')
+            .trim()
+            .replaceAll(RegExp(r'\s+'), '_')
+            ?? 'book';
+
+        final maxFileNameLength = 200;
+        if (bookTitle.length > maxFileNameLength) {
+          bookTitle = bookTitle.substring(0, maxFileNameLength);
+        }
+
+        final finalFileName = '$bookTitle.$extension';
+        final savePath = '${directory.path}/$finalFileName';
+
+        // Download the file
+        await _dio.download(
+          downloadUrl,
+          savePath,
+          onReceiveProgress: (received, total) {
+            if (total != -1) {
+              final progress = received / total;
+              emit(state.copyWith(downloadProgress: progress));
+            }
+          },
+          options: Options(
+            followRedirects: true,
+            validateStatus: (status) {
+              return status != null && status < 500;
+            },
+          ),
+        );
+
+        AppLogger.info('Book downloaded successfully, opening...');
+
+        // Open the file after download
+        final opened = await _openBookFile(format);
+        
+        emit(state.copyWith(
+          isDownloading: false,
+          downloadProgress: 0.0,
+          downloadingFormat: null,
+          downloadMessage: opened
+              ? 'تم فتح الكتاب بنجاح'
+              : 'تم التحميل ولكن فشل فتح الملف',
+        ));
+
+        await Future.delayed(const Duration(seconds: 3));
+        emit(state.copyWith(downloadMessage: null));
+      }
+    } catch (e, stackTrace) {
+      AppLogger.error('Error reading book', e, stackTrace);
+      emit(state.copyWith(
+        isDownloading: false,
+        downloadProgress: 0.0,
+        downloadingFormat: null,
+        downloadMessage: 'فشل فتح الكتاب: ${e.toString()}',
+      ));
       await Future.delayed(const Duration(seconds: 4));
       emit(state.copyWith(downloadMessage: null));
     }

@@ -39,3 +39,9 @@ class DownloadBookEvent extends BooksEvent {
 }
 
 class ResetBookDetailEvent extends BooksEvent {}
+
+class ReadBookEvent extends BooksEvent {
+  final String? preferredFormat; // Preferred format (PDF, ePub, KFX), null for first available
+
+  ReadBookEvent({this.preferredFormat});
+}

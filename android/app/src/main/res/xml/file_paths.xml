@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- External storage root - allows access to /storage/emulated/0/Download -->
+    <external-path name="external_storage_root" path="." />
+    <!-- Downloads folder specifically -->
+    <external-path name="downloads" path="Download" />
+    <!-- Internal storage -->
+    <files-path name="internal" path="." />
+    <!-- Cache directory -->
+    <cache-path name="cache" path="." />
+</paths>
+

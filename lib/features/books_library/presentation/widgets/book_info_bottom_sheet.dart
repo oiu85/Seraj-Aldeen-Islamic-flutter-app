@@ -199,6 +199,16 @@ class _BookInfoBottomSheetState extends State<BookInfoBottomSheet> {
 
           SizedBox(height: 20.h),
 
+          // Read button section
+          _ReadButtonSection(
+            state: state,
+            onRead: () => context.read<BooksBloc>().add(
+              ReadBookEvent(),
+            ),
+          ),
+
+          SizedBox(height: 20.h),
+
           // Download section with all buttons
           _DownloadSection(
             downloadLinks: downloadLinks,
@@ -300,6 +310,79 @@ class _BookInfoBottomSheetState extends State<BookInfoBottomSheet> {
             ],
           ],
         ),
+      ],
+    );
+  }
+
+  // Read button section widget
+  Widget _ReadButtonSection({
+    required BooksState state,
+    required VoidCallback onRead,
+  }) {
+    final book = state.bookDetail;
+    final hasAnyFormat = book != null && (
+      (book.bookFile != null && book.bookFile!.isNotEmpty) ||
+      (book.bookFileEPub != null && book.bookFileEPub!.isNotEmpty) ||
+      (book.bookFileKfx != null && book.bookFileKfx!.isNotEmpty)
+    );
+
+    return Column(
+      children: [
+        SizedBox(
+          height: 55.h,
+          width: double.infinity,
+          child: ElevatedButton.icon(
+            onPressed: hasAnyFormat && !state.isDownloading ? onRead : null,
+            style: ElevatedButton.styleFrom(
+              backgroundColor: hasAnyFormat ? AppColors.primary : Colors.grey,
+              foregroundColor: AppColors.white,
+              padding: EdgeInsets.symmetric(vertical: 15.h),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.r),
+              ),
+              elevation: 2,
+            ),
+            icon: Icon(
+              state.isDownloading && state.downloadMessage?.contains('للقراءة') == true
+                  ? Icons.downloading
+                  : Icons.menu_book,
+              size: 24.f,
+            ),
+            label: Text(
+              state.isDownloading && state.downloadMessage?.contains('للقراءة') == true
+                  ? 'جاري التحميل للقراءة...'
+                  : 'قراءة الكتاب',
+              style: TextStyle(
+                fontSize: 18.f,
+                fontFamily: FontFamily.tajawal,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ),
+        // Progress indicator for reading download
+        if (state.isDownloading && state.downloadMessage?.contains('للقراءة') == true && state.downloadProgress > 0)
+          Padding(
+            padding: EdgeInsets.only(top: 8.h),
+            child: Column(
+              children: [
+                LinearProgressIndicator(
+                  value: state.downloadProgress,
+                  backgroundColor: Colors.grey[300],
+                  valueColor: AlwaysStoppedAnimation<Color>(AppColors.primary),
+                ),
+                SizedBox(height: 5.h),
+                Text(
+                  '${(state.downloadProgress * 100).toStringAsFixed(0)}%',
+                  style: TextStyle(
+                    fontSize: 12.f,
+                    fontFamily: FontFamily.tajawal,
+                    color: AppColors.grey,
+                  ),
+                ),
+              ],
+            ),
+          ),
       ],
     );
   }
