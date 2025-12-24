@@ -168,7 +168,15 @@ class BooksBloc extends Bloc<BooksEvent, BooksState> {
     Emitter<BooksState> emit,
   ) async {
     try {
-      emit(state.copyWith(bookDetailStatus: const BlocStatus.loading()));
+      // Reset download state and book detail when loading a new book
+      emit(state.copyWith(
+        bookDetailStatus: const BlocStatus.loading(),
+        bookDetail: null, // Clear previous book detail
+        isDownloading: false, // Reset download state
+        downloadProgress: 0.0,
+        downloadingFormat: null,
+        downloadMessage: null,
+      ));
       AppLogger.info('Fetching book detail for ID: ${event.bookId}');
 
       final result = await _repository.getBookDetail(bookId: event.bookId);
@@ -328,11 +336,20 @@ class BooksBloc extends Bloc<BooksEvent, BooksState> {
   }
 
   /// Get the file path for a book based on title and format
-  Future<String?> _getBookFilePath(String format) async {
+  /// [useAppDirectory] - if true, uses app's internal directory (for Read), 
+  ///                     if false, uses Downloads directory (for Download)
+  Future<String?> _getBookFilePath(String format, {bool useAppDirectory = false}) async {
     if (state.bookDetail == null) return null;
 
-    final downloadsPath = await StoragePermissionService.getDownloadsDirectory();
-    if (downloadsPath == null) return null;
+    // Get the appropriate directory based on useAppDirectory flag
+    final String? basePath;
+    if (useAppDirectory) {
+      basePath = await StoragePermissionService.getAppBooksDirectory();
+    } else {
+      basePath = await StoragePermissionService.getDownloadsDirectory();
+    }
+    
+    if (basePath == null) return null;
 
     final extension = format.toLowerCase();
     var bookTitle = state.bookDetail!.bookTitle
@@ -348,12 +365,14 @@ class BooksBloc extends Bloc<BooksEvent, BooksState> {
     }
 
     final fileName = '$bookTitle.$extension';
-    return '$downloadsPath/$fileName';
+    return '$basePath/$fileName';
   }
 
   /// Check if a book file exists locally
-  Future<bool> _isBookFileDownloaded(String format) async {
-    final filePath = await _getBookFilePath(format);
+  /// [useAppDirectory] - if true, checks app directory (for Read),
+  ///                     if false, checks Downloads directory (for Download)
+  Future<bool> _isBookFileDownloaded(String format, {bool useAppDirectory = false}) async {
+    final filePath = await _getBookFilePath(format, useAppDirectory: useAppDirectory);
     if (filePath == null) return false;
 
     final file = File(filePath);
@@ -361,9 +380,11 @@ class BooksBloc extends Bloc<BooksEvent, BooksState> {
   }
 
   /// Open a book file using open_file (handles FileProvider automatically)
-  Future<bool> _openBookFile(String format) async {
+  /// [useAppDirectory] - if true, opens from app directory (for Read),
+  ///                     if false, opens from Downloads directory (for Download)
+  Future<bool> _openBookFile(String format, {bool useAppDirectory = false}) async {
     try {
-      final filePath = await _getBookFilePath(format);
+      final filePath = await _getBookFilePath(format, useAppDirectory: useAppDirectory);
       if (filePath == null) {
         AppLogger.error('Failed to get file path for format: $format');
         return false;
@@ -451,13 +472,13 @@ class BooksBloc extends Bloc<BooksEvent, BooksState> {
         return;
       }
 
-      // Check if file is already downloaded
-      final isDownloaded = await _isBookFileDownloaded(format);
+      // Check if file is already downloaded in app directory
+      final isDownloaded = await _isBookFileDownloaded(format, useAppDirectory: true);
       
       if (isDownloaded) {
-        // File exists, open it directly
-        AppLogger.info('Book file already downloaded, opening...');
-        final opened = await _openBookFile(format);
+        // File exists in app directory, open it directly
+        AppLogger.info('Book file already downloaded in app directory, opening...');
+        final opened = await _openBookFile(format, useAppDirectory: true);
         
         if (!opened) {
           emit(state.copyWith(
@@ -467,8 +488,8 @@ class BooksBloc extends Bloc<BooksEvent, BooksState> {
           emit(state.copyWith(downloadMessage: null));
         }
       } else {
-        // File doesn't exist, download it first
-        AppLogger.info('Book file not downloaded, downloading first...');
+        // File doesn't exist in app directory, download it first
+        AppLogger.info('Book file not in app directory, downloading first...');
         
         final downloadUrl = _getDownloadUrlForFormat(format);
         if (downloadUrl == null || downloadUrl.isEmpty) {
@@ -488,62 +509,41 @@ class BooksBloc extends Bloc<BooksEvent, BooksState> {
           downloadMessage: 'جاري تحميل الكتاب للقراءة...',
         ));
 
-        // Check and request storage permissions
-        final hasPermission = await StoragePermissionService.hasStoragePermission();
-        if (!hasPermission) {
-          final permissionGranted = await StoragePermissionService.requestAllStoragePermissions();
-          
-          if (!permissionGranted) {
-            emit(state.copyWith(
-              isDownloading: false,
-              downloadProgress: 0.0,
-              downloadingFormat: null,
-              downloadMessage: 'يرجى منح صلاحيات الوصول إلى الملفات',
-            ));
-            await Future.delayed(const Duration(seconds: 4));
-            emit(state.copyWith(downloadMessage: null));
-            return;
-          }
-        }
-
-        // Get Downloads directory
-        final downloadsPath = await StoragePermissionService.getDownloadsDirectory();
-        if (downloadsPath == null) {
+        // Get app directory (no permissions needed for app directory)
+        final appBooksPath = await StoragePermissionService.getAppBooksDirectory();
+        if (appBooksPath == null) {
           emit(state.copyWith(
             isDownloading: false,
             downloadProgress: 0.0,
             downloadingFormat: null,
-            downloadMessage: 'فشل الوصول إلى مجلد التنزيلات',
+            downloadMessage: 'فشل الوصول إلى مجلد التطبيق',
           ));
           await Future.delayed(const Duration(seconds: 4));
           emit(state.copyWith(downloadMessage: null));
           return;
         }
 
-        // Create directory if needed
-        final directory = Directory(downloadsPath);
+        // Create directory if needed (should already exist, but ensure it)
+        final directory = Directory(appBooksPath);
         if (!await directory.exists()) {
           await directory.create(recursive: true);
         }
 
-        // Create file name
-        final extension = format.toLowerCase();
-        var bookTitle = state.bookDetail?.bookTitle
-            ?.replaceAll(RegExp(r'[\u064B-\u065F\u0670]'), '')
-            .replaceAll(RegExp(r'[^\u0600-\u06FF\w\s-]'), '')
-            .trim()
-            .replaceAll(RegExp(r'\s+'), '_')
-            ?? 'book';
-
-        final maxFileNameLength = 200;
-        if (bookTitle.length > maxFileNameLength) {
-          bookTitle = bookTitle.substring(0, maxFileNameLength);
+        // Get file path using helper method
+        final savePath = await _getBookFilePath(format, useAppDirectory: true);
+        if (savePath == null) {
+          emit(state.copyWith(
+            isDownloading: false,
+            downloadProgress: 0.0,
+            downloadingFormat: null,
+            downloadMessage: 'فشل إنشاء مسار الملف',
+          ));
+          await Future.delayed(const Duration(seconds: 4));
+          emit(state.copyWith(downloadMessage: null));
+          return;
         }
 
-        final finalFileName = '$bookTitle.$extension';
-        final savePath = '${directory.path}/$finalFileName';
-
-        // Download the file
+        // Download the file to app directory
         await _dio.download(
           downloadUrl,
           savePath,
@@ -561,10 +561,10 @@ class BooksBloc extends Bloc<BooksEvent, BooksState> {
           ),
         );
 
-        AppLogger.info('Book downloaded successfully, opening...');
+        AppLogger.info('Book downloaded successfully to app directory, opening...');
 
-        // Open the file after download
-        final opened = await _openBookFile(format);
+        // Open the file after download from app directory
+        final opened = await _openBookFile(format, useAppDirectory: true);
         
         emit(state.copyWith(
           isDownloading: false,
@@ -599,6 +599,9 @@ class BooksBloc extends Bloc<BooksEvent, BooksState> {
     emit(state.copyWith(
       bookDetailStatus: const BlocStatus.initial(),
       bookDetail: null,
+      isDownloading: false,
+      downloadProgress: 0.0,
+      downloadingFormat: null,
       downloadMessage: null,
     ));
   }

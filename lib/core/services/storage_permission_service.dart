@@ -6,6 +6,26 @@ import 'package:path_provider/path_provider.dart';
 
 /// Service to handle storage permissions specifically for the Downloads folder
 class StoragePermissionService {
+  /// Get the app's internal Books directory path
+  /// Returns: App's internal documents directory with Books subfolder
+  /// No permissions required for app directory
+  static Future<String?> getAppBooksDirectory() async {
+    try {
+      final appDir = await getApplicationDocumentsDirectory();
+      final booksPath = '${appDir.path}/Books';
+      
+      // Create directory if it doesn't exist
+      final directory = Directory(booksPath);
+      if (!await directory.exists()) {
+        await directory.create(recursive: true);
+      }
+      
+      return booksPath;
+    } catch (e) {
+      return null;
+    }
+  }
+
   /// Get the public Downloads directory path
   /// Returns: /storage/emulated/0/Download/ on Android
   static Future<String?> getDownloadsDirectory() async {
