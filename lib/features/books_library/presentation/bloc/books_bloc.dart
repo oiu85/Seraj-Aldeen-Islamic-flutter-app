@@ -214,7 +214,7 @@ class BooksBloc extends Bloc<BooksEvent, BooksState> {
         isDownloading: true,
         downloadingFormat: event.format,
         downloadProgress: 0.0,
-        downloadMessage: null,
+        downloadMessage: 'جاري التحميل...',
       ));
 
       // Check and request storage permissions (only needed for Android 9 and below)
@@ -525,12 +525,12 @@ class BooksBloc extends Bloc<BooksEvent, BooksState> {
           return;
         }
 
-        // Show downloading message
+        // Start downloading for reading (set downloadingFormat to null to distinguish from format-specific downloads)
         emit(state.copyWith(
           isDownloading: true,
-          downloadingFormat: format,
+          downloadingFormat: null, // null = reading download, format string = format-specific download
           downloadProgress: 0.0,
-          downloadMessage: 'جاري تحميل الكتاب للقراءة...',
+          downloadMessage: 'جاري التحميل...',
         ));
 
         // Get app directory (no permissions needed for app directory)

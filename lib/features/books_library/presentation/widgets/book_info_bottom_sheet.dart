@@ -121,10 +121,15 @@ class _BookInfoBottomSheetState extends State<BookInfoBottomSheet> {
               SizedBox(height: 20.h),
 
               // Top notification for download messages
-              if (state.downloadMessage != null)
+              if (state.downloadMessage != null || state.isDownloading)
                 _TopNotification(
-                  message: state.downloadMessage!,
-                  isSuccess: state.downloadMessage!.contains('بنجاح'),
+                  message: state.isDownloading 
+                      ? 'جاري التحميل...'
+                      : (state.downloadMessage ?? ''),
+                  isSuccess: state.isDownloading || 
+                           (state.downloadMessage?.contains('بنجاح') ?? false) || 
+                           (state.downloadMessage?.contains('تم فتح') ?? false) ||
+                           (state.downloadMessage?.contains('تم تحميل') ?? false),
                 ),
 
               // Content based on status
@@ -343,13 +348,13 @@ class _BookInfoBottomSheetState extends State<BookInfoBottomSheet> {
               elevation: 2,
             ),
             icon: Icon(
-              state.isDownloading && state.downloadMessage?.contains('للقراءة') == true
+              state.isDownloading && state.downloadingFormat == null
                   ? Icons.downloading
                   : Icons.menu_book,
               size: 24.f,
             ),
             label: Text(
-              state.isDownloading && state.downloadMessage?.contains('للقراءة') == true
+              state.isDownloading && state.downloadingFormat == null
                   ? 'جاري التحميل للقراءة...'
                   : 'قراءة الكتاب',
               style: TextStyle(
@@ -360,8 +365,8 @@ class _BookInfoBottomSheetState extends State<BookInfoBottomSheet> {
             ),
           ),
         ),
-        // Progress indicator for reading download
-        if (state.isDownloading && state.downloadMessage?.contains('للقراءة') == true && state.downloadProgress > 0)
+        // Progress indicator for reading download (show when downloading and no format specified = reading)
+        if (state.isDownloading && state.downloadingFormat == null && state.downloadProgress > 0)
           Padding(
             padding: EdgeInsets.only(top: 8.h),
             child: Column(
