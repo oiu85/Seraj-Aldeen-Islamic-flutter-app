@@ -13,7 +13,7 @@ if (keystorePropertiesFile.exists()) {
 
 android {
     namespace = "com.swbai.serajaldeen"
-    // compileSdk should be at least 33 for Android 13+ support and MANAGE_EXTERNAL_STORAGE
+    // compileSdk should be at least 29 for Android 10+ MediaStore API support
     // Flutter's compileSdkVersion is typically 34 or higher, which satisfies this requirement
     compileSdk = flutter.compileSdkVersion
     ndkVersion = "27.0.12077973"

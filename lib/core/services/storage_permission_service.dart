@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:path_provider/path_provider.dart';
@@ -26,7 +27,8 @@ class StoragePermissionService {
     }
   }
 
-  /// Get the public Downloads directory path
+  /// Get the public Downloads directory path (for display purposes only)
+  /// Note: Actual file operations should use MediaStore API via saveFileToDownloadsUsingMediaStore()
   /// Returns: /storage/emulated/0/Download/ on Android
   static Future<String?> getDownloadsDirectory() async {
     try {
@@ -68,6 +70,8 @@ class StoragePermissionService {
   }
 
   /// Check if storage permission is granted based on Android version
+  /// For Android 10+ (API 29+), MediaStore API doesn't require special permissions
+  /// Only Android 9 and below need WRITE_EXTERNAL_STORAGE
   static Future<bool> hasStoragePermission() async {
     if (!Platform.isAndroid) {
       return true; // iOS handles permissions differently
@@ -77,21 +81,18 @@ class StoragePermissionService {
     final androidInfo = await deviceInfo.androidInfo;
     final sdkInt = androidInfo.version.sdkInt;
 
-    // Android 11+ (API 30+) requires MANAGE_EXTERNAL_STORAGE
-    if (sdkInt >= 30) {
-      return await Permission.manageExternalStorage.isGranted;
-    }
-
-    // Android 10 and below use WRITE_EXTERNAL_STORAGE
+    // Android 10+ (API 29+) - MediaStore API doesn't require permissions
     if (sdkInt >= 29) {
-      return await Permission.storage.isGranted;
+      return true;
     }
 
-    // Android 9 and below
+    // Android 9 and below - need WRITE_EXTERNAL_STORAGE
     return await Permission.storage.isGranted;
   }
 
   /// Request all necessary storage permissions based on Android version
+  /// For Android 10+ (API 29+), MediaStore API doesn't require permissions
+  /// Only Android 9 and below need WRITE_EXTERNAL_STORAGE
   /// Returns true if permission is granted, false otherwise
   static Future<bool> requestAllStoragePermissions() async {
     if (!Platform.isAndroid) {
@@ -102,23 +103,12 @@ class StoragePermissionService {
     final androidInfo = await deviceInfo.androidInfo;
     final sdkInt = androidInfo.version.sdkInt;
 
-    // Android 11+ (API 30+) requires MANAGE_EXTERNAL_STORAGE
-    if (sdkInt >= 30) {
-      final status = await Permission.manageExternalStorage.request();
-      if (status.isGranted) {
-        return true;
-      }
-      // If permanently denied, return false (caller should open settings)
-      return false;
-    }
-
-    // Android 10 (API 29) - use WRITE_EXTERNAL_STORAGE with legacy flag
+    // Android 10+ (API 29+) - MediaStore API doesn't require permissions
     if (sdkInt >= 29) {
-      final status = await Permission.storage.request();
-      return status.isGranted;
+      return true;
     }
 
-    // Android 9 and below - use WRITE_EXTERNAL_STORAGE
+    // Android 9 and below - need WRITE_EXTERNAL_STORAGE
     final status = await Permission.storage.request();
     return status.isGranted;
   }
@@ -139,18 +129,14 @@ class StoragePermissionService {
     final androidInfo = await deviceInfo.androidInfo;
     final sdkInt = androidInfo.version.sdkInt;
 
-    bool isPermanentlyDenied = false;
-
-    // Check if permission is permanently denied
-    if (sdkInt >= 30) {
-      final status = await Permission.manageExternalStorage.status;
-      isPermanentlyDenied = status.isPermanentlyDenied;
-    } else {
-      final status = await Permission.storage.status;
-      isPermanentlyDenied = status.isPermanentlyDenied;
+    // Android 10+ (API 29+) - MediaStore API doesn't require permissions
+    if (sdkInt >= 29) {
+      return false;
     }
 
-    if (isPermanentlyDenied) {
+    // Android 9 and below - check if storage permission is permanently denied
+    final status = await Permission.storage.status;
+    if (status.isPermanentlyDenied) {
       return await openAppSettings();
     }
 
@@ -167,26 +153,49 @@ class StoragePermissionService {
     final androidInfo = await deviceInfo.androidInfo;
     final sdkInt = androidInfo.version.sdkInt;
 
-    if (sdkInt >= 30) {
-      final status = await Permission.manageExternalStorage.status;
-      if (status.isGranted) {
-        return 'ممنوح';
-      } else if (status.isPermanentlyDenied) {
-        return 'مرفوض بشكل دائم - يرجى فتح الإعدادات';
-      } else if (status.isDenied) {
-        return 'مرفوض - يرجى منح الصلاحية';
-      }
-    } else {
-      final status = await Permission.storage.status;
-      if (status.isGranted) {
-        return 'ممنوح';
-      } else if (status.isPermanentlyDenied) {
-        return 'مرفوض بشكل دائم - يرجى فتح الإعدادات';
-      } else if (status.isDenied) {
-        return 'مرفوض - يرجى منح الصلاحية';
-      }
+    // Android 10+ (API 29+) - MediaStore API doesn't require permissions
+    if (sdkInt >= 29) {
+      return 'غير مطلوب (يستخدم MediaStore API)';
+    }
+
+    // Android 9 and below - check storage permission
+    final status = await Permission.storage.status;
+    if (status.isGranted) {
+      return 'ممنوح';
+    } else if (status.isPermanentlyDenied) {
+      return 'مرفوض بشكل دائم - يرجى فتح الإعدادات';
+    } else if (status.isDenied) {
+      return 'مرفوض - يرجى منح الصلاحية';
     }
 
     return 'غير معروف';
+  }
+
+  /// Save file to Downloads folder using MediaStore API (Android 10+) or direct file access (Android 9-)
+  /// This method uses MediaStore API which doesn't require MANAGE_EXTERNAL_STORAGE permission
+  /// Returns the saved file URI or null if failed
+  static Future<String?> saveFileToDownloadsUsingMediaStore(
+    String sourceFilePath,
+    String fileName,
+    String mimeType,
+  ) async {
+    if (!Platform.isAndroid) {
+      return null;
+    }
+
+    try {
+      const platform = MethodChannel('com.swbai.serajaldeen/mediastore');
+      final result = await platform.invokeMethod<String>(
+        'saveFileToDownloads',
+        <String, dynamic>{
+          'filePath': sourceFilePath,
+          'fileName': fileName,
+          'mimeType': mimeType,
+        },
+      );
+      return result;
+    } catch (e) {
+      return null;
+    }
   }
 }

@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:open_file/open_file.dart';
+import 'package:path_provider/path_provider.dart';
 import '../../../../core/models/page_state/bloc_status.dart';
 import '../../../../core/utils/logger/app_logger.dart';
 import '../../../../core/services/storage_permission_service.dart';
@@ -216,7 +217,7 @@ class BooksBloc extends Bloc<BooksEvent, BooksState> {
         downloadMessage: null,
       ));
 
-      // Check and request storage permissions
+      // Check and request storage permissions (only needed for Android 9 and below)
       final hasPermission = await StoragePermissionService.hasStoragePermission();
       if (!hasPermission) {
         AppLogger.info('Storage permission not granted, requesting...');
@@ -242,29 +243,6 @@ class BooksBloc extends Bloc<BooksEvent, BooksState> {
         }
       }
 
-      // Get the public Downloads directory
-      final downloadsPath = await StoragePermissionService.getDownloadsDirectory();
-      if (downloadsPath == null) {
-        AppLogger.error('Failed to get Downloads directory');
-        emit(state.copyWith(
-          isDownloading: false,
-          downloadProgress: 0.0,
-          downloadingFormat: null,
-          downloadMessage: 'فشل الوصول إلى مجلد التنزيلات',
-        ));
-        
-        // Auto-clear error message after 4 seconds
-        await Future.delayed(const Duration(seconds: 4));
-        emit(state.copyWith(downloadMessage: null));
-        return;
-      }
-
-      // Create Downloads directory if it doesn't exist
-      final directory = Directory(downloadsPath);
-      if (!await directory.exists()) {
-        await directory.create(recursive: true);
-      }
-
       // Create file name using book title
       final extension = event.format.toLowerCase();
       var bookTitle = state.bookDetail?.bookTitle
@@ -285,15 +263,23 @@ class BooksBloc extends Bloc<BooksEvent, BooksState> {
       }
       
       final finalFileName = '$bookTitle.$extension';
-      final savePath = '${directory.path}/$finalFileName';
 
-      AppLogger.info('Downloading book to: $savePath');
+      // Download to app's temporary directory first
+      final appDir = await getApplicationDocumentsDirectory();
+      final tempDir = Directory('${appDir.path}/Temp');
+      if (!await tempDir.exists()) {
+        await tempDir.create(recursive: true);
+      }
+      
+      final tempFilePath = '${tempDir.path}/$finalFileName';
+
+      AppLogger.info('Downloading book to temporary location: $tempFilePath');
       AppLogger.info('Download URL: ${event.url}');
 
-      // Download file with better error handling
+      // Download file to temporary location first
       await _dio.download(
         event.url,
-        savePath,
+        tempFilePath,
         onReceiveProgress: (received, total) {
           if (total != -1) {
             final progress = received / total;
@@ -308,7 +294,47 @@ class BooksBloc extends Bloc<BooksEvent, BooksState> {
         ),
       );
 
-      AppLogger.info('Book downloaded successfully to: $savePath');
+      AppLogger.info('Book downloaded to temporary location, saving to Downloads using MediaStore...');
+
+      // Determine MIME type based on format
+      String mimeType = 'application/pdf';
+      switch (extension) {
+        case 'pdf':
+          mimeType = 'application/pdf';
+          break;
+        case 'epub':
+          mimeType = 'application/epub+zip';
+          break;
+        case 'kfx':
+          mimeType = 'application/x-kindle-format';
+          break;
+        default:
+          mimeType = 'application/octet-stream';
+      }
+
+      // Save to Downloads folder using MediaStore API
+      final savedUri = await StoragePermissionService.saveFileToDownloadsUsingMediaStore(
+        tempFilePath,
+        finalFileName,
+        mimeType,
+      );
+
+      if (savedUri == null) {
+        AppLogger.error('Failed to save file to Downloads using MediaStore');
+        emit(state.copyWith(
+          isDownloading: false,
+          downloadProgress: 0.0,
+          downloadingFormat: null,
+          downloadMessage: 'فشل حفظ الملف في مجلد التنزيلات',
+        ));
+        
+        // Auto-clear error message after 4 seconds
+        await Future.delayed(const Duration(seconds: 4));
+        emit(state.copyWith(downloadMessage: null));
+        return;
+      }
+
+      AppLogger.info('Book saved successfully to Downloads: $savedUri');
 
       emit(state.copyWith(
         isDownloading: false,
@@ -459,9 +485,7 @@ class BooksBloc extends Bloc<BooksEvent, BooksState> {
     try {
       // Determine which format to use
       String? format = event.preferredFormat;
-      if (format == null) {
-        format = _getFirstAvailableFormat();
-      }
+      format ??= _getFirstAvailableFormat();
 
       if (format == null) {
         emit(state.copyWith(

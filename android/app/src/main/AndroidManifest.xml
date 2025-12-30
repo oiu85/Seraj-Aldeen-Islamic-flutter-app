@@ -5,12 +5,13 @@
     <uses-permission android:name="android.permission.INTERNET"/>
     
     <!-- Storage permissions for accessing Downloads folder -->
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <!-- READ_EXTERNAL_STORAGE for Android 9 and below -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28"/>
+    <!-- WRITE_EXTERNAL_STORAGE for Android 9 and below -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-        android:maxSdkVersion="32"/>
-    <!-- MANAGE_EXTERNAL_STORAGE for Android 11+ (API 30+) -->
-    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
-        tools:ignore="ScopedStorage"/>
+        android:maxSdkVersion="28"/>
+    <!-- Note: Android 10+ (API 29+) uses MediaStore API which doesn't require these permissions -->
     
     <application
         android:label="الشيخ عبد الله سراج الدين"
