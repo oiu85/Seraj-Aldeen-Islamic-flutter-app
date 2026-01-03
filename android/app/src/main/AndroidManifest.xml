@@ -6,11 +6,15 @@
     
     <!-- Storage permissions for accessing Downloads folder -->
     <!-- READ_EXTERNAL_STORAGE for Android 9 and below -->
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
-        android:maxSdkVersion="28"/>
-    <!-- WRITE_EXTERNAL_STORAGE for Android 9 and below -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-        android:maxSdkVersion="28"/>
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28"
+        tools:ignore="ScopedStorage" />
+
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28"
+        tools:ignore="ScopedStorage" />
     <!-- Note: Android 10+ (API 29+) uses MediaStore API which doesn't require these permissions -->
     
     <application
