@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:seraj_aldean_flutter_app/config/appconfig/app_colors.dart';
@@ -65,17 +67,18 @@ class AboutAppPage extends StatelessWidget {
                       ),
                     ),
                     // Sheikh Image
-                    Center(
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(20.r),
-                        child: Image.asset(
-                          Assets.images.abdullahSerajAldeen.path,
-                          height: 140.h,
-                          width: 200.w,
-                          fit: BoxFit.contain,
+                    if (Platform.isAndroid)
+                      Center(
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(20.r),
+                          child: Image.asset(
+                            Assets.images.abdullahSerajAldeen.path,
+                            height: 140.h,
+                            width: 200.w,
+                            fit: BoxFit.contain,
+                          ),
                         ),
                       ),
-                    ),
                   ],
                 ),
               ),
