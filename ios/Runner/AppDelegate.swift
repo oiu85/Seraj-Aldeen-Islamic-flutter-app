@@ -10,10 +10,13 @@ import UIKit
     GeneratedPluginRegistrant.register(with: self)
 
     // Setup method channel for iOS file operations
-    let controller = window?.rootViewController
+    guard let controller = window?.rootViewController as? FlutterViewController else {
+      return super.application(application, didFinishLaunchingWithOptions: launchOptions)
+    }
+    
     let fileManagerChannel = FlutterMethodChannel(
       name: "com.swbai.serajaldeen/filemanager",
-      binaryMessenger: controller?.binaryMessenger
+      binaryMessenger: controller.binaryMessenger
     )
 
     fileManagerChannel.setMethodCallHandler { [weak self] (call: FlutterMethodCall, result: @escaping FlutterResult) in
@@ -42,9 +45,7 @@ import UIKit
   }
 
   private func saveFileToDownloads(filePath: String, fileName: String) -> String? {
-    guard let sourceURL = URL(fileURLWithPath: filePath) else {
-      return nil
-    }
+    let sourceURL = URL(fileURLWithPath: filePath)
 
     let fileManager = FileManager.default
     guard fileManager.fileExists(atPath: filePath) else {

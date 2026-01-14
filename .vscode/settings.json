@@ -1,3 +1,4 @@
 {
-    "cmake.sourceDirectory": "C:/Users/AAT/StudioProjects/Seraj-Islamic-flutter-app/linux"
+  "cmake.sourceDirectory": "C:/Users/AAT/StudioProjects/Seraj-Islamic-flutter-app/linux",
+  "dart.flutterSdkPath": ".fvm/versions/3.35.0"
 }
