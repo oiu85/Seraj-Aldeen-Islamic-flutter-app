@@ -10,10 +10,10 @@ import UIKit
     GeneratedPluginRegistrant.register(with: self)
 
     // Setup method channel for iOS file operations
-    let controller = window?.rootViewController as? FlutterViewController
+    let controller = window?.rootViewController
     let fileManagerChannel = FlutterMethodChannel(
       name: "com.swbai.serajaldeen/filemanager",
-      binaryMessenger: controller!.binaryMessenger
+      binaryMessenger: controller?.binaryMessenger
     )
 
     fileManagerChannel.setMethodCallHandler { [weak self] (call: FlutterMethodCall, result: @escaping FlutterResult) in
