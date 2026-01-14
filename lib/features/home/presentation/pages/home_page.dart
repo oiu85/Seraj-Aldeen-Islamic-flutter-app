@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -164,8 +166,10 @@ class _HomeContentViewState extends State<_HomeContentView> {
           children: [
             _buildAnimatedMainCard(),
             SizedBox(height: 24.h),
-            _buildAnimatedSectionTitle2(),
-            SizedBox(height: 10.h,),
+            if (Platform.isAndroid) ...[
+              _buildAnimatedSectionTitle2(),
+              SizedBox(height: 10.h),
+            ],
             _buildAnimatedSectionTitle(),
             SizedBox(height: 10.h),
             _buildAnimatedListTiles(state.menus),

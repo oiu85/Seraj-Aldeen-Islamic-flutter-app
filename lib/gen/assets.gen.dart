@@ -48,6 +48,12 @@ class $AssetsImagesGen {
   /// File path: assets/images/Search_empty.png
   AssetGenImage get searchEmpty => const AssetGenImage('assets/images/Search_empty.png');
 
+  /// File path: assets/images/SplashScreen.jpeg
+  AssetGenImage get splashScreenJpeg => const AssetGenImage('assets/images/SplashScreen.jpeg');
+
+  /// File path: assets/images/splash_screen.png
+  AssetGenImage get splashScreenPng => const AssetGenImage('assets/images/splash_screen.png');
+
   /// File path: assets/images/abdullah_seraj_aldeen.png
   AssetGenImage get abdullahSerajAldeen => const AssetGenImage('assets/images/abdullah_seraj_aldeen.png');
 
@@ -93,9 +99,6 @@ class $AssetsImagesGen {
   /// File path: assets/images/shaik_image.png
   AssetGenImage get shaikImage => const AssetGenImage('assets/images/shaik_image.png');
 
-  /// File path: assets/images/splash_screen.png
-  AssetGenImage get splashScreen => const AssetGenImage('assets/images/splash_screen.png');
-
   /// File path: assets/images/splassh_screen_difrent_font.png
   AssetGenImage get splasshScreenDifrentFont => const AssetGenImage('assets/images/splassh_screen_difrent_font.png');
 
@@ -126,6 +129,8 @@ class $AssetsImagesGen {
   /// List of all assets
   List<AssetGenImage> get values => [
         searchEmpty,
+        splashScreenJpeg,
+        splashScreenPng,
         abdullahSerajAldeen,
         appbarImageLeft,
         appbarImageRight,
@@ -141,7 +146,6 @@ class $AssetsImagesGen {
         shaik,
         shaikImageRemovebgPreview,
         shaikImage,
-        splashScreen,
         splasshScreenDifrentFont,
         splasshScreenFinal,
         telegram,

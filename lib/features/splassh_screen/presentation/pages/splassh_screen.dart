@@ -37,7 +37,7 @@ class _SplasshScreenState extends State<SplasshScreen> {
         children: [
           Expanded(
             child: Image(
-              image: AssetImage(Assets.images.splasshScreenFinal.path),
+              image: AssetImage(Assets.images.splashScreenJpeg.path),
               fit: BoxFit.cover,
             ),
           ),

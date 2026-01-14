@@ -87,7 +87,8 @@ class SocialNetworksExpandableFab extends StatelessWidget {
         _buildSocialButton(
           context,
           imagePath: Assets.images.youtube.path,
-          url: 'https://www.youtube.com/@srajaldencomm',
+          // https://www.youtube.com/@srajaldencom
+          url: 'https://www.youtube.com/@srajaldencom',
           platformName: 'يوتيوب',
           size: size,
         ),
