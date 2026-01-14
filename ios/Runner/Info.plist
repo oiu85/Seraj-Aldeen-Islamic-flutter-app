@@ -43,7 +43,15 @@
 	</array>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
-	<key>UIApplicationSupportsIndirectInputEvents</key>
-	<true/>
+    <key>UIApplicationSupportsIndirectInputEvents</key>
+    <true/>
+
+    <!-- Enable File Sharing for iTunes - allows users to access app documents via Files app -->
+    <key>UIFileSharingEnabled</key>
+    <true/>
+
+    <!-- Enable document browser for iOS 11+ -->
+    <key>UISupportsDocumentBrowser</key>
+    <false/>
 </dict>
 </plist>

@@ -1,6 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:seraj_aldean_flutter_app/config/appconfig/app_colors.dart';
 import 'package:seraj_aldean_flutter_app/core/responsive/screen_util_res.dart';
 import 'package:seraj_aldean_flutter_app/core/services/storage_permission_service.dart';
@@ -39,6 +40,8 @@ class _DownloadPathWidgetState extends State<DownloadPathWidget> {
       });
     }
   }
+
+  bool get _isIOS => Platform.isIOS;
 
   void _copyPathToClipboard() {
     Clipboard.setData(ClipboardData(text: _downloadPath));
@@ -238,7 +241,7 @@ class _DownloadPathWidgetState extends State<DownloadPathWidget> {
                   
                   SizedBox(height: 8.h),
                   
-                  // Info Text
+                  // Info Text - Platform specific
                   Row(
                     children: [
                       Icon(
@@ -249,7 +252,9 @@ class _DownloadPathWidgetState extends State<DownloadPathWidget> {
                       SizedBox(width: 6.w),
                       Expanded(
                         child: Text(
-                          'سيتم حفظ جميع التنزيلات في هذا المسار',
+                          _isIOS
+                              ? 'سيتم حفظ التنزيلات في مجلد التطبيق. يمكنك حفظها في تطبيق الملفات من خيارات المشاركة'
+                              : 'سيتم حفظ جميع التنزيلات في مجلد التنزيلات',
                           style: TextStyle(
                             fontSize: 11.f,
                             fontFamily: FontFamily.tajawal,

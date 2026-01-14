@@ -222,11 +222,11 @@ class BooksBloc extends Bloc<BooksEvent, BooksState> {
       if (!hasPermission) {
         AppLogger.info('Storage permission not granted, requesting...');
         final permissionGranted = await StoragePermissionService.requestAllStoragePermissions();
-        
+
         if (!permissionGranted) {
           // Check if permanently denied
           final isPermanentlyDenied = await StoragePermissionService.openAppSettingsIfNeeded();
-          
+
           emit(state.copyWith(
             isDownloading: false,
             downloadProgress: 0.0,
@@ -235,7 +235,7 @@ class BooksBloc extends Bloc<BooksEvent, BooksState> {
                 ? 'تم رفض الصلاحية بشكل دائم. يرجى فتح الإعدادات ومنح صلاحية الوصول إلى الملفات'
                 : 'يرجى منح صلاحيات الوصول إلى الملفات لتحميل الكتب',
           ));
-          
+
           // Auto-clear error message after 5 seconds
           await Future.delayed(const Duration(seconds: 5));
           emit(state.copyWith(downloadMessage: null));
@@ -254,14 +254,14 @@ class BooksBloc extends Bloc<BooksEvent, BooksState> {
           // Replace multiple spaces with single underscore
           .replaceAll(RegExp(r'\s+'), '_')
           ?? 'book';
-      
+
       // Limit filename length to avoid "File name too long" error
       // Most file systems have a 255 character limit for filenames
       final maxFileNameLength = 200; // Leave room for extension
       if (bookTitle.length > maxFileNameLength) {
         bookTitle = bookTitle.substring(0, maxFileNameLength);
       }
-      
+
       final finalFileName = '$bookTitle.$extension';
 
       // Download to app's temporary directory first
@@ -270,7 +270,7 @@ class BooksBloc extends Bloc<BooksEvent, BooksState> {
       if (!await tempDir.exists()) {
         await tempDir.create(recursive: true);
       }
-      
+
       final tempFilePath = '${tempDir.path}/$finalFileName';
 
       AppLogger.info('Downloading book to temporary location: $tempFilePath');
@@ -294,7 +294,7 @@ class BooksBloc extends Bloc<BooksEvent, BooksState> {
         ),
       );
 
-      AppLogger.info('Book downloaded to temporary location, saving to Downloads using MediaStore...');
+      AppLogger.info('Book downloaded to temporary location, saving to platform-specific location...');
 
       // Determine MIME type based on format
       String mimeType = 'application/pdf';
@@ -312,35 +312,39 @@ class BooksBloc extends Bloc<BooksEvent, BooksState> {
           mimeType = 'application/octet-stream';
       }
 
-      // Save to Downloads folder using MediaStore API
-      final savedUri = await StoragePermissionService.saveFileToDownloadsUsingMediaStore(
+      // Save file to platform-specific downloads location
+      final savedPath = await StoragePermissionService.saveFileToDownloads(
         tempFilePath,
         finalFileName,
         mimeType,
       );
 
-      if (savedUri == null) {
-        AppLogger.error('Failed to save file to Downloads using MediaStore');
+      if (savedPath == null) {
+        AppLogger.error('Failed to save file to downloads');
         emit(state.copyWith(
           isDownloading: false,
           downloadProgress: 0.0,
           downloadingFormat: null,
-          downloadMessage: 'فشل حفظ الملف في مجلد التنزيلات',
+          downloadMessage: Platform.isIOS
+              ? 'فشل حفظ الملف في مجلد التطبيق. يرجى حفظه يدوياً'
+              : 'فشل حفظ الملف في مجلد التنزيلات',
         ));
-        
+
         // Auto-clear error message after 4 seconds
         await Future.delayed(const Duration(seconds: 4));
         emit(state.copyWith(downloadMessage: null));
         return;
       }
 
-      AppLogger.info('Book saved successfully to Downloads: $savedUri');
+      AppLogger.info('Book saved successfully: $savedPath');
 
       emit(state.copyWith(
         isDownloading: false,
         downloadProgress: 0.0,
         downloadingFormat: null,
-        downloadMessage: 'تم تحميل الكتاب بنجاح',
+        downloadMessage: Platform.isIOS
+            ? 'تم تحميل الكتاب بنجاح. يمكنك حفظه من خيارات المشاركة'
+            : 'تم تحميل الكتاب بنجاح',
       ));
 
       // Auto-clear success message after 3 seconds
