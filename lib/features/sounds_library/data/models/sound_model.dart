@@ -216,12 +216,12 @@ abstract class AudioBookSubcategoriesData with _$AudioBookSubcategoriesData {
 abstract class AudioBookSubcategory with _$AudioBookSubcategory {
   const factory AudioBookSubcategory({
     @JsonKey(fromJson: _stringToInt) int? id,
-    String? title,
-    String? note,
-    String? position,
-    String? language,
-    String? date,
-    @JsonKey(name: 'parent_id') String? parentId,
+    @JsonKey(fromJson: _dynamicToString) String? title,
+    @JsonKey(fromJson: _dynamicToString) String? note,
+    @JsonKey(fromJson: _dynamicToString) String? position,
+    @JsonKey(fromJson: _dynamicToString) String? language,
+    @JsonKey(fromJson: _dynamicToString) String? date,
+    @JsonKey(name: 'parent_id', fromJson: _stringToInt) int? parentId,
     @JsonKey(name: 'show_in_menu', fromJson: _stringToBool) bool? showInMenu,
     @JsonKey(name: 'show_in_main', fromJson: _stringToBool) bool? showInMain,
     @JsonKey(name: 'content_count', fromJson: _stringToInt) int? contentCount,

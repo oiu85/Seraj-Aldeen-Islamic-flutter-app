@@ -5795,13 +5795,18 @@ class __$AudioBookSubcategoriesDataCopyWithImpl<$Res>
 mixin _$AudioBookSubcategory {
   @JsonKey(fromJson: _stringToInt)
   int? get id;
+  @JsonKey(fromJson: _dynamicToString)
   String? get title;
+  @JsonKey(fromJson: _dynamicToString)
   String? get note;
+  @JsonKey(fromJson: _dynamicToString)
   String? get position;
+  @JsonKey(fromJson: _dynamicToString)
   String? get language;
+  @JsonKey(fromJson: _dynamicToString)
   String? get date;
-  @JsonKey(name: 'parent_id')
-  String? get parentId;
+  @JsonKey(name: 'parent_id', fromJson: _stringToInt)
+  int? get parentId;
   @JsonKey(name: 'show_in_menu', fromJson: _stringToBool)
   bool? get showInMenu;
   @JsonKey(name: 'show_in_main', fromJson: _stringToBool)
@@ -5862,12 +5867,12 @@ abstract mixin class $AudioBookSubcategoryCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(fromJson: _stringToInt) int? id,
-      String? title,
-      String? note,
-      String? position,
-      String? language,
-      String? date,
-      @JsonKey(name: 'parent_id') String? parentId,
+      @JsonKey(fromJson: _dynamicToString) String? title,
+      @JsonKey(fromJson: _dynamicToString) String? note,
+      @JsonKey(fromJson: _dynamicToString) String? position,
+      @JsonKey(fromJson: _dynamicToString) String? language,
+      @JsonKey(fromJson: _dynamicToString) String? date,
+      @JsonKey(name: 'parent_id', fromJson: _stringToInt) int? parentId,
       @JsonKey(name: 'show_in_menu', fromJson: _stringToBool) bool? showInMenu,
       @JsonKey(name: 'show_in_main', fromJson: _stringToBool) bool? showInMain,
       @JsonKey(name: 'content_count', fromJson: _stringToInt)
@@ -5926,7 +5931,7 @@ class _$AudioBookSubcategoryCopyWithImpl<$Res>
       parentId: freezed == parentId
           ? _self.parentId
           : parentId // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       showInMenu: freezed == showInMenu
           ? _self.showInMenu
           : showInMenu // ignore: cast_nullable_to_non_nullable
@@ -6038,12 +6043,12 @@ extension AudioBookSubcategoryPatterns on AudioBookSubcategory {
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
             @JsonKey(fromJson: _stringToInt) int? id,
-            String? title,
-            String? note,
-            String? position,
-            String? language,
-            String? date,
-            @JsonKey(name: 'parent_id') String? parentId,
+            @JsonKey(fromJson: _dynamicToString) String? title,
+            @JsonKey(fromJson: _dynamicToString) String? note,
+            @JsonKey(fromJson: _dynamicToString) String? position,
+            @JsonKey(fromJson: _dynamicToString) String? language,
+            @JsonKey(fromJson: _dynamicToString) String? date,
+            @JsonKey(name: 'parent_id', fromJson: _stringToInt) int? parentId,
             @JsonKey(name: 'show_in_menu', fromJson: _stringToBool)
             bool? showInMenu,
             @JsonKey(name: 'show_in_main', fromJson: _stringToBool)
@@ -6089,12 +6094,12 @@ extension AudioBookSubcategoryPatterns on AudioBookSubcategory {
   TResult when<TResult extends Object?>(
     TResult Function(
             @JsonKey(fromJson: _stringToInt) int? id,
-            String? title,
-            String? note,
-            String? position,
-            String? language,
-            String? date,
-            @JsonKey(name: 'parent_id') String? parentId,
+            @JsonKey(fromJson: _dynamicToString) String? title,
+            @JsonKey(fromJson: _dynamicToString) String? note,
+            @JsonKey(fromJson: _dynamicToString) String? position,
+            @JsonKey(fromJson: _dynamicToString) String? language,
+            @JsonKey(fromJson: _dynamicToString) String? date,
+            @JsonKey(name: 'parent_id', fromJson: _stringToInt) int? parentId,
             @JsonKey(name: 'show_in_menu', fromJson: _stringToBool)
             bool? showInMenu,
             @JsonKey(name: 'show_in_main', fromJson: _stringToBool)
@@ -6138,12 +6143,12 @@ extension AudioBookSubcategoryPatterns on AudioBookSubcategory {
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
             @JsonKey(fromJson: _stringToInt) int? id,
-            String? title,
-            String? note,
-            String? position,
-            String? language,
-            String? date,
-            @JsonKey(name: 'parent_id') String? parentId,
+            @JsonKey(fromJson: _dynamicToString) String? title,
+            @JsonKey(fromJson: _dynamicToString) String? note,
+            @JsonKey(fromJson: _dynamicToString) String? position,
+            @JsonKey(fromJson: _dynamicToString) String? language,
+            @JsonKey(fromJson: _dynamicToString) String? date,
+            @JsonKey(name: 'parent_id', fromJson: _stringToInt) int? parentId,
             @JsonKey(name: 'show_in_menu', fromJson: _stringToBool)
             bool? showInMenu,
             @JsonKey(name: 'show_in_main', fromJson: _stringToBool)
@@ -6177,12 +6182,12 @@ extension AudioBookSubcategoryPatterns on AudioBookSubcategory {
 class _AudioBookSubcategory implements AudioBookSubcategory {
   const _AudioBookSubcategory(
       {@JsonKey(fromJson: _stringToInt) this.id,
-      this.title,
-      this.note,
-      this.position,
-      this.language,
-      this.date,
-      @JsonKey(name: 'parent_id') this.parentId,
+      @JsonKey(fromJson: _dynamicToString) this.title,
+      @JsonKey(fromJson: _dynamicToString) this.note,
+      @JsonKey(fromJson: _dynamicToString) this.position,
+      @JsonKey(fromJson: _dynamicToString) this.language,
+      @JsonKey(fromJson: _dynamicToString) this.date,
+      @JsonKey(name: 'parent_id', fromJson: _stringToInt) this.parentId,
       @JsonKey(name: 'show_in_menu', fromJson: _stringToBool) this.showInMenu,
       @JsonKey(name: 'show_in_main', fromJson: _stringToBool) this.showInMain,
       @JsonKey(name: 'content_count', fromJson: _stringToInt)
@@ -6194,18 +6199,23 @@ class _AudioBookSubcategory implements AudioBookSubcategory {
   @JsonKey(fromJson: _stringToInt)
   final int? id;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? title;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? note;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? position;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? language;
   @override
+  @JsonKey(fromJson: _dynamicToString)
   final String? date;
   @override
-  @JsonKey(name: 'parent_id')
-  final String? parentId;
+  @JsonKey(name: 'parent_id', fromJson: _stringToInt)
+  final int? parentId;
   @override
   @JsonKey(name: 'show_in_menu', fromJson: _stringToBool)
   final bool? showInMenu;
@@ -6276,12 +6286,12 @@ abstract mixin class _$AudioBookSubcategoryCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(fromJson: _stringToInt) int? id,
-      String? title,
-      String? note,
-      String? position,
-      String? language,
-      String? date,
-      @JsonKey(name: 'parent_id') String? parentId,
+      @JsonKey(fromJson: _dynamicToString) String? title,
+      @JsonKey(fromJson: _dynamicToString) String? note,
+      @JsonKey(fromJson: _dynamicToString) String? position,
+      @JsonKey(fromJson: _dynamicToString) String? language,
+      @JsonKey(fromJson: _dynamicToString) String? date,
+      @JsonKey(name: 'parent_id', fromJson: _stringToInt) int? parentId,
       @JsonKey(name: 'show_in_menu', fromJson: _stringToBool) bool? showInMenu,
       @JsonKey(name: 'show_in_main', fromJson: _stringToBool) bool? showInMain,
       @JsonKey(name: 'content_count', fromJson: _stringToInt)
@@ -6340,7 +6350,7 @@ class __$AudioBookSubcategoryCopyWithImpl<$Res>
       parentId: freezed == parentId
           ? _self.parentId
           : parentId // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       showInMenu: freezed == showInMenu
           ? _self.showInMenu
           : showInMenu // ignore: cast_nullable_to_non_nullable

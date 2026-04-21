@@ -288,12 +288,12 @@ _AudioBookSubcategory _$AudioBookSubcategoryFromJson(
         Map<String, dynamic> json) =>
     _AudioBookSubcategory(
       id: _stringToInt(json['id']),
-      title: json['title'] as String?,
-      note: json['note'] as String?,
-      position: json['position'] as String?,
-      language: json['language'] as String?,
-      date: json['date'] as String?,
-      parentId: json['parent_id'] as String?,
+      title: _dynamicToString(json['title']),
+      note: _dynamicToString(json['note']),
+      position: _dynamicToString(json['position']),
+      language: _dynamicToString(json['language']),
+      date: _dynamicToString(json['date']),
+      parentId: _stringToInt(json['parent_id']),
       showInMenu: _stringToBool(json['show_in_menu']),
       showInMain: _stringToBool(json['show_in_main']),
       contentCount: _stringToInt(json['content_count']),
