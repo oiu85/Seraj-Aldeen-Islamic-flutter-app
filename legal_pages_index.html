@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Seraj Al-Din Islamic App - Legal Pages and Policies">
+    <meta name="author" content="Seraj Al-Din Islamic App">
+    <meta name="keywords" content="privacy policy, terms of service, legal, seraj al-din, islamic app">
+    <title>Legal & Policies - Seraj Al-Din Islamic App</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-color: #1e3c72;
+            --secondary-color: #2a5298;
+            --accent-color: #d4a373;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --bg-light: #f8f9fa;
+            --bg-white: #ffffff;
+            --border-color: #e0e0e0;
+            --success-color: #27ae60;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: var(--bg-white);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+        
+        .content {
+            padding: 60px 40px;
+        }
+        
+        .intro-section {
+            background-color: var(--bg-light);
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            border-left: 4px solid var(--accent-color);
+        }
+        
+        .intro-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .intro-section p {
+            color: var(--text-light);
+            margin-bottom: 10px;
+        }
+        
+        .policies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .policy-card {
+            background-color: var(--bg-white);
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .policy-card:hover {
+            border-color: var(--accent-color);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            transform: translateY(-5px);
+        }
+        
+        .policy-card-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+        
+        .policy-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 1.4em;
+        }
+        
+        .policy-card p {
+            color: var(--text-light);
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+        
+        .policy-card-button {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-align: center;
+            transition: background-color 0.3s;
+            margin-top: 15px;
+            text-decoration: none;
+        }
+        
+        .policy-card-button:hover {
+            background-color: var(--primary-color);
+        }
+        
+        .quick-links {
+            background-color: var(--bg-light);
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+        }
+        
+        .quick-links h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .quick-links ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .quick-links li a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            padding: 10px 15px;
+            border-left: 3px solid var(--accent-color);
+            padding-left: 15px;
+            transition: all 0.3s;
+            display: block;
+        }
+        
+        .quick-links li a:hover {
+            color: var(--accent-color);
+            padding-left: 20px;
+        }
+        
+        .features-section {
+            background-color: var(--bg-light);
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+        }
+        
+        .features-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .features-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .feature-item::before {
+            content: "✓";
+            color: var(--success-color);
+            font-weight: bold;
+            font-size: 1.5em;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+        
+        .feature-item span {
+            color: var(--text-light);
+        }
+        
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        footer p {
+            margin: 8px 0;
+            opacity: 0.95;
+        }
+        
+        .footer-links {
+            margin-top: 20px;
+        }
+        
+        .footer-links a {
+            color: var(--accent-color);
+            text-decoration: none;
+            margin: 0 15px;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .version-info {
+            font-size: 0.9em;
+            opacity: 0.8;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                padding: 40px 20px;
+            }
+            
+            header h1 {
+                font-size: 2em;
+            }
+            
+            .content {
+                padding: 30px 20px;
+            }
+            
+            .policies-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .policy-card {
+                padding: 20px;
+            }
+        }
+        
+        .badge {
+            display: inline-block;
+            background-color: var(--success-color);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            margin-top: 10px;
+        }
+        
+        .last-updated-badge {
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>🕌 Seraj Al-Din Islamic App</h1>
+            <p>Legal Pages & Policies</p>
+        </header>
+        
+        <!-- Main Content -->
+        <div class="content">
+            <!-- Introduction -->
+            <div class="intro-section">
+                <h2>Welcome to Our Legal Center</h2>
+                <p>
+                    This is the central hub for all legal documents, policies, and terms related to the 
+                    <strong>Seraj Al-Din Islamic App</strong>. We are committed to transparency and protecting 
+                    your privacy.
+                </p>
+                <p>
+                    Below you will find comprehensive information about how we collect, use, and protect 
+                    your information, as well as our terms of service and other important legal documents.
+                </p>
+            </div>
+            
+            <!-- Policy Cards -->
+            <div class="policies-grid">
+                <!-- Privacy Policy Card -->
+                <a href="privacy_policy.html" class="policy-card">
+                    <div class="policy-card-icon">🔒</div>
+                    <h3>Privacy Policy</h3>
+                    <p>
+                        Learn how we collect, use, and protect your personal information. 
+                        Understand your privacy rights and our data practices.
+                    </p>
+                    <div class="badge last-updated-badge">Updated: April 19, 2026</div>
+                    <div class="policy-card-button">Read Full Policy →</div>
+                </a>
+                
+                <!-- Terms of Service Card (Template) -->
+                <div class="policy-card">
+                    <div class="policy-card-icon">⚖️</div>
+                    <h3>Terms of Service</h3>
+                    <p>
+                        Review the conditions and terms for using the Seraj Al-Din Islamic App, 
+                        including limitations of liability and user responsibilities.
+                    </p>
+                    <div class="badge">Coming Soon</div>
+                    <div class="policy-card-button" style="background-color: #ccc; cursor: not-allowed;">Coming Soon</div>
+                </div>
+                
+                <!-- Code of Conduct Card (Template) -->
+                <div class="policy-card">
+                    <div class="policy-card-icon">🤝</div>
+                    <h3>Code of Conduct</h3>
+                    <p>
+                        Guidelines for respectful and appropriate use of the app community features 
+                        and community standards.
+                    </p>
+                    <div class="badge">Coming Soon</div>
+                    <div class="policy-card-button" style="background-color: #ccc; cursor: not-allowed;">Coming Soon</div>
+                </div>
+            </div>
+            
+            <!-- Quick Links -->
+            <div class="quick-links">
+                <h2>🔗 Quick Links</h2>
+                <ul>
+                    <li><a href="privacy_policy.html">Privacy Policy</a></li>
+                    <li><a href="https://srajalden.com">Official Website</a></li>
+                    <li><a href="mailto:contact@srajalden.com">Contact Support</a></li>
+                    <li><a href="#faq">Frequently Asked Questions</a></li>
+                    <li><a href="#glossary">Terms Glossary</a></li>
+                    <li><a href="https://github.com">Source Code</a></li>
+                </ul>
+            </div>
+            
+            <!-- Key Features -->
+            <div class="features-section">
+                <h2>✨ What We Protect</h2>
+                <div class="features-list">
+                    <div class="feature-item">
+                        <span><strong>HTTPS Encryption</strong> - All data transfers are encrypted</span>
+                    </div>
+                    <div class="feature-item">
+                        <span><strong>No Data Selling</strong> - We never sell your information</span>
+                    </div>
+                    <div class="feature-item">
+                        <span><strong>User Control</strong> - You control your data and privacy settings</span>
+                    </div>
+                    <div class="feature-item">
+                        <span><strong>Transparency</strong> - Clear policies about data practices</span>
+                    </div>
+                    <div class="feature-item">
+                        <span><strong>Security First</strong> - Regular updates and security patches</span>
+                    </div>
+                    <div class="feature-item">
+                        <span><strong>GDPR & CCPA Compliant</strong> - Respects international privacy laws</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- FAQ Section -->
+            <div id="faq" class="intro-section">
+                <h2>❓ Frequently Asked Questions</h2>
+                <p><strong>Q: Do you collect my personal information?</strong></p>
+                <p style="margin-bottom: 20px;">
+                    A: We only collect information necessary to provide app functionality, such as usage statistics 
+                    and content preferences. We do not require account registration.
+                </p>
+                
+                <p><strong>Q: Can I delete my data?</strong></p>
+                <p style="margin-bottom: 20px;">
+                    A: Yes! You can delete the app's data and cache through your device settings at any time.
+                </p>
+                
+                <p><strong>Q: Do you share my data with third parties?</strong></p>
+                <p style="margin-bottom: 20px;">
+                    A: No. We do not sell or share your personal information with third parties for their benefit.
+                </p>
+                
+                <p><strong>Q: Is my data secure?</strong></p>
+                <p style="margin-bottom: 20px;">
+                    A: Yes. All communication between the app and our servers uses HTTPS encryption.
+                </p>
+                
+                <p><strong>Q: How can I contact you about privacy?</strong></p>
+                <p>
+                    A: Email us at <a href="mailto:contact@srajalden.com">contact@srajalden.com</a> with your questions.
+                </p>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <footer>
+            <p><strong>🕌 Seraj Al-Din Islamic App</strong></p>
+            <p>Preserving and Sharing Islamic Knowledge Worldwide</p>
+            
+            <div class="footer-links">
+                <a href="privacy_policy.html">Privacy Policy</a>
+                <a href="https://srajalden.com">Website</a>
+                <a href="mailto:contact@srajalden.com">Contact</a>
+            </div>
+            
+            <div class="version-info">
+                <p>© 2026 Seraj Al-Din Islamic App. All rights reserved.</p>
+                <p>Legal Center | Last Updated: April 19, 2026</p>
+                <p>Available for: Android • iOS • Web</p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Privacy Policy for the Seraj Al-Din Islamic App">
+    <meta name="author" content="Seraj Al-Din Islamic App">
+    <title>Privacy Policy - Seraj Al-Din Islamic App</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-color: #1e3c72;
+            --secondary-color: #2a5298;
+            --accent-color: #d4a373;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --bg-light: #f8f9fa;
+            --bg-white: #ffffff;
+            --border-color: #e0e0e0;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: var(--bg-white);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            margin-bottom: 40px;
+            border-radius: 8px;
+        }
+        
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+        
+        .last-updated {
+            background-color: var(--bg-light);
+            padding: 15px;
+            border-left: 4px solid var(--accent-color);
+            margin-bottom: 30px;
+            border-radius: 4px;
+        }
+        
+        .last-updated strong {
+            color: var(--primary-color);
+        }
+        
+        h2 {
+            color: var(--primary-color);
+            margin-top: 35px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent-color);
+            font-size: 1.8em;
+        }
+        
+        h3 {
+            color: var(--secondary-color);
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+            color: var(--text-light);
+        }
+        
+        ul, ol {
+            margin-left: 30px;
+            margin-bottom: 15px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+            color: var(--text-light);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: var(--bg-white);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        th {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 12px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        tr:hover {
+            background-color: var(--bg-light);
+        }
+        
+        .info-box {
+            background-color: var(--bg-light);
+            border-left: 4px solid var(--secondary-color);
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .info-box strong {
+            color: var(--secondary-color);
+        }
+        
+        .warning-box {
+            background-color: #fff3cd;
+            border-left: 4px solid var(--warning-color);
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+            color: #856404;
+        }
+        
+        .success-box {
+            background-color: #d4edda;
+            border-left: 4px solid var(--success-color);
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+            color: #155724;
+        }
+        
+        .code-block {
+            background-color: #f4f4f4;
+            border: 1px solid var(--border-color);
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            margin: 15px 0;
+        }
+        
+        .contact-section {
+            background: linear-gradient(135deg, rgba(30, 60, 114, 0.05) 0%, rgba(42, 82, 152, 0.05) 100%);
+            padding: 25px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+        
+        .contact-section h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+        
+        .contact-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 15px;
+        }
+        
+        .contact-info-item {
+            padding: 10px 0;
+        }
+        
+        .contact-info-item strong {
+            color: var(--primary-color);
+        }
+        
+        a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        a:hover {
+            color: var(--accent-color);
+            text-decoration: underline;
+        }
+        
+        .toc {
+            background-color: var(--bg-light);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+        
+        .toc h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+        
+        .toc ol {
+            margin-bottom: 0;
+        }
+        
+        .section-number {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            margin-right: 10px;
+            font-weight: 600;
+        }
+        
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 30px;
+            margin-top: 50px;
+            text-align: center;
+            border-radius: 8px;
+        }
+        
+        footer p {
+            color: white;
+            text-align: center;
+            margin: 5px 0;
+        }
+        
+        .highlight {
+            background-color: #fff59d;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            header h1 {
+                font-size: 1.8em;
+            }
+            
+            h2 {
+                font-size: 1.4em;
+            }
+            
+            .contact-info {
+                grid-template-columns: 1fr;
+            }
+            
+            table {
+                font-size: 0.9em;
+            }
+            
+            th, td {
+                padding: 8px;
+            }
+        }
+        
+        .print-notice {
+            text-align: center;
+            color: var(--text-light);
+            font-size: 0.9em;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .back-to-top {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: var(--secondary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        .back-to-top:hover {
+            background-color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>🕌 Privacy Policy</h1>
+            <p>Seraj Al-Din Islamic App</p>
+        </header>
+        
+        <!-- Last Updated -->
+        <div class="last-updated">
+            <strong>Last Updated:</strong> April 19, 2026 | <strong>Version:</strong> 1.0
+        </div>
+        
+        <!-- Table of Contents -->
+        <div class="toc">
+            <h3>📑 Table of Contents</h3>
+            <ol>
+                <li><a href="#section-1">Introduction</a></li>
+                <li><a href="#section-2">Information We Collect</a></li>
+                <li><a href="#section-3">How We Use Your Information</a></li>
+                <li><a href="#section-4">Data Retention</a></li>
+                <li><a href="#section-5">Data Sharing and Third Parties</a></li>
+                <li><a href="#section-6">Data Security</a></li>
+                <li><a href="#section-7">Your Privacy Rights and Choices</a></li>
+                <li><a href="#section-8">Children's Privacy</a></li>
+                <li><a href="#section-9">International Data Transfer</a></li>
+                <li><a href="#section-10">Changes to This Privacy Policy</a></li>
+                <li><a href="#section-11">Contact Us</a></li>
+                <li><a href="#section-12">Additional Information by Region</a></li>
+                <li><a href="#section-13">Data Breach Notification</a></li>
+                <li><a href="#section-14">Third-Party Links</a></li>
+                <li><a href="#section-15">Glossary of Terms</a></li>
+                <li><a href="#section-16">Summary of Key Points</a></li>
+            </ol>
+        </div>
+        
+        <!-- Section 1 -->
+        <h2 id="section-1"><span class="section-number">1</span>Introduction</h2>
+        <p>Welcome to the <strong>Seraj Al-Din Islamic App</strong> (the "App"). We are committed to protecting your privacy and ensuring you understand our privacy practices. This Privacy Policy explains how we collect, use, disclose, and otherwise process information in connection with the App.</p>
+        
+        <p>By downloading, installing, or using the App, you acknowledge that you have read and understood this Privacy Policy and agree to our data practices.</p>
+        
+        <!-- Section 2 -->
+        <h2 id="section-2"><span class="section-number">2</span>Information We Collect</h2>
+        
+        <h3>2.1 Information You Provide</h3>
+        <ul>
+            <li><strong>Contact Information:</strong> When you use the "Contact Us" feature, we collect your message and any contact information you voluntarily provide to communicate with you.</li>
+            <li><strong>Search Queries:</strong> Your search queries within the App to improve content discovery and provide relevant results.</li>
+            <li><strong>Content Interactions:</strong> Information about which articles, videos, sounds, and books you interact with, including views, downloads, and engagement metrics.</li>
+        </ul>
+        
+        <h3>2.2 Automatically Collected Information</h3>
+        <ul>
+            <li><strong>Device Information:</strong> Device type, operating system version, unique device identifiers, and device settings.</li>
+            <li><strong>Usage Data:</strong>
+                <ul>
+                    <li>Pages visited and content accessed</li>
+                    <li>Time spent on different sections</li>
+                    <li>Download history</li>
+                    <li>Playback duration and positions</li>
+                    <li>Click-through data</li>
+                    <li>Crash reports and error logs</li>
+                </ul>
+            </li>
+            <li><strong>Network Information:</strong>
+                <ul>
+                    <li>IP address (for content delivery optimization)</li>
+                    <li>Internet service provider information</li>
+                    <li>Browser type and version</li>
+                </ul>
+            </li>
+            <li><strong>Local Storage Data:</strong>
+                <ul>
+                    <li>Theme preferences (dark/light mode)</li>
+                    <li>Fullscreen mode settings</li>
+                    <li>Cached content and images</li>
+                    <li>Download history stored locally on your device</li>
+                </ul>
+            </li>
+        </ul>
+        
+        <h3>2.3 Permissions Required</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Permission</th>
+                    <th>Purpose</th>
+                    <th>Platform</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>INTERNET</strong></td>
+                    <td>Essential for fetching content from our API server and streaming media</td>
+                    <td>Android, iOS</td>
+                </tr>
+                <tr>
+                    <td><strong>READ_EXTERNAL_STORAGE</strong></td>
+                    <td>Access downloaded books, audio, and video files from your device</td>
+                    <td>Android (API &lt; 29)</td>
+                </tr>
+                <tr>
+                    <td><strong>WRITE_EXTERNAL_STORAGE</strong></td>
+                    <td>Save downloaded content to your device's storage</td>
+                    <td>Android (API &lt; 29)</td>
+                </tr>
+                <tr>
+                    <td><strong>Storage Access (iOS)</strong></td>
+                    <td>Access and manage files in the Files app</td>
+                    <td>iOS</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="info-box">
+            <strong>Note:</strong> Android 10+ (API 29+) uses the MediaStore API, which doesn't require the legacy storage permissions. The App complies with each platform's storage best practices.
+        </div>
+        
+        <!-- Section 3 -->
+        <h2 id="section-3"><span class="section-number">3</span>How We Use Your Information</h2>
+        <p>We use collected information for the following purposes:</p>
+        
+        <h3>3.1 Core Functionality</h3>
+        <ul>
+            <li>Deliver and improve the App's features and functionality</li>
+            <li>Display content requested by you (articles, videos, audio, books)</li>
+            <li>Process your downloads and ensure proper file delivery</li>
+            <li>Manage user preferences and settings</li>
+        </ul>
+        
+        <h3>3.2 Communication</h3>
+        <ul>
+            <li>Respond to your inquiries through the "Contact Us" feature</li>
+            <li>Send you important updates about the App</li>
+            <li>Provide customer support and technical assistance</li>
+        </ul>
+        
+        <h3>3.3 Analytics and Improvement</h3>
+        <ul>
+            <li>Analyze App usage patterns and user behavior</li>
+            <li>Track content popularity (visitor counts)</li>
+            <li>Identify and fix bugs and technical issues</li>
+            <li>Optimize App performance and loading times</li>
+            <li>Improve user interface and user experience</li>
+        </ul>
+        
+        <h3>3.4 Security and Compliance</h3>
+        <ul>
+            <li>Prevent fraud and abuse</li>
+            <li>Enforce our Terms of Service</li>
+            <li>Comply with applicable laws and regulations</li>
+            <li>Protect the rights and safety of our users</li>
+        </ul>
+        
+        <h3>3.5 Content Recommendations</h3>
+        <ul>
+            <li>Suggest relevant content based on your browsing history</li>
+            <li>Personalize your experience within the App</li>
+        </ul>
+        
+        <!-- Section 4 -->
+        <h2 id="section-4"><span class="section-number">4</span>Data Retention</h2>
+        <p>We retain your information for as long as necessary to provide the App's services and comply with applicable laws:</p>
+        
+        <ul>
+            <li><strong>Contact Information:</strong> Retained for 30 days unless you request deletion</li>
+            <li><strong>Usage Data & Analytics:</strong> Retained for up to 12 months for analysis purposes</li>
+            <li><strong>Downloaded Content:</strong> Stored locally on your device until you delete them</li>
+            <li><strong>Preferences & Settings:</strong> Retained until you uninstall the App or clear the App's cache</li>
+            <li><strong>Crash Reports & Logs:</strong> Retained for 90 days for debugging purposes</li>
+        </ul>
+        
+        <div class="info-box">
+            <strong>Note:</strong> You can clear the App's data, cache, and settings at any time through your device's application settings.
+        </div>
+        
+        <!-- Section 5 -->
+        <h2 id="section-5"><span class="section-number">5</span>Data Sharing and Third Parties</h2>
+        
+        <h3>5.1 Third-Party Services</h3>
+        <p>Our App uses the following third-party services:</p>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Service</th>
+                    <th>Purpose</th>
+                    <th>Privacy Link</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Google Fonts</strong></td>
+                    <td>Display custom fonts</td>
+                    <td><a href="https://policies.google.com/privacy" target="_blank">Google Privacy</a></td>
+                </tr>
+                <tr>
+                    <td><strong>Syncfusion PDF Viewer</strong></td>
+                    <td>PDF document viewing</td>
+                    <td><a href="https://www.syncfusion.com/company/privacy" target="_blank">Syncfusion Privacy</a></td>
+                </tr>
+                <tr>
+                    <td><strong>YouTube Player</strong></td>
+                    <td>Video playback integration</td>
+                    <td><a href="https://policies.google.com/privacy" target="_blank">YouTube Privacy</a></td>
+                </tr>
+                <tr>
+                    <td><strong>Audio Players Library</strong></td>
+                    <td>Audio playback functionality</td>
+                    <td><a href="https://pub.dev/packages/audioplayers" target="_blank">Open Source</a></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h3>5.2 Data Sharing Policy</h3>
+        <div class="warning-box">
+            <strong>⚠️ Important:</strong> We DO NOT share, sell, rent, or trade your personal information with third parties for their marketing purposes.
+        </div>
+        
+        <p>However, we may share information in the following circumstances:</p>
+        <ul>
+            <li><strong>Service Providers:</strong> With vendors and service providers who perform functions on our behalf (hosting, analytics, support), under confidentiality agreements</li>
+            <li><strong>Legal Compliance:</strong> When required by law, court order, or government request</li>
+            <li><strong>Business Transfers:</strong> In the event of merger, acquisition, bankruptcy, or sale of assets</li>
+            <li><strong>Protection of Rights:</strong> To protect the security and rights of users, the App, and the public</li>
+        </ul>
+        
+        <!-- Section 6 -->
+        <h2 id="section-6"><span class="section-number">6</span>Data Security</h2>
+        
+        <h3>6.1 Security Measures</h3>
+        <p>We implement comprehensive security measures to protect your information:</p>
+        
+        <ul>
+            <li><strong>HTTPS Encryption:</strong> All data transmitted between the App and our API servers (https://api.srajalden.com/api) is encrypted using industry-standard TLS/SSL protocols</li>
+            <li><strong>Secure Communication:</strong> All API requests use secure HTTPS connections exclusively</li>
+            <li><strong>Input Validation:</strong> Strict validation and sanitization of user input</li>
+            <li><strong>Error Handling:</strong> Secure error messages that don't expose sensitive information</li>
+            <li><strong>Logging Security:</strong> Sensitive data is never logged in production environments</li>
+            <li><strong>Regular Updates:</strong> Continuous monitoring and updates of dependencies for security patches</li>
+        </ul>
+        
+        <h3>6.2 Data Storage</h3>
+        <ul>
+            <li><strong>Local Storage:</strong> User preferences are stored securely on your device using SharedPreferences</li>
+            <li><strong>Server Storage:</strong> Content and usage data are stored on secure servers with access controls</li>
+            <li><strong>Downloaded Content:</strong> Media files are stored in your device's secure storage directories</li>
+        </ul>
+        
+        <h3>6.3 Limitations</h3>
+        <div class="warning-box">
+            <strong>⚠️ Security Note:</strong> While we implement robust security measures, no method of transmission over the internet or electronic storage is 100% secure. We cannot guarantee absolute security of your information.
+        </div>
+        
+        <!-- Section 7 -->
+        <h2 id="section-7"><span class="section-number">7</span>Your Privacy Rights and Choices</h2>
+        
+        <h3>7.1 Access and Control</h3>
+        <p>You have the right to:</p>
+        <ul>
+            <li><strong>Access Your Data:</strong> Request information about what data we hold about you</li>
+            <li><strong>Delete Your Data:</strong> Request deletion of your personal information (except where legally required)</li>
+            <li><strong>Correct Information:</strong> Ask us to correct inaccurate or incomplete information</li>
+            <li><strong>Data Portability:</strong> Request your data in a portable format</li>
+        </ul>
+        
+        <h3>7.2 User Controls</h3>
+        <p>Within the App, you can:</p>
+        <ul>
+            <li><strong>Manage Settings:</strong> Adjust theme preferences, fullscreen mode, and font size</li>
+            <li><strong>Clear Cache:</strong> Delete cached data through your device settings</li>
+            <li><strong>Disable Sharing:</strong> Opt out of content sharing features</li>
+            <li><strong>Download Management:</strong> Manage and delete downloaded content</li>
+        </ul>
+        
+        <h3>7.3 Device-Level Controls</h3>
+        <p><strong>Android:</strong></p>
+        <div class="code-block">
+            Settings → Apps → Seraj Al-Din → Permissions
+        </div>
+        <p>You can grant, deny, or revoke any permission.</p>
+        
+        <p><strong>iOS:</strong></p>
+        <div class="code-block">
+            Settings → Seraj Al-Din → Permissions
+        </div>
+        <p>Toggle permissions on/off as needed.</p>
+        
+        <!-- Section 8 -->
+        <h2 id="section-8"><span class="section-number">8</span>Children's Privacy</h2>
+        <p>The App is designed for Islamic knowledge seekers of all ages, including children and minors. However:</p>
+        
+        <ul>
+            <li><strong>No Direct Collection from Children:</strong> We do not knowingly collect personal information directly from children under 13 without parental consent</li>
+            <li><strong>Parental Responsibility:</strong> Parents and guardians should supervise their children's use of the App</li>
+            <li><strong>No Account Required:</strong> The App does not require user registration or account creation</li>
+            <li><strong>Age Restrictions:</strong> Some content may be age-appropriate and parents should review content with their children</li>
+        </ul>
+        
+        <div class="warning-box">
+            If you believe we have collected information from a child under 13 without consent, please contact us immediately.
+        </div>
+        
+        <!-- Section 9 -->
+        <h2 id="section-9"><span class="section-number">9</span>International Data Transfer</h2>
+        <p>The App and its servers are operated from servers that may be located in different jurisdictions. By using the App, you consent to the transfer of your information to countries that may have different data protection laws than your country of residence. We take appropriate steps to protect your information regardless of location.</p>
+        
+        <!-- Section 10 -->
+        <h2 id="section-10"><span class="section-number">10</span>Changes to This Privacy Policy</h2>
+        <p>We may update this Privacy Policy from time to time to reflect changes in our practices, technology, legal requirements, or other factors. We will notify you of material changes by:</p>
+        
+        <ul>
+            <li>Posting the updated Privacy Policy in the App</li>
+            <li>Updating the "Last Updated" date at the top</li>
+            <li>Sending you a notification when possible</li>
+        </ul>
+        
+        <p>Your continued use of the App following the posting of revised Privacy Policy means that you accept and agree to the changes.</p>
+        
+        <!-- Section 11 -->
+        <h2 id="section-11"><span class="section-number">11</span>Contact Us</h2>
+        <div class="contact-section">
+            <h3>Get in Touch</h3>
+            <p>If you have questions, concerns, or requests regarding this Privacy Policy or our privacy practices, please contact us:</p>
+            
+            <div class="contact-info">
+                <div class="contact-info-item">
+                    <strong>📧 Email:</strong><br>
+                    <a href="mailto:contact@srajalden.com">contact@srajalden.com</a>
+                </div>
+                <div class="contact-info-item">
+                    <strong>🌐 Website:</strong><br>
+                    <a href="https://srajalden.com" target="_blank">https://srajalden.com</a>
+                </div>
+            </div>
+            
+            <div class="success-box" style="margin-top: 20px;">
+                <strong>✓ Response Time:</strong> We aim to respond to all privacy-related inquiries within 30 days.
+            </div>
+        </div>
+        
+        <!-- Section 12 -->
+        <h2 id="section-12"><span class="section-number">12</span>Additional Information by Region</h2>
+        
+        <h3>12.1 GDPR Compliance (European Users)</h3>
+        <p>If you are located in the European Union or European Economic Area, you have additional rights under the General Data Protection Regulation (GDPR):</p>
+        <ul>
+            <li><strong>Legal Basis:</strong> We process your data based on your consent and our legitimate interests in providing the App</li>
+            <li><strong>Right to Lodge a Complaint:</strong> You can lodge a complaint with your local data protection authority</li>
+        </ul>
+        
+        <h3>12.2 CCPA Compliance (California Users)</h3>
+        <p>If you are a California resident, the California Consumer Privacy Act (CCPA) provides you with specific rights:</p>
+        <ul>
+            <li><strong>Right to Know:</strong> Request what personal information we collect</li>
+            <li><strong>Right to Delete:</strong> Request deletion of your personal information</li>
+            <li><strong>Right to Opt-Out:</strong> Opt out of the sale or sharing of your personal information</li>
+            <li><strong>Right to Non-Discrimination:</strong> We won't discriminate against you for exercising your CCPA rights</li>
+        </ul>
+        
+        <!-- Section 13 -->
+        <h2 id="section-13"><span class="section-number">13</span>Data Breach Notification</h2>
+        <p>In the unlikely event of a data breach affecting your personal information:</p>
+        <ol>
+            <li>We will investigate the breach immediately</li>
+            <li>We will notify affected users within 72 hours (or as required by law)</li>
+            <li>We will provide information about the breach and steps to protect yourself</li>
+            <li>We will cooperate with relevant authorities</li>
+        </ol>
+        
+        <!-- Section 14 -->
+        <h2 id="section-14"><span class="section-number">14</span>Third-Party Links</h2>
+        <p>The App may contain links to third-party websites and services, including:</p>
+        <ul>
+            <li>YouTube for video content</li>
+            <li>Social media platforms for sharing</li>
+            <li>Contact Us external email links</li>
+        </ul>
+        
+        <div class="info-box">
+            <strong>Important:</strong> We are not responsible for the privacy practices of third-party services. We encourage you to review their privacy policies before providing any information.
+        </div>
+        
+        <!-- Section 15 -->
+        <h2 id="section-15"><span class="section-number">15</span>Glossary of Terms</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Term</th>
+                    <th>Definition</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>API</strong></td>
+                    <td>Application Programming Interface - the system our App uses to communicate with our servers</td>
+                </tr>
+                <tr>
+                    <td><strong>Cache</strong></td>
+                    <td>Temporary storage of data for faster access</td>
+                </tr>
+                <tr>
+                    <td><strong>Device Information</strong></td>
+                    <td>Details about your smartphone or tablet</td>
+                </tr>
+                <tr>
+                    <td><strong>HTTPS/TLS</strong></td>
+                    <td>Secure encryption protocols for data transmission</td>
+                </tr>
+                <tr>
+                    <td><strong>IP Address</strong></td>
+                    <td>Internet Protocol address - a numerical label assigned to your device</td>
+                </tr>
+                <tr>
+                    <td><strong>Metadata</strong></td>
+                    <td>Data about data (e.g., file creation date, size)</td>
+                </tr>
+                <tr>
+                    <td><strong>SharedPreferences</strong></td>
+                    <td>Local device storage for App settings</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <!-- Section 16 -->
+        <h2 id="section-16"><span class="section-number">16</span>Summary of Key Points</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Topic</th>
+                    <th>Key Point</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Data Collection</strong></td>
+                    <td>We collect usage data, device info, and content interactions to provide and improve the App</td>
+                </tr>
+                <tr>
+                    <td><strong>User Consent</strong></td>
+                    <td>By using the App, you consent to this Privacy Policy</td>
+                </tr>
+                <tr>
+                    <td><strong>Data Security</strong></td>
+                    <td>HTTPS encryption and secure practices protect your data</td>
+                </tr>
+                <tr>
+                    <td><strong>No Selling</strong></td>
+                    <td>We never sell your personal information to third parties</td>
+                </tr>
+                <tr>
+                    <td><strong>Your Rights</strong></td>
+                    <td>You can access, delete, or control your data</td>
+                </tr>
+                <tr>
+                    <td><strong>Changes</strong></td>
+                    <td>Updates to this policy will be communicated to you</td>
+                </tr>
+                <tr>
+                    <td><strong>Contact</strong></td>
+                    <td>Reach us with any privacy questions or concerns</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <!-- Footer -->
+        <footer>
+            <p><strong>© 2026 Seraj Al-Din Islamic App. All rights reserved.</strong></p>
+            <p>Document Version: 1.0 | Effective Date: April 19, 2026</p>
+            <p>This Privacy Policy applies to all versions of the Seraj Al-Din Islamic App for Android, iOS, and Web platforms.</p>
+            <p>For the most up-to-date version, visit: <a href="https://srajalden.com/privacy" style="color: white;">https://srajalden.com/privacy</a></p>
+        </footer>
+        
+        <div class="print-notice">
+            <p>📄 You can print or save this page as a PDF using your browser's print function (Ctrl+P or Cmd+P).</p>
+        </div>
+    </div>
+    
+    <script>
+        // Add smooth scrolling for table of contents links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Add scroll to top button functionality
+        window.addEventListener('scroll', function() {
+            const backToTop = document.querySelector('.back-to-top');
+            if (backToTop) {
+                if (window.scrollY > 300) {
+                    backToTop.style.display = 'inline-block';
+                } else {
+                    backToTop.style.display = 'none';
+                }
+            }
+        });
+    </script>
+</body>
+</html>
