@@ -81,6 +81,9 @@ class $AssetsImagesGen {
   /// File path: assets/images/quran.png
   AssetGenImage get quran => const AssetGenImage('assets/images/quran.png');
 
+  /// File path: assets/images/radio.png
+  AssetGenImage get radio => const AssetGenImage('assets/images/radio.png');
+
   /// File path: assets/images/school.png
   AssetGenImage get school => const AssetGenImage('assets/images/school.png');
 
@@ -140,6 +143,7 @@ class $AssetsImagesGen {
         instagram,
         mainCardBackground,
         quran,
+        radio,
         school,
         serajAldeenImage,
         serajName,

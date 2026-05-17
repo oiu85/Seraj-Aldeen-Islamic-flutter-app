@@ -140,6 +140,16 @@ class SocialNetworksExpandableFab extends StatelessWidget {
           size: size,
 
         ),
+
+        // Radio
+        _buildSocialButton(
+          context,
+          imagePath: Assets.images.radio.path,
+          url: 'https://srajalden.com/radio.php',
+          platformName: 'الاذاعة',
+          size: size,
+        ),
+
         // Official Website Card (Centered)
         _buildWebsiteCard(context, size),
       ],
