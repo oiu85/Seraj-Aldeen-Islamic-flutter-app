@@ -63,7 +63,7 @@ class SocialNetworksExpandableFab extends StatelessWidget {
     final size = iconSize ?? 48.w;
 
     return ExpandableFab(
-      distance: distance ?? 70.0,
+      distance: distance ?? 55.0,
       type: ExpandableFabType.up,
       pos: ExpandableFabPos.right,
       childrenAnimation: ExpandableFabAnimation.rotate,
@@ -83,77 +83,79 @@ class SocialNetworksExpandableFab extends StatelessWidget {
         shape: const CircleBorder(),
       ),
       children: [
-        // YouTube
-        _buildSocialButton(
-          context,
-          imagePath: Assets.images.youtube.path,
-          // https://www.youtube.com/@srajaldencom
-          url: 'https://www.youtube.com/@srajaldencom',
-          platformName: 'يوتيوب',
-          size: size,
-        ),
-        
-        // Instagram
-        _buildSocialButton(
-          context,
-          imagePath: Assets.images.instagram.path,
-          url: 'https://www.instagram.com/srajaldencom',
-          platformName: 'انستقرام',
-          size: size,
-        ),
-        
-        // Facebook
-        _buildSocialButton(
-          context,
-          imagePath: Assets.images.facebook.path,
-          url: 'https://www.facebook.com/srajaldencom/',
-          platformName: 'فيسبوك',
-          size: size,
-        ),
-        
-
-        
-        // WhatsApp
-        _buildSocialButton(
-          context,
-          imagePath: Assets.images.whatsapp.path,
-          url: 'https://whatsapp.com/channel/0029VaAcfpRCXC3Te0dLDL0Z',
-          platformName: 'واتساب',
-          size: size,
-        ),
-        
-        // Twitter
-        _buildSocialButton(
-          context,
-          imagePath: Assets.images.twitter.path,
-          url: 'https://twitter.com/srajaldencom',
-          platformName: 'تويتر',
-          size: size,
-        ),
-        
-        // Telegram
-        _buildSocialButton(
-          context,
-          imagePath: Assets.images.telegram.path,
-          url: 'https://t.me/srajaldencom',
-          platformName: 'تلغرام',
-          size: size,
-
-        ),
-
-        // Radio
-        _buildSocialButton(
-          context,
-          imagePath: Assets.images.radio.path,
-          url: 'https://srajalden.com/radio.php',
-          platformName: 'الاذاعة',
-          size: size,
-        ),
-
-        // Official Website Card (Centered)
-        _buildWebsiteCard(context, size),
+        ..._socialNetworkButtons(context, size),
+        ..._appServiceButtons(context, size),
+        _buildWebsiteCardWithSpacing(context, size),
       ],
     );
+  }
+
+  List<Widget> _socialNetworkButtons(BuildContext context, double size) {
+    return [
+      _buildSocialButton(
+        context,
+        imagePath: Assets.images.youtube.path,
+        url: 'https://www.youtube.com/@srajaldencom',
+        platformName: 'يوتيوب',
+        size: size,
+      ),
+      _buildSocialButton(
+        context,
+        imagePath: Assets.images.instagram.path,
+        url: 'https://www.instagram.com/srajaldencom',
+        platformName: 'انستقرام',
+        size: size,
+      ),
+      _buildSocialButton(
+        context,
+        imagePath: Assets.images.facebook.path,
+        url: 'https://www.facebook.com/srajaldencom/',
+        platformName: 'فيسبوك',
+        size: size,
+      ),
+      _buildSocialButton(
+        context,
+        imagePath: Assets.images.whatsapp.path,
+        url: 'https://whatsapp.com/channel/0029VaAcfpRCXC3Te0dLDL0Z',
+        platformName: 'واتساب',
+        size: size,
+      ),
+      _buildSocialButton(
+        context,
+        imagePath: Assets.images.twitter.path,
+        url: 'https://twitter.com/srajaldencom',
+        platformName: 'تويتر',
+        size: size,
+      ),
+      _buildSocialButton(
+        context,
+        imagePath: Assets.images.telegram.path,
+        url: 'https://t.me/srajaldencom',
+        platformName: 'تلغرام',
+        size: size,
+      ),
+    ];
+  }
+
+  List<Widget> _appServiceButtons(BuildContext context, double size) {
+    return [
+      _buildSocialButton(
+        context,
+        imagePath: Assets.images.radio.path,
+        url: 'https://srajalden.com/radio.php',
+        platformName: 'الاذاعة',
+        size: size,
+      ),
+      _buildSocialButton(
+        context,
+        imagePath: Assets.images.almaktabaAlsirajia.path,
+        url:
+            'https://notebooklm.google.com/notebook/ff77a9ab-4101-400a-ae44-c309a36fe191?pli=1',
+        platformName: 'المكتبة السراجية',
+        size: size,
+        backgroundColor: AppColors.white,
+      ),
+    ];
   }
 
   Widget _buildSocialButton(
@@ -162,6 +164,7 @@ class SocialNetworksExpandableFab extends StatelessWidget {
     required String url,
     required String platformName,
     required double size,
+    Color? backgroundColor,
   }) {
     return InkWell(
       onTap: () => _launchUrl(context, url, platformName),
@@ -169,12 +172,30 @@ class SocialNetworksExpandableFab extends StatelessWidget {
       child: Container(
         width: size,
         height: size,
-        padding: EdgeInsets.all(size * 0.15),
+        decoration: backgroundColor != null
+            ? BoxDecoration(
+                color: backgroundColor,
+                shape: BoxShape.circle,
+              )
+            : null,
+        padding: EdgeInsets.all(size * 0.12),
         child: Image.asset(
           imagePath,
           fit: BoxFit.contain,
         ),
       ),
+    );
+  }
+
+  /// Gap sits below the card (toward the icons) so الموقع الرسمي does not touch them.
+  Widget _buildWebsiteCardWithSpacing(BuildContext context, double size) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        _buildWebsiteCard(context, size),
+        SizedBox(height: 36.h),
+      ],
     );
   }
 

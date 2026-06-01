@@ -57,6 +57,9 @@ class $AssetsImagesGen {
   /// File path: assets/images/abdullah_seraj_aldeen.png
   AssetGenImage get abdullahSerajAldeen => const AssetGenImage('assets/images/abdullah_seraj_aldeen.png');
 
+  /// File path: assets/images/almaktaba_alsirajia.png
+  AssetGenImage get almaktabaAlsirajia => const AssetGenImage('assets/images/almaktaba_alsirajia.png');
+
   /// File path: assets/images/appbar_image_left.png
   AssetGenImage get appbarImageLeft => const AssetGenImage('assets/images/appbar_image_left.png');
 
@@ -135,6 +138,7 @@ class $AssetsImagesGen {
         splashScreenJpeg,
         splashScreenPng,
         abdullahSerajAldeen,
+        almaktabaAlsirajia,
         appbarImageLeft,
         appbarImageRight,
         bookCard,
